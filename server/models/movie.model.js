@@ -8,11 +8,17 @@ const movieSchema = mongoose.Schema({
   slug: { type: String, slug: "name" },
   description: String,
   quality: String,
-  year: String,
+  year: Number,
   trailer: String,
-  time: String,
+  time: Number,
   videoUrl: String,
   imageUrl: String,
+  categories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "category",
+    },
+  ],
 });
 
 const Movie = mongoose.model("movie", movieSchema);

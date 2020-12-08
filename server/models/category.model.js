@@ -4,7 +4,12 @@ const categorySchema = new mongoose.Schema({
   name: String,
   description: String,
   imageUrl: String,
-  movie: mongoose.Schema.Types.ObjectId,
+  movies: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "movie",
+    },
+  ],
 });
 
 const Category = mongoose.model("category", categorySchema);

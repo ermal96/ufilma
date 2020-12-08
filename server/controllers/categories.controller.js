@@ -1,68 +1,60 @@
-const category = require("../models/category.model");
+const Category = require("../models/category.model");
 
 exports.get = async (_, res) => {
   try {
-    const categories = await category.find();
+    const categories = await Category.find()
+      .select("-__v ")
+      .populate("movies", "name");
 
     res.send({
-      success: true,
       data: categories,
     });
   } catch (error) {
     res.send({
-      success: false,
       message: error,
     });
   }
 };
 
 exports.add = async (req, res) => {
-  const newCategory = await new category(req.body);
+  const category = await new Category(req.body);
 
-  newCategory
-    .save()
-    .then(() => {
-      res.send({
-        success: true,
-        message: "Category was successfully added",
-      });
-    })
-    .catch((err) => {
-      res.send({
-        success: false,
-        message: err,
-      });
+  try {
+    await category.save();
+    res.send({
+      message: "Category was successfully added",
     });
+  } catch (error) {
+    res.send({
+      message: "Something went wrong",
+    });
+  }
 };
 
 exports.delete = async (req, res) => {
   try {
-    await category.remove({ _id: req.params.slug });
+    await Category.remove({ _id: req.params.slug });
 
     res.send({
-      success: true,
       message: `Category was successfully deleted`,
     });
   } catch (error) {
     res.send({
-      success: false,
-      message: error,
+      message: "Something went wrong",
     });
   }
 };
 
 exports.update = async (req, res) => {
   try {
-    await category.update(req.body);
+    await Category.update(req.body);
 
     res.send({
-      success: true,
-      message: `Category was successfully updated}`,
+      message: `Category was successfully updated`,
     });
   } catch (error) {
     res.send({
-      success: false,
-      message: error,
+      message: "Something went wrong",
     });
   }
 };
