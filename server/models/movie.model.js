@@ -9,7 +9,7 @@ const movieSchema = mongoose.Schema({
   description: String,
   quality: String,
   year: Number,
-  trailer: String,
+  trailerUrl: String,
   time: Number,
   videoUrl: String,
   imageUrl: String,
