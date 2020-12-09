@@ -16,8 +16,8 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1"
   },
   "scripts": {
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run watch:css && react-scripts build",
+    "start": " react-scripts start",
+    "build": " react-scripts build",
     "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
   },
   "eslintConfig": {

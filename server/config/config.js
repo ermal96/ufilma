@@ -1,7 +1,7 @@
 const config = (app) => {
   require("dotenv").config();
   const bodyParser = require("body-parser");
-  const port = process.env.PORT || 5000;
+  const port = 8080;
   const cors = require("cors");
 
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,7 +19,7 @@ const config = (app) => {
   // });
 
   app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+    console.log(`Server is listening at http://127.0.0.1:${port}/`);
   });
 };
 
