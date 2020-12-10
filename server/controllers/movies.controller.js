@@ -19,7 +19,7 @@ export const getAllMovies = async (_, res) => {
 
 export const getMovie = async (req, res) => {
   try {
-    const movies = await Movie.find({ slug: req.params.slug })
+    const movies = await Movie.find({ slug: req.params.id })
       .select("-__v")
       .populate("categories", "name");
 
@@ -53,7 +53,7 @@ export const add = async (req, res) => {
 
 export const remove = async (req, res) => {
   try {
-    await Movie.deleteOne({ _id: req.params.slug });
+    await Movie.deleteOne({ _id: req.params.id });
 
     res.send({
       message: `Movie was successfully deleted`,
