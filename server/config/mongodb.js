@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 module.exports = mongoConnect = () => {
   mongoose
     .connect(
-      "mongodb+srv://ufilma:ufilma2020.@ufilma.ghjph.mongodb.net/ufilma?retryWrites=true&w=majority",
+      "mongodb://127.0.0.1:27017/ufilma",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
