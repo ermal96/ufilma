@@ -1,7 +1,7 @@
-const Movie = require("../models/movie.model");
-const Category = require("../models/category.model");
+import {Movie} from "../models/movie.model.js";
+import {Category} from  "../models/category.model.js";
 
-exports.getAllMovies = async (_, res) => {
+export const getAllMovies = async (_, res) => {
   try {
     const movies = await Movie.find()
       .select("name year imageUrl slug")
@@ -17,7 +17,7 @@ exports.getAllMovies = async (_, res) => {
   }
 };
 
-exports.getMovie = async (req, res) => {
+export const getMovie = async (req, res) => {
   try {
     const movies = await Movie.find({ slug: req.params.slug })
       .select("-__v")
@@ -33,7 +33,7 @@ exports.getMovie = async (req, res) => {
   }
 };
 
-exports.add = async (req, res) => {
+export const add = async (req, res) => {
   const movie = await new Movie(req.body);
 
   const catIds = req.body.categories;
@@ -51,9 +51,9 @@ exports.add = async (req, res) => {
   }
 };
 
-exports.delete = async (req, res) => {
+export const remove = async (req, res) => {
   try {
-    await Movie.remove({ _id: req.params.slug });
+    await Movie.deleteOne({ _id: req.params.slug });
 
     res.send({
       message: `Movie was successfully deleted`,
@@ -65,7 +65,7 @@ exports.delete = async (req, res) => {
   }
 };
 
-exports.update = async (req, res) => {
+export const update = async (req, res) => {
   const catIds = req.body.categories;
 
   try {

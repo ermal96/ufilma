@@ -1,21 +1,25 @@
 // imports
-const express = require("express");
+import express from "express";
+
+// start express app
 const app = express();
-const config = require("./config/config");
-const mongodb = require("./config/mongodb");
+
+// import configs
+import {config} from  "./config/config.js";
+import {mongoConnect} from  "./config/mongodb.js";
 
 // import routes
-const moviesRoute = require("./routes/movies.route");
-const categoriesRoute = require("./routes/categories.route");
+import { moviesRoute } from "./routes/movies.route.js";
+import { categoriesRoute } from "./routes/categories.route.js";
 
 // config server
 config(app);
 
 // init mongodb
-mongodb();
+mongoConnect();
 
 // default route
-app.get('/api', (req, res) => {
+app.get('/api', (_, res) => {
     res.send({
         message: "Hello From Api"
     })

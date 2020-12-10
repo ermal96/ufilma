@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const slug = require("mongoose-slug-generator");
+import mongoose from  "mongoose";
+import slug  from "mongoose-slug-generator";
 
 mongoose.plugin(slug);
 
@@ -21,6 +21,5 @@ const movieSchema = mongoose.Schema({
   ],
 });
 
-const Movie = mongoose.model("movie", movieSchema);
+export const Movie = mongoose.model("movie", movieSchema);
 
-module.exports = Movie;

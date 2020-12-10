@@ -1,6 +1,6 @@
-const Category = require("../models/category.model");
+import  { Category }  from "../models/category.model.js";
 
-exports.get = async (_, res) => {
+export const get = async (_, res) => {
   try {
     const categories = await Category.find()
       .select("-__v ")
@@ -16,7 +16,7 @@ exports.get = async (_, res) => {
   }
 };
 
-exports.add = async (req, res) => {
+export const add = async (req, res) => {
   const category = await new Category(req.body);
 
   try {
@@ -31,9 +31,9 @@ exports.add = async (req, res) => {
   }
 };
 
-exports.delete = async (req, res) => {
+export const remove = async (req, res) => {
   try {
-    await Category.remove({ _id: req.params.slug });
+    await Category.deleteOne({ _id: req.params.slug });
 
     res.send({
       message: `Category was successfully deleted`,
@@ -45,7 +45,7 @@ exports.delete = async (req, res) => {
   }
 };
 
-exports.update = async (req, res) => {
+export const update = async (req, res) => {
   try {
     await Category.update(req.body);
 
