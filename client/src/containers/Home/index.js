@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getMovies, addMovie } from "../../store/actions/moviesAction";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const movies = useSelector(({ movies }) => movies);
-
   const [name, setName] = useState("");
   const [quality, setQuality] = useState("");
 
@@ -21,9 +19,9 @@ const Home = () => {
 
   return (
     <div>
-      {console.log(movies)}
       <form onSubmit={onSubmit}>
         <input
+          className="p-6 shadow-sm"
           onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder="name"

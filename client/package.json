@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "autoprefixer": "^9.8.6",
     "axios": "^0.21.0",
-    "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
@@ -13,12 +11,11 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1"
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": " react-scripts start",
-    "build": " react-scripts build",
-    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
+    "build": " react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -37,8 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "postcss-cli": "^8.3.0"
   }
 }
