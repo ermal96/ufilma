@@ -1,11 +1,7 @@
 import mongoose from  "mongoose";
-import slug  from "mongoose-slug-generator";
-
-mongoose.plugin(slug);
 
 const movieSchema = mongoose.Schema({
   name: String,
-  slug: { type: String, slug: "name" },
   description: String,
   quality: String,
   year: Number,

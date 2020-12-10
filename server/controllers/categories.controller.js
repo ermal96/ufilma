@@ -33,7 +33,7 @@ export const add = async (req, res) => {
 
 export const remove = async (req, res) => {
   try {
-    await Category.deleteOne({ _id: req.params.slug });
+    await Category.deleteOne({ _id: req.params.id });
 
     res.send({
       message: `Category was successfully deleted`,

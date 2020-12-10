@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", categories.get);
 router.post("/", categories.add);
-router.delete("/:slug", categories.remove);
-router.put("/:slug", categories.update);
+router.delete("/:id", categories.remove);
+router.put("/:id", categories.update);
 
 export const categoriesRoute =  router;
