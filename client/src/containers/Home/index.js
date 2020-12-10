@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getMovies, addMovie } from "../../store/actions/moviesAction";
+import { addMovie } from "../../store/actions/moviesAction";
 import { Input } from "../../components/Design";
 
 const Home = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState({});
 
+  const formData = new FormData();
+
   const onSubmit = (e) => {
     e.preventDefault();
-    //console.log(image);
-    dispatch(addMovie({ file: image }));
+    formData.append("file", image);
+
+    dispatch(addMovie(formData));
   };
 
   return (
