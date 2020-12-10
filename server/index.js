@@ -14,8 +14,15 @@ config(app);
 // init mongodb
 mongodb();
 
+// default route
+app.get('/api', (req, res) => {
+    res.send({
+        message: "Hello From Api"
+    })
+})
+
 // movies routes
-app.use("/movies", moviesRoute);
+app.use("/api/movies", moviesRoute);
 
 // categories routes
-app.use("/categories", categoriesRoute);
+app.use("/api/categories", categoriesRoute);
