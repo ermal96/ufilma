@@ -5,7 +5,7 @@ export const getMovies = () => async (dispatch) => {
   let movies = [];
 
   try {
-    const res = await axios.get("http://localhost:5000/movies");
+    const res = await axios.get("/movies");
     movies = res.data.data;
   } catch (error) {}
 
@@ -13,4 +13,14 @@ export const getMovies = () => async (dispatch) => {
     type: types.GET_MOVIES,
     payload: movies,
   });
+};
+
+export const addMovie = (data) => async (dispatch) => {
+  try {
+    await axios.post("/movies", data);
+  } catch (error) {
+    dispatch({
+      type: types.ADD_MOVIE,
+    });
+  }
 };

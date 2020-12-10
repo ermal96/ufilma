@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const axiosConfig = () => {
-  axios.defaults.baseURL = "http://localhost:5000";
+  axios.defaults.baseURL = "https://ufilma.com/api";
 };
