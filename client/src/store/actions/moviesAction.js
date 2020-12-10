@@ -17,7 +17,8 @@ export const getMovies = () => async (dispatch) => {
 
 export const addMovie = (data) => async (dispatch) => {
   try {
-    await axios.post("/movies", data);
+    const res = await axios.post("/upload", data);
+    console.log(res);
   } catch (error) {
     dispatch({
       type: types.ADD_MOVIE,

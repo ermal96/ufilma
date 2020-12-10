@@ -1,39 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getMovies, addMovie } from "../../store/actions/moviesAction";
+import { Input } from "../../components/Design";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [quality, setQuality] = useState("");
-
-  useEffect(() => {
-    dispatch(getMovies());
-  }, [dispatch]);
+  const [image, setImage] = useState({});
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(addMovie({ name, quality }));
+    //console.log(image);
+    dispatch(addMovie({ file: image }));
   };
 
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <input
-          className="p-6 shadow-sm"
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="name"
-          value={name}
+        <Input
+          onChange={(e) => setImage(e.target.files[0])}
+          name="file"
+          type="file"
         />
-        <input
-          onChange={(e) => setQuality(e.target.value)}
-          type="text"
-          placeholder="quality"
-          value={quality}
-        />
-        <button type="submit">Send</button>
+        <button type="submit">upload</button>
       </form>
     </div>
   );
