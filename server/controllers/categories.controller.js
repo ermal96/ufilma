@@ -1,4 +1,5 @@
 import  { Category }  from "../models/category.model.js";
+import { slugify } from '../utils/slugify.js';
 
 export const get = async (_, res) => {
   try {
@@ -19,6 +20,8 @@ export const get = async (_, res) => {
 export const add = async (req, res) => {
   const category = await new Category(req.body);
 
+  movie.slug = slugify(req.body.name);
+  
   try {
     await category.save();
     res.send({
@@ -33,7 +36,7 @@ export const add = async (req, res) => {
 
 export const remove = async (req, res) => {
   try {
-    await Category.deleteOne({ _id: req.params.id });
+    await Category.deleteOne({ _id: req.params.slug });
 
     res.send({
       message: `Category was successfully deleted`,
