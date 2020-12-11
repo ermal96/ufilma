@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addMovie } from "../../store/actions/moviesAction";
-import { Input } from "../../components/Design";
+import { Form, Input, Button } from "antd";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -9,24 +9,35 @@ const Home = () => {
 
   const formData = new FormData();
 
-  const onSubmit = (e) => {
+  const onFinish = (e) => {
     e.preventDefault();
-    formData.append("file", image);
 
-    dispatch(addMovie(formData));
+    formData.append("imageUrl", image);
+
+    // dispatch(addMovie(formData));
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <Input
-          onChange={(e) => setImage(e.target.files[0])}
-          name="file"
-          type="file"
-        />
-        <button type="submit">upload</button>
-      </form>
-    </div>
+    <Form.Item name="form" onFinish={onFinish}>
+      <Form.Item name={["user", "name"]}>
+        <Input placeholder="Name" />
+      </Form.Item>
+      <Form.Item name={["user", "email"]}>
+        <Input placeholder="Email" />
+      </Form.Item>
+
+      <Form.Item name={["user", "website"]}>
+        <Input placeholder="Website" />
+      </Form.Item>
+      <Form.Item name={["user", "introduction"]}>
+        <Input.TextArea placeholder="Introduction" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form.Item>
   );
 };
 
