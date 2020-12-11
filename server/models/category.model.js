@@ -1,9 +1,15 @@
 import mongoose from  "mongoose";
 
 const categorySchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true
+  },
   description: String,
-  imageUrl: String,
+  imageUrl: {
+    type: String,
+    required: true
+  },
   movies: [
     {
       type: mongoose.Schema.Types.ObjectId,
