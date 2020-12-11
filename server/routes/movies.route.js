@@ -1,12 +1,13 @@
 import express from "express";
 import  * as movies from "../controllers/movies.controller.js";
+import { upload } from '../utils/upload.js';
 
 const router = express.Router();
 
-router.get("/", movies.getAllMovies);
-router.get("/:id", movies.getMovie);
-router.post("/", movies.add);
-router.delete("/:id", movies.remove);
-router.put("/:id", movies.update);
+router.get("/", movies.getAll);
+router.get("/:slug", movies.get);
+router.post("/", upload.single('imageUrl'), movies.add);
+router.delete("/:slug", movies.remove);
+router.put("/:slug", movies.update);
 
 export const moviesRoute =  router;
