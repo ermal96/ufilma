@@ -1,7 +1,9 @@
-import {Movie} from "../models/movie.model.js";
-import {Category} from  "../models/category.model.js";
+import { Movie } from "../models/movie.model.js";
+import { Category} from  "../models/category.model.js";
+import { slugify } from '../utils/slugify.js';
+import { validateMovie } from '../validation/movie.validation.js'
 
-export const getAllMovies = async (_, res) => {
+export const getAll = async (_, res) => {
   try {
     const movies = await Movie.find()
       .select("name year imageUrl slug")
@@ -17,9 +19,9 @@ export const getAllMovies = async (_, res) => {
   }
 };
 
-export const getMovie = async (req, res) => {
+export const get = async (req, res) => {
   try {
-    const movies = await Movie.find({ slug: req.params.id })
+    const movies = await Movie.find({ slug: req.params.slug })
       .select("-__v")
       .populate("categories", "name");
 
@@ -34,7 +36,19 @@ export const getMovie = async (req, res) => {
 };
 
 export const add = async (req, res) => {
+
   const movie = await new Movie(req.body);
+
+  movie.slug = slugify(req.body.name);
+  movie.imageUrl = '/' + req.file.path;
+
+  const hasError = await validateMovie(req.body);
+
+  if(hasError.length) {
+    res.send({
+      message: hasError.error.details[0].message
+    })  
+  }
 
   const catIds = req.body.categories;
 
@@ -53,7 +67,7 @@ export const add = async (req, res) => {
 
 export const remove = async (req, res) => {
   try {
-    await Movie.deleteOne({ _id: req.params.id });
+    await Movie.deleteOne({ _id: req.params.slug });
 
     res.send({
       message: `Movie was successfully deleted`,

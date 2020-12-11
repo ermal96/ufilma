@@ -1,12 +1,14 @@
 // imports
 import express from "express";
+import path from 'path';
 
 // start express app
 const app = express();
 
 // import configs
-import {config} from  "./config/config.js";
-import {mongoConnect} from  "./config/mongodb.js";
+import { config } from  "./config/config.js";
+import { mongoConnect } from  "./config/mongodb.js";
+import { __dirname } from "./config/config.js";
 
 // import routes
 import { moviesRoute } from "./routes/movies.route.js";
@@ -25,8 +27,12 @@ app.get('/api', (_, res) => {
     })
 })
 
+// static folder
+app.use('/uploads', express.static('uploads'));
+
 // movies routes
 app.use("/api/movies", moviesRoute);
 
 // categories routes
 app.use("/api/categories", categoriesRoute);
+
