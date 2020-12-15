@@ -9,3 +9,6 @@ export const routes = {
   categories: "/categories",
   category: "/category:slug",
 };
+
+export { default as PrivateRoute } from "./PrivateRoute";
+export { default as AuthRoute } from "./AuthRoute";

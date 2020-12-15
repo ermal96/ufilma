@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import { useDispatch } from "react-redux";
-import { login } from "../../store/actions/authActions";
+import { fetchUser } from "../../store/actions/userActions";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const Login = () => {
       password: values.password,
     };
 
-    dispatch(login(loginData));
+    dispatch(fetchUser(loginData));
   };
 
   return (

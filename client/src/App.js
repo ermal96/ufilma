@@ -1,39 +1,38 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Dashboard, Login, Categories, Movies } from "./containers/Admin";
-import Home from "./containers/Home";
 import { routes } from "./routes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { autoLogin } from "./store/actions/userActions";
+import { PrivateRoute, AuthRoute } from "./routes/";
+import Home from "./containers/Home";
 
 const App = () => {
-  const loggedIn = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
+  const isAppReady = useSelector((state) => state.user.isLoaded);
 
-  return (
-    <>
+  useEffect(() => {
+    dispatch(autoLogin());
+  }, [dispatch]);
+
+  if (isAppReady) {
+    return (
       <Router>
         <Switch>
           <Route exact path={routes.home} component={Home} />
-          {/* admin routes */}
-          <Route exact path={routes.admin}>
-            {!loggedIn ? <Redirect to={routes.adminLogin} /> : <Dashboard />}
-          </Route>
-          <Route exact path={routes.adminLogin}>
-            {loggedIn ? <Redirect to={routes.admin} /> : <Login />}
-          </Route>
-          <Route exact path={routes.adminCategories}>
-            {!loggedIn ? <Redirect to={routes.adminLogin} /> : <Categories />}
-          </Route>
-          <Route exact path={routes.adminMovies} component={Movies}>
-            {!loggedIn ? <Redirect to={routes.adminLogin} /> : <Movies />}
-          </Route>
+
+          <Route exact path={routes.adminMovies} component={Movies} />
+
+          <AuthRoute path={routes.adminLogin} component={Login} />
+
+          <PrivateRoute path={routes.adminCategories} component={Categories} />
+          <PrivateRoute path={routes.admin} component={Dashboard} />
         </Switch>
       </Router>
-    </>
-  );
+    );
+  } else {
+    return <p>App Loading</p>;
+  }
 };
 
 export default App;
