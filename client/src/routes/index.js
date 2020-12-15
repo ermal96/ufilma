@@ -1,13 +1,10 @@
 export const routes = {
-  home: "/",
-  admin: "/admin",
-  adminLogin: "/admin/login",
-  adminMovies: "/admin/movies",
-  adminCategories: "/admin/categories",
+  dashboard: "/",
+  login: "/login",
   movies: "/movies",
-  movie: "/movie:slug",
+  movie: "/movie:id",
   categories: "/categories",
-  category: "/category:slug",
+  category: "/category:id",
 };
 
 export { default as PrivateRoute } from "./PrivateRoute";

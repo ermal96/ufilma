@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Dashboard, Login, Categories, Movies } from "./containers/Admin";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { Dashboard, Login, Categories } from "./containers";
 import { routes } from "./routes";
 import { useDispatch, useSelector } from "react-redux";
 import { autoLogin } from "./store/actions/userActions";
 import { PrivateRoute, AuthRoute } from "./routes/";
-import Home from "./containers/Home";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,14 +18,9 @@ const App = () => {
     return (
       <Router>
         <Switch>
-          <Route exact path={routes.home} component={Home} />
-
-          <Route exact path={routes.adminMovies} component={Movies} />
-
-          <AuthRoute path={routes.adminLogin} component={Login} />
-
-          <PrivateRoute path={routes.adminCategories} component={Categories} />
-          <PrivateRoute path={routes.admin} component={Dashboard} />
+          <AuthRoute path={routes.login} component={Login} />
+          <PrivateRoute path={routes.categories} component={Categories} />
+          <PrivateRoute path={routes.dashboard} component={Dashboard} />
         </Switch>
       </Router>
     );
