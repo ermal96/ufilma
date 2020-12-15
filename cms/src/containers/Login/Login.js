@@ -1,4 +1,6 @@
 import React from "react";
+import { Container } from "reactstrap";
+import { LoginForm } from "../../components/Login";
 // import { useDispatch } from "react-redux";
 // import { fetchUser } from "../../store/actions/userActions";
 
@@ -12,13 +14,9 @@ const Login = () => {
   };
 
   return (
-    <form name="login" onSubmit={onFinish}>
-      <input type="text" placeholder="Enter email" />
-
-      <input type="password" placeholder="Enter your password" />
-
-      <button type="submit">Login</button>
-    </form>
+    <Container>
+      <LoginForm />
+    </Container>
   );
 };
 

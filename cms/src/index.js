@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { config } from "./config";
 
-import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // start project config
 config();
