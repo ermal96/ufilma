@@ -2,9 +2,9 @@ export const routes = {
   dashboard: "/",
   login: "/login",
   movies: "/movies",
-  movie: "/movie:id",
+  addMovie: "/add-movie",
   categories: "/categories",
-  category: "/category:id",
+  addCategory: "/add-category",
 };
 
 export { default as PrivateRoute } from "./PrivateRoute";

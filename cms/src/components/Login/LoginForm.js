@@ -11,7 +11,12 @@ const LoginForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(fetchUser({}));
+    dispatch(
+      fetchUser({
+        email,
+        password,
+      })
+    );
   };
 
   return (

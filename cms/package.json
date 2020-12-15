@@ -12,7 +12,8 @@
     "react-scripts": "4.0.1",
     "reactstrap": "^8.7.1",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": " react-scripts start",
