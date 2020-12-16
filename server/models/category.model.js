@@ -1,15 +1,12 @@
-import mongoose from  "mongoose";
+import mongoose from "mongoose";
 
 const categorySchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   description: String,
-  imageUrl: {
-    type: String,
-    required: true
-  },
+  imageUrl: String,
   movies: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -19,4 +16,3 @@ const categorySchema = new mongoose.Schema({
 });
 
 export const Category = mongoose.model("category", categorySchema);
-

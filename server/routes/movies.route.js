@@ -1,13 +1,13 @@
 import express from "express";
-import  * as movies from "../controllers/movies.controller.js";
-import { upload } from '../utils/upload.js';
+import * as movies from "../controllers/movies.controller.js";
+// import { upload } from "../utils/upload.js";
 
 const router = express.Router();
 
 router.get("/", movies.getAll);
-router.get("/:slug", movies.get);
-router.post("/", upload.single('imageUrl'), movies.add);
-router.delete("/:slug", movies.remove);
-router.put("/:slug", movies.update);
+router.get("/:id", movies.getById);
+router.post("/", movies.add);
+router.put("/:id", movies.updateById);
+router.delete("/:id", movies.removeById);
 
-export const moviesRoute =  router;
+export const moviesRoute = router;

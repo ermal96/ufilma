@@ -1,5 +1,5 @@
 export const slugify = (str, after) => {
-    const strAfter = after ? "-" + after : "";
+  const strAfter = after ? "-" + after : "";
 
-    return str.split(" ").join("-") + strAfter;
-  };
+  return str.split(" ").join("-") + strAfter;
+};

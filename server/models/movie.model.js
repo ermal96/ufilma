@@ -1,9 +1,9 @@
-import mongoose from  "mongoose";
+import mongoose from "mongoose";
 
 const movieSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   slug: String,
   description: String,
@@ -11,19 +11,19 @@ const movieSchema = mongoose.Schema({
   year: Number,
   trailerUrl: {
     type: String,
-    required: true
+    // required: true,
   },
   time: {
     type: Number,
-    required: true
+    required: true,
   },
   videoUrl: {
     type: String,
-    required: true
+    // required: true,
   },
   imageUrl: {
     type: String,
-    required: true
+    // required: true,
   },
   categories: [
     {
@@ -34,4 +34,3 @@ const movieSchema = mongoose.Schema({
 });
 
 export const Movie = mongoose.model("movie", movieSchema);
-
