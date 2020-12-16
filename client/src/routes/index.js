@@ -1,8 +1,11 @@
 export const routes = {
-  home: "/",
-  admin: "/admin",
+  dashboard: "/",
+  login: "/login",
   movies: "/movies",
-  movie: "/movie:slug",
+  addMovie: "/add-movie",
   categories: "/categories",
-  category: "/category:slug",
+  addCategory: "/add-category",
 };
+
+export { default as PrivateRoute } from "./PrivateRoute";
+export { default as AuthRoute } from "./AuthRoute";

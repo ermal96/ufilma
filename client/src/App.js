@@ -1,27 +1,33 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Admin } from "./containers/Admin";
-import Home from "./containers/Home";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { Dashboard, Login, Categories, Movies } from "./containers";
 import { routes } from "./routes";
-import Layout from "./components/Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { autoLogin } from "./store/actions/userActions";
+import { PrivateRoute, AuthRoute } from "./routes/";
 
 const App = () => {
-  return (
-    <>
-      <Router>
-        <Layout>
-          <Switch>
-            <Route exact path={routes.home}>
-              <Home />
-            </Route>
+  const dispatch = useDispatch();
+  const isAppReady = useSelector((state) => state.user.isLoaded);
 
-            <Route exact path={routes.admin}>
-              <Admin />
-            </Route>
-          </Switch>
-        </Layout>
+  useEffect(() => {
+    dispatch(autoLogin());
+  }, [dispatch]);
+
+  if (isAppReady) {
+    return (
+      <Router>
+        <Switch>
+          <AuthRoute path={routes.login} component={Login} />
+          <PrivateRoute path={routes.movies} component={Movies} />
+          <PrivateRoute path={routes.categories} component={Categories} />
+          <PrivateRoute path={routes.dashboard} component={Dashboard} />
+        </Switch>
       </Router>
-    </>
-  );
+    );
+  } else {
+    return <p>App Loading</p>;
+  }
 };
 
 export default App;

@@ -1,14 +1,16 @@
 import React from "react";
-import Navbar from "../Navbar";
-import Footer from "../Footer";
+import { Row, Col } from "reactstrap";
+import Sidebar from "./Sidebar/Sidebar";
 
 const Layout = ({ children }) => {
   return (
-    <div style={{ maxWidth: "1200px", margin: "20px auto" }}>
-      <Navbar />
-      {children}
-      <Footer />
-    </div>
+    <Row>
+      <Col md={2}>
+        <Sidebar />
+      </Col>
+
+      <Col md={10}>{children}</Col>
+    </Row>
   );
 };
 
