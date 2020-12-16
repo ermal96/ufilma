@@ -46,3 +46,9 @@ export const autoLogin = () => async (dispatch) => {
     });
   }
 };
+
+export const logout = () => async (dispatch) => {
+  dispatch({
+    type: types.LOG_OUT,
+  });
+};

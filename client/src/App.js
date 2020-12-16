@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-import { Dashboard, Login, Categories, Movies } from "./containers";
-import { routes } from "./routes";
 import { useDispatch, useSelector } from "react-redux";
 import { autoLogin } from "./store/actions/userActions";
-import { PrivateRoute, AuthRoute } from "./routes/";
+import { Routes } from "./routes";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
+import GlobalStyle from "./theme/global";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,14 +16,12 @@ const App = () => {
 
   if (isAppReady) {
     return (
-      <Router>
-        <Switch>
-          <AuthRoute path={routes.login} component={Login} />
-          <PrivateRoute path={routes.movies} component={Movies} />
-          <PrivateRoute path={routes.categories} component={Categories} />
-          <PrivateRoute path={routes.dashboard} component={Dashboard} />
-        </Switch>
-      </Router>
+      <>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Routes />
+        </ThemeProvider>
+      </>
     );
   } else {
     return <p>App Loading</p>;
