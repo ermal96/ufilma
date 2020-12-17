@@ -12,6 +12,10 @@ const UButon = styled.button`
   outline: none;
   cursor: pointer;
   width: ${(props) => (props.width ? props.width + "px" : "auto")};
+
+  &:active {
+    border: 0.2rem solid ${({ theme }) => theme.colors.secondary};
+  }
 `;
 
 const Button = ({ width, size, children, variant, ...rest }) => {

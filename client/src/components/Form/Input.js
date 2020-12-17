@@ -12,6 +12,11 @@ const UInput = styled.input`
   display: ${(props) => (props.display ? props.display : "inline")};
   min-width: 20rem;
   background: transparent;
+  filter: none;
+
+  &:focus {
+    border: 0.2rem solid ${({ theme }) => theme.colors.secondary};
+  }
 `;
 
 const Input = ({ size, variant, display, ...rest }) => {
