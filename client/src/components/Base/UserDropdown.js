@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { CgUserlane } from "react-icons/cg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/actions/userActions";
 
 const UDropdown = styled.div`
@@ -52,6 +52,7 @@ const UDropdownBody = styled.ul`
 `;
 
 const UserDropdown = () => {
+  const user = useSelector(({ user }) => user.user);
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
 
@@ -64,10 +65,10 @@ const UserDropdown = () => {
       {state ? (
         <UDropdownBody>
           <li>
-            <p>Ermal Vrapi</p>
+            <p>{user.name}</p>
           </li>
           <li>
-            <p>ermalvrapi18@gmail.com</p>
+            <p>{user.email}</p>
           </li>
           <li>
             <p onClick={() => dispatch(logout())}>Logout</p>
