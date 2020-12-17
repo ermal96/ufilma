@@ -1,13 +1,30 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: 62.5%;
+  }
   *{
     box-sizing:border-box;
+    margin: 0;
+    padding: 0;
   }
   body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #f3f3f3;
+    font-size: 1.5rem;
+  }
+  h1{
+    font-weight:500;
+  }
+  h2{
+    font-weight:500;
+  }
+  h3, h4, h5, h6{
+    font-weight:700;
   }
 `;
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchUser } from "../../store/actions/userActions";
+import { signUserUp } from "../../store/actions/userActions";
 import {
   Input,
   Form,
@@ -12,7 +12,8 @@ import {
 } from "../../components";
 import { routes } from "../../routes";
 
-const Login = () => {
+const Register = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -21,7 +22,8 @@ const Login = () => {
     e.preventDefault();
 
     dispatch(
-      fetchUser({
+      signUserUp({
+        name,
         email,
         password,
       })
@@ -34,8 +36,17 @@ const Login = () => {
         <Logo />
         <Form center onSubmit={onSubmit}>
           <Input
-            variant="light"
             display="block"
+            variant="light"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            type="text"
+            placeholder="Enter Name"
+          />
+
+          <Input
+            display="block"
+            variant="light"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             type="email"
@@ -51,15 +62,14 @@ const Login = () => {
             placeholder="Enter Password"
           />
 
-          <Button variant="light" width={100} type="submit">
-            Login
+          <Button width={100} variant="light" type="submit">
+            Register
           </Button>
-
-          <ULink title="Create an account" to={routes.register} />
         </Form>
+        <ULink title="Login in here" to={routes.login} />
       </Center>
     </Background>
   );
 };
 
-export default Login;
+export default Register;

@@ -3,13 +3,15 @@ import styled from "styled-components";
 import { setColor, setSize } from "../Helpers";
 
 const UInput = styled.input`
-  border: 2px solid ${(props) => setColor(props.variant, props.theme.colors)};
+  border: 0.2rem solid ${(props) => setColor(props.variant, props.theme.colors)};
   color: ${(props) => setColor(props.variant, props.theme.colors)};
   padding: ${(props) => setSize(props.size, props.theme.sizes)};
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.constants.radiusSm + "rem"};
   outline: none;
-  margin-bottom: 10px;
+  margin-bottom: 2rem;
   display: ${(props) => (props.display ? props.display : "inline")};
+  min-width: 20rem;
+  background: transparent;
 `;
 
 const Input = ({ size, variant, display, ...rest }) => {

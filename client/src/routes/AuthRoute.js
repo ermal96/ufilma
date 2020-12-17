@@ -7,21 +7,23 @@ const AuthRoute = ({ component: Component, ...rest }) => {
   const isLoggedIn = useSelector(({ user }) => user.loggedIn);
 
   return (
-    <Route
-      {...rest}
-      render={(props) =>
-        !isLoggedIn ? (
-          <Component {...props} exact />
-        ) : (
-          <Redirect
-            to={{
-              pathname: routes.dashboard,
-              state: { from: props.location },
-            }}
-          />
-        )
-      }
-    />
+    <>
+      <Route
+        {...rest}
+        render={(props) =>
+          !isLoggedIn ? (
+            <Component {...props} exact />
+          ) : (
+            <Redirect
+              to={{
+                pathname: routes.home,
+                state: { from: props.location },
+              }}
+            />
+          )
+        }
+      />
+    </>
   );
 };
 

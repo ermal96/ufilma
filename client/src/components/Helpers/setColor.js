@@ -3,6 +3,8 @@ const setColor = (variant, colors) => {
     return colors.primary;
   } else if (variant === "secondary") {
     return colors.secondary;
+  } else if (variant === "light") {
+    return colors.light;
   }
 };
 

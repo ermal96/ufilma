@@ -2,11 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const UForm = styled.form`
-  width: 100%;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: ${(props) => (props.center ? "center" : "unset")};
 `;
 
-const Form = ({ children, ...rest }) => {
-  return <UForm {...rest}>{children}</UForm>;
+const Form = ({ center, children, ...rest }) => {
+  return (
+    <UForm center={center} {...rest}>
+      {children}
+    </UForm>
+  );
 };
 
 export default Form;

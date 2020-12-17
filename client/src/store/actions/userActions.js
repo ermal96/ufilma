@@ -51,4 +51,9 @@ export const logout = () => async (dispatch) => {
   dispatch({
     type: types.LOG_OUT,
   });
+
+  dispatch({
+    type: types.USER_LOADED,
+    payload: true,
+  });
 };
