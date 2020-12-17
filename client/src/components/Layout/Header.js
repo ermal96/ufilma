@@ -16,6 +16,7 @@ const UHeader = styled.header`
 const UHeaderNav = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
 `;
 
 const Header = () => {
