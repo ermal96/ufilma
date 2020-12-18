@@ -12,6 +12,10 @@ const UDropdownHead = styled.div`
   font-size: 3rem;
   cursor: pointer;
   color: ${(props) => (props.state ? props.theme.colors.secondary : "unset")};
+
+  @media (max-width: 767px) {
+    font-size: 2rem;
+  }
 `;
 
 const UDropdownBody = styled.ul`

@@ -17,6 +17,9 @@ const UHeaderNav = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  @media (max-width: 767px) {
+    justify-content: space-between;
+  }
 `;
 
 const Header = () => {

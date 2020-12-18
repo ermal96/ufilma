@@ -13,6 +13,7 @@ const UInput = styled.input`
   min-width: 20rem;
   background: transparent;
   filter: none;
+  transition: border 0.1s ease;
 
   &:focus {
     border: 0.2rem solid ${({ theme }) => theme.colors.secondary};

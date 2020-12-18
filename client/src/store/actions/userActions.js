@@ -1,16 +1,19 @@
 import { types } from "./types";
 import axios from "axios";
 
+export const setUser = (payload) => ({ type: types.SET_USER, payload });
+export const setLoad = (payload) => ({ type: types.USER_LOADED, payload });
+export const setError = (payload) => ({ type: types.SET_ERROR, payload });
+
 export const fetchUser = (userInfo) => async (dispatch) => {
   try {
     const result = await axios.post("/auth/login", userInfo);
     localStorage.setItem("token", result.data.token);
 
-    dispatch({
-      type: types.SET_USER,
-      payload: result.data.user,
-    });
-  } catch (error) {}
+    dispatch(setUser(result.data.user));
+  } catch (error) {
+    dispatch(setError(error.response.data.message));
+  }
 };
 
 export const signUserUp = (userInfo) => async (dispatch) => {
@@ -18,11 +21,10 @@ export const signUserUp = (userInfo) => async (dispatch) => {
     const result = await axios.post("/auth/register", userInfo);
     localStorage.setItem("token", result.data.token);
 
-    dispatch({
-      type: types.SET_USER,
-      payload: result.data.user,
-    });
-  } catch (error) {}
+    dispatch(setUser(result.data.user));
+  } catch (error) {
+    dispatch(setError(error.response.data.message));
+  }
 };
 
 export const autoLogin = () => async (dispatch) => {
@@ -30,20 +32,10 @@ export const autoLogin = () => async (dispatch) => {
     const result = await axios.get("/auth/auto_login");
     localStorage.setItem("token", result.data.token);
 
-    dispatch({
-      type: types.SET_USER,
-      payload: result.data.user,
-    });
-
-    dispatch({
-      type: types.USER_LOADED,
-      payload: true,
-    });
+    dispatch(setUser(result.data.user));
+    dispatch(setLoad(true));
   } catch (error) {
-    dispatch({
-      type: types.USER_LOADED,
-      payload: true,
-    });
+    dispatch(setLoad(true));
   }
 };
 
@@ -52,8 +44,5 @@ export const logout = () => async (dispatch) => {
     type: types.LOG_OUT,
   });
 
-  dispatch({
-    type: types.USER_LOADED,
-    payload: true,
-  });
+  dispatch(setLoad(true));
 };

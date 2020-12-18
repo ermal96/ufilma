@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { autoLogin } from "./store/actions/userActions";
 import { Routes } from "./routes";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./theme";
-import GlobalStyle from "./theme/global";
+
+import { Spinner } from "./components";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -15,16 +14,9 @@ const App = () => {
   }, [dispatch]);
 
   if (isAppReady) {
-    return (
-      <>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Routes />
-        </ThemeProvider>
-      </>
-    );
+    return <Routes />;
   } else {
-    return <p>App Loading</p>;
+    return <Spinner />;
   }
 };
 

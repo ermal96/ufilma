@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../store/actions/userActions";
 import {
   Input,
@@ -9,6 +9,7 @@ import {
   Logo,
   Background,
   ULink,
+  Error,
 } from "../../components";
 import { routes } from "../../routes";
 
@@ -16,6 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const error = useSelector(({ user }) => user.error);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const Login = () => {
     <Background>
       <Center>
         <Logo />
-        <Form center onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit}>
           <Input
             variant="light"
             display="block"
@@ -56,6 +58,7 @@ const Login = () => {
           </Button>
 
           <ULink title="Create an account" to={routes.register} />
+          {error ? <Error>{error}</Error> : null}
         </Form>
       </Center>
     </Background>

@@ -4,6 +4,7 @@ const defaultState = {
   loggedIn: false,
   isLoaded: false,
   user: {},
+  error: null,
 };
 
 export const userReducer = (state = defaultState, action) => {
@@ -15,6 +16,12 @@ export const userReducer = (state = defaultState, action) => {
         user: action.payload,
       };
 
+    case types.SET_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
     case types.USER_LOADED:
       return {
         ...state,
@@ -24,6 +31,7 @@ export const userReducer = (state = defaultState, action) => {
     case types.LOG_OUT:
       localStorage.clear();
       return {
+        error: null,
         loggedIn: false,
         user: {},
       };

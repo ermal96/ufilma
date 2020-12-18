@@ -11,6 +11,7 @@ const UButon = styled.button`
   border-radius: ${({ theme }) => theme.constants.radiusSm + "rem"};
   outline: none;
   cursor: pointer;
+  transition: border 0.1s ease;
   width: ${(props) => (props.width ? props.width + "px" : "auto")};
 
   &:active {
