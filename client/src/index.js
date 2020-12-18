@@ -6,6 +6,7 @@ import { store } from "./store";
 import { config } from "./config";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
+import "react-aspect-ratio/aspect-ratio.css";
 import GlobalStyle from "./theme/global";
 
 // start project config
