@@ -34,7 +34,8 @@ const Login = () => {
     <Background>
       <Center>
         <Logo />
-        <Form onSubmit={onSubmit}>
+        <ULink title="Create an account" to={routes.register} />
+        <Form center onSubmit={onSubmit}>
           <Input
             variant="light"
             display="block"
@@ -53,11 +54,10 @@ const Login = () => {
             placeholder="Enter Password"
           />
 
-          <Button variant="light" width={100} type="submit">
+          <Button block variant="light" width={100} type="submit">
             Login
           </Button>
 
-          <ULink title="Create an account" to={routes.register} />
           {error ? <Error>{error}</Error> : null}
         </Form>
       </Center>

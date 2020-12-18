@@ -41,7 +41,8 @@ const Register = () => {
     <Background>
       <Center>
         <Logo />
-        <Form onSubmit={onSubmit}>
+        <ULink title="Login in here" to={routes.login} />
+        <Form center onSubmit={onSubmit}>
           <Input
             display="block"
             variant="light"
@@ -81,7 +82,7 @@ const Register = () => {
           <Button width={100} variant="light" type="submit">
             Register
           </Button>
-          <ULink title="Login in here" to={routes.login} />
+
           {error ? <Error>{error}</Error> : null}
         </Form>
       </Center>
