@@ -16,7 +16,16 @@ export const register = async (req, res) => {
       res.status(409).send({ message: "Email has been taken" });
     } else {
       await user.save();
-      res.status(201).send({ message: "User Created" });
+
+      const token = await genToken({ id: user._id });
+
+      const userData = {
+        name: user.name,
+        email: user.email,
+        id: user._id,
+      };
+
+      res.status(201).send({ token, user: userData });
     }
   } catch (error) {
     res.status(400).send({ message: "Sorry something went wrong" });
@@ -28,52 +37,47 @@ export const login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
 
     if (user === null) {
-      res.status(400).send({ message: "sorry this email does not exist" });
+      return res
+        .status(400)
+        .send({ message: "sorry this email does not exist" });
     }
 
     const result = await bcrypt.compare(req.body.password, user.password);
 
     if (result) {
-
       const token = await genToken({ id: user._id });
 
       const userData = {
+        name: user.name,
         email: user.email,
-        id: user._id 
-      }
+        id: user._id,
+      };
 
-      res.status(200).send({ token,  user: userData });
-
+      return res.status(200).send({ token, user: userData });
     } else {
-      res.status(400).send({ message: "Sorry password is wrong" });
+      return res.status(400).send({ message: "Sorry password is wrong" });
     }
   } catch (error) {
-    res.status(400).send({ message: "Sorry something went wrong" });
+    return res.status(400).send({ message: "Sorry something went wrong" });
   }
 };
 
-
 export const autoLogin = async (req, res) => {
-  
-const userId = req.user.id;
-
-console.log(userId);
+  const userId = req.user.id;
 
   try {
     const user = await User.findOne({ _id: userId });
 
-    const token =  await genToken({ id: userId });
+    const token = await genToken({ id: userId });
 
-      const userData = {
-          email: user.email,
-          id: userId 
-        }
+    const userData = {
+      name: user.name,
+      email: user.email,
+      id: userId,
+    };
 
-    return res.status(200).send({ token,  user: userData });
-
+    return res.status(200).send({ token, user: userData });
   } catch (error) {
-     res.status(400).send({ message: "Sorry something went wrong" });
+    res.status(400).send({ message: "Sorry something went wrong" });
   }
-
-
-}
+};
