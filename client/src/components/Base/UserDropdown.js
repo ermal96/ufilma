@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { CgUserlane } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/actions/userActions";
+import UserIcon from "../../assets/user.svg";
 
 const UDropdown = styled.div`
   position: relative;
@@ -11,14 +11,23 @@ const UDropdown = styled.div`
 const UDropdownHead = styled.div`
   font-size: 3rem;
   cursor: pointer;
-  color: ${(props) => (props.state ? props.theme.colors.secondary : "unset")};
 
+  img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    padding: 2px;
+    border: 2px solid
+      ${(props) =>
+        props.state ? props.theme.colors.secondary : props.theme.colors.light};
+  }
   @media (max-width: 767px) {
     font-size: 2rem;
   }
 `;
 
 const UDropdownBody = styled.ul`
+  z-index: 10;
   margin: 0;
   padding: 0;
   position: absolute;
@@ -63,7 +72,7 @@ const UserDropdown = () => {
   return (
     <UDropdown>
       <UDropdownHead state={state} onClick={() => setState(!state)}>
-        <CgUserlane />
+        <img alt="user icon" src={UserIcon} />
       </UDropdownHead>
 
       {state ? (

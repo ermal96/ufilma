@@ -9,10 +9,9 @@ export { default as Logo } from "./Base/Logo";
 export { default as UserDropdown } from "./Base/UserDropdown";
 export { default as Spinner } from "./Base/Spinner";
 
-// export layout
-export { default as Header } from "./Layout/Header";
 export { default as Layout } from "./Layout/Layout";
 export { default as Center } from "./Helpers/Center";
+export { default as MovieCard } from "./Layout/MovieCard";
 
 // export helpers
 export { default as Background } from "./Helpers/Background";

@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header";
+import Header from "../../containers/Header/Header";
 import styled from "styled-components";
 
 const ULayout = styled.main`

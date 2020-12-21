@@ -2,7 +2,7 @@ import { types } from "../actions/types";
 
 const defaultState = {
   loggedIn: false,
-  isLoaded: false,
+  loaded: false,
   user: {},
   error: null,
 };
@@ -25,7 +25,7 @@ export const userReducer = (state = defaultState, action) => {
     case types.USER_LOADED:
       return {
         ...state,
-        isLoaded: action.payload,
+        loaded: action.payload,
       };
 
     case types.LOG_OUT:

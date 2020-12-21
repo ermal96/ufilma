@@ -1,8 +1,8 @@
 import React from "react";
-import Logo from "../Base/Logo";
+import Logo from "../../components/Base/Logo";
 import styled from "styled-components";
 import Navbar from "./Navbar";
-import UserDropdown from "../Base/UserDropdown";
+import { UserDropdown } from "../../components/";
 
 const UHeader = styled.header`
   background: ${({ theme }) => theme.colors.primary};

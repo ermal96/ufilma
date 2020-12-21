@@ -1,9 +1,9 @@
 import React from "react";
-import { Home, Login } from "../containers";
+import { Home, Login } from "../pages";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import AuthRoute from "./AuthRoute";
-import Register from "../containers/Register/Register";
+import Register from "../pages/Register/Register";
 
 export const Routes = () => {
   return (

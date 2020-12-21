@@ -7,7 +7,7 @@ import { Spinner } from "./components";
 
 const App = () => {
   const dispatch = useDispatch();
-  const isAppReady = useSelector((state) => state.user.isLoaded);
+  const isAppReady = useSelector((state) => state.user.loaded);
 
   useEffect(() => {
     dispatch(autoLogin());
