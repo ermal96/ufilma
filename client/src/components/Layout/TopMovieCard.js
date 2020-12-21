@@ -2,26 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import AspectRatio from "react-aspect-ratio";
 
-const UMovieCard = styled.div`
-  border: 2px solid ${({ theme }) => theme.colors.light};
-  cursor: pointer;
-  border-radius: ${({ theme }) => theme.constants.radiusSm + "rem"};
-`;
+const UTopmovie = styled.div``;
 
-const MovieCard = ({ movie }) => {
+const TopMovie = ({ movie }) => {
   return (
-    <UMovieCard
+    <UTopmovie
       style={{ background: `url(https://ufilma.com/${movie.imageUrl})` }}
     >
       <AspectRatio
-        ratio="214/317"
+        ratio="16/9"
         style={{
           backgroundImage: `url(https://ufilma.com/${movie.imageUrl})`,
           backgroundSize: "cover",
         }}
       ></AspectRatio>
-    </UMovieCard>
+    </UTopmovie>
   );
 };
 
-export default MovieCard;
+export default TopMovie;

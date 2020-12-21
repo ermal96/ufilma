@@ -13,6 +13,7 @@ const UNavbar = styled.nav`
     display: flex;
 
     @media (max-width: 767px) {
+      z-index: 100;
       flex-direction: column;
       position: absolute;
       display: none;

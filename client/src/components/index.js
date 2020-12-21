@@ -12,6 +12,7 @@ export { default as Spinner } from "./Base/Spinner";
 export { default as Layout } from "./Layout/Layout";
 export { default as Center } from "./Helpers/Center";
 export { default as MovieCard } from "./Layout/MovieCard";
+export { default as TopMovieCard } from "./Layout/TopMovieCard";
 
 // export helpers
 export { default as Background } from "./Helpers/Background";

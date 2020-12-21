@@ -6,11 +6,16 @@ import { UserDropdown } from "../../components/";
 
 const UHeader = styled.header`
   background: ${({ theme }) => theme.colors.primary};
-  height: ${({ theme }) => theme.constants.headerHeight + "rem"};
+`;
+
+const UHeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   padding: 0 2.5rem;
   justify-content: space-between;
+  max-width: ${({ theme }) => theme.constants.container + "px"};
+  height: ${({ theme }) => theme.constants.headerHeight + "rem"};
+  margin: 0 auto;
 `;
 
 const UHeaderNav = styled.div`
@@ -25,11 +30,13 @@ const UHeaderNav = styled.div`
 const Header = () => {
   return (
     <UHeader>
-      <UHeaderNav>
-        <Logo />
-        <Navbar />
-      </UHeaderNav>
-      <UserDropdown />
+      <UHeaderWrapper>
+        <UHeaderNav>
+          <Logo />
+          <Navbar />
+        </UHeaderNav>
+        <UserDropdown />
+      </UHeaderWrapper>
     </UHeader>
   );
 };

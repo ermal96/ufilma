@@ -1,10 +1,11 @@
 import React from "react";
 import { Layout } from "../../components";
-import { RecentMovies } from "../../containers";
+import { RecentMovies, TopMovie } from "../../containers";
 
 const Home = () => {
   return (
     <Layout>
+      <TopMovie />
       <RecentMovies />
     </Layout>
   );
