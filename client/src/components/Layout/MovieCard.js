@@ -10,9 +10,7 @@ const UMovieCard = styled.div`
 
 const MovieCard = ({ movie }) => {
   return (
-    <UMovieCard
-      style={{ background: `url(https://ufilma.com/${movie.imageUrl})` }}
-    >
+    <UMovieCard>
       <AspectRatio
         ratio="214/317"
         style={{

@@ -13,7 +13,6 @@ const UHeaderWrapper = styled.header`
   align-items: center;
   padding: 0 2.5rem;
   justify-content: space-between;
-  max-width: ${({ theme }) => theme.constants.container + "px"};
   height: ${({ theme }) => theme.constants.headerHeight + "rem"};
   margin: 0 auto;
 `;

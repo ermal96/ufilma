@@ -13,16 +13,13 @@ const UDropdownHead = styled.div`
   cursor: pointer;
 
   img {
-    width: 35px;
-    height: 35px;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50px;
     padding: 2px;
     border: 2px solid
       ${(props) =>
         props.state ? props.theme.colors.secondary : props.theme.colors.light};
-  }
-  @media (max-width: 767px) {
-    font-size: 2rem;
   }
 `;
 

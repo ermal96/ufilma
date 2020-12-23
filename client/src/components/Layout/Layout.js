@@ -14,19 +14,11 @@ const UWrapper = styled.div`
   );
 `;
 
-const UContent = styled.div`
-  padding: 25px;
-  max-width: ${({ theme }) => theme.constants.container + "px"};
-  margin: 0 auto;
-`;
-
 const Layout = ({ children }) => {
   return (
     <ULayout>
       <Header />
-      <UWrapper>
-        <UContent>{children}</UContent>
-      </UWrapper>
+      <UWrapper>{children}</UWrapper>
     </ULayout>
   );
 };

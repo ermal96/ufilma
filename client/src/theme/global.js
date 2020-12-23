@@ -3,6 +3,9 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   html {
     font-size: 62.5%;
+    @media (max-width: 767px) {
+      font-size: 50%;
+    }
   }
   *{
     box-sizing:border-box;

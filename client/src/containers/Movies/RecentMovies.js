@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
-import { MovieCard } from "../../components";
+import { MovieCard, Container, Title } from "../../components";
 import styled from "styled-components";
 
 const URecentMovies = styled.section`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 30px;
-  margin-top: 30px;
+  grid-gap: 3rem;
+  margin-top: 3rem;
 
   @media (max-width: 991px) {
     grid-template-columns: repeat(4, 1fr);
@@ -30,8 +30,8 @@ const RecentMovies = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Recent Movies</h1>
+    <Container>
+      <Title>Recent Movies</Title>
       <URecentMovies>
         {recentMovies.length
           ? recentMovies.map((movie) => (
@@ -39,7 +39,7 @@ const RecentMovies = () => {
             ))
           : null}
       </URecentMovies>
-    </div>
+    </Container>
   );
 };
 
