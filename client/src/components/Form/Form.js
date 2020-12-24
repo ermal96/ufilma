@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const UForm = styled.form`
+  position: relative;
   width: auto;
   display: flex;
   flex-direction: column;

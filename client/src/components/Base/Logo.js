@@ -5,15 +5,14 @@ import { Link } from "react-router-dom";
 import { routes } from "../../routes";
 
 const ULogo = styled.img`
-  width: 100%;
-  max-width: 130px;
+  width: 13rem;
 `;
 
 const Logo = () => {
   return (
-    // <Link to={routes.home}>
-    <ULogo src={LogoSrc} alt="Logo" />
-    // </Link>
+    <Link to={routes.home}>
+      <ULogo src={LogoSrc} alt="Logo" />
+    </Link>
   );
 };
 
