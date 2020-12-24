@@ -36,6 +36,10 @@ const UNavbar = styled.nav`
         color: inherit;
         text-decoration: none;
       }
+      .active {
+        font-weight: bold;
+        /* border-bottom: 2px solid ${({ theme }) => theme.colors.secondary}; */
+      }
     }
   }
 
@@ -65,16 +69,24 @@ const Navbar = () => {
       </UNavbarMenuIcon>
       <ul className={menuMobile ? "menu-mobile-open" : null}>
         <li>
-          <NavLink to={routes.home}>Home</NavLink>
+          <NavLink exact to={routes.home}>
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to={routes.home}>Tv Shows</NavLink>
+          <NavLink exact to={routes.movies}>
+            Tv Shows
+          </NavLink>
         </li>
         <li>
-          <NavLink to={routes.home}>Latest</NavLink>
+          <NavLink exact to={routes.categories}>
+            Latest
+          </NavLink>
         </li>
         <li>
-          <NavLink to={routes.home}>Categories</NavLink>
+          <NavLink exact to={routes.login}>
+            Categories
+          </NavLink>
         </li>
       </ul>
     </UNavbar>
