@@ -51,6 +51,7 @@ const UNavbarMenuIcon = styled.div`
   @media (max-width: 767px) {
     display: block;
     margin-right: 2.5rem;
+    line-height: 0;
   }
 `;
 

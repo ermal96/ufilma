@@ -3,6 +3,7 @@ import Logo from "../../components/Base/Logo";
 import styled from "styled-components";
 import Navbar from "./Navbar";
 import { UserDropdown } from "../../components/";
+import Search from "../Search/Search";
 
 const UHeader = styled.header`
   background: ${({ theme }) => theme.colors.primary};
@@ -26,6 +27,14 @@ const UHeaderNav = styled.div`
   }
 `;
 
+const UHeaderMini = styled.div`
+  display: flex;
+  align-items: center;
+  @media (max-width: 767px) {
+    justify-content: space-between;
+  }
+`;
+
 const Header = () => {
   return (
     <UHeader>
@@ -34,7 +43,10 @@ const Header = () => {
           <Logo />
           <Navbar />
         </UHeaderNav>
-        <UserDropdown />
+        <UHeaderMini>
+          <Search />
+          <UserDropdown />
+        </UHeaderMini>
       </UHeaderWrapper>
     </UHeader>
   );

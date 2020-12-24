@@ -9,11 +9,14 @@ export { default as Logo } from "./Base/Logo";
 export { default as UserDropdown } from "./Base/UserDropdown";
 export { default as Spinner } from "./Base/Spinner";
 
+// export layout
 export { default as Layout } from "./Layout/Layout";
 export { default as Container } from "./Layout/Container";
 export { default as Center } from "./Helpers/Center";
-export { default as MovieCard } from "./Layout/MovieCard";
-export { default as TopMovieCard } from "./Layout/TopMovieCard";
+
+// export cards
+export { default as MovieCard } from "./Cards/MovieCard";
+export { default as TopMovieCard } from "./Cards/TopMovieCard";
 
 // export Topography
 export { default as Title } from "./Topography/Title";

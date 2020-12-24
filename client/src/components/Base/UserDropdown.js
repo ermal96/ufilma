@@ -6,11 +6,13 @@ import UserIcon from "../../assets/user.svg";
 
 const UDropdown = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 const UDropdownHead = styled.div`
-  font-size: 3rem;
   cursor: pointer;
+  line-height: 0;
 
   img {
     width: 3rem;

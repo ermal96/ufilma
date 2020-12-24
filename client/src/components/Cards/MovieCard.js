@@ -6,6 +6,10 @@ const UMovieCard = styled.div`
   border: 2px solid ${({ theme }) => theme.colors.light};
   cursor: pointer;
   border-radius: ${({ theme }) => theme.constants.radiusSm + "rem"};
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const MovieCard = ({ movie }) => {
