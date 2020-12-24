@@ -8,6 +8,8 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   *{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     box-sizing:border-box;
     margin: 0;
     padding: 0;
