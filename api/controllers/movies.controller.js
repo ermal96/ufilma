@@ -6,7 +6,7 @@ import { validateMovie } from "../validation/movie.validation.js";
 export const getAll = async (_, res) => {
   try {
     const movies = await Movie.find()
-      .select("name year imageUrl slug")
+      .select("name year imageUrl slug description")
       .populate("categories", "name");
 
     res.status(200).send({
@@ -39,12 +39,12 @@ export const add = async (req, res) => {
   const movie = new Movie(req.body);
 
   movie.slug = slugify(req.body.name);
-  // movie.imageUrl = "/" + req.file.path;
+  movie.imageUrl = "/" + req.file.path;
 
   const hasError = await validateMovie(req.body);
 
   if (hasError.length) {
-    res.status(400).send({
+    return res.status(400).send({
       message: hasError.error.details[0].message,
     });
   }

@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { User } from "../models/user.model.js";
 import { genToken } from "../auth/genToken.js";
+import { validateUser } from "../validation/user.validation.js";
 
 export const register = async (req, res) => {
   const user = new User(req.body);
@@ -8,6 +9,14 @@ export const register = async (req, res) => {
   const hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
   user.password = hashedPassword;
+
+  const hasError = await validateUser(req.body);
+
+  if (hasError.length && hasError) {
+    return res.status(400).send({
+      message: hasError.error.details[0].message,
+    });
+  }
 
   try {
     const userExist = await User.findOne({ email: req.body.email });
@@ -34,7 +43,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email.toLowerCase() });
 
     if (user === null) {
       return res

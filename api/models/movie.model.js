@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 
 const movieSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
   },
   slug: String,
   description: String,
@@ -11,19 +11,15 @@ const movieSchema = mongoose.Schema({
   year: Number,
   trailerUrl: {
     type: String,
-    // required: true,
   },
   time: {
     type: Number,
-    required: true,
   },
   videoUrl: {
     type: String,
-    // required: true,
   },
   imageUrl: {
     type: String,
-    // required: true,
   },
   categories: [
     {
@@ -32,5 +28,7 @@ const movieSchema = mongoose.Schema({
     },
   ],
 });
+
+movieSchema.plugin(mongoosePaginate);
 
 export const Movie = mongoose.model("movie", movieSchema);
