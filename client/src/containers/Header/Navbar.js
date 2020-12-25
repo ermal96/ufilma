@@ -21,7 +21,7 @@ const UNavbar = styled.nav`
       background: #0f1218;
       top: 6rem;
       height: 100%;
-      padding: 30px;
+      padding: 2.5rem;
       width: 100%;
     }
 
@@ -36,6 +36,10 @@ const UNavbar = styled.nav`
         color: inherit;
         text-decoration: none;
       }
+      .active {
+        font-weight: bold;
+        /* border-bottom: 2px solid ${({ theme }) => theme.colors.secondary}; */
+      }
     }
   }
 
@@ -46,11 +50,12 @@ const UNavbar = styled.nav`
 
 const UNavbarMenuIcon = styled.div`
   display: none;
-  font-size: 2rem;
+  font-size: 3rem;
   color: ${({ theme }) => theme.colors.light};
   @media (max-width: 767px) {
     display: block;
     margin-right: 2.5rem;
+    line-height: 0;
   }
 `;
 
@@ -64,16 +69,24 @@ const Navbar = () => {
       </UNavbarMenuIcon>
       <ul className={menuMobile ? "menu-mobile-open" : null}>
         <li>
-          <NavLink to={routes.home}>Home</NavLink>
+          <NavLink exact to={routes.home}>
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to={routes.home}>Tv Shows</NavLink>
+          <NavLink exact to={routes.movies}>
+            Tv Shows
+          </NavLink>
         </li>
         <li>
-          <NavLink to={routes.home}>Latest</NavLink>
+          <NavLink exact to={routes.categories}>
+            Latest
+          </NavLink>
         </li>
         <li>
-          <NavLink to={routes.home}>Categories</NavLink>
+          <NavLink exact to={routes.login}>
+            Categories
+          </NavLink>
         </li>
       </ul>
     </UNavbar>

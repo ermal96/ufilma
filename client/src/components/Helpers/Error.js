@@ -4,6 +4,8 @@ import styled from "styled-components";
 const UError = styled.div`
   color: ${({ theme }) => theme.colors.danger};
   font-size: 1.4rem;
+  position: absolute;
+  bottom: -4rem;
 `;
 
 const Error = ({ children }) => {

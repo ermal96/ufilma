@@ -3,5 +3,5 @@ export const constants = {
   radiusSm: 0.3,
   radiusMd: 0.5,
   radiusLg: 1,
-  container: 1600,
+  container: 1920,
 };

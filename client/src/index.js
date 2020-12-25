@@ -6,6 +6,7 @@ import { store } from "./store";
 import { config } from "./config";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
+import { BrowserRouter as Router } from "react-router-dom";
 import "react-aspect-ratio/aspect-ratio.css";
 import GlobalStyle from "./theme/global";
 
@@ -14,10 +15,12 @@ config();
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
+    </Router>
   </Provider>,
   document.getElementById("root")
 );

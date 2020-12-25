@@ -6,23 +6,22 @@ import UserIcon from "../../assets/user.svg";
 
 const UDropdown = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 const UDropdownHead = styled.div`
-  font-size: 3rem;
   cursor: pointer;
+  line-height: 0;
 
   img {
-    width: 35px;
-    height: 35px;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50px;
     padding: 2px;
     border: 2px solid
       ${(props) =>
         props.state ? props.theme.colors.secondary : props.theme.colors.light};
-  }
-  @media (max-width: 767px) {
-    font-size: 2rem;
   }
 `;
 
