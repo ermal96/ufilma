@@ -7,8 +7,9 @@ export const getAll = async (_, res) => {
   try {
     const movies = await Movie.find()
       .select("name year imageUrl slug description")
-      .populate("categories", "name");
-
+      .populate("categories", "name")
+      .sort({ _id: -1 })
+      .limit(10);
     res.status(200).send({
       movies,
     });
