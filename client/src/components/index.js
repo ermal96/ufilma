@@ -2,6 +2,7 @@
 export { default as Form } from "./Form/Form";
 export { default as Input } from "./Form/Input";
 export { default as ULink } from "./Form/ULink";
+export { default as Range } from "./Form/Range";
 
 // export base
 export { default as Button } from "./Base/Button";
@@ -24,3 +25,6 @@ export { default as Title } from "./Topography/Title";
 // export helpers
 export { default as Background } from "./Helpers/Background";
 export { default as Error } from "./Helpers/Error";
+
+// export payer
+export { default as Player } from "./Player/Player";

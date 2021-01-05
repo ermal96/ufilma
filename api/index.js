@@ -7,6 +7,7 @@ import { apiRoutes } from "./routes/index.js";
 
 // start express app
 const app = express();
+app.use("/uploads", express.static("uploads"));
 
 // config server
 config(app);

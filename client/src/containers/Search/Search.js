@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input } from "../../components";
 import styled from "styled-components";
-import { FiSearch } from "react-icons/fi";
-import { VscChromeClose } from "react-icons/vsc";
+import { RiSearchLine, RiCloseFill } from "react-icons/ri";
 
 const USearch = styled.div`
   margin-right: 3rem;
@@ -45,7 +44,7 @@ const Search = () => {
         ) : null}
 
         <USearchIon onClick={() => setOpen(!open)}>
-          {open ? <VscChromeClose /> : <FiSearch />}
+          {open ? <RiCloseFill /> : <RiSearchLine />}
         </USearchIon>
       </Form>
     </USearch>

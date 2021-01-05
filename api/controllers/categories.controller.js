@@ -21,6 +21,7 @@ export const add = async (req, res) => {
   const category = new Category(req.body);
 
   category.slug = slugify(req.body.name);
+  category.imageUrl = "/" + req.file.path;
 
   try {
     await category.save();

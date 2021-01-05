@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import AspectRatio from "react-aspect-ratio";
 import { Button } from "../../components";
+import { routes } from "../../routes";
 
 const UTopmovie = styled.div`
   .react-aspect-ratio-placeholder {
@@ -60,7 +61,7 @@ const TopMovie = ({ movie }) => {
       <AspectRatio
         ratio="16/7"
         style={{
-          backgroundImage: `url(https://ufilma.com/${movie.imageUrl})`,
+          backgroundImage: `url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`,
           backgroundSize: "cover",
         }}
       />
@@ -69,7 +70,9 @@ const TopMovie = ({ movie }) => {
         <UTopMovieBodyYear>{movie.year}</UTopMovieBodyYear>
         <UTopMovieBodyTitle>{movie.name}</UTopMovieBodyTitle>
         <UTopMovieBodyDesc>{movie.description}</UTopMovieBodyDesc>
-        <Button variant="light">Watch now</Button>
+        <Button href={`${routes.movies}/${movie._id}`} variant="light">
+          Watch now
+        </Button>
       </UTopMovieBody>
     </UTopmovie>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { setColor, setSize } from "../Helpers";
 
 const UButon = styled.button`
@@ -13,16 +14,19 @@ const UButon = styled.button`
   cursor: pointer;
   transition: border 0.1s ease;
   width: ${(props) => (props.width ? props.width + "px" : "auto")};
-
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
   &:active {
     border: 0.2rem solid ${({ theme }) => theme.colors.secondary};
   }
 `;
 
-const Button = ({ width, size, children, variant, ...rest }) => {
+const Button = ({ width, size, children, variant, href, ...rest }) => {
   return (
     <UButon width={width} size={size} variant={variant} {...rest}>
-      {children}
+      {href ? <Link to={href}>{children}</Link> : children}
     </UButon>
   );
 };

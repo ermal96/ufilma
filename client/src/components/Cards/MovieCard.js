@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import AspectRatio from "react-aspect-ratio";
+import { Link } from "react-router-dom";
+import { routes } from "../../routes";
 
 const UMovieCard = styled.div`
   border: 2px solid ${({ theme }) => theme.colors.light};
@@ -15,13 +17,15 @@ const UMovieCard = styled.div`
 const MovieCard = ({ movie }) => {
   return (
     <UMovieCard>
-      <AspectRatio
-        ratio="214/317"
-        style={{
-          backgroundImage: `url(https://ufilma.com/${movie.imageUrl})`,
-          backgroundSize: "cover",
-        }}
-      ></AspectRatio>
+      <Link to={routes.movies + "/" + movie._id}>
+        <AspectRatio
+          ratio="214/317"
+          style={{
+            backgroundImage: `url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`,
+            backgroundSize: "cover",
+          }}
+        ></AspectRatio>
+      </Link>
     </UMovieCard>
   );
 };

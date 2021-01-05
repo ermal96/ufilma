@@ -12,7 +12,7 @@ export const fetchUser = (userInfo) => async (dispatch) => {
 
     dispatch(setUser(result.data.user));
   } catch (error) {
-    dispatch(setError(error.response.data.message));
+    dispatch(setError(error.response));
   }
 };
 

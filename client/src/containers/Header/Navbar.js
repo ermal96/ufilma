@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { routes } from "../../routes";
-import { CgMenuGridO } from "react-icons/cg";
-import { MdClose } from "react-icons/md";
+import { RiMenuFill, RiCloseFill } from "react-icons/ri";
 
 const UNavbar = styled.nav`
   margin-left: 2rem;
@@ -65,7 +64,7 @@ const Navbar = () => {
   return (
     <UNavbar>
       <UNavbarMenuIcon onClick={() => setMenuMobile(!menuMobile)}>
-        {menuMobile ? <MdClose /> : <CgMenuGridO />}
+        {menuMobile ? <RiCloseFill /> : <RiMenuFill />}
       </UNavbarMenuIcon>
       <ul className={menuMobile ? "menu-mobile-open" : null}>
         <li>
@@ -74,19 +73,11 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink exact to={routes.movies}>
-            Tv Shows
-          </NavLink>
+          <NavLink to={routes.movies}>Movies</NavLink>
         </li>
+
         <li>
-          <NavLink exact to={routes.categories}>
-            Latest
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to={routes.login}>
-            Categories
-          </NavLink>
+          <NavLink to={routes.categories}>Categories</NavLink>
         </li>
       </ul>
     </UNavbar>

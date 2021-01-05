@@ -1,28 +1,29 @@
 import React from "react";
-import { Home, Login } from "../pages";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { Home, Login, Register, Movie, Categories, Movies } from "../pages";
+import { BrowserRouter as Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import AuthRoute from "./AuthRoute";
-import Register from "../pages/Register/Register";
-
-export const Routes = () => {
-  return (
-    <Router>
-      <Switch>
-        <AuthRoute path={routes.login} component={Login} />
-        <AuthRoute path={routes.register} component={Register} />
-        <PrivateRoute path={routes.home} component={Home} />
-      </Switch>
-    </Router>
-  );
-};
+import { Layout } from "../components";
 
 export const routes = {
   home: "/",
   login: "/login",
   register: "/register",
   movies: "/movies",
-  addMovie: "/add-movie",
   categories: "/categories",
-  addCategory: "/add-category",
+};
+
+export const Routes = () => {
+  return (
+    <Switch>
+      <AuthRoute path={routes.login} component={Login} />
+      <AuthRoute path={routes.register} component={Register} />
+      <Layout>
+        <PrivateRoute exact path={routes.home} component={Home} />
+        <PrivateRoute exact path={routes.movies} component={Movies} />
+        <PrivateRoute exact path={routes.categories} component={Categories} />
+        <PrivateRoute path={`${routes.movies}/:id`} component={Movie} />
+      </Layout>
+    </Switch>
+  );
 };

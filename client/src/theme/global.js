@@ -13,6 +13,9 @@ const GlobalStyle = createGlobalStyle`
     box-sizing:border-box;
     margin: 0;
     padding: 0;
+    ::-webkit-scrollbar {
+    display: none;
+    }
   }
   body {
     margin: 0;
