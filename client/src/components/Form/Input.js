@@ -14,6 +14,7 @@ const UInput = styled.input`
   background: transparent;
   filter: none;
   transition: border 0.1s ease;
+  text-transform: lowercase;
 
   &:focus {
     border: 0.2rem solid ${({ theme }) => theme.colors.secondary};

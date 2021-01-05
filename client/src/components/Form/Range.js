@@ -2,16 +2,30 @@ import React from "react";
 import styled from "styled-components";
 
 const URange = styled.input`
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
   width: 100%;
-
+  transition: all 0.3s ease;
   appearance: none;
   -moz-appearance: auto;
   -webkit-appearance: none;
   height: 0.3rem;
+  background: linear-gradient(
+    to right,
+    /* red ////////////////////////////////////////////*/
+      ${({ theme }) => theme.colors.secondary} 0%,
+    ${({ theme }) => theme.colors.secondary}
+      ${(props) => props.value * 100 + "%"},
+    /* light */ ${({ theme }) => theme.colors.light}
+      ${(props) => props.value * 100 + "%"},
+    ${({ theme }) => theme.colors.light} 100%
+  );
 
   &:focus {
     outline: none;
+  }
+
+  &:hover {
+    transform: scaleY(1.6);
   }
 
   /* chrome */
@@ -19,8 +33,7 @@ const URange = styled.input`
     cursor: pointer;
     height: 0.4rem;
     border: none;
-    border-radius: 3px;
-    background: ${({ theme }) => theme.colors.light};
+    border-radius: 0px;
   }
 
   &::-webkit-slider-thumb {
@@ -28,44 +41,34 @@ const URange = styled.input`
     cursor: pointer;
     appearance: none;
     border: none;
-    height: 1.5rem;
-    width: 1.5rem;
-    border-radius: 50%;
-    background-color: white;
-    margin-top: -0.6rem;
-    border: none;
-    background: ${({ theme }) => theme.colors.light};
-    transition: all 0.3s ease;
-    &:hover {
-      transform: scale(1.4);
-    }
+    height: 0;
+    width: 0;
   }
 
   /* firefox */
 
   &::-moz-range-track {
     cursor: pointer;
-    background: ${({ theme }) => theme.colors.light};
   }
   &::-moz-range-thumb {
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 0;
     border: none;
-    background: ${({ theme }) => theme.colors.light};
-    transition: all 0.3s ease;
-    &:hover {
-      transform: scale(1.4);
-    }
+    height: 0;
+    width: 0;
   }
 `;
 
-const Range = ({ onChange, min, max, value }) => {
+const Range = ({ onChange, value, onMouseUp, onMouseDown, max, loaded }) => {
   return (
     <URange
+      loaded={loaded}
+      onMouseUp={onMouseUp}
+      onMouseDown={onMouseDown}
       step="any"
       type="range"
       min={0}
-      max={1}
+      max={max}
       value={value}
       onChange={onChange}
     />

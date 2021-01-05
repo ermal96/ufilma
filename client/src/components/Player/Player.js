@@ -17,7 +17,7 @@ const UPlayer = styled.div`
 `;
 const UPlayerControls = styled.div`
   width: 100%;
-  height: 100%;
+  height: 50%;
   background-image: linear-gradient(
     to top,
     #161b229e,
@@ -72,11 +72,22 @@ const UPlayerControlsRight = styled.div`
   }
 `;
 
+const UThumbnail = styled.img`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+  display: ${(props) => (props.started ? "none" : "block")};
+`;
+
 const Player = ({ src, thumbnail, controls = false }) => {
   const playerRef = useRef(null);
+  const playerRefContainer = useRef(null);
 
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.8);
   const [muted, setMuted] = useState(false);
   const [played, setPlayed] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -85,7 +96,7 @@ const Player = ({ src, thumbnail, controls = false }) => {
   const [seeking, setSeeking] = useState(false);
 
   const handleClickFullscreen = () => {
-    screenfull.request(findDOMNode(playerRef.current));
+    screenfull.toggle(findDOMNode(playerRefContainer.current));
   };
 
   const handleMouseLeave = () => {
@@ -104,27 +115,11 @@ const Player = ({ src, thumbnail, controls = false }) => {
     if (e.keyCode === 32) {
       setPlaying(!playing);
     }
-
-    if (e.keyCode === 38) {
-      setVolume(() => (volume < 1 ? volume + 0.2 : volume));
-    }
-
-    if (e.keyCode === 40) {
-      let newVolume = volume;
-
-      if (volume > 0.2 && volume < 1) {
-        newVolume = volume - 0.2;
-        newVolume.round(2);
-        console.log(volume);
-        console.log(newVolume);
-      }
-
-      setVolume(newVolume);
-    }
   };
 
   return (
     <UPlayer
+      ref={playerRefContainer}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       onKeyDown={handleKeyPress}
@@ -135,7 +130,7 @@ const Player = ({ src, thumbnail, controls = false }) => {
         pip={true}
         playing={playing}
         playbackRate={playbackRate}
-        volume={volume}
+        volume={1}
         muted={muted}
         onEnded={() => setPlaying(false)}
         onDuration={(duration) => setDuration(duration)}
@@ -148,8 +143,11 @@ const Player = ({ src, thumbnail, controls = false }) => {
         className="player-wrapper"
         width="100%"
         height="100%"
+        min-height="700px"
         url={src}
       />
+
+      <UThumbnail started={played} src={thumbnail} alt="test" />
 
       {controls ? (
         <UPlayerControls playing={playing}>
@@ -160,14 +158,7 @@ const Player = ({ src, thumbnail, controls = false }) => {
               ) : (
                 <RiPlayLine onClick={() => setPlaying(true)} />
               )}
-              <Volume
-                onClick={() => setMuted(!muted)}
-                value={volume}
-                muted={muted}
-                onChange={(e) => {
-                  setVolume(parseFloat(e.target.value));
-                }}
-              />
+              <Volume onClick={() => setMuted(!muted)} muted={muted} />
             </UPlayerControlsLeft>
             <UPlayerControlsRight>
               <RiFullscreenFill
@@ -177,10 +168,12 @@ const Player = ({ src, thumbnail, controls = false }) => {
             </UPlayerControlsRight>
           </UPlayerControlsTop>
           <Timeline
+            duration={duration}
+            loaded={loaded}
             played={played}
             onMouseUp={(e) => {
-              setSeeking(false);
               playerRef.current.seekTo(parseFloat(e.target.value));
+              setSeeking(false);
             }}
             onChange={(e) => setPlayed(parseFloat(e.target.value))}
             onMouseDown={() => setSeeking(true)}

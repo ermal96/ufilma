@@ -14,13 +14,14 @@ const USingleMovieCardTitle = styled.h1`
 `;
 
 const USingleMovieCardCategories = styled.span`
-  background: ${({ theme }) => theme.colors.accent};
-  margin-right: -0.7rem;
+  border: 1px solid ${({ theme }) => theme.colors.light};
+  color: ${({ theme }) => theme.colors.light};
   padding: 0.2rem 0.7rem;
-  border: 1px solid white;
-  font-weight: medium;
+  font-weight: bold;
   margin-bottom: 2rem;
   display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
 `;
 
 const USingleMovieCardBody = styled.p`

@@ -7,15 +7,20 @@ const UTimeline = styled.div`
   margin-left: 0.7rem;
 `;
 
-const Timeline = ({ played, onMouseDown, onChange, onMouseUp }) => {
+const Timeline = ({
+  played,
+  onMouseDown,
+  onChange,
+  onMouseUp,
+  loaded,
+  duration,
+}) => {
   return (
     <UTimeline>
       <Range
-        type="range"
-        min={0}
-        max={0.999999}
-        step="any"
+        max={duration}
         value={played}
+        loaded={loaded}
         onMouseDown={onMouseDown}
         onChange={onChange}
         onMouseUp={onMouseUp}
