@@ -24,16 +24,12 @@ const URange = styled.input`
     outline: none;
   }
 
-  &:hover {
-    transform: scaleY(1.6);
-  }
-
   /* chrome */
   &::-webkit-slider-runnable-track {
     cursor: pointer;
     height: 0.4rem;
     border: none;
-    border-radius: 0px;
+    border-radius: 50px;
   }
 
   &::-webkit-slider-thumb {
@@ -41,8 +37,16 @@ const URange = styled.input`
     cursor: pointer;
     appearance: none;
     border: none;
-    height: 0;
-    width: 0;
+    height: 1rem;
+    width: 1rem;
+    background: ${({ theme }) => theme.colors.secondary};
+    margin-top: -0.3rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.6);
+    }
   }
 
   /* firefox */
@@ -54,12 +58,21 @@ const URange = styled.input`
     cursor: pointer;
     border-radius: 0;
     border: none;
-    height: 0;
-    width: 0;
+    height: 1rem;
+    width: 1rem;
+    background: ${({ theme }) => theme.colors.secondary};
+    margin-top: -0.2rem;
+    border-radius: 50%;
+
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.6);
+    }
   }
 `;
 
-const Range = ({ onChange, value, onMouseUp, onMouseDown, max, loaded }) => {
+const Range = ({ onChange, value, onMouseUp, onMouseDown, loaded }) => {
   return (
     <URange
       loaded={loaded}
@@ -68,7 +81,7 @@ const Range = ({ onChange, value, onMouseUp, onMouseDown, max, loaded }) => {
       step="any"
       type="range"
       min={0}
-      max={max}
+      max={1}
       value={value}
       onChange={onChange}
     />

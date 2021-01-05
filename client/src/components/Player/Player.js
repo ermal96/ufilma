@@ -4,9 +4,15 @@ import { findDOMNode } from "react-dom";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
 import screenfull from "screenfull";
-import { RiFullscreenFill, RiPlayLine, RiPauseLine } from "react-icons/ri";
+import {
+  RiFullscreenFill,
+  RiPlayLine,
+  RiPauseLine,
+  RiTimer2Line,
+} from "react-icons/ri";
 import Volume from "./Volume";
 import Timeline from "./Timeline";
+import Tooltip from "../Base/Tooltip";
 
 const UPlayer = styled.div`
   position: relative;
@@ -32,7 +38,7 @@ const UPlayerControls = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   font-size: 3rem;
-  padding: 2rem 2rem 3rem 2rem;
+  padding: 0 2rem;
   opacity: ${(props) => (props.playing ? 0 : 1)};
   transition: all 0.3s ease;
   &:hover {
@@ -40,7 +46,7 @@ const UPlayerControls = styled.div`
   }
 `;
 
-const UPlayerControlsTop = styled.div`
+const UPlayerControlsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,7 +54,7 @@ const UPlayerControlsTop = styled.div`
 
 const UPlayerControlsLeft = styled.div`
   display: flex;
-
+  align-items: center;
   svg {
     margin-right: 2rem;
     transition: all 0.3s ease;
@@ -62,9 +68,11 @@ const UPlayerControlsLeft = styled.div`
 
 const UPlayerControlsRight = styled.div`
   display: flex;
+  align-items: center;
   svg {
     transition: all 0.3s ease;
     cursor: pointer;
+    margin-left: 2rem;
 
     &:hover {
       transform: scale(1.2) !important;
@@ -83,7 +91,25 @@ const UThumbnail = styled.img`
   display: ${(props) => (props.started ? "none" : "block")};
 `;
 
-const Player = ({ src, thumbnail, controls = false }) => {
+const UTitlePlayer = styled.p`
+  font-size: 1.9rem;
+  font-weight: bold;
+`;
+
+const UPlaybackWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const UPlaybackSpeed = styled.p`
+  font-weight: bold;
+  margin: 1rem;
+  cursor: pointer;
+  color: ${(props) =>
+    props.active ? props.theme.colors.secondary : "inherit"};
+`;
+
+const Player = ({ src, thumbnail, controls = false, title }) => {
   const playerRef = useRef(null);
   const playerRefContainer = useRef(null);
 
@@ -151,22 +177,6 @@ const Player = ({ src, thumbnail, controls = false }) => {
 
       {controls ? (
         <UPlayerControls playing={playing}>
-          <UPlayerControlsTop>
-            <UPlayerControlsLeft className="uplayer-controls">
-              {playing ? (
-                <RiPauseLine onClick={() => setPlaying(false)} />
-              ) : (
-                <RiPlayLine onClick={() => setPlaying(true)} />
-              )}
-              <Volume onClick={() => setMuted(!muted)} muted={muted} />
-            </UPlayerControlsLeft>
-            <UPlayerControlsRight>
-              <RiFullscreenFill
-                className="full-screen"
-                onClick={handleClickFullscreen}
-              />
-            </UPlayerControlsRight>
-          </UPlayerControlsTop>
           <Timeline
             duration={duration}
             loaded={loaded}
@@ -178,6 +188,51 @@ const Player = ({ src, thumbnail, controls = false }) => {
             onChange={(e) => setPlayed(parseFloat(e.target.value))}
             onMouseDown={() => setSeeking(true)}
           />
+
+          <UPlayerControlsWrapper>
+            <UPlayerControlsLeft className="uplayer-controls">
+              {playing ? (
+                <RiPauseLine onClick={() => setPlaying(false)} />
+              ) : (
+                <RiPlayLine onClick={() => setPlaying(true)} />
+              )}
+              <Volume onClick={() => setMuted(!muted)} muted={muted} />
+              <UTitlePlayer>{title}</UTitlePlayer>
+            </UPlayerControlsLeft>
+
+            <UPlayerControlsRight>
+              <Tooltip
+                content={
+                  <UPlaybackWrapper>
+                    <UPlaybackSpeed
+                      active={false}
+                      onClick={() => setPlaybackRate(0.5)}
+                    >
+                      0.5x
+                    </UPlaybackSpeed>
+                    <UPlaybackSpeed
+                      active={true}
+                      onClick={() => setPlaybackRate(1)}
+                    >
+                      1.0x
+                    </UPlaybackSpeed>
+                    <UPlaybackSpeed
+                      active={false}
+                      onClick={() => setPlaybackRate(1.5)}
+                    >
+                      1.5x
+                    </UPlaybackSpeed>
+                  </UPlaybackWrapper>
+                }
+              >
+                <RiTimer2Line />
+              </Tooltip>
+              <RiFullscreenFill
+                className="full-screen"
+                onClick={handleClickFullscreen}
+              />
+            </UPlayerControlsRight>
+          </UPlayerControlsWrapper>
         </UPlayerControls>
       ) : null}
     </UPlayer>
