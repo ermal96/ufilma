@@ -17,6 +17,22 @@ export const getAll = async (_, res) => {
   }
 };
 
+export const getById = async (req, res) => {
+  try {
+    const category = await Category.find({ _id: req.params.id })
+      .select("-__v")
+      .populate("movies", "name");
+
+    res.status(200).send({
+      category,
+    });
+  } catch (error) {
+    res.send({
+      message: "Something went wrong",
+    });
+  }
+};
+
 export const add = async (req, res) => {
   const category = new Category(req.body);
 
