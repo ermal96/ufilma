@@ -16,7 +16,7 @@ export { default as Container } from "./Layout/Container";
 export { default as Center } from "./Helpers/Center";
 
 // export cards
-export { default as MovieCard } from "./Cards/MovieCard";
+export { default as Card } from "./Cards/Card";
 export { default as TopMovieCard } from "./Cards/TopMovieCard";
 
 // export Topography

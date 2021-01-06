@@ -1,5 +1,13 @@
 import React from "react";
-import { Home, Login, Register, Movie, Categories, Movies } from "../pages";
+import {
+  Home,
+  Login,
+  Register,
+  Movie,
+  Categories,
+  Movies,
+  Category,
+} from "../pages";
 import { BrowserRouter as Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import AuthRoute from "./AuthRoute";
@@ -23,6 +31,7 @@ export const Routes = () => {
         <PrivateRoute exact path={routes.movies} component={Movies} />
         <PrivateRoute exact path={routes.categories} component={Categories} />
         <PrivateRoute path={`${routes.movies}/:id`} component={Movie} />
+        <PrivateRoute path={`${routes.categories}/:id`} component={Category} />
       </Layout>
     </Switch>
   );

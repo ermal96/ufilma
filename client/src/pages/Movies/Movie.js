@@ -22,7 +22,7 @@ const Movie = ({ match }) => {
             title={movie.name}
             thumbnail={process.env.REACT_APP_SERVER + movie.imageUrl}
             controls
-            src="https://m2.vudeo.net/2vp3xa6s3yvjdohiloobrmwbqjikd3lujpefa2p3k6mywvx6dm7io7rmdpga/v.mp4"
+            src="/demo.mp4"
           />
           <SingleMovieCard data={movie} />
         </UMovieWrapper>

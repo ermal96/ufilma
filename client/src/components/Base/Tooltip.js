@@ -28,7 +28,7 @@ const Tooltip = ({ delay, children, content }) => {
   const showTip = () => {
     timeout = setTimeout(() => {
       setActive(true);
-    }, delay || 400);
+    }, delay || 300);
   };
 
   const hideTip = () => {
