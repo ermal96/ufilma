@@ -5,6 +5,7 @@ import { upload } from "../utils/upload.js";
 const router = express.Router();
 
 router.get("/", categories.getAll);
+router.get("/:id", categories.getById);
 router.post("/", upload, categories.add);
 router.delete("/:id", categories.removeById);
 router.put("/:id", categories.updateById);
