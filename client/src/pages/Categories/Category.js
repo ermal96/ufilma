@@ -13,7 +13,7 @@ const Category = ({ match }) => {
     <>
       {console.log(category)}
 
-      {category && <p>{category.title}</p>}
+      {category && <p>{category.name}</p>}
     </>
   );
 };

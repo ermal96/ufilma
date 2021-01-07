@@ -6,10 +6,20 @@ import styled from "styled-components";
 import screenfull from "screenfull";
 
 import Controls from "./Controls";
+import { setError } from "../../store/actions/userActions";
 
 const UPlayer = styled.div`
   position: relative;
   outline: none;
+  .player-wrapper {
+    position: relative;
+    padding-top: 40%;
+  }
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   &::focus {
     outline: none;
   }
@@ -38,6 +48,8 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [, setSeeking] = useState(false);
   const [timelineVisible, setTimelineVisible] = useState(true);
+  const [url, setUrl] = useState("https://demo.mp4");
+  const [error, setError] = useState(false);
 
   const handleClickFullscreen = () => {
     screenfull.toggle(findDOMNode(playerRefContainer.current));
@@ -61,6 +73,16 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
     }
   };
 
+  const handleError = () => {
+    setError(true);
+    if (src) {
+      src.shift();
+      setUrl(src[+1]);
+    }
+
+    console.log(url);
+  };
+
   return (
     <UPlayer
       ref={playerRefContainer}
@@ -76,6 +98,8 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
         playbackRate={playbackRate}
         volume={1}
         muted={muted}
+        onError={handleError}
+        onReady={() => setError(false)}
         onEnded={() => setPlaying(false)}
         onDuration={(duration) => setDuration(duration)}
         onProgress={(state) => {
@@ -87,12 +111,12 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
         className="player-wrapper"
         width="100%"
         height="100%"
-        url={src}
+        url={url}
       />
 
-      <UThumbnail started={played} src={thumbnail} alt="Video Cover" />
+      <UThumbnail started={played} src={thumbnail} />
 
-      {controls ? (
+      {controls && (
         <Controls
           muted={muted}
           played={played}
@@ -111,7 +135,7 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
           handleClickFullscreen={handleClickFullscreen}
           title={title}
         />
-      ) : null}
+      )}
     </UPlayer>
   );
 };

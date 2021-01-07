@@ -11,7 +11,7 @@ const TopMovie = () => {
   return (
     <UTopMovie>
       {topMovie.length ? (
-        <TopMovieCard key={topMovie[1]._id} movie={topMovie[1]} />
+        <TopMovieCard key={topMovie[0]._id} movie={topMovie[0]} />
       ) : null}
     </UTopMovie>
   );
