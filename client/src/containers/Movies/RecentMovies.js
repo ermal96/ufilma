@@ -7,18 +7,18 @@ import { routes } from "../../routes";
 
 const URecentMovies = styled.section`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 3rem;
   margin-top: 3rem;
 
-  @media (max-width: 991px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.desktop}) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media (max-width: 540px) {
+
+  @media (max-width: ${({ theme }) => theme.mediaQuery.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     grid-template-columns: repeat(2, 1fr);
   }
 `;
@@ -32,7 +32,6 @@ const RecentMovies = () => {
 
   return (
     <Container>
-      <Title>Recent Movies</Title>
       <URecentMovies>
         {recentMovies.length
           ? recentMovies.map((movie) => (
@@ -41,6 +40,9 @@ const RecentMovies = () => {
                 backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}
                 link={routes.movies + "/" + movie._id}
                 key={movie._id}
+                quality={movie.quality}
+                title={movie.name}
+                categories={movie.categories}
               />
             ))
           : null}

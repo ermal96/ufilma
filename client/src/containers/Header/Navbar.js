@@ -73,9 +73,8 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to={routes.movies}>Movies</NavLink>
+          <NavLink to={routes.movies}>Filma</NavLink>
         </li>
-
         <li>
           <NavLink to={routes.categories}>Categories</NavLink>
         </li>
