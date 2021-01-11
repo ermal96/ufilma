@@ -1,7 +1,7 @@
 import { types } from "../actions/types";
 
 const defaultState = {
-  recentMovies: {},
+  movies: {},
   movie: {},
   loaded: false,
 };
@@ -11,7 +11,7 @@ export const moviesReducer = (state = defaultState, action) => {
     case types.GET_MOVIES:
       return {
         ...state,
-        recentMovies: action.payload,
+        movies: action.payload,
       };
 
     case types.GET_MOVIE:

@@ -6,20 +6,10 @@ import styled from "styled-components";
 import screenfull from "screenfull";
 
 import Controls from "./Controls";
-import { setError } from "../../store/actions/userActions";
 
 const UPlayer = styled.div`
   position: relative;
   outline: none;
-  .player-wrapper {
-    position: relative;
-    padding-top: 40%;
-  }
-  video {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
   &::focus {
     outline: none;
   }
@@ -48,7 +38,7 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [, setSeeking] = useState(false);
   const [timelineVisible, setTimelineVisible] = useState(true);
-  const [url, setUrl] = useState("https://demo.mp4");
+  const [url, setUrl] = useState("/demo.mp4");
   const [error, setError] = useState(false);
 
   const handleClickFullscreen = () => {
@@ -79,8 +69,6 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
       src.shift();
       setUrl(src[+1]);
     }
-
-    console.log(url);
   };
 
   return (

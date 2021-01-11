@@ -1,0 +1,21 @@
+{
+  "name": "ufilma",
+  "version": "1.0.0",
+  "description": "ufilma is a web app to watch movies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm run start --prefix api ",
+    "client": "npm run start --prefix client "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ermal96/ufilma.com.git"
+  },
+  "author": "Ermal vrapi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ermal96/ufilma.com/issues"
+  },
+  "homepage": "https://github.com/ermal96/ufilma.com#readme"
+}
