@@ -8,7 +8,7 @@ const UCategoriesGrid = styled.section`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 3rem;
-  margin-top: 3rem;
+  margin-top: 5rem;
 
   @media (max-width: 991px) {
     grid-template-columns: repeat(4, 1fr);
@@ -27,7 +27,6 @@ const CategoryGrid = () => {
 
   return (
     <Container>
-      {console.log(categories)}
       <UCategoriesGrid>
         {categories.length &&
           categories.map((category) => (
@@ -36,6 +35,7 @@ const CategoryGrid = () => {
               backgroundImage={`url(${process.env.REACT_APP_SERVER}${category.imageUrl})`}
               link={routes.categories + "/" + category._id}
               key={category._id}
+              title={category.name}
             />
           ))}
       </UCategoriesGrid>

@@ -7,30 +7,31 @@ const ThrillerMovies = ({ movies }) => {
 
   useEffect(() => {
     setThrillerMovies(
-      movies.filter((movie) =>
-        movie.categories.map((category) => category.name === "Thriller")
-      )
+      movies.filter((movie) => movie.categories[0].name === "Thriller")
     );
   }, [movies]);
 
   return (
     <Container>
-      <Title>Thriller</Title>
+      {thrillerMovies.length ? (
+        <>
+          <Title>Thriller</Title>
 
-      <Grid>
-        {thrillerMovies.length &&
-          thrillerMovies.map((movie) => (
-            <Card
-              ratio="2/3"
-              backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}
-              link={routes.movies + "/" + movie._id}
-              key={movie._id}
-              quality={movie.quality}
-              title={movie.name}
-              categories={movie.categories}
-            />
-          ))}
-      </Grid>
+          <Grid>
+            {thrillerMovies.slice(0, 5).map((movie) => (
+              <Card
+                ratio="2/3"
+                backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}
+                link={routes.movies + "/" + movie._id}
+                key={movie._id}
+                quality={movie.quality}
+                title={movie.name}
+                categories={movie.categories}
+              />
+            ))}
+          </Grid>
+        </>
+      ) : null}
     </Container>
   );
 };

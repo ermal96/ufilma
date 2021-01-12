@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import CategoryGrid from "../../containers/Categories/CategoryGrid";
 import { getCategories } from "../../store/actions/categoriesAction";
 import { useDispatch } from "react-redux";
+import { PageHeader } from "../../components";
+import { routes } from "../../routes";
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -10,7 +12,17 @@ const Categories = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  return <CategoryGrid />;
+  return (
+    <>
+      <PageHeader
+        link={routes.categories}
+        title="Categories"
+        imageUrl="https://images.unsplash.com/photo-1599967098496-5eb5e008d82c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80"
+        description="This is the categories page, here you can filter all the movies you want on base of categories"
+      />
+      <CategoryGrid />
+    </>
+  );
 };
 
 export default Categories;

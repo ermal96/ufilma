@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const UContainer = styled.div`
-  padding: 2.5rem;
+  padding: 0 2.5rem;
   margin: 0 auto;
 `;
 

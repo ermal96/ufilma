@@ -7,7 +7,7 @@ const RecentMovies = ({ movies }) => {
     <Container>
       <Title>Recent</Title>
       <Grid>
-        {movies.map((movie) => (
+        {movies.slice(0, 5).map((movie) => (
           <Card
             ratio="2/3"
             backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}

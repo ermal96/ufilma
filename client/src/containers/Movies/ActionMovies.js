@@ -7,30 +7,30 @@ const ActionMovies = ({ movies }) => {
 
   useEffect(() => {
     setActionMovies(
-      movies.filter((movie) =>
-        movie.categories.map((category) => category.name === "Action")
-      )
+      movies.filter((movie) => movie.categories[0].name === "Action")
     );
   }, [movies]);
 
   return (
     <Container>
-      <Title>Action</Title>
-
-      <Grid>
-        {actionMovies.length &&
-          actionMovies.map((movie) => (
-            <Card
-              ratio="2/3"
-              backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}
-              link={routes.movies + "/" + movie._id}
-              key={movie._id}
-              quality={movie.quality}
-              title={movie.name}
-              categories={movie.categories}
-            />
-          ))}
-      </Grid>
+      {actionMovies.length ? (
+        <>
+          <Title>Action</Title>
+          <Grid>
+            {actionMovies.slice(0, 5).map((movie) => (
+              <Card
+                ratio="2/3"
+                backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}
+                link={routes.movies + "/" + movie._id}
+                key={movie._id}
+                quality={movie.quality}
+                title={movie.name}
+                categories={movie.categories}
+              />
+            ))}
+          </Grid>
+        </>
+      ) : null}
     </Container>
   );
 };

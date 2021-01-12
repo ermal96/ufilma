@@ -8,11 +8,11 @@ const UGrid = styled.section`
   margin-top: 3rem;
 
   @media (max-width: ${({ theme }) => theme.mediaQuery.desktop}) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @media (max-width: ${({ theme }) => theme.mediaQuery.tablet}) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     grid-template-columns: repeat(2, 1fr);

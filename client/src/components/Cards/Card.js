@@ -4,17 +4,15 @@ import AspectRatio from "react-aspect-ratio";
 import { Link } from "react-router-dom";
 
 const UMovieCardMeta = styled.div`
-  display: flex;
   padding: 1rem;
   position: absolute;
-  top: 0;
-  right: 0;
-  background: #f3f3f3bf;
-  width: 4rem;
-  border-radius: 1px;
-  height: 4rem;
-
-  /* opacity: 0; */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: ${({ theme }) => theme.colors.light};
+  min-height: 4rem;
+  display: block;
+  opacity: 0;
   transition: all 0.3s ease;
   color: ${({ theme }) => theme.colors.primary};
 
@@ -29,16 +27,21 @@ const UMovieCard = styled.div`
   border-radius: ${({ theme }) => theme.constants.radiusSm + "rem"};
   transition: transform 0.3s ease;
   position: relative;
+  overflow: hidden;
+  div:first-child {
+    transition: transform 0.3s ease;
+  }
   &:hover {
-    transform: scale(1.1);
-
+    div:first-child {
+      transform: scale(1.3);
+    }
     ${UMovieCardMeta} {
       opacity: 1;
     }
   }
 `;
 
-const Card = ({ backgroundImage, ratio, link, title, categories }) => {
+const Card = ({ backgroundImage, ratio, link, title, quality }) => {
   return (
     <UMovieCard>
       <Link to={link}>
@@ -49,6 +52,10 @@ const Card = ({ backgroundImage, ratio, link, title, categories }) => {
             backgroundSize: "cover",
           }}
         ></AspectRatio>
+        <UMovieCardMeta>
+          <p>{quality}</p>
+          <h3>{title}</h3>
+        </UMovieCardMeta>
       </Link>
     </UMovieCard>
   );
