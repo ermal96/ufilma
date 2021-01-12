@@ -1,18 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { TopMovieCard } from "../../components";
 import styled from "styled-components";
 
-const UTopMovie = styled.section``;
+const UTopMovie = styled.section`
+  height: 100%;
+`;
 
-const TopMovie = () => {
-  const topMovie = useSelector(({ movies }) => movies.recentMovies);
-
+const TopMovie = ({ movies }) => {
   return (
     <UTopMovie>
-      {topMovie.length ? (
-        <TopMovieCard key={topMovie[1]._id} movie={topMovie[1]} />
-      ) : null}
+      <TopMovieCard key={movies[0]._id} movie={movies[0]} />
     </UTopMovie>
   );
 };

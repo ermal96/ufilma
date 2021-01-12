@@ -22,8 +22,9 @@ const Movie = ({ match }) => {
             title={movie.name}
             thumbnail={process.env.REACT_APP_SERVER + movie.imageUrl}
             controls
-            src="/demo.mp4"
+            src={movie.videoUrl}
           />
+
           <SingleMovieCard data={movie} />
         </UMovieWrapper>
       ) : null}

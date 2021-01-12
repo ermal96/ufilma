@@ -13,7 +13,8 @@ export { default as Spinner } from "./Base/Spinner";
 // export layout
 export { default as Layout } from "./Layout/Layout";
 export { default as Container } from "./Layout/Container";
-export { default as Center } from "./Helpers/Center";
+
+export { default as Grid } from "./Layout/Grid";
 
 // export cards
 export { default as Card } from "./Cards/Card";
@@ -25,6 +26,7 @@ export { default as Title } from "./Topography/Title";
 // export helpers
 export { default as Background } from "./Helpers/Background";
 export { default as Error } from "./Helpers/Error";
+export { default as Center } from "./Helpers/Center";
 
 // export payer
 export { default as Player } from "./Player/Player";

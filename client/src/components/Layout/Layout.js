@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../containers/Header/Header";
 import styled from "styled-components";
+import Footer from "../../containers/Footer/Footer";
 
 const ULayout = styled.main`
   display: flex;
@@ -19,6 +20,7 @@ const Layout = ({ children }) => {
     <ULayout>
       <Header />
       <UWrapper>{children}</UWrapper>
+      <Footer />
     </ULayout>
   );
 };
