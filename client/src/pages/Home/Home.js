@@ -9,10 +9,12 @@ import {
   ThrillerMovies,
   KomediMovies,
 } from "../../containers";
+import "swiper/swiper.scss";
 
 const Home = () => {
   const dispatch = useDispatch();
   const movies = useSelector(({ movies }) => movies.movies);
+
   useEffect(() => {
     dispatch(getMovies());
   }, [dispatch]);

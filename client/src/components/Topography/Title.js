@@ -6,17 +6,8 @@ const UTitle = styled.h1`
   position: relative;
   color: ${({ theme }) => theme.colors.light};
   margin-top: 2.5rem;
-
-  /* &:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    width: 2rem;
-    height: 0.3rem;
-    background: red;
-  } */
+  display: inline-block;
+  border-bottom: 0.2rem solid ${({ theme }) => theme.colors.secondary};
 `;
 
 const Title = ({ children }) => {

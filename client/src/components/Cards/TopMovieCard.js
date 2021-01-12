@@ -7,8 +7,9 @@ import { routes } from "../../routes";
 const UTopmovie = styled.div`
   .react-aspect-ratio-placeholder {
     @media (max-width: 767px) {
-      height: 40rem;
+      min-height: 40rem;
     }
+    min-height: 50rem;
   }
   position: relative;
   &:before {
