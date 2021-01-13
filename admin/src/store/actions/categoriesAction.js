@@ -11,6 +11,11 @@ export const setLoad = (payload) => ({
   payload,
 });
 
+export const removeCategory = (payload) => ({
+  type: types.DELETE_CATEGORY,
+  payload,
+});
+
 export const getCategories = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));
@@ -28,6 +33,15 @@ export const getCategory = (id) => async (dispatch) => {
     const result = await axios.get(`/categories/${id}`);
     dispatch(setCategory(result.data.category[0]));
     dispatch(setLoad(false));
+  } catch (error) {
+    dispatch(setLoad(false));
+  }
+};
+
+export const deleteCategory = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/categories/${id}`);
+    dispatch(removeCategory(id));
   } catch (error) {
     dispatch(setLoad(false));
   }

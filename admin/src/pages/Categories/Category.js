@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../../store/actions/categoriesAction";
+import ULayout from "../../containers/Layout";
 
 const Category = ({ match }) => {
   const dispatch = useDispatch();
@@ -10,11 +11,9 @@ const Category = ({ match }) => {
   }, [dispatch, match.params.id]);
 
   return (
-    <>
-      {console.log(category)}
-
-      {category && <p>{category.name}</p>}
-    </>
+    <ULayout activeRoute={match.path} activePage="Category">
+      category
+    </ULayout>
   );
 };
 

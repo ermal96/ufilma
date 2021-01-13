@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import ULayout from "../../containers/Layout";
 import { getMovie } from "../../store/actions/moviesAction";
 
 const Movie = ({ match }) => {
@@ -10,7 +10,11 @@ const Movie = ({ match }) => {
     dispatch(getMovie(match.params.id));
   }, [dispatch, match.params.id]);
 
-  return <>movie page</>;
+  return (
+    <ULayout activeRoute={match.path} activePage="Movie">
+      movie page
+    </ULayout>
+  );
 };
 
 export default Movie;

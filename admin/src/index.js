@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { config } from "./config";
 import { BrowserRouter as Router } from "react-router-dom";
+import "antd/dist/antd.css";
 
 // start project config
 config();

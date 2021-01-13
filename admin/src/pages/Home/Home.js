@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
+import ULayout from "../../containers/Layout";
 
-const Home = () => {
+const Home = ({ match }) => {
   const dispatch = useDispatch();
   const movies = useSelector(({ movies }) => movies.movies);
 
@@ -10,7 +11,11 @@ const Home = () => {
     dispatch(getMovies());
   }, [dispatch]);
 
-  return movies.length ? <p>movies home</p> : <p>loading</p>;
+  return (
+    <ULayout activeRoute={match.path} activePage="Home">
+      home
+    </ULayout>
+  );
 };
 
 export default Home;

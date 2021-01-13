@@ -7,6 +7,8 @@ import {
   Categories,
   Movies,
   Category,
+  AddMovie,
+  AddCategory,
 } from "../pages";
 import { BrowserRouter as Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -17,7 +19,9 @@ export const routes = {
   login: "/login",
   register: "/register",
   movies: "/movies",
+  addMovie: "/add-movie",
   categories: "/categories",
+  addCategory: "/add-category",
 };
 
 export const Routes = () => {
@@ -28,7 +32,9 @@ export const Routes = () => {
 
       <PrivateRoute exact path={routes.home} component={Home} />
       <PrivateRoute exact path={routes.movies} component={Movies} />
+      <PrivateRoute exact path={routes.addMovie} component={AddMovie} />
       <PrivateRoute exact path={routes.categories} component={Categories} />
+      <PrivateRoute exact path={routes.addCategory} component={AddCategory} />
       <PrivateRoute path={`${routes.movies}/:id`} component={Movie} />
       <PrivateRoute path={`${routes.categories}/:id`} component={Category} />
     </Switch>

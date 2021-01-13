@@ -26,6 +26,14 @@ export const categoriesReducer = (state = defaultState, action) => {
         loaded: action.payload,
       };
 
+    case types.DELETE_CATEGORY:
+      return {
+        ...state,
+        categories: state.categories.filter(
+          (item) => item._id !== action.payload
+        ),
+      };
+
     default:
       return state;
   }

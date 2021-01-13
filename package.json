@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "npm run start --prefix api ",
-    "client": "npm run start --prefix client "
+    "client": "npm run start --prefix client",
+    "admin": "npm run start --prefix admin"
   },
   "repository": {
     "type": "git",

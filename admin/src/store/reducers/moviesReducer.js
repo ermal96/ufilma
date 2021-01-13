@@ -26,6 +26,12 @@ export const moviesReducer = (state = defaultState, action) => {
         loaded: action.payload,
       };
 
+    case types.DETELE_MOVIE:
+      return {
+        ...state,
+        movies: state.movies.filter((item) => item._id !== action.payload),
+      };
+
     default:
       return state;
   }
