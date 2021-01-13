@@ -23,10 +23,10 @@ const Home = () => {
     <div>
       <TopMovie movies={movies} />
       <RecentMovies movies={movies} />
-      <ActionMovies movies={movies} />
+      {/* <ActionMovies movies={movies} />
       <ThrillerMovies movies={movies} />
       <KomediMovies movies={movies} />
-      <FamilyMovies movies={movies} />
+      <FamilyMovies movies={movies} /> */}
     </div>
   ) : (
     <p>loading</p>
