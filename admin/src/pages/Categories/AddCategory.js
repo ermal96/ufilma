@@ -1,27 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Upload } from "antd";
 import ULayout from "../../containers/Layout";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
+import { addCategory } from "../../store/actions/categoriesAction";
+import { useDispatch } from "react-redux";
 
 const UCategoryGrid = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-gap: 25px;
+  .ant-upload.ant-upload-select {
+    display: block;
+  }
 `;
 
-const Category = ({ match }) => {
-  const onFinish = (values) => {
-    console.log(values);
-  };
+const AddCategory = ({ match }) => {
+  const [image, setImage] = useState("");
 
-  const normFile = (e) => {
-    return e.fileList[0].originFileObj;
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
+
+  const handleUpload = (e) => {
+    setImage(e.file.originFileObj);
+  };
+  const onFinish = (values) => {
+    dispatch(
+      addCategory({
+        name: values.name,
+        description: values.description,
+        image: image,
+      })
+    );
+
+    form.resetFields();
   };
 
   return (
     <ULayout activeRoute={match.path} activePage="Add Category">
-      <Form name="add_category" onFinish={onFinish}>
+      <Form form={form} onFinish={onFinish}>
         <UCategoryGrid>
           <div>
             <Form.Item name="name">
@@ -36,29 +53,17 @@ const Category = ({ match }) => {
                 htmlType="submit"
                 className="login-form-button"
               >
-                Create Category
+                Add Category
               </Button>
             </Form.Item>
           </div>
 
           <div>
-            <Form.Item>
-              <Form.Item
-                name="image"
-                valuePropName="fileList"
-                getValueFromEvent={normFile}
-                noStyle
-              >
-                <Upload.Dragger name="files" action="/upload.do">
-                  <p className="ant-upload-drag-icon">
-                    <UploadOutlined />
-                  </p>
-                  <p className="ant-upload-text">
-                    Click or drag category image
-                  </p>
-                </Upload.Dragger>
-              </Form.Item>
-            </Form.Item>
+            <Upload onChange={handleUpload} maxCount={1} listType="picture">
+              <Button block icon={<UploadOutlined />}>
+                Upload
+              </Button>
+            </Upload>
           </div>
         </UCategoryGrid>
       </Form>
@@ -66,4 +71,4 @@ const Category = ({ match }) => {
   );
 };
 
-export default Category;
+export default AddCategory;

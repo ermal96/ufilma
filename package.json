@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ermal96/ufilma.com/issues"
   },
-  "homepage": "https://github.com/ermal96/ufilma.com#readme"
+  "homepage": "https://github.com/ermal96/ufilma.com#readme",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
 }

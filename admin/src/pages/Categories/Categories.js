@@ -5,9 +5,11 @@ import {
   deleteCategory,
 } from "../../store/actions/categoriesAction";
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Space } from "antd";
+import { Table, Space, Typography, Tag } from "antd";
 import { routes } from "../../routes";
 import { Link } from "react-router-dom";
+
+const { Text } = Typography;
 
 const { Column } = Table;
 
@@ -22,8 +24,14 @@ const Categories = ({ match }) => {
   return (
     <ULayout activeRoute={match.path} activePage="Categories">
       {categories.length ? (
-        <Table rowkey="id" dataSource={categories}>
+        <Table rowKey="_id" dataSource={categories}>
           <Column title="Name" dataIndex="name" key="name" />
+          <Column
+            title="Movies"
+            dataIndex="movies"
+            key="movies"
+            render={(movies) => <Tag>{movies.length}</Tag>}
+          />
           <Column
             title="Description"
             dataIndex="description"
@@ -31,14 +39,18 @@ const Categories = ({ match }) => {
           />
 
           <Column
-            title="Action"
+            title="Actions"
             key="action"
             render={(item) => (
               <Space size="middle">
                 <Link to={routes.categories + "/" + item._id}>Edit</Link>
-                <span onClick={() => dispatch(deleteCategory(item._id))}>
+                <Text
+                  style={{ cursor: "pointer" }}
+                  type="danger"
+                  onClick={() => dispatch(deleteCategory(item._id))}
+                >
                   Delete
-                </span>
+                </Text>
               </Space>
             )}
           />
