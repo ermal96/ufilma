@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "npm run start --prefix api ",
-    "client": "npm run start --prefix client "
+    "client": "npm run start --prefix client",
+    "admin": "npm run start --prefix admin"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ermal96/ufilma.com/issues"
   },
-  "homepage": "https://github.com/ermal96/ufilma.com#readme"
+  "homepage": "https://github.com/ermal96/ufilma.com#readme",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
 }

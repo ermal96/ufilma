@@ -13,6 +13,7 @@ export { default as Spinner } from "./Base/Spinner";
 // export layout
 export { default as Layout } from "./Layout/Layout";
 export { default as Container } from "./Layout/Container";
+export { default as PageHeader } from "./Layout/PageHeader";
 
 export { default as Grid } from "./Layout/Grid";
 

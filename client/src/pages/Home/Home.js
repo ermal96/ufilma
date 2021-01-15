@@ -9,10 +9,12 @@ import {
   ThrillerMovies,
   KomediMovies,
 } from "../../containers";
+import "swiper/swiper.scss";
 
 const Home = () => {
   const dispatch = useDispatch();
   const movies = useSelector(({ movies }) => movies.movies);
+
   useEffect(() => {
     dispatch(getMovies());
   }, [dispatch]);
@@ -21,10 +23,10 @@ const Home = () => {
     <div>
       <TopMovie movies={movies} />
       <RecentMovies movies={movies} />
-      <ActionMovies movies={movies} />
+      {/* <ActionMovies movies={movies} />
       <ThrillerMovies movies={movies} />
       <KomediMovies movies={movies} />
-      <FamilyMovies movies={movies} />
+      <FamilyMovies movies={movies} /> */}
     </div>
   ) : (
     <p>loading</p>

@@ -1,0 +1,119 @@
+import React, { useState, useEffect } from "react";
+import { Form, Input, Button, Upload, Select } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import ULayout from "../../containers/Layout";
+import styled from "styled-components";
+import { UploadOutlined } from "@ant-design/icons";
+import { getCategories } from "../../store/actions/categoriesAction";
+import { addMovie } from "../../store/actions/moviesAction";
+
+const UMoviesGrid = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 25px;
+  .ant-upload.ant-upload-select {
+    display: block;
+  }
+`;
+
+const UMovieColum = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 25px;
+`;
+
+const AddMovie = ({ match }) => {
+  const dispatch = useDispatch();
+  const categories = useSelector(({ categories }) => categories.categories);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  const [image, setImage] = useState("");
+
+  const [form] = Form.useForm();
+
+  const handleUpload = (e) => {
+    setImage(e.file.originFileObj);
+  };
+  const onFinish = (values) => {
+    dispatch(addMovie({ ...values, image }));
+    form.resetFields();
+  };
+
+  const { Option } = Select;
+
+  return (
+    <ULayout activeRoute={match.path} activePage="Add Category">
+      <Form form={form} onFinish={onFinish}>
+        <UMoviesGrid>
+          <div>
+            <Form.Item name="name">
+              <Input placeholder="Movie Name" />
+            </Form.Item>
+            <UMovieColum>
+              <Form.Item name="quality">
+                <Input placeholder="Movie Quality" />
+              </Form.Item>
+              <Form.Item name="year">
+                <Input placeholder="Movie Year" />
+              </Form.Item>
+              <Form.Item name="ratio">
+                <Input placeholder="Movie Ratio" />
+              </Form.Item>
+              <Form.Item name="trailerUrl">
+                <Input placeholder="Movie Trailer" />
+              </Form.Item>
+            </UMovieColum>
+            <Form.Item name="time">
+              <Input placeholder="Movie Time" />
+            </Form.Item>
+            <Form.Item name="videoUrl">
+              <Input placeholder="Movie Url" />
+            </Form.Item>
+            <Form.Item name="description">
+              <Input.TextArea placeholder="Movie Description" />
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+              >
+                Add Movie
+              </Button>
+            </Form.Item>
+          </div>
+
+          <div>
+            <Upload onChange={handleUpload} maxCount={1} listType="picture">
+              <Button block icon={<UploadOutlined />}>
+                Upload
+              </Button>
+            </Upload>
+            <br />
+            {categories.length ? (
+              <Form.Item name="categories">
+                <Select
+                  name="categories"
+                  mode="multiple"
+                  style={{ width: "100%" }}
+                  placeholder="SelectCategory"
+                >
+                  {categories.map((category) => (
+                    <Option key={category._id} value={category._id}>
+                      {category.name}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            ) : null}
+          </div>
+        </UMoviesGrid>
+      </Form>
+    </ULayout>
+  );
+};
+
+export default AddMovie;
