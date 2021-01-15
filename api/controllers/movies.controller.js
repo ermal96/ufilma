@@ -9,7 +9,7 @@ export const getAll = async (_, res) => {
       .select("name year imageUrl slug description quality")
       .populate("categories", "name")
       .sort({ _id: -1 })
-      .limit(10);
+      .limit(30);
     res.status(200).send({
       movies,
     });
