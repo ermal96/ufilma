@@ -3,7 +3,7 @@ node_modules
 .pnp.js
 .eslintcache
 uploads/
-
+.idea
 # production
 build
 
