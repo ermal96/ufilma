@@ -5,5 +5,5 @@ export { default as Movie } from "./Movies/Movie";
 export { default as Movies } from "./Movies/Movies";
 export { default as AddMovie } from "./Movies/AddMovie";
 export { default as Categories } from "./Categories/Categories";
-export { default as Category } from "./Categories/Category";
+export { default as EditCategory } from "./Categories/EditCategory";
 export { default as AddCategory } from "./Categories/AddCategory";

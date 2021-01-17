@@ -66,8 +66,17 @@ export const removeById = async (req, res) => {
 };
 
 export const updateById = async (req, res) => {
+  console.log(req.ip);
+  const updatedCategory = {
+    ...req.body,
+  };
+
+  if (req.file) {
+    updatedCategory.imageUrl = "/" + req.file.path;
+  }
+
   try {
-    await Category.update(req.body);
+    await Category.updateOne(updatedCategory);
 
     res.status(202).send({
       message: "Category was successfully updated",

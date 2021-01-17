@@ -6,9 +6,9 @@ import {
   Movie,
   Categories,
   Movies,
-  Category,
   AddMovie,
   AddCategory,
+  EditCategory,
 } from "../pages";
 import { BrowserRouter as Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -36,7 +36,10 @@ export const Routes = () => {
       <PrivateRoute exact path={routes.categories} component={Categories} />
       <PrivateRoute exact path={routes.addCategory} component={AddCategory} />
       <PrivateRoute path={`${routes.movies}/:id`} component={Movie} />
-      <PrivateRoute path={`${routes.categories}/:id`} component={Category} />
+      <PrivateRoute
+        path={`${routes.categories}/:id`}
+        component={EditCategory}
+      />
     </Switch>
   );
 };

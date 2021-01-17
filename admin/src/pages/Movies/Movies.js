@@ -19,7 +19,11 @@ const Movies = ({ match }) => {
   return (
     <ULayout activeRoute={match.path} activePage="Movies">
       {movies.length ? (
-        <Table rowKey="_id" dataSource={movies}>
+        <Table
+          pagination={movies.length >= 10 ? true : false}
+          rowKey="_id"
+          dataSource={movies}
+        >
           <Column title="Name" dataIndex="name" key="name" />
           <Column title="Year" dataIndex="year" key="year" />
           <Column title="Quality" dataIndex="quality" key="quality" />
