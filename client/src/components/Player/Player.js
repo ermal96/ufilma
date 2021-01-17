@@ -38,8 +38,6 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [, setSeeking] = useState(false);
   const [timelineVisible, setTimelineVisible] = useState(true);
-  const [url, setUrl] = useState("/demo.mp4");
-  const [error, setError] = useState(false);
 
   const handleClickFullscreen = () => {
     screenfull.toggle(findDOMNode(playerRefContainer.current));
@@ -63,14 +61,6 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
     }
   };
 
-  const handleError = () => {
-    setError(true);
-    if (src) {
-      src.shift();
-      setUrl(src[+1]);
-    }
-  };
-
   return (
     <UPlayer
       ref={playerRefContainer}
@@ -86,8 +76,6 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
         playbackRate={playbackRate}
         volume={1}
         muted={muted}
-        onError={handleError}
-        onReady={() => setError(false)}
         onEnded={() => setPlaying(false)}
         onDuration={(duration) => setDuration(duration)}
         onProgress={(state) => {
@@ -99,7 +87,7 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
         className="player-wrapper"
         width="100%"
         height="100%"
-        url={url}
+        url={src}
       />
 
       <UThumbnail started={played} src={thumbnail} />

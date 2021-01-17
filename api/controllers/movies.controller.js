@@ -83,8 +83,16 @@ export const removeById = async (req, res) => {
 export const updateById = async (req, res) => {
   const catIds = req.body.categories;
 
+  const updatedMovie = {
+    ...req.body,
+  };
+
+  if (req.file) {
+    updatedMovie.imageUrl = "/" + req.file.path;
+  }
+
   try {
-    await Movie.updateOne(req.body);
+    await Movie.updateOne(updatedMovie);
     await Category.find({ _id: catIds }).updateMany({
       movies: new Movie(req.body),
     });

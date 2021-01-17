@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Upload, Select } from "antd";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Form, Input, Button, Upload, Select } from "antd";
 import ULayout from "../../containers/Layout";
+import { getMovie, updateMovie } from "../../store/actions/moviesAction";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
-import { getCategories } from "../../store/actions/categoriesAction";
-import { addMovie } from "../../store/actions/moviesAction";
+import { routes } from "../../routes";
 
 const UMoviesGrid = styled.div`
   display: grid;
@@ -22,30 +22,63 @@ const UMovieColum = styled.div`
   grid-column-gap: 25px;
 `;
 
-const AddMovie = ({ match }) => {
+const EditMovie = ({ match }) => {
   const dispatch = useDispatch();
-  const categories = useSelector(({ categories }) => categories.categories);
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
+  const {
+    name,
+    description,
+    quality,
+    categories,
+    time,
+    year,
+    ratio,
+    videoUrl,
+    trailerUrl,
+    imageUrl,
+    _id,
+  } = useSelector(({ movies }) => movies.movie);
 
   const [image, setImage] = useState("");
 
   const [form] = Form.useForm();
 
+  useEffect(() => {
+    form.setFieldsValue({
+      name,
+      description,
+      quality,
+      time,
+      year,
+      ratio,
+      videoUrl,
+      trailerUrl,
+    });
+    dispatch(getMovie(match.params.id));
+  }, [
+    dispatch,
+    match.params.id,
+    name,
+    description,
+    quality,
+    time,
+    year,
+    ratio,
+    videoUrl,
+    trailerUrl,
+    form,
+  ]);
+
   const handleUpload = (e) => {
     setImage(e.file.originFileObj);
   };
   const onFinish = (values) => {
-    dispatch(addMovie({ ...values, image }));
-    form.resetFields();
+    dispatch(updateMovie({ ...values, image, id: _id }));
   };
 
   const { Option } = Select;
 
   return (
-    <ULayout activeRoute={match.path} activePage="Add Category">
+    <ULayout activeRoute={routes.movies} activePage="Edit Movie">
       <Form form={form} onFinish={onFinish}>
         <UMoviesGrid>
           <div>
@@ -77,26 +110,39 @@ const AddMovie = ({ match }) => {
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
-                Add Movie
+                Update Movie
               </Button>
             </Form.Item>
           </div>
 
           <div>
-            <Upload onChange={handleUpload} maxCount={1} listType="picture">
+            <Upload
+              defaultFileList={[
+                {
+                  name: "Movie Thumbnail",
+                  thumbUrl: imageUrl
+                    ? process.env.REACT_APP_SERVER + imageUrl
+                    : "",
+                },
+              ]}
+              onChange={handleUpload}
+              maxCount={1}
+              listType="picture"
+            >
               <Button block icon={<UploadOutlined />}>
                 Upload
               </Button>
             </Upload>
             <br />
-            {categories.length ? (
+            {categories ? (
               <Form.Item name="categories">
                 <Select
                   name="categories"
                   mode="multiple"
                   style={{ width: "100%" }}
                   placeholder="SelectCategory"
-                  defaultValue={["uncategorized"]}
+                  aria-selected={categories.map((category) => category.name)}
+                  // defaultValue={}
                 >
                   {categories.map((category) => (
                     <Option key={category._id} value={category._id}>
@@ -113,4 +159,4 @@ const AddMovie = ({ match }) => {
   );
 };
 
-export default AddMovie;
+export default EditMovie;

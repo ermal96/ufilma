@@ -12,6 +12,11 @@ export const createMovie = (payload) => ({
   payload,
 });
 
+export const updMovie = (payload) => ({
+  type: types.UPDATE_MOVIE,
+  payload,
+});
+
 export const getMovies = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));
@@ -58,18 +63,52 @@ export const addMovie = (data) => async (dispatch) => {
   formData.append("image", data.image);
   formData.append("trailerUrl", data.trailerUrl);
   formData.append("time", data.time);
-  //formData.append("videoUrl", data.videoUrl);
+  formData.append("quality", data.quality);
+  formData.append("videoUrl", data.videoUrl);
 
   data.categories.forEach((category) => {
     formData.append("categories", category);
   });
 
   try {
-    console.log(data);
     dispatch(createMovie());
 
     await axios.post("/movies", formData, config);
     SuccessMsg("Created successfully");
+  } catch (error) {
+    ErrorMsg("Something went wrong please try aggain latter");
+  }
+};
+
+export const updateMovie = (data) => async (dispatch) => {
+  const config = {
+    headers: {
+      "content-type": "multipart/form-data",
+    },
+  };
+
+  let formData = new FormData();
+  formData.append("name", data.name);
+  formData.append("description", data.description);
+  formData.append("year", data.year);
+  formData.append("ratio", data.ratio);
+  formData.append("image", data.image);
+  formData.append("trailerUrl", data.trailerUrl);
+  formData.append("time", data.time);
+  formData.append("quality", data.quality);
+  formData.append("videoUrl", data.videoUrl);
+
+  if (data.categories) {
+    data.categories.forEach((category) => {
+      formData.append("categories", category);
+    });
+  }
+
+  try {
+    dispatch(updMovie());
+
+    await axios.put(`/movies/${data.id}`, formData, config);
+    SuccessMsg("Updated successfully");
   } catch (error) {
     ErrorMsg("Something went wrong please try aggain latter");
   }

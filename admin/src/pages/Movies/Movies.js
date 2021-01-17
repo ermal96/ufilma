@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies, deleteMovie } from "../../store/actions/moviesAction";
 import ULayout from "../../containers/Layout";
-import { Table, Tag, Space, Typography } from "antd";
+import { Table, Tag, Space, Typography, Avatar } from "antd";
 import { routes } from "../../routes";
 import { Link } from "react-router-dom";
 const { Text } = Typography;
@@ -26,8 +26,20 @@ const Movies = ({ match }) => {
         >
           <Column title="Name" dataIndex="name" key="name" />
           <Column title="Year" dataIndex="year" key="year" />
-          <Column title="Quality" dataIndex="quality" key="quality" />
-
+          <Column
+            title="Quality"
+            key="quality"
+            dataIndex="quality"
+            render={(quality) => <Text>{quality.toUpperCase()}</Text>}
+          />
+          <Column
+            title="Thumbnail"
+            key="imageUrl"
+            dataIndex="imageUrl"
+            render={(imageUrl) => (
+              <Avatar src={process.env.REACT_APP_SERVER + imageUrl} />
+            )}
+          />
           <Column
             title="Categories"
             dataIndex="categories"
@@ -35,7 +47,7 @@ const Movies = ({ match }) => {
             render={(categories) => (
               <>
                 {categories.map((category) => (
-                  <Tag color="blue" key={category}>
+                  <Tag color="blue" key={category._id}>
                     {category.name}
                   </Tag>
                 ))}

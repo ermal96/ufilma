@@ -6,6 +6,7 @@ import ULayout from "../../containers/Layout";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
 import { updateCategory } from "../../store/actions/categoriesAction";
+import { routes } from "../../routes";
 
 const UCategoryGrid = styled.div`
   display: grid;
@@ -44,10 +45,7 @@ const Category = ({ match }) => {
   }, [dispatch, match.params.id, form, name, description, imageUrl]);
 
   return (
-    <ULayout
-      activeRoute={match.path}
-      activePage={`Edit ${name ? name : "Category"}`}
-    >
+    <ULayout activeRoute={routes.categories} activePage="Edit Category">
       <Form form={form} onFinish={onFinish}>
         <UCategoryGrid>
           <div>

@@ -3,7 +3,7 @@ import {
   Home,
   Login,
   Register,
-  Movie,
+  EditMovie,
   Categories,
   Movies,
   AddMovie,
@@ -35,7 +35,7 @@ export const Routes = () => {
       <PrivateRoute exact path={routes.addMovie} component={AddMovie} />
       <PrivateRoute exact path={routes.categories} component={Categories} />
       <PrivateRoute exact path={routes.addCategory} component={AddCategory} />
-      <PrivateRoute path={`${routes.movies}/:id`} component={Movie} />
+      <PrivateRoute path={`${routes.movies}/:id`} component={EditMovie} />
       <PrivateRoute
         path={`${routes.categories}/:id`}
         component={EditCategory}

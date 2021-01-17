@@ -27,7 +27,7 @@ const USingleMovieCardCategories = styled.span`
 const USingleMovieCardBody = styled.p`
   margin-bottom: 2rem;
   font-size: 1.6rem;
-  max-width: 80rem;
+  max-width: 100rem;
 `;
 
 const USingleMovieCardQuality = styled.p`

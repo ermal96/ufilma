@@ -66,7 +66,6 @@ export const removeById = async (req, res) => {
 };
 
 export const updateById = async (req, res) => {
-  console.log(req.ip);
   const updatedCategory = {
     ...req.body,
   };

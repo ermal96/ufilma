@@ -70,7 +70,9 @@ const TopMovie = ({ movie }) => {
       <UTopMovieBody>
         <UTopMovieBodyYear>{movie.year}</UTopMovieBodyYear>
         <UTopMovieBodyTitle>{movie.name}</UTopMovieBodyTitle>
-        <UTopMovieBodyDesc>{movie.description}</UTopMovieBodyDesc>
+        <UTopMovieBodyDesc>
+          {movie.description.slice(0, 150)}...
+        </UTopMovieBodyDesc>
         <Button href={`${routes.movies}/${movie._id}`} variant="light">
           Watch now
         </Button>
