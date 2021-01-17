@@ -75,7 +75,9 @@ export const updateById = async (req, res) => {
   }
 
   try {
-    await Category.updateOne(updatedCategory);
+    await Category.findOneAndUpdate({ _id: req.params.id }, updatedCategory, {
+      returnOriginal: false,
+    });
 
     res.status(202).send({
       message: "Category was successfully updated",

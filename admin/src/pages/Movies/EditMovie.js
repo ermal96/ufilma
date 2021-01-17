@@ -72,6 +72,7 @@ const EditMovie = ({ match }) => {
     setImage(e.file.originFileObj);
   };
   const onFinish = (values) => {
+    console.log(_id);
     dispatch(updateMovie({ ...values, image, id: _id }));
   };
 

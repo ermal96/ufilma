@@ -92,7 +92,10 @@ export const updateById = async (req, res) => {
   }
 
   try {
-    await Movie.updateOne(updatedMovie);
+    await Movie.findOneAndUpdate({ _id: req.params.id }, updatedMovie, {
+      returnOriginal: false,
+    });
+
     await Category.find({ _id: catIds }).updateMany({
       movies: new Movie(req.body),
     });
