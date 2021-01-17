@@ -73,7 +73,7 @@ const AddMovie = ({ match }) => {
               <Input placeholder="Movie Url" />
             </Form.Item>
             <Form.Item name="description">
-              <Input.TextArea placeholder="Movie Description" />
+              <Input.TextArea rows={6} placeholder="Movie Description" />
             </Form.Item>
             <Form.Item>
               <Button
@@ -88,7 +88,11 @@ const AddMovie = ({ match }) => {
 
           <div>
             <Upload onChange={handleUpload} maxCount={1} listType="picture">
-              <Button block icon={<UploadOutlined />}>
+              <Button
+                customRequest={() => null}
+                block
+                icon={<UploadOutlined />}
+              >
                 Upload
               </Button>
             </Upload>

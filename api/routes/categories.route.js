@@ -8,6 +8,6 @@ router.get("/", categories.getAll);
 router.get("/:id", categories.getById);
 router.post("/", upload, categories.add);
 router.delete("/:id", categories.removeById);
-router.put("/:id", categories.updateById);
+router.put("/:id", upload, categories.updateById);
 
 export const categoriesRoute = router;

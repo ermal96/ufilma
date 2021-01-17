@@ -22,6 +22,11 @@ export const createCategory = (payload) => ({
   payload,
 });
 
+export const updateCat = (payload) => ({
+  type: types.UPDATE_CATEGIRY,
+  payload,
+});
+
 export const getCategories = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));
@@ -72,6 +77,27 @@ export const addCategory = (data) => async (dispatch) => {
     dispatch(createCategory());
     await axios.post("/categories", formData, config);
     SuccessMsg("Created successfully");
+  } catch (error) {
+    ErrorMsg("Something went wrong please try aggain latter");
+  }
+};
+
+export const updateCategory = (data) => async (dispatch) => {
+  const config = {
+    headers: {
+      "content-type": "multipart/form-data",
+    },
+  };
+
+  let formData = new FormData();
+  formData.append("name", data.name);
+  formData.append("description", data.description);
+  formData.append("image", data.image);
+
+  try {
+    dispatch(updateCat());
+    await axios.put(`/categories/${data.id}`, formData, config);
+    SuccessMsg("Updated successfully");
   } catch (error) {
     ErrorMsg("Something went wrong please try aggain latter");
   }

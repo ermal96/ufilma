@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, Upload } from "antd";
+import { getCategory } from "../../store/actions/categoriesAction";
 import ULayout from "../../containers/Layout";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
-import { addCategory } from "../../store/actions/categoriesAction";
-import { useDispatch } from "react-redux";
+import { updateCategory } from "../../store/actions/categoriesAction";
 
 const UCategoryGrid = styled.div`
   display: grid;
@@ -15,10 +16,13 @@ const UCategoryGrid = styled.div`
   }
 `;
 
-const AddCategory = ({ match }) => {
+const Category = ({ match }) => {
+  const dispatch = useDispatch();
+  const { name, description, imageUrl, _id } = useSelector(
+    ({ categories }) => categories.category
+  );
   const [image, setImage] = useState("");
 
-  const dispatch = useDispatch();
   const [form] = Form.useForm();
 
   const handleUpload = (e) => {
@@ -26,18 +30,24 @@ const AddCategory = ({ match }) => {
   };
   const onFinish = (values) => {
     dispatch(
-      addCategory({
+      updateCategory({
         name: values.name,
         description: values.description,
         image: image,
+        id: _id,
       })
     );
-
-    form.resetFields();
   };
+  useEffect(() => {
+    dispatch(getCategory(match.params.id));
+    form.setFieldsValue({ name, description });
+  }, [dispatch, match.params.id, form, name, description, imageUrl]);
 
   return (
-    <ULayout activeRoute={match.path} activePage="Add Category">
+    <ULayout
+      activeRoute={match.path}
+      activePage={`Edit ${name ? name : "Category"}`}
+    >
       <Form form={form} onFinish={onFinish}>
         <UCategoryGrid>
           <div>
@@ -48,18 +58,26 @@ const AddCategory = ({ match }) => {
               <Input.TextArea rows={6} placeholder="Category Description" />
             </Form.Item>
             <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
-                Add Category
+              <Button type="primary" htmlType="submit">
+                Update Category
               </Button>
             </Form.Item>
           </div>
 
           <div>
-            <Upload onChange={handleUpload} maxCount={1} listType="picture">
+            <Upload
+              onChange={handleUpload}
+              maxCount={1}
+              listType="picture"
+              defaultFileList={[
+                {
+                  name: "Category Thumbnail",
+                  thumbUrl: imageUrl
+                    ? process.env.REACT_APP_SERVER + imageUrl
+                    : "",
+                },
+              ]}
+            >
               <Button block icon={<UploadOutlined />}>
                 Upload
               </Button>
@@ -71,4 +89,4 @@ const AddCategory = ({ match }) => {
   );
 };
 
-export default AddCategory;
+export default Category;

@@ -5,7 +5,7 @@ import {
   deleteCategory,
 } from "../../store/actions/categoriesAction";
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Space, Typography, Tag } from "antd";
+import { Table, Space, Typography, Tag, Avatar } from "antd";
 import { routes } from "../../routes";
 import { Link } from "react-router-dom";
 
@@ -24,7 +24,11 @@ const Categories = ({ match }) => {
   return (
     <ULayout activeRoute={match.path} activePage="Categories">
       {categories.length ? (
-        <Table rowKey="_id" dataSource={categories}>
+        <Table
+          pagination={categories.length >= 10 ? true : false}
+          rowKey="_id"
+          dataSource={categories}
+        >
           <Column title="Name" dataIndex="name" key="name" />
           <Column
             title="Movies"
@@ -33,21 +37,34 @@ const Categories = ({ match }) => {
             render={(movies) => <Tag>{movies.length}</Tag>}
           />
           <Column
+            title="Thumbnail"
+            key="imageUrl"
+            dataIndex="imageUrl"
+            render={(imageUrl) => (
+              <Avatar src={process.env.REACT_APP_SERVER + imageUrl} />
+            )}
+          />
+
+          <Column
             title="Description"
-            dataIndex="description"
             key="description"
+            dataIndex="description"
+            render={(description) => (
+              <Text>{description.slice(0, 120)}...</Text>
+            )}
           />
 
           <Column
             title="Actions"
             key="action"
-            render={(item) => (
+            dataIndex="_id"
+            render={(_id) => (
               <Space size="middle">
-                <Link to={routes.categories + "/" + item._id}>Edit</Link>
+                <Link to={routes.categories + "/" + _id}>Edit</Link>
                 <Text
                   style={{ cursor: "pointer" }}
                   type="danger"
-                  onClick={() => dispatch(deleteCategory(item._id))}
+                  onClick={() => dispatch(deleteCategory(_id))}
                 >
                   Delete
                 </Text>
