@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
 import ULayout from "../../containers/Layout";
 
-const Home = ({ match }) => {
+const Dashboard = ({ match }) => {
   const dispatch = useDispatch();
   const movies = useSelector(({ movies }) => movies.movies);
 
@@ -12,10 +12,10 @@ const Home = ({ match }) => {
   }, [dispatch]);
 
   return (
-    <ULayout activeRoute={match.path} activePage="Home">
-      home
+    <ULayout activeRoute={match.path} activePage="Dashboard">
+      Dashboard
     </ULayout>
   );
 };
 
-export default Home;
+export default Dashboard;

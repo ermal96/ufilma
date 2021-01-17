@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Home,
   Login,
   Register,
   EditMovie,
@@ -9,13 +8,14 @@ import {
   AddMovie,
   AddCategory,
   EditCategory,
+  Dashboard,
 } from "../pages";
 import { BrowserRouter as Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import AuthRoute from "./AuthRoute";
 
 export const routes = {
-  home: "/",
+  dashboard: "/",
   login: "/login",
   register: "/register",
   movies: "/movies",
@@ -30,7 +30,7 @@ export const Routes = () => {
       <AuthRoute path={routes.login} component={Login} />
       <AuthRoute path={routes.register} component={Register} />
 
-      <PrivateRoute exact path={routes.home} component={Home} />
+      <PrivateRoute exact path={routes.dashboard} component={Dashboard} />
       <PrivateRoute exact path={routes.movies} component={Movies} />
       <PrivateRoute exact path={routes.addMovie} component={AddMovie} />
       <PrivateRoute exact path={routes.categories} component={Categories} />

@@ -10,13 +10,18 @@ import {
   VideoCameraAddOutlined,
   AppstoreAddOutlined,
   BuildOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/actions/userActions";
 
 const Nav = ({ activeItem }) => {
+  const dispatch = useDispatch();
+
   return (
     <Menu theme="dark" defaultSelectedKeys={[activeItem]} mode="inline">
-      <Menu.Item key={routes.home} icon={<BuildOutlined />}>
-        <Link to={routes.home}>Dashboard</Link>
+      <Menu.Item key={routes.dashboard} icon={<BuildOutlined />}>
+        <Link to={routes.dashboard}>Dashboard</Link>
       </Menu.Item>
       <Menu.Item key={routes.movies} icon={<VideoCameraOutlined />}>
         <Link to={routes.movies}> Movies</Link>
@@ -35,6 +40,15 @@ const Nav = ({ activeItem }) => {
       </Menu.Item>
       <Menu.Item key="7" icon={<UserAddOutlined />}>
         Add User
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => dispatch(logout())}
+        style={{ position: "absolute", bottom: 0 }}
+        key="8"
+        icon={<LogoutOutlined />}
+      >
+        Logout
       </Menu.Item>
     </Menu>
   );
