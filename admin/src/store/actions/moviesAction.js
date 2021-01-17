@@ -59,9 +59,13 @@ export const addMovie = (data) => async (dispatch) => {
   formData.append("trailerUrl", data.trailerUrl);
   formData.append("time", data.time);
   //formData.append("videoUrl", data.videoUrl);
-  formData.append("categories", data.categories);
+
+  data.categories.forEach((category) => {
+    formData.append("categories", category);
+  });
 
   try {
+    console.log(data);
     dispatch(createMovie());
 
     await axios.post("/movies", formData, config);
