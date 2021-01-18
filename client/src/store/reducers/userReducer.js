@@ -1,4 +1,4 @@
-import { types } from "../actions/types";
+import { types } from "../types";
 
 const defaultState = {
   loggedIn: false,
@@ -9,27 +9,26 @@ const defaultState = {
 
 export const userReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case types.SET_USER:
+    case types.user.SET_USER:
       return {
         ...state,
         loggedIn: true,
         user: action.payload,
       };
 
-    case types.SET_ERROR:
+    case types.user.SET_ERROR:
       return {
         ...state,
         error: action.payload,
       };
 
-    case types.USER_LOADED:
+    case types.user.USER_LOADED:
       return {
         ...state,
         loaded: action.payload,
       };
 
-    case types.LOG_OUT:
-      localStorage.clear();
+    case types.user.LOG_OUT:
       return {
         error: null,
         loggedIn: false,

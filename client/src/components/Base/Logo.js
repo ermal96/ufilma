@@ -6,6 +6,7 @@ import { routes } from "../../routes";
 
 const ULogo = styled.img`
   width: 13rem;
+  margin-right: 2rem;
 `;
 
 const Logo = () => {

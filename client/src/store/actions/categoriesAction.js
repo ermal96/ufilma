@@ -1,13 +1,16 @@
-import { types } from "./types";
+import { types } from "../types";
 import axios from "axios";
 
 export const setCategories = (payload) => ({
-  type: types.GET_CATEGORIES,
+  type: types.categories.GET_CATEGORIES,
   payload,
 });
-export const setCategory = (payload) => ({ type: types.GET_CATEGORY, payload });
+export const setCategory = (payload) => ({
+  type: types.categories.GET_CATEGORY,
+  payload,
+});
 export const setLoad = (payload) => ({
-  type: types.CATEGORIES_LOADED,
+  type: types.categories.CATEGORIES_LOADED,
   payload,
 });
 

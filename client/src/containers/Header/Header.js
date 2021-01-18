@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Navbar from "./Navbar";
 import { UserDropdown } from "../../components/";
 import Search from "../Search/Search";
+import { useSelector } from "react-redux";
 
 const UHeader = styled.header`
   background: ${({ theme }) => theme.colors.primary};
@@ -24,6 +25,7 @@ const UHeaderNav = styled.div`
   width: 100%;
   @media (max-width: 767px) {
     justify-content: space-between;
+    width: ${({ searchOpen }) => (searchOpen ? "auto" : "100%")};
   }
 `;
 
@@ -32,19 +34,22 @@ const UHeaderMini = styled.div`
   align-items: center;
   @media (max-width: 767px) {
     justify-content: space-between;
+    width: ${({ searchOpen }) => (searchOpen ? "100%" : "auto")};
   }
 `;
 
 const Header = () => {
+  const searchOpen = useSelector(({ header }) => header.search);
+
   return (
     <UHeader>
-      <UHeaderWrapper>
-        <UHeaderNav>
-          <Logo />
+      <UHeaderWrapper className="wrapper">
+        <UHeaderNav searchOpen={searchOpen} className="nav">
+          {!searchOpen ? <Logo /> : null}
           <Navbar />
         </UHeaderNav>
-        <UHeaderMini>
-          <Search />
+        <UHeaderMini searchOpen={searchOpen} className="mini">
+          <Search searchOpen={searchOpen} />
           <UserDropdown />
         </UHeaderMini>
       </UHeaderWrapper>

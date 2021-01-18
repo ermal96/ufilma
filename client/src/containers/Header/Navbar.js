@@ -5,7 +5,6 @@ import { routes } from "../../routes";
 import { RiMenuFill, RiCloseFill } from "react-icons/ri";
 
 const UNavbar = styled.nav`
-  margin-left: 2rem;
   ul {
     margin: 0;
     padding: 0;
@@ -37,7 +36,6 @@ const UNavbar = styled.nav`
       }
       .active {
         font-weight: bold;
-        /* border-bottom: 2px solid ${({ theme }) => theme.colors.secondary}; */
       }
     }
   }

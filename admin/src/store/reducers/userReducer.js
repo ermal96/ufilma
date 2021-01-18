@@ -5,10 +5,17 @@ const defaultState = {
   loaded: false,
   user: {},
   error: null,
+  users: {},
 };
 
 export const userReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case types.GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
+
     case types.SET_USER:
       return {
         ...state,

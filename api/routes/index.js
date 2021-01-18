@@ -3,6 +3,7 @@ import { moviesRoute } from "./movies.route.js";
 import { categoriesRoute } from "./categories.route.js";
 import { authRoute } from "./auth.route.js";
 import { verifyToken } from "../auth/verifyToken.js";
+import { usersRoute } from "./users.route.js";
 
 export const apiRoutes = (app) => {
   // default route
@@ -18,6 +19,9 @@ export const apiRoutes = (app) => {
   // categories routes
   app.use("/api/categories", categoriesRoute);
 
-  // users
+  // auth
   app.use("/api/auth", authRoute);
+
+  // users
+  app.use("/api/users", usersRoute);
 };

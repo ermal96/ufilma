@@ -35,8 +35,8 @@ const Nav = ({ activeItem }) => {
       <Menu.Item key={routes.addCategory} icon={<AppstoreAddOutlined />}>
         <Link to={routes.addCategory}>Add Category</Link>
       </Menu.Item>
-      <Menu.Item key="6" icon={<TeamOutlined />}>
-        Users
+      <Menu.Item key={routes.users} icon={<TeamOutlined />}>
+        <Link to={routes.users}>Users</Link>
       </Menu.Item>
       <Menu.Item key="7" icon={<UserAddOutlined />}>
         Add User

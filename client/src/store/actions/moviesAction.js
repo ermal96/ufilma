@@ -1,9 +1,18 @@
-import { types } from "./types";
+import { types } from "../types";
 import axios from "axios";
 
-export const setMovies = (payload) => ({ type: types.GET_MOVIES, payload });
-export const setMovie = (payload) => ({ type: types.GET_MOVIE, payload });
-export const setLoad = (payload) => ({ type: types.MOVIES_LOADED, payload });
+export const setMovies = (payload) => ({
+  type: types.movies.GET_MOVIES,
+  payload,
+});
+export const setMovie = (payload) => ({
+  type: types.movies.GET_MOVIE,
+  payload,
+});
+export const setLoad = (payload) => ({
+  type: types.movies.MOVIES_LOADED,
+  payload,
+});
 
 export const getMovies = () => async (dispatch) => {
   try {

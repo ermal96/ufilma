@@ -1,0 +1,26 @@
+export const types = {
+  user: {
+    SET_ERROR: "SET_ERROR",
+    SET_USER: "SET_USER",
+    LOG_OUT: "LOG_OUT",
+    USER_LOADED: "USER_LOADED",
+    REGISTER: "REGISTER",
+  },
+
+  categories: {
+    GET_CATEGORIES: "GET_CATEGORIES",
+    GET_CATEGORY: "GET_CATEGORY",
+    CATEGORIES_LOADED: "CATEGORIES_LOADED",
+  },
+
+  movies: {
+    GET_MOVIES: "GET_MOVIES",
+    GET_MOVIE: "GET_MOVIE",
+    MOVIES_LOADED: "MOVIES_LOADED",
+  },
+
+  header: {
+    SET_USER_DROPDOWN: "SET_USER_DROPDOWN",
+    SET_SEARCH: "SET_SEARCH",
+  },
+};

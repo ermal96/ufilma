@@ -22,17 +22,19 @@ const Movies = () => {
 
       <Container>
         <Grid>
-          {movies.map((movie) => (
-            <Card
-              ratio="2/3"
-              backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}
-              link={routes.movies + "/" + movie._id}
-              key={movie._id}
-              quality={movie.quality}
-              title={movie.name}
-              categories={movie.categories}
-            />
-          ))}
+          {movies.length
+            ? movies.map((movie) => (
+                <Card
+                  ratio="2/3"
+                  backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}
+                  link={routes.movies + "/" + movie._id}
+                  key={movie._id}
+                  quality={movie.quality}
+                  title={movie.name}
+                  categories={movie.categories}
+                />
+              ))
+            : null}
         </Grid>
       </Container>
     </>

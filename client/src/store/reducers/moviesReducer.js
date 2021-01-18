@@ -1,4 +1,4 @@
-import { types } from "../actions/types";
+import { types } from "../types";
 
 const defaultState = {
   movies: {},
@@ -8,19 +8,19 @@ const defaultState = {
 
 export const moviesReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case types.GET_MOVIES:
+    case types.movies.GET_MOVIES:
       return {
         ...state,
         movies: action.payload,
       };
 
-    case types.GET_MOVIE:
+    case types.movies.GET_MOVIE:
       return {
         ...state,
         movie: action.payload,
       };
 
-    case types.MOVIES_LOADED:
+    case types.movies.MOVIES_LOADED:
       return {
         ...state,
         loaded: action.payload,

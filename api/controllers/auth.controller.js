@@ -24,12 +24,21 @@ export const register = async (req, res) => {
     if (userExist) {
       res.status(409).send({ message: "Email has been taken" });
     } else {
+      const hasUsers = await User.find();
+
+      if (!hasUsers.length) {
+        user.role = "ADMIN";
+      } else {
+        user.role = "USER";
+      }
+
       await user.save();
 
-      const token = await genToken({ id: user._id });
+      const token = genToken({ id: user._id });
 
       const userData = {
         name: user.name,
+        role: user.role,
         email: user.email,
         id: user._id,
       };

@@ -96,7 +96,6 @@ const AddMovie = ({ match }) => {
                   mode="multiple"
                   style={{ width: "100%" }}
                   placeholder="SelectCategory"
-                  defaultValue={["uncategorized"]}
                 >
                   {categories.map((category) => (
                     <Option key={category._id} value={category._id}>

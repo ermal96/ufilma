@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input } from "../../components";
 import styled from "styled-components";
 import { RiSearchLine, RiCloseFill } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearch } from "../../store/actions/headerActions";
 
 const USearch = styled.div`
   margin-right: 3rem;
   display: flex;
   align-items: center;
-
+  width: ${({ searchOpen }) => (searchOpen ? "100%" : "auto")};
   form {
     margin-left: 2rem;
     position: relative;
+    @media (max-width: 767px) {
+      margin-left: ${({ searchOpen }) => (searchOpen ? 0 : "2rem")};
+      width: ${({ searchOpen }) => (searchOpen ? "100%" : "auto")};
+    }
     input {
       margin-right: -0.8rem;
       margin-bottom: 0;
@@ -33,17 +39,19 @@ const USearchIon = styled.div`
   transform: translateY(-50%);
 `;
 
-const Search = () => {
-  const [open, setOpen] = useState(false);
+const Search = ({ searchOpen }) => {
+  const open = useSelector(({ header }) => header.search);
+
+  const dispatch = useDispatch();
 
   return (
-    <USearch>
+    <USearch searchOpen={searchOpen}>
       <Form>
         {open ? (
           <Input variant="light" placeholder="Search for any movie" />
         ) : null}
 
-        <USearchIon onClick={() => setOpen(!open)}>
+        <USearchIon onClick={() => dispatch(setSearch(!open))}>
           {open ? <RiCloseFill /> : <RiSearchLine />}
         </USearchIon>
       </Form>

@@ -1,9 +1,9 @@
-import { types } from "./types";
+import { types } from "../types";
 import axios from "axios";
 
-export const setUser = (payload) => ({ type: types.SET_USER, payload });
-export const setLoad = (payload) => ({ type: types.USER_LOADED, payload });
-export const setError = (payload) => ({ type: types.SET_ERROR, payload });
+export const setUser = (payload) => ({ type: types.user.SET_USER, payload });
+export const setLoad = (payload) => ({ type: types.user.USER_LOADED, payload });
+export const setError = (payload) => ({ type: types.user.SET_ERROR, payload });
 
 export const fetchUser = (userInfo) => async (dispatch) => {
   try {
@@ -40,8 +40,9 @@ export const autoLogin = () => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
+  localStorage.clear();
   dispatch({
-    type: types.LOG_OUT,
+    type: types.user.LOG_OUT,
   });
 
   dispatch(setLoad(true));

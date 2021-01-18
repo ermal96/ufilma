@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/actions/userActions";
 import UserIcon from "../../assets/user.svg";
+import { setUserDropdown } from "../../store/actions/headerActions";
 
 const UDropdown = styled.div`
   position: relative;
@@ -65,16 +66,20 @@ const UDropdownBody = styled.ul`
 
 const UserDropdown = () => {
   const user = useSelector(({ user }) => user.user);
+  const userDropdown = useSelector(({ header }) => header.userDropdown);
+
   const dispatch = useDispatch();
-  const [state, setState] = useState(false);
 
   return (
     <UDropdown>
-      <UDropdownHead state={state} onClick={() => setState(!state)}>
+      <UDropdownHead
+        state={userDropdown}
+        onClick={() => dispatch(setUserDropdown(!userDropdown))}
+      >
         <img alt="user icon" src={UserIcon} />
       </UDropdownHead>
 
-      {state ? (
+      {userDropdown ? (
         <UDropdownBody>
           <li>
             <p>{user.name}</p>

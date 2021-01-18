@@ -46,3 +46,17 @@ export const logout = () => async (dispatch) => {
 
   dispatch(setLoad(true));
 };
+
+export const getUsers = () => async (dispatch) => {
+  try {
+    dispatch(setLoad(true));
+    const result = await axios.get("/users");
+
+    dispatch({
+      type: types.GET_USERS,
+      payload: result.data.users,
+    });
+  } catch (error) {
+    dispatch(setLoad(false));
+  }
+};

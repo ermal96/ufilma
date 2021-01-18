@@ -1,4 +1,4 @@
-import { types } from "../actions/types";
+import { types } from "../types";
 
 const defaultState = {
   categories: {},
@@ -8,19 +8,19 @@ const defaultState = {
 
 export const categoriesReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case types.GET_CATEGORIES:
+    case types.categories.GET_CATEGORIES:
       return {
         ...state,
         categories: action.payload,
       };
 
-    case types.GET_CATEGORY:
+    case types.categories.GET_CATEGORY:
       return {
         ...state,
         category: action.payload,
       };
 
-    case types.CATEGORIES_LOADED:
+    case types.categories.CATEGORIES_LOADED:
       return {
         ...state,
         loaded: action.payload,

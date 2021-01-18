@@ -13,6 +13,7 @@ import {
 import { BrowserRouter as Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import AuthRoute from "./AuthRoute";
+import Users from "../pages/Users/Users";
 
 export const routes = {
   dashboard: "/",
@@ -22,6 +23,7 @@ export const routes = {
   addMovie: "/add-movie",
   categories: "/categories",
   addCategory: "/add-category",
+  users: "/users",
 };
 
 export const Routes = () => {
@@ -35,6 +37,7 @@ export const Routes = () => {
       <PrivateRoute exact path={routes.addMovie} component={AddMovie} />
       <PrivateRoute exact path={routes.categories} component={Categories} />
       <PrivateRoute exact path={routes.addCategory} component={AddCategory} />
+      <PrivateRoute exact path={routes.users} component={Users} />
       <PrivateRoute path={`${routes.movies}/:id`} component={EditMovie} />
       <PrivateRoute
         path={`${routes.categories}/:id`}
