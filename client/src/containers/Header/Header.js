@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../components/Base/Logo";
 import styled from "styled-components";
 import Navbar from "./Navbar";
-import { UserDropdown } from "../../components/";
+import UserDropdown from "../User/UserDropdown";
 import Search from "../Search/Search";
 import { useSelector } from "react-redux";
 

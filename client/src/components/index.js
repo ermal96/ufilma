@@ -7,7 +7,6 @@ export { default as Range } from "./Form/Range";
 // export base
 export { default as Button } from "./Base/Button";
 export { default as Logo } from "./Base/Logo";
-export { default as UserDropdown } from "./Base/UserDropdown";
 export { default as Spinner } from "./Base/Spinner";
 
 // export layout
