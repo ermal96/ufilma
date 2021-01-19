@@ -2,7 +2,7 @@ import { Movie } from "../models/movie.model.js";
 
 export const get = async (req, res) => {
   try {
-    const movies = await Movie.find({ name: req.params.id });
+    const movies = await Movie.find({ $text: { $search: req.params.query } });
     res.status(200).send({
       movies,
     });
