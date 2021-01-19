@@ -31,5 +31,6 @@ const movieSchema = mongoose.Schema({
 });
 
 movieSchema.plugin(mongoosePaginate);
+movieSchema.index({ name: "text" });
 
 export const Movie = mongoose.model("movie", movieSchema);
