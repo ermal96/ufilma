@@ -30,7 +30,9 @@ const Movies = ({ match }) => {
             title="Quality"
             key="quality"
             dataIndex="quality"
-            render={(quality) => <Text>{quality.toUpperCase()}</Text>}
+            render={(quality) => (
+              <Text>{quality ? quality.toUpperCase() : ""}</Text>
+            )}
           />
           <Column
             title="Thumbnail"

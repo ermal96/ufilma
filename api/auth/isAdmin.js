@@ -5,6 +5,7 @@ export const isAdmin = async (req, res, next) => {
 
   const user = await User.findOne({ _id: userId });
 
+  console.log(user);
   if (user.role === "ADMIN") {
     next();
   } else {
