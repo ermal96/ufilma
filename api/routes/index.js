@@ -4,6 +4,7 @@ import { categoriesRoute } from "./categories.route.js";
 import { authRoute } from "./auth.route.js";
 import { verifyToken } from "../auth/verifyToken.js";
 import { usersRoute } from "./users.route.js";
+import { searchRoute } from "./search.route.js";
 
 export const apiRoutes = (app) => {
   // default route
@@ -24,4 +25,7 @@ export const apiRoutes = (app) => {
 
   // users
   app.use("/api/users", usersRoute);
+
+  // search
+  app.use("/api/search", searchRoute);
 };

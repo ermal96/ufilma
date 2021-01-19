@@ -6,4 +6,4 @@ const router = express.Router();
 
 router.post("/", verifyToken, search.get);
 
-export const moviesRoute = router;
+export const searchRoute = router;

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { RiSearchLine, RiCloseFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../store/actions/headerActions";
+import { searchMovies } from "../../store/actions/searchAction";
 
 const USearch = styled.div`
   margin-right: 3rem;
@@ -46,7 +47,7 @@ const Search = ({ searchOpen }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(query);
+    dispatch(searchMovies(query));
   };
 
   return (
