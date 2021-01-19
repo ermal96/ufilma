@@ -7,12 +7,18 @@ import { routes } from "../../routes";
 const ULogo = styled.img`
   width: 13rem;
   margin-right: 2rem;
+  transition: all 0.3s ease;
+  @media (max-width: 767px) {
+    &.hide {
+      display: none;
+    }
+  }
 `;
 
-const Logo = () => {
+const Logo = ({ className }) => {
   return (
     <Link to={routes.home}>
-      <ULogo src={LogoSrc} alt="Logo" />
+      <ULogo className={className} src={LogoSrc} alt="Logo" />
     </Link>
   );
 };

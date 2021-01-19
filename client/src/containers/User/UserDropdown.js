@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/actions/userActions";
-import UserIcon from "../../assets/user.svg";
+import { RiEmotionLine } from "react-icons/ri";
 import { setUserDropdown } from "../../store/actions/headerActions";
 
 const UDropdown = styled.div`
@@ -15,14 +15,12 @@ const UDropdownHead = styled.div`
   cursor: pointer;
   line-height: 0;
 
-  img {
-    width: 3rem;
-    height: 3rem;
+  svg {
+    font-size: 2.5rem;
     border-radius: 50px;
-    padding: 2px;
-    border: 2px solid
-      ${(props) =>
-        props.state ? props.theme.colors.secondary : props.theme.colors.light};
+
+    color: ${(props) =>
+      props.state ? props.theme.colors.secondary : props.theme.colors.light};
   }
 `;
 
@@ -76,7 +74,7 @@ const UserDropdown = () => {
         state={userDropdown}
         onClick={() => dispatch(setUserDropdown(!userDropdown))}
       >
-        <img alt="user icon" src={UserIcon} />
+        <RiEmotionLine />
       </UDropdownHead>
 
       {userDropdown ? (

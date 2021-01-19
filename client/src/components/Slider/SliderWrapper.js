@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import SwiperCore, { Navigation } from "swiper";
+import leftArrow from "../../assets/leftArrow.svg";
+import rightArrow from "../../assets/rightArrow.svg";
 
 const USliderWrapper = styled.div`
   .swiper-container {
@@ -34,10 +36,10 @@ const USliderWrapper = styled.div`
   }
   .swiper-button-next {
     right: 0;
-    background: url("/rightArrow.svg");
+    background: url(${rightArrow});
   }
   .swiper-button-prev {
-    background: url("/leftArrow.svg");
+    background: url(${leftArrow});
     right: 4rem;
   }
   .swiper-slide {

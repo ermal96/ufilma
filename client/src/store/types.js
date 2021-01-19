@@ -23,4 +23,8 @@ export const types = {
     SET_USER_DROPDOWN: "SET_USER_DROPDOWN",
     SET_SEARCH: "SET_SEARCH",
   },
+
+  search: {
+    GET_SEARCH_MOVIES: "GET_SEARCH_MOVIES",
+  },
 };

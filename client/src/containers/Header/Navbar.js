@@ -6,6 +6,7 @@ import { RiMenuFill, RiCloseFill } from "react-icons/ri";
 
 const UNavbar = styled.nav`
   ul {
+    transition: all 0.3s ease;
     margin: 0;
     padding: 0;
     display: flex;

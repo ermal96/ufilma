@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input } from "../../components";
 import styled from "styled-components";
 import { RiSearchLine, RiCloseFill } from "react-icons/ri";
@@ -41,14 +41,24 @@ const USearchIon = styled.div`
 
 const Search = ({ searchOpen }) => {
   const open = useSelector(({ header }) => header.search);
-
+  const [query, setQuery] = useState("");
   const dispatch = useDispatch();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(query);
+  };
 
   return (
     <USearch searchOpen={searchOpen}>
-      <Form>
+      <Form onSubmit={onSubmit}>
         {open ? (
-          <Input variant="light" placeholder="Search for any movie" />
+          <Input
+            onChange={(e) => setQuery(e.target.value)}
+            value={query}
+            variant="light"
+            placeholder="Search for any movie"
+          />
         ) : null}
 
         <USearchIon onClick={() => dispatch(setSearch(!open))}>

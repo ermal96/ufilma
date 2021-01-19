@@ -45,7 +45,7 @@ const Header = () => {
     <UHeader>
       <UHeaderWrapper className="wrapper">
         <UHeaderNav searchOpen={searchOpen} className="nav">
-          {!searchOpen ? <Logo /> : null}
+          <Logo className={searchOpen ? "hide" : null} />
           <Navbar />
         </UHeaderNav>
         <UHeaderMini searchOpen={searchOpen} className="mini">

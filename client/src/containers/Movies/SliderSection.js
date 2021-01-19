@@ -4,27 +4,24 @@ import { routes } from "../../routes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SliderWrapper from "../../components/Slider/SliderWrapper";
 
-const KomediMovies = ({ movies }) => {
-  const [komediMovies, setKomediMovies] = useState("");
+const SliderSection = ({ movies, category }) => {
+  const [sliderSection, setSliderSection] = useState("");
 
   useEffect(() => {
-    setKomediMovies(
-      movies.filter((movie) => movie.categories[0].name === "Komedi")
+    setSliderSection(
+      movies.filter((movie) => movie.categories[0].name === category)
     );
-  }, [movies]);
+  }, [movies, category]);
 
   return (
     <Container>
-      {komediMovies.length ? (
+      {sliderSection.length ? (
         <>
-          <Title>Komedi</Title>
+          <Title>{category}</Title>
           <SliderWrapper>
             <Swiper navigation spaceBetween={25} slidesPerView="auto">
-              {komediMovies.map((movie) => (
-                <SwiperSlide
-                  style={{ maxWidth: "250px", marginTop: "2.5rem" }}
-                  key={movie._id}
-                >
+              {sliderSection.map((movie) => (
+                <SwiperSlide key={movie._id}>
                   <Card
                     ratio="2/3"
                     backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}
@@ -43,4 +40,4 @@ const KomediMovies = ({ movies }) => {
   );
 };
 
-export default KomediMovies;
+export default SliderSection;

@@ -1,14 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
-import {
-  TopMovie,
-  RecentMovies,
-  FamilyMovies,
-  ActionMovies,
-  ThrillerMovies,
-  KomediMovies,
-} from "../../containers";
+import { TopMovie, RecentMovies, SliderSection } from "../../containers";
 import "swiper/swiper.scss";
 
 const Home = () => {
@@ -23,10 +16,7 @@ const Home = () => {
     <div>
       <TopMovie movies={movies} />
       <RecentMovies movies={movies} />
-      <ActionMovies movies={movies} />
-      <ThrillerMovies movies={movies} />
-      <KomediMovies movies={movies} />
-      <FamilyMovies movies={movies} />
+      <SliderSection category="Action" movies={movies} />
     </div>
   ) : (
     <p>loading</p>

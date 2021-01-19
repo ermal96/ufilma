@@ -17,6 +17,7 @@ const UMovieCardMeta = styled.div`
   color: ${({ theme }) => theme.colors.primary};
 
   p {
+    text-transform: uppercase;
     color: ${({ theme }) => theme.colors.secondary};
   }
 `;
