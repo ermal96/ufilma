@@ -19,7 +19,7 @@ const SliderSection = ({ movies, category }) => {
         <>
           <Title>{category}</Title>
           <SliderWrapper>
-            <Swiper navigation spaceBetween={25} slidesPerView="auto">
+            <Swiper navigation spaceBetween={10} slidesPerView="auto">
               {sliderSection.map((movie) => (
                 <SwiperSlide key={movie._id}>
                   <Card

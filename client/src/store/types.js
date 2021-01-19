@@ -22,6 +22,7 @@ export const types = {
   header: {
     SET_USER_DROPDOWN: "SET_USER_DROPDOWN",
     SET_SEARCH: "SET_SEARCH",
+    SET_MENU_MOBILE: "SET_MENU_MOBILE",
   },
 
   search: {

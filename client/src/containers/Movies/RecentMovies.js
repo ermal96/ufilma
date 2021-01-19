@@ -9,7 +9,7 @@ const RecentMovies = ({ movies }) => {
     <Container>
       <Title>Recent</Title>
       <SliderWrapper>
-        <Swiper navigation spaceBetween={25} slidesPerView="auto">
+        <Swiper navigation spaceBetween={10} slidesPerView="auto">
           {movies.map((movie) => (
             <SwiperSlide key={movie._id}>
               <Card

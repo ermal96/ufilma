@@ -1,7 +1,7 @@
 import { types } from "../types";
 
 const defaultState = {
-  movies: {},
+  result: {},
 };
 
 export const searchReducer = (state = defaultState, action) => {
@@ -9,7 +9,7 @@ export const searchReducer = (state = defaultState, action) => {
     case types.search.GET_SEARCH_MOVIES:
       return {
         ...state,
-        movies: action.payload,
+        result: action.payload,
       };
 
     default:

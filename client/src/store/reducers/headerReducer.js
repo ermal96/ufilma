@@ -3,6 +3,7 @@ import { types } from "../types";
 const defaultState = {
   userDropdown: false,
   search: false,
+  menuMobile: false,
 };
 
 export const headerReducer = (state = defaultState, action) => {
@@ -17,6 +18,12 @@ export const headerReducer = (state = defaultState, action) => {
       return {
         ...state,
         search: action.payload,
+      };
+
+    case types.header.SET_MENU_MOBILE:
+      return {
+        ...state,
+        menuMobile: action.payload,
       };
 
     default:

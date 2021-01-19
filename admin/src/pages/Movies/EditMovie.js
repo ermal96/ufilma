@@ -6,6 +6,7 @@ import { getMovie, updateMovie } from "../../store/actions/moviesAction";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
 import { routes } from "../../routes";
+import { getCategories } from "../../store/actions/categoriesAction";
 
 const UMoviesGrid = styled.div`
   display: grid;
@@ -38,6 +39,8 @@ const EditMovie = ({ match }) => {
     _id,
   } = useSelector(({ movies }) => movies.movie);
 
+  const allCategories = useSelector(({ categories }) => categories.categories);
+
   const [image, setImage] = useState("");
 
   const [form] = Form.useForm();
@@ -54,6 +57,7 @@ const EditMovie = ({ match }) => {
       trailerUrl,
     });
     dispatch(getMovie(match.params.id));
+    dispatch(getCategories());
   }, [
     dispatch,
     match.params.id,
@@ -142,14 +146,14 @@ const EditMovie = ({ match }) => {
                   mode="multiple"
                   style={{ width: "100%" }}
                   placeholder="SelectCategory"
-                  aria-selected={categories.map((category) => category.name)}
-                  // defaultValue={}
                 >
-                  {categories.map((category) => (
-                    <Option key={category._id} value={category._id}>
-                      {category.name}
-                    </Option>
-                  ))}
+                  {allCategories.length
+                    ? allCategories.map((category) => (
+                        <Option key={category._id} value={category._id}>
+                          {category.name}
+                        </Option>
+                      ))
+                    : null}
                 </Select>
               </Form.Item>
             ) : null}

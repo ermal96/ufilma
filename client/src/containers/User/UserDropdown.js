@@ -18,6 +18,9 @@ const UDropdownHead = styled.div`
   svg {
     font-size: 2.5rem;
     border-radius: 50px;
+    @media (max-width: 767px) {
+      font-size: 3rem;
+    }
 
     color: ${(props) =>
       props.state ? props.theme.colors.secondary : props.theme.colors.light};

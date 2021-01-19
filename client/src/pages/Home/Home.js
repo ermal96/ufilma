@@ -17,6 +17,8 @@ const Home = () => {
       <TopMovie movies={movies} />
       <RecentMovies movies={movies} />
       <SliderSection category="Action" movies={movies} />
+      <SliderSection category="Thriller" movies={movies} />
+      <SliderSection category="Horror" movies={movies} />
     </div>
   ) : (
     <p>loading</p>

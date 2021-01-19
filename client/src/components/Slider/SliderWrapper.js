@@ -45,6 +45,10 @@ const USliderWrapper = styled.div`
   .swiper-slide {
     max-width: 25rem;
     margin-top: 5rem;
+
+    @media (max-width: 768px) {
+      max-width: 15rem;
+    }
   }
 `;
 
