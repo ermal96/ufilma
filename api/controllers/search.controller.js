@@ -2,7 +2,7 @@ import { Movie } from "../models/movie.model.js";
 
 export const get = async (req, res) => {
   try {
-    const movies = Movie.find({ name: req.body.name });
+    const movies = await Movie.find({ name: req.body.name });
     res.status(200).send({
       movies,
     });
