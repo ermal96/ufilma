@@ -4,7 +4,7 @@ import { getCategories } from "../../store/actions/categoriesAction";
 import { useDispatch } from "react-redux";
 import { PageHeader } from "../../components";
 import { routes } from "../../routes";
-
+import { Layout } from "../../components";
 const Categories = () => {
   const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ const Categories = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Layout>
       <PageHeader
         link={routes.categories}
         title="Categories"
@@ -21,7 +21,7 @@ const Categories = () => {
         description="This is the categories page, here you can filter all the movies you want on base of categories"
       />
       <CategoryGrid />
-    </>
+    </Layout>
   );
 };
 

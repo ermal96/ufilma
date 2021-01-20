@@ -4,6 +4,7 @@ import { Player } from "../../components";
 import { getMovie } from "../../store/actions/moviesAction";
 import styled from "styled-components";
 import SingleMovieCard from "../../components/Cards/SingleMovieCard";
+import { Layout } from "../../components";
 
 const UMovieWrapper = styled.section``;
 
@@ -15,7 +16,7 @@ const Movie = ({ match }) => {
   }, [dispatch, match.params.id]);
 
   return (
-    <>
+    <Layout>
       {movie ? (
         <UMovieWrapper>
           <Player
@@ -28,7 +29,7 @@ const Movie = ({ match }) => {
           <SingleMovieCard data={movie} />
         </UMovieWrapper>
       ) : null}
-    </>
+    </Layout>
   );
 };
 

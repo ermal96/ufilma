@@ -4,6 +4,8 @@ import { getMovies } from "../../store/actions/moviesAction";
 import { Card, Grid, Container } from "../../components";
 import { PageHeader } from "../../components";
 import { routes } from "../../routes";
+import { Layout } from "../../components";
+
 const Movies = () => {
   const dispatch = useDispatch();
   const movies = useSelector(({ movies }) => movies.movies);
@@ -12,7 +14,7 @@ const Movies = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Layout>
       <PageHeader
         link={routes.movies}
         title="Movies"
@@ -37,7 +39,7 @@ const Movies = () => {
             : null}
         </Grid>
       </Container>
-    </>
+    </Layout>
   );
 };
 

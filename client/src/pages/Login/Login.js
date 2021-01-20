@@ -34,7 +34,7 @@ const Login = () => {
     <Background>
       <Center>
         <Logo />
-        <ULink title="Create an account" to={routes.register} />
+        {/* <ULink title="Create an account" to={routes.register} /> */}
         <Form center onSubmit={onSubmit}>
           <Input
             variant="light"

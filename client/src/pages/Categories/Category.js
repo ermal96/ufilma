@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../../store/actions/categoriesAction";
+import { Layout } from "../../components";
 
 const Category = ({ match }) => {
   const dispatch = useDispatch();
@@ -9,13 +10,7 @@ const Category = ({ match }) => {
     dispatch(getCategory(match.params.id));
   }, [dispatch, match.params.id]);
 
-  return (
-    <>
-      {console.log(category)}
-
-      {category && <p>{category.name}</p>}
-    </>
-  );
+  return <Layout>{category && <p>{category.name}</p>}</Layout>;
 };
 
 export default Category;

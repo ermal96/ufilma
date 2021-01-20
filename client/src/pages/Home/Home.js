@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
 import { TopMovie, RecentMovies, SliderSection } from "../../containers";
+import { Layout } from "../../components";
 import "swiper/swiper.scss";
 
 const Home = () => {
@@ -13,13 +14,13 @@ const Home = () => {
   }, [dispatch]);
 
   return movies.length ? (
-    <div>
+    <Layout>
       <TopMovie movies={movies} />
       <RecentMovies movies={movies} />
       <SliderSection category="Action" movies={movies} />
       <SliderSection category="Thriller" movies={movies} />
       <SliderSection category="Horror" movies={movies} />
-    </div>
+    </Layout>
   ) : (
     <p>loading</p>
   );
