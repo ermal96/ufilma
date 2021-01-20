@@ -3,6 +3,7 @@ import { types } from "../types";
 const defaultState = {
   loggedIn: false,
   loaded: false,
+  token: localStorage.getItem("token"),
   user: {},
   error: null,
 };
@@ -15,7 +16,11 @@ export const userReducer = (state = defaultState, action) => {
         loggedIn: true,
         user: action.payload,
       };
-
+    case types.user.SET_TOKEN:
+      return {
+        ...state,
+        token: action.payload,
+      };
     case types.user.SET_ERROR:
       return {
         ...state,

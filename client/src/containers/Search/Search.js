@@ -9,7 +9,6 @@ import { routes } from "../../routes";
 import { Link } from "react-router-dom";
 
 const USearch = styled.div`
-  margin-right: 3rem;
   display: flex;
   align-items: center;
   width: ${({ searchOpen }) => (searchOpen ? "100%" : "auto")};

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
 import { TopMovie, RecentMovies, SliderSection } from "../../containers";
-import { Layout } from "../../components";
+import { Layout, Spinner } from "../../components";
 import "swiper/swiper.scss";
 
 const Home = () => {
@@ -22,7 +22,7 @@ const Home = () => {
       <SliderSection category="Horror" movies={movies} />
     </Layout>
   ) : (
-    <p>loading</p>
+    <Spinner />
   );
 };
 

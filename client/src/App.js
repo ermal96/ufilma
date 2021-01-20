@@ -1,23 +1,13 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { autoLogin } from "./store/actions/userActions";
+import React from "react";
+
 import { Routes } from "./routes";
 
-import { Spinner } from "./components";
+import axios from "axios";
 
 const App = () => {
-  const dispatch = useDispatch();
-  const isAppReady = useSelector((state) => state.user.loaded);
+  axios.defaults.baseURL = process.env.REACT_APP_API;
 
-  useEffect(() => {
-    dispatch(autoLogin());
-  }, [dispatch]);
-
-  if (isAppReady) {
-    return <Routes />;
-  } else {
-    return <Spinner />;
-  }
+  return <Routes />;
 };
 
 export default App;

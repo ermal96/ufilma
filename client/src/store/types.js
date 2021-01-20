@@ -1,6 +1,7 @@
 export const types = {
   user: {
     SET_ERROR: "SET_ERROR",
+    SET_TOKEN: "SET_TOKEN",
     SET_USER: "SET_USER",
     LOG_OUT: "LOG_OUT",
     USER_LOADED: "USER_LOADED",
