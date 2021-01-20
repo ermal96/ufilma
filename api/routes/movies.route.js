@@ -6,8 +6,8 @@ import { isAdmin } from "../auth/isAdmin.js";
 
 const router = express.Router();
 
-router.get("/", verifyToken, movies.getAll);
-router.get("/:id", verifyToken, movies.getById);
+router.get("/", movies.getAll);
+router.get("/:id", movies.getById);
 router.post("/", verifyToken, isAdmin, upload, movies.add);
 router.put("/:id", verifyToken, isAdmin, upload, movies.updateById);
 router.delete("/:id", verifyToken, isAdmin, movies.removeById);
