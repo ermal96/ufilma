@@ -49,13 +49,12 @@ const USearchResult = styled.section`
   position: absolute;
   width: 27rem;
   right: 0;
-  background-color: ${({ theme }) => theme.colors.light};
+  background-color: ${({ theme }) => theme.colors.accent};
   top: ${({ theme }) => theme.constants.headerHeight + "rem"};
   z-index: 50;
   color: ${({ theme }) => theme.colors.primary};
 
   @media (max-width: 767px) {
-    margin-top: 1rem;
     width: 88vw;
     right: unset;
     left: 50%;
@@ -64,16 +63,16 @@ const USearchResult = styled.section`
 `;
 
 const USearchResultColumn = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.gray};
+  border-top: 1px solid ${({ theme }) => theme.colors.primary};
   display: flex;
   align-items: center;
   padding: 1rem;
   transition: all 0.3s ease;
   &:hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.light};
   &::last-child {
     border-bottom: none;
   }
@@ -83,6 +82,9 @@ const USearchResultColumn = styled.div`
     height: 5rem;
     object-fit: cover;
     object-position: center;
+  }
+  h2 {
+    font-size: 1.5rem;
   }
 `;
 
@@ -135,8 +137,7 @@ const Search = ({ searchOpen }) => {
                         alt={result.name}
                       />
                       <div>
-                        <h4>{result.name}</h4>
-                        <p>{result.quality.toUpperCase()}</p>
+                        <h2>{result.name}</h2>
                       </div>
                     </USearchResultColumn>
                   </Link>
