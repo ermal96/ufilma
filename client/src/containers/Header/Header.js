@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../components/Base/Logo";
 import styled from "styled-components";
 import Navbar from "./Navbar";
-import UserDropdown from "../User/UserDropdown";
+// import UserDropdown from "../User/UserDropdown";
 import Search from "../Search/Search";
 import { useSelector } from "react-redux";
 
@@ -50,7 +50,7 @@ const Header = () => {
         </UHeaderNav>
         <UHeaderMini searchOpen={searchOpen} className="mini">
           <Search searchOpen={searchOpen} />
-          <UserDropdown />
+          {/* <UserDropdown /> */}
         </UHeaderMini>
       </UHeaderWrapper>
     </UHeader>
