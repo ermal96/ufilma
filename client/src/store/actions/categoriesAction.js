@@ -10,7 +10,7 @@ export const setCategory = (payload) => ({
   payload,
 });
 export const setLoad = (payload) => ({
-  type: types.categories.CATEGORIES_LOADED,
+  type: types.categories.CATEGORIES_LOADING,
   payload,
 });
 

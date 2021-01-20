@@ -10,7 +10,7 @@ export const setMovie = (payload) => ({
   payload,
 });
 export const setLoad = (payload) => ({
-  type: types.movies.MOVIES_LOADED,
+  type: types.movies.MOVIES_LOADING,
   payload,
 });
 

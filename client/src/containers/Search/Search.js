@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input } from "../../components";
 import styled from "styled-components";
 import { RiSearchLine, RiCloseFill } from "react-icons/ri";

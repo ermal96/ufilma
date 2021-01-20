@@ -12,7 +12,6 @@ import { BrowserRouter as Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import AuthRoute from "./AuthRoute";
 import { Layout } from "../components";
-import { useSelector } from "react-redux";
 
 export const routes = {
   home: "/",
@@ -23,24 +22,18 @@ export const routes = {
 };
 
 export const Routes = () => {
-  const isLoggedIn = useSelector(({ user }) => user.loggedIn);
-
   return (
     <Switch>
       <AuthRoute path={routes.login} component={Login} />
       <AuthRoute path={routes.register} component={Register} />
-      {isLoggedIn ? (
-        <Layout>
-          <PrivateRoute exact path={routes.home} component={Home} />
-          <PrivateRoute exact path={routes.movies} component={Movies} />
-          <PrivateRoute exact path={routes.categories} component={Categories} />
-          <PrivateRoute path={`${routes.movies}/:id`} component={Movie} />
-          <PrivateRoute
-            path={`${routes.categories}/:id`}
-            component={Category}
-          />
-        </Layout>
-      ) : null}
+
+      <Layout>
+        <PrivateRoute exact path={routes.home} component={Home} />
+        <PrivateRoute exact path={routes.movies} component={Movies} />
+        <PrivateRoute exact path={routes.categories} component={Categories} />
+        <PrivateRoute path={`${routes.movies}/:id`} component={Movie} />
+        <PrivateRoute path={`${routes.categories}/:id`} component={Category} />
+      </Layout>
     </Switch>
   );
 };

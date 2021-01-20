@@ -40,7 +40,6 @@ export const autoLogin = () => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  localStorage.clear();
   dispatch({
     type: types.user.LOG_OUT,
   });
