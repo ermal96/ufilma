@@ -55,7 +55,7 @@ const USearchResult = styled.section`
   color: ${({ theme }) => theme.colors.primary};
 
   @media (max-width: 767px) {
-    width: 88vw;
+    width: 100%;
     right: unset;
     left: 50%;
     transform: translateX(-50%);
@@ -70,6 +70,10 @@ const USearchResultColumn = styled.div`
   transition: all 0.3s ease;
   &:hover {
     opacity: 0.7;
+  }
+
+  @media (max-width: 767px) {
+    padding-left: 2.5rem;
   }
 
   color: ${({ theme }) => theme.colors.light};
