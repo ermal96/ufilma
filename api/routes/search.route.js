@@ -4,6 +4,6 @@ import { verifyToken } from "../auth/verifyToken.js";
 
 const router = express.Router();
 
-router.get("/:query", verifyToken, search.get);
+router.get("/:query", search.get);
 
 export const searchRoute = router;
