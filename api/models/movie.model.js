@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
+// import mongoosePaginate from "mongoose-paginate-v2";
+import searchable from "mongoose-regex-search";
 
 const movieSchema = mongoose.Schema({
   name: {
     type: String,
+    searchable: true,
   },
   slug: String,
   description: String,
@@ -30,7 +32,6 @@ const movieSchema = mongoose.Schema({
   ],
 });
 
-movieSchema.plugin(mongoosePaginate);
-movieSchema.index({ name: "text" });
+movieSchema.plugin(searchable);
 
 export const Movie = mongoose.model("movie", movieSchema);

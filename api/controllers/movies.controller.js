@@ -6,7 +6,7 @@ import { validateMovie } from "../validation/movie.validation.js";
 export const getAll = async (_, res) => {
   try {
     const movies = await Movie.find()
-      .select("name year imageUrl slug description quality")
+      .select("name year imageUrl slug description quality trailerUrl")
       .populate("categories", "name")
       .sort({ _id: -1 })
       .limit(30);

@@ -5,6 +5,7 @@ export const getAll = async (_, res) => {
   try {
     const categories = await Category.find()
       .select("-__v ")
+      .sort({ _id: -1 })
       .populate("movies", "name");
 
     res.status(200).send({
