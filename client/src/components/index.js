@@ -25,7 +25,6 @@ export { default as Title } from "./Topography/Title";
 
 // export helpers
 export { default as Background } from "./Helpers/Background";
-export { default as Error } from "./Helpers/Error";
 export { default as Center } from "./Helpers/Center";
 
 // export payer

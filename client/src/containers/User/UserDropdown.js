@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/actions/userActions";
-import { RiEmotionLine } from "react-icons/ri";
+import { RiUserSettingsLine } from "react-icons/ri";
 import { setUserDropdown } from "../../store/actions/headerActions";
+import { RiUser3Line, RiMailLine, RiLogoutCircleRLine } from "react-icons/ri";
 
 const UDropdown = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
 `;
@@ -32,35 +32,38 @@ const UDropdownBody = styled.ul`
   margin: 0;
   padding: 0;
   position: absolute;
-  min-width: 20rem;
-  background: ${({ theme }) => theme.colors.primary};
+  min-width: 25rem;
+  background: ${({ theme }) => theme.colors.accent};
   color: ${({ theme }) => theme.colors.light};
-  border-radius: ${({ theme }) => theme.constants.radiusMd + "rem"};
-  padding: ${({ theme }) => theme.sizes.sm};
-  text-align: right;
-  right: 0;
-  top: 5.5rem;
 
+  text-align: left;
+  right: 0;
+  top: ${({ theme }) => theme.constants.headerHeight + "rem"};
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
   li {
     list-style: none;
-    margin: 2.5rem 0;
-    position: relative;
-    &:before {
-      content: "";
-      top: 50%;
-      transform: translateY(-50%);
-      right: 0;
-      border-radius: 50px;
-      background: red;
-      width: 1rem;
-      height: 0.3rem;
-      position: absolute;
+    padding: 1.5rem 0;
+    border-top: 1px solid ${({ theme }) => theme.colors.primary};
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
     }
     p {
+      display: inline-flex;
+      align-items: center;
       cursor: pointer;
-      margin-right: 2rem;
+      margin-left: 1.5rem;
       font-size: 1.2rem;
       color: inherit;
+
+      svg {
+        font-size: 1.6rem;
+        margin-right: 1rem;
+      }
     }
   }
 `;
@@ -77,19 +80,28 @@ const UserDropdown = () => {
         state={userDropdown}
         onClick={() => dispatch(setUserDropdown(!userDropdown))}
       >
-        <RiEmotionLine />
+        <RiUserSettingsLine />
       </UDropdownHead>
 
       {userDropdown ? (
         <UDropdownBody>
           <li>
-            <p>{user.name}</p>
+            <p>
+              {" "}
+              <RiUser3Line /> {user.name}
+            </p>
           </li>
           <li>
-            <p>{user.email}</p>
+            <p>
+              <RiMailLine />
+              {user.email}
+            </p>
           </li>
           <li>
-            <p onClick={() => dispatch(logout())}>Logout</p>
+            <p onClick={() => dispatch(logout())}>
+              <RiLogoutCircleRLine />
+              Logout
+            </p>
           </li>
         </UDropdownBody>
       ) : null}

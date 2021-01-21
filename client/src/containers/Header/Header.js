@@ -2,9 +2,13 @@ import React from "react";
 import Logo from "../../components/Base/Logo";
 import styled from "styled-components";
 import Navbar from "./Navbar";
-// import UserDropdown from "../User/UserDropdown";
 import Search from "../Search/Search";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { RiLockLine } from "react-icons/ri";
+import { routes } from "../../routes";
+import { Link } from "react-router-dom";
+
+import UserDropdown from "../../containers/User/UserDropdown";
 
 const UHeader = styled.header`
   background: ${({ theme }) => theme.colors.primary};
@@ -38,8 +42,25 @@ const UHeaderMini = styled.div`
   }
 `;
 
+const UAuth = styled.div`
+  font-size: 2.5rem;
+  margin-left: 2rem;
+  display: flex;
+  @media (max-width: 767px) {
+    margin-left: 3rem;
+  }
+  a {
+    display: flex;
+    align-items: center;
+  }
+  svg {
+    cursor: pointer;
+  }
+`;
+
 const Header = () => {
   const searchOpen = useSelector(({ header }) => header.search);
+  const loggedIn = useSelector(({ user }) => user.loggedIn);
 
   return (
     <UHeader>
@@ -50,7 +71,15 @@ const Header = () => {
         </UHeaderNav>
         <UHeaderMini searchOpen={searchOpen} className="mini">
           <Search searchOpen={searchOpen} />
-          {/* <UserDropdown /> */}
+          <UAuth>
+            {loggedIn ? (
+              <UserDropdown />
+            ) : (
+              <Link title="Login" to={routes.login}>
+                <RiLockLine />
+              </Link>
+            )}
+          </UAuth>
         </UHeaderMini>
       </UHeaderWrapper>
     </UHeader>

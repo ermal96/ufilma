@@ -1,8 +1,8 @@
 import React from "react";
 import {
   Home,
-  // Login,
-  // Register,
+  Login,
+  Register,
   Movie,
   Categories,
   Movies,
@@ -10,7 +10,7 @@ import {
 } from "../pages";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 // import PrivateRoute from "./PrivateRoute";
-// import AuthRoute from "./AuthRoute";
+import AuthRoute from "./AuthRoute";
 
 export const routes = {
   home: "/",
@@ -24,8 +24,8 @@ export const Routes = () => {
   return (
     <Switch>
       {/* Auth Routes */}
-      {/* <AuthRoute path={routes.login} component={Login} />
-      <AuthRoute path={routes.register} component={Register} /> */}
+      <AuthRoute path={routes.login} component={Login} />
+      <AuthRoute path={routes.register} component={Register} />
 
       {/* Private Routes */}
       <Route exact path={routes.home} component={Home} />

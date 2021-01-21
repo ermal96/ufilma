@@ -6,7 +6,7 @@ import { routes } from "../../routes";
 
 const ULogo = styled.img`
   width: 13rem;
-  margin-right: 2rem;
+
   transition: all 0.3s ease;
   @media (max-width: 767px) {
     &.hide {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input } from "../../components";
 import styled from "styled-components";
-import { RiSearchLine, RiCloseFill } from "react-icons/ri";
+import { RiSearch2Line, RiCloseFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../store/actions/headerActions";
 import { searchMovies } from "../../store/actions/searchAction";
@@ -32,7 +32,7 @@ const USearch = styled.div`
 
 const USearchIon = styled.div`
   margin-left: 1rem;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   cursor: pointer;
   line-height: 0;
   z-index: 10;
@@ -77,9 +77,7 @@ const USearchResultColumn = styled.div`
   }
 
   color: ${({ theme }) => theme.colors.light};
-  &::last-child {
-    border-bottom: none;
-  }
+
   img {
     margin-right: 1rem;
     width: 5rem;
@@ -110,7 +108,7 @@ const Search = ({ searchOpen }) => {
   };
 
   return (
-    <USearch searchOpen={searchOpen}>
+    <USearch title="Search" searchOpen={searchOpen}>
       <Form onSubmit={onSubmit}>
         {open ? (
           <Input
@@ -121,7 +119,7 @@ const Search = ({ searchOpen }) => {
         ) : null}
 
         <USearchIon open={open} onClick={handleSearchIcon}>
-          {open ? <RiCloseFill /> : <RiSearchLine />}
+          {open ? <RiCloseFill /> : <RiSearch2Line />}
         </USearchIon>
       </Form>
 
@@ -132,6 +130,7 @@ const Search = ({ searchOpen }) => {
               {searchResult.map((result) => {
                 return (
                   <Link
+                    key={result._id}
                     style={{ textDecoration: "none" }}
                     to={routes.movies + "/" + result._id}
                   >

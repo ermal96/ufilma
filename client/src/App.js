@@ -1,11 +1,14 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import { Routes } from "./routes";
-
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { autoLogin } from "./store/actions/userActions";
 
 const App = () => {
-  axios.defaults.baseURL = process.env.REACT_APP_API;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(autoLogin());
+  });
 
   return <Routes />;
 };
