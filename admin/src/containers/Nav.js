@@ -11,6 +11,7 @@ import {
   AppstoreAddOutlined,
   BuildOutlined,
   LogoutOutlined,
+  FileImageOutlined
 } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { logout } from "../store/actions/userActions";
@@ -34,6 +35,9 @@ const Nav = ({ activeItem }) => {
       </Menu.Item>
       <Menu.Item key={routes.addCategory} icon={<AppstoreAddOutlined />}>
         <Link to={routes.addCategory}>Add Category</Link>
+      </Menu.Item>
+      <Menu.Item key={routes.images} icon={<FileImageOutlined />}>
+        <Link to={routes.images}>Images</Link>
       </Menu.Item>
       <Menu.Item key={routes.users} icon={<TeamOutlined />}>
         <Link to={routes.users}>Users</Link>

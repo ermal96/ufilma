@@ -7,3 +7,4 @@ export { default as AddMovie } from "./Movies/AddMovie";
 export { default as Categories } from "./Categories/Categories";
 export { default as EditCategory } from "./Categories/EditCategory";
 export { default as AddCategory } from "./Categories/AddCategory";
+export { default as Images } from "./Images/Images";

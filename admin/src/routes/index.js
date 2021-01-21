@@ -9,6 +9,7 @@ import {
   AddCategory,
   EditCategory,
   Dashboard,
+  Images
 } from "../pages";
 import { BrowserRouter as Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -24,6 +25,7 @@ export const routes = {
   categories: "/categories",
   addCategory: "/add-category",
   users: "/users",
+  images: "/images"
 };
 
 export const Routes = () => {
@@ -37,6 +39,7 @@ export const Routes = () => {
       <PrivateRoute exact path={routes.addMovie} component={AddMovie} />
       <PrivateRoute exact path={routes.categories} component={Categories} />
       <PrivateRoute exact path={routes.addCategory} component={AddCategory} />
+      <PrivateRoute exact path={routes.images} component={Images} />
       <PrivateRoute exact path={routes.users} component={Users} />
       <PrivateRoute path={`${routes.movies}/:id`} component={EditMovie} />
       <PrivateRoute
