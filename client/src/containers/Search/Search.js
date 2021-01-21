@@ -47,7 +47,7 @@ const USearchIon = styled.div`
 const USearchResult = styled.section`
   display: ${({ hasResult }) => (hasResult ? "block" : "none")};
   position: absolute;
-  width: 27rem;
+  width: 33.5rem;
   right: 0;
   background-color: ${({ theme }) => theme.colors.accent};
   top: ${({ theme }) => theme.constants.headerHeight + "rem"};
