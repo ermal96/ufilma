@@ -17,7 +17,6 @@ import {
   UserOutlined,
   VideoCameraOutlined,
   AppstoreOutlined,
-  TeamOutlined,
 } from "@ant-design/icons";
 import { getUsers } from "../../store/actions/userActions";
 
@@ -27,7 +26,6 @@ const { Column } = Table;
 const Dashboard = ({ match }) => {
   const dispatch = useDispatch();
   const user = useSelector(({ user }) => user.user);
-  const users = useSelector(({ user }) => user.users);
   const categories = useSelector(({ categories }) => categories.categories);
   const movies = useSelector(({ movies }) => movies.movies);
 
@@ -49,7 +47,7 @@ const Dashboard = ({ match }) => {
         />
       </Card>
       <Row gutter={16} style={{ marginTop: "25px" }}>
-        <Col span={8}>
+        <Col span={12}>
           <Card>
             <Statistic
               valueStyle={{ color: "#cf1322" }}
@@ -59,23 +57,13 @@ const Dashboard = ({ match }) => {
             />
           </Card>
         </Col>
-        <Col span={8}>
+        <Col span={12}>
           <Card>
             <Statistic
               title="Categories"
               valueStyle={{ color: "#3f8600" }}
               value={categories.length}
               prefix={<AppstoreOutlined />}
-            />
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card>
-            <Statistic
-              title="Users"
-              valueStyle={{ color: "#096dd9" }}
-              value={users.length}
-              prefix={<TeamOutlined />}
             />
           </Card>
         </Col>
