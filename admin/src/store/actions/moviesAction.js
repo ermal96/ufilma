@@ -60,15 +60,17 @@ export const addMovie = (data) => async (dispatch) => {
   formData.append("description", data.description);
   formData.append("year", data.year);
   formData.append("ratio", data.ratio);
-  formData.append("image", data.image);
+  formData.append("thumbnail", data.image);
   formData.append("trailerUrl", data.trailerUrl);
   formData.append("time", data.time);
   formData.append("quality", data.quality);
   formData.append("videoUrl", data.videoUrl);
 
-  data.categories.forEach((category) => {
-    formData.append("categories", category);
-  });
+  if (data.categories) {
+    data.categories.forEach((category) => {
+      formData.append("categories", category);
+    });
+  }
 
   try {
     dispatch(createMovie());
@@ -76,7 +78,8 @@ export const addMovie = (data) => async (dispatch) => {
     await axios.post("/movies", formData, config);
     SuccessMsg("Created successfully");
   } catch (error) {
-    ErrorMsg("Something went wrong please try aggain latter");
+    ErrorMsg(error.response.data.message);
+    console.log(error);
   }
 };
 
@@ -92,7 +95,7 @@ export const updateMovie = (data) => async (dispatch) => {
   formData.append("description", data.description);
   formData.append("year", data.year);
   formData.append("ratio", data.ratio);
-  formData.append("image", data.image);
+  formData.append("thumbnail", data.image);
   formData.append("trailerUrl", data.trailerUrl);
   formData.append("time", data.time);
   formData.append("quality", data.quality);
@@ -110,6 +113,6 @@ export const updateMovie = (data) => async (dispatch) => {
     await axios.put(`/movies/${data.id}`, formData, config);
     SuccessMsg("Updated successfully");
   } catch (error) {
-    ErrorMsg("Something went wrong please try aggain latter");
+    ErrorMsg(error.response.data.message);
   }
 };

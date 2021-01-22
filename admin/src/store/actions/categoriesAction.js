@@ -71,7 +71,7 @@ export const addCategory = (data) => async (dispatch) => {
   let formData = new FormData();
   formData.append("name", data.name);
   formData.append("description", data.description);
-  formData.append("image", data.image);
+  formData.append("thumbnail", data.image);
 
   try {
     dispatch(createCategory());
@@ -92,7 +92,7 @@ export const updateCategory = (data) => async (dispatch) => {
   let formData = new FormData();
   formData.append("name", data.name);
   formData.append("description", data.description);
-  formData.append("image", data.image);
+  formData.append("thumbnail", data.image);
 
   try {
     dispatch(updateCat());

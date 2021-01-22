@@ -39,7 +39,6 @@ const AddMovie = ({ match }) => {
   };
   const onFinish = (values) => {
     dispatch(addMovie({ ...values, image }));
-    form.resetFields();
   };
 
   const { Option } = Select;
@@ -50,14 +49,14 @@ const AddMovie = ({ match }) => {
         <UMoviesGrid>
           <div>
             <Form.Item name="name">
-              <Input placeholder="Movie Name" />
+              <Input required placeholder="Movie Name" />
             </Form.Item>
             <UMovieColum>
               <Form.Item name="quality">
-                <Input placeholder="Movie Quality" />
+                <Input required placeholder="Movie Quality" />
               </Form.Item>
               <Form.Item name="year">
-                <Input placeholder="Movie Year" />
+                <Input required placeholder="Movie Year" />
               </Form.Item>
               <Form.Item name="ratio">
                 <Input placeholder="Movie Ratio" />
@@ -67,13 +66,17 @@ const AddMovie = ({ match }) => {
               </Form.Item>
             </UMovieColum>
             <Form.Item name="time">
-              <Input placeholder="Movie Time" />
+              <Input required placeholder="Movie Time" />
             </Form.Item>
             <Form.Item name="videoUrl">
-              <Input placeholder="Movie Url" />
+              <Input required placeholder="Movie Url" />
             </Form.Item>
             <Form.Item name="description">
-              <Input.TextArea rows={6} placeholder="Movie Description" />
+              <Input.TextArea
+                required
+                rows={6}
+                placeholder="Movie Description"
+              />
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
