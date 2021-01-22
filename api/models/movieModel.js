@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// import mongoosePaginate from "mongoose-paginate-v2";
 import searchable from "mongoose-regex-search";
 
 const movieSchema = mongoose.Schema({
@@ -34,14 +33,17 @@ const movieSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  imageUrl: {
+  thumbnail: {
     type: String,
-    required: true,
+  },
+  cover: {
+    type: String,
   },
   categories: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "category",
+      required: true,
     },
   ],
 });

@@ -6,11 +6,12 @@ const categorySchema = new mongoose.Schema({
     required: true,
   },
   description: String,
-  imageUrl: String,
+  thumbnail: String,
   movies: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "movie",
+      required: true,
     },
   ],
 });

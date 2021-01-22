@@ -1,4 +1,6 @@
 import { Category } from "../models/categoryModel.js";
+import fs from "fs-extra";
+import { __dirname } from "../index.js";
 
 export const getAll = async (_, res) => {
   try {
@@ -36,7 +38,29 @@ export const getById = async (req, res) => {
 export const add = async (req, res) => {
   const category = new Category(req.body);
 
-  category.imageUrl = "/" + req.file.path;
+  // get path from req.files
+  const src = req.files.thumbnail.path;
+
+  // store thumbnail dest
+  const thumbnailDest = `${__dirname}/images/${req.files.thumbnail.name}`;
+
+  // move thumbnail to dest
+  fs.move(src, thumbnailDest, {
+    overwrite: true,
+  })
+    .then(() => {})
+    .catch((err) => {
+      // response
+      return res.status(400).send({
+        message: "Thumbail upload failed",
+      });
+    });
+
+  // store categories ids from req.body
+  const catIds = req.body.categories;
+
+  // asign thumbnail
+  category.thumbnail = thumbnailDest;
 
   try {
     await category.save();

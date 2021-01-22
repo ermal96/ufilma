@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.get("/", categories.getAll);
 router.get("/:id", categories.getById);
-router.post("/", verifyToken, upload, isAdmin, categories.add);
+router.post("/", verifyToken, isAdmin, categories.add);
 router.delete("/:id", verifyToken, isAdmin, categories.removeById);
-router.put("/:id", verifyToken, upload, isAdmin, categories.updateById);
+router.put("/:id", verifyToken, isAdmin, categories.updateById);
 
 export const categoriesRoute = router;
