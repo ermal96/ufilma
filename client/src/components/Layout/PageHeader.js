@@ -83,7 +83,7 @@ const PageHeader = ({ title, description, imageUrl, link }) => {
         <UPageHeaderBodyTitle>{title}</UPageHeaderBodyTitle>
         <UPageHeaderBodyDesc>{description}</UPageHeaderBodyDesc>
         <UPageHeaderBreadcrumb>
-          <Link to="/">Home</Link> <Link to={link}>{title}</Link>
+          <Link to="/">Kreu</Link> <Link to={link}>{title}</Link>
         </UPageHeaderBreadcrumb>
       </UPageHeaderBody>
     </UPageHeader>

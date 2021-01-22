@@ -10,8 +10,16 @@ import Controls from "./Controls";
 const UPlayer = styled.div`
   position: relative;
   outline: none;
+
   &::focus {
     outline: none;
+  }
+  .react-player video::cue {
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.light};
+
+    font-size: 2rem;
+    font-family: inherit;
   }
 `;
 
@@ -84,7 +92,7 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
             setPlayed(state.played);
           }
         }}
-        className="player-wrapper"
+        className="react-player"
         width="100%"
         height="100%"
         url={src}

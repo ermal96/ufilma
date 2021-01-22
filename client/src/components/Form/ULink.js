@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 
 const UILink = styled.p`
-  margin: 1rem 0 2rem 0;
+  margin: 0 0 2rem 0;
   a {
     color: ${({ theme }) => theme.colors.white} !important;
     text-decoration: none;

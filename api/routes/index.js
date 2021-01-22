@@ -1,14 +1,15 @@
 // import routes
-import { moviesRoute } from "./movies.route.js";
-import { categoriesRoute } from "./categories.route.js";
-import { authRoute } from "./auth.route.js";
+import { moviesRoute } from "./moviesRoute.js";
+import { categoriesRoute } from "./categoriesRoute.js";
+import { authRoute } from "./authRoute.js";
 import { verifyToken } from "../auth/verifyToken.js";
-import { usersRoute } from "./users.route.js";
-import { searchRoute } from "./search.route.js";
+import { usersRoute } from "./usersRoute.js";
+import { searchRoute } from "./searchRoute.js";
+import { imagesRoute } from "./imagesRoute.js";
 
 export const apiRoutes = (app) => {
   // default route
-  app.get("/api", verifyToken, (_, res) => {
+  app.get("/api", (_, res) => {
     res.send({
       message: "Hello From Api",
     });
@@ -28,4 +29,7 @@ export const apiRoutes = (app) => {
 
   // search
   app.use("/api/search", searchRoute);
+
+  // images
+  app.use("/api/images", imagesRoute);
 };

@@ -12,13 +12,16 @@ const UButon = styled.button`
   border-radius: ${({ theme }) => theme.constants.radiusSm + "rem"};
   outline: none;
   cursor: pointer;
-  transition: border 0.1s ease;
+  transition: all 0.2s ease;
   width: ${(props) => (props.width ? props.width + "px" : "auto")};
   a {
     color: inherit;
     text-decoration: none;
   }
   &:active {
+    border: 0.2rem solid ${({ theme }) => theme.colors.secondary};
+  }
+  &:hover {
     border: 0.2rem solid ${({ theme }) => theme.colors.secondary};
   }
 `;

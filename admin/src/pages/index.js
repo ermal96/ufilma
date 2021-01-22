@@ -1,9 +1,9 @@
 export { default as Dashboard } from "./Dashboard/Dashboard";
 export { default as Login } from "./Login/Login";
-export { default as Register } from "./Register/Register";
 export { default as EditMovie } from "./Movies/EditMovie";
 export { default as Movies } from "./Movies/Movies";
 export { default as AddMovie } from "./Movies/AddMovie";
 export { default as Categories } from "./Categories/Categories";
 export { default as EditCategory } from "./Categories/EditCategory";
 export { default as AddCategory } from "./Categories/AddCategory";
+export { default as Images } from "./Images/Images";

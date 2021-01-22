@@ -3,7 +3,6 @@ import { types } from "../types";
 const defaultState = {
   loggedIn: false,
   loaded: false,
-  token: localStorage.getItem("token"),
   user: {},
   error: null,
 };

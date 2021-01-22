@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signUserUp, setError } from "../../store/actions/userActions";
 import {
   Input,
@@ -9,7 +9,6 @@ import {
   Logo,
   Background,
   ULink,
-  Error,
 } from "../../components";
 import { routes } from "../../routes";
 
@@ -19,7 +18,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const dispatch = useDispatch();
-  const error = useSelector(({ user }) => user.error);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -82,8 +80,6 @@ const Register = () => {
           <Button width={100} variant="light" type="submit">
             Register
           </Button>
-
-          {error ? <Error>{error}</Error> : null}
         </Form>
       </Center>
     </Background>

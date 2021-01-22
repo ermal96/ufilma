@@ -6,6 +6,7 @@
     "axios": "^0.21.0",
     "node-sass": "^4.0.0",
     "react": "^17.0.1",
+    "react-append-to-body": "^2.0.26",
     "react-aspect-ratio": "^1.0.46",
     "react-content-loader": "^5.1.4",
     "react-dom": "^17.0.1",

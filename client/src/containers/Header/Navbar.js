@@ -8,6 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 
 const UNavbar = styled.nav`
+  margin-left: 2rem;
+  @media (max-width: 767px) {
+    margin-left: 0;
+  }
   ul {
     transition: all 0.3s ease;
     margin: 0;
@@ -59,7 +63,7 @@ const UNavbar = styled.nav`
 
 const UNavbarMenuIcon = styled.div`
   display: none;
-  font-size: 3rem;
+  font-size: 2.5rem;
 
   color: ${(props) =>
     props.open ? props.theme.colors.secondary : props.theme.colors.light};
@@ -90,14 +94,14 @@ const Navbar = () => {
       <ul className={menuMobile ? "menu-mobile-open" : null}>
         <li>
           <NavLink exact to={routes.home}>
-            Home
+            Kreu
           </NavLink>
         </li>
         <li>
           <NavLink to={routes.movies}>Filma</NavLink>
         </li>
         <li>
-          <NavLink to={routes.categories}>Categories</NavLink>
+          <NavLink to={routes.categories}>Kategorite</NavLink>
         </li>
       </ul>
     </UNavbar>
