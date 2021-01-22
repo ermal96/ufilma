@@ -1,5 +1,4 @@
 import { Category } from "../models/categoryModel.js";
-import { slugify } from "../utils/slugify.js";
 
 export const getAll = async (_, res) => {
   try {
@@ -37,7 +36,6 @@ export const getById = async (req, res) => {
 export const add = async (req, res) => {
   const category = new Category(req.body);
 
-  category.slug = slugify(req.body.name);
   category.imageUrl = "/" + req.file.path;
 
   try {

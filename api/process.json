@@ -1,0 +1,9 @@
+{
+    "watch": true,
+    "script": "index.js",
+    "ignore_watch" : ["node_modules", "images", "videos"],
+    "watch_options": {
+      "followSymlinks": false
+    },
+    "name": "index"
+  }

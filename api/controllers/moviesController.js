@@ -1,6 +1,5 @@
 import { Movie } from "../models/movieModel.js";
 import { Category } from "../models/categoryModel.js";
-import { slugify } from "../utils/slugify.js";
 import { validateMovie } from "../validation/movieValidation.js";
 
 export const getAll = async (_, res) => {
@@ -39,7 +38,12 @@ export const getById = async (req, res) => {
 export const add = async (req, res) => {
   const movie = new Movie(req.body);
 
-  movie.slug = slugify(req.body.name);
+  if (!req.file) {
+    return res.status(400).send({
+      message: "Image is required",
+    });
+  }
+
   movie.imageUrl = "/" + req.file.path;
 
   const hasError = await validateMovie(req.body);
