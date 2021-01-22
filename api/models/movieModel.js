@@ -1,33 +1,49 @@
 import mongoose from "mongoose";
-// import mongoosePaginate from "mongoose-paginate-v2";
 import searchable from "mongoose-regex-search";
 
 const movieSchema = mongoose.Schema({
   name: {
     type: String,
     searchable: true,
+    required: true,
   },
-  slug: String,
-  description: String,
-  quality: String,
-  year: Number,
-  ratio: String,
+  description: {
+    type: String,
+    required: true,
+  },
+  quality: {
+    type: String,
+    required: true,
+  },
+  year: {
+    type: Number,
+    required: true,
+  },
+  ratio: {
+    type: String,
+  },
   trailerUrl: {
     type: String,
   },
   time: {
     type: Number,
+    required: true,
   },
   videoUrl: {
     type: String,
+    required: true,
   },
-  imageUrl: {
+  thumbnail: {
+    type: String,
+  },
+  cover: {
     type: String,
   },
   categories: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "category",
+      required: true,
     },
   ],
 });

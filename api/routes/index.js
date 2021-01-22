@@ -2,7 +2,6 @@
 import { moviesRoute } from "./moviesRoute.js";
 import { categoriesRoute } from "./categoriesRoute.js";
 import { authRoute } from "./authRoute.js";
-import { verifyToken } from "../auth/verifyToken.js";
 import { usersRoute } from "./usersRoute.js";
 import { searchRoute } from "./searchRoute.js";
 import { imagesRoute } from "./imagesRoute.js";
@@ -11,7 +10,7 @@ export const apiRoutes = (app) => {
   // default route
   app.get("/api", (_, res) => {
     res.send({
-      message: "Hello From Api",
+      message: "Hello From Ufilma Api",
     });
   });
 

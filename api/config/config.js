@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
-import path from "path";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import formData from "express-form-data";
 
 export const config = (app) => {
   dotenv.config();
@@ -12,6 +12,7 @@ export const config = (app) => {
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
+  app.use(formData.parse());
   app.use(cors());
   app.use(morgan("dev"));
 
@@ -30,7 +31,3 @@ export const config = (app) => {
       console.log(err);
     });
 };
-
-export const __dirname = path.resolve(
-  path.dirname(decodeURI(new URL(import.meta.url).pathname))
-);
