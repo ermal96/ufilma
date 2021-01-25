@@ -45,7 +45,7 @@ const UDropdownBody = styled.ul`
   }
   li {
     list-style: none;
-    padding: 1.5rem 0;
+    padding: 1rem 0;
     border-top: 1px solid ${({ theme }) => theme.colors.primary};
     transition: all 0.3s ease;
 

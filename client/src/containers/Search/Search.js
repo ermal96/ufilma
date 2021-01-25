@@ -136,7 +136,9 @@ const Search = ({ searchOpen }) => {
                   >
                     <USearchResultColumn>
                       <img
-                        src={process.env.REACT_APP_SERVER + result.imageUrl}
+                        src={
+                          process.env.REACT_APP_SERVER + "/" + result.thumbnail
+                        }
                         alt={result.name}
                       />
                       <div>

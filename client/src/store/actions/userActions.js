@@ -13,7 +13,7 @@ export const fetchUser = (userInfo) => async (dispatch) => {
 
     dispatch(setUser(result.data.user));
     dispatch(setLoad(true));
-    message.success(`welcome ${result.data.user.name}`);
+    message.success(`Welcome ${result.data.user.name}`);
   } catch (error) {
     message.error(error.response.data.message);
   }

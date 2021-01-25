@@ -34,6 +34,7 @@ const UNavbar = styled.nav`
     li {
       list-style: none;
       margin: 0 1rem;
+      font-size: 1.7rem;
       @media (max-width: 767px) {
         margin: 1rem 0;
 

@@ -3,7 +3,11 @@ import logoUrl from "../assets/logo.svg";
 
 const Logo = () => {
   return (
-    <img style={{ height: "60px", paddingLeft: "20px" }} alt="" src={logoUrl} />
+    <img
+      style={{ height: "60px", paddingLeft: "20px", width: " 180px" }}
+      alt=""
+      src={logoUrl}
+    />
   );
 };
 

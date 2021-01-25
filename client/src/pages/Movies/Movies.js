@@ -28,7 +28,7 @@ const Movies = () => {
             ? movies.map((movie) => (
                 <Card
                   ratio="2/3"
-                  backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.imageUrl})`}
+                  backgroundImage={`url(${process.env.REACT_APP_SERVER}/${movie.thumbnail})`}
                   link={routes.movies + "/" + movie._id}
                   key={movie._id}
                   quality={movie.quality}
