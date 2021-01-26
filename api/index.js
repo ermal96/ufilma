@@ -11,7 +11,7 @@ const app = express();
 
 // static folders
 app.use("/images", express.static("images"));
-app.use("/videos", express.static("videos"));
+// app.use("/videos", express.static("videos"));
 
 // config server
 config(app);

@@ -13,16 +13,20 @@ const Home = () => {
     dispatch(getMovies());
   }, [dispatch]);
 
-  return movies.length ? (
+  return (
     <Layout>
-      <TopMovie movies={movies} />
-      <RecentMovies movies={movies} />
-      <SliderSection category="Action" movies={movies} />
-      <SliderSection category="Thriller" movies={movies} />
-      <SliderSection category="Horror" movies={movies} />
+      {movies.length ? (
+        <>
+          <TopMovie movies={movies} />
+          <RecentMovies movies={movies} />
+          <SliderSection category="Action" movies={movies} />
+          <SliderSection category="Thriller" movies={movies} />
+          <SliderSection category="Horror" movies={movies} />
+        </>
+      ) : (
+        <Spinner />
+      )}
     </Layout>
-  ) : (
-    <Spinner />
   );
 };
 

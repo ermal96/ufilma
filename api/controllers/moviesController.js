@@ -7,7 +7,7 @@ export const getAll = async (_, res) => {
   try {
     // get movies from db
     const movies = await Movie.find()
-      .select("name year imageUrl slug description quality trailerUrl")
+      .select("name year thumbnail cover slug description quality trailerUrl")
       .populate("categories", "name")
       .sort({ _id: -1 })
       .limit(30);
@@ -50,7 +50,11 @@ export const add = async (req, res) => {
   const src = req.files.thumbnail.path;
 
   // store thumbnail dest
-  const thumbnailDest = `${__dirname}/images/${req.files.thumbnail.name}`;
+  const thumbnailDest = `${req.headers.host}/images/${req.files.thumbnail.name}`;
+
+  console.log(thumbnailDest);
+
+  return res.send({ message: "vk" });
 
   // move thumbnail to dest
   fs.move(src, thumbnailDest, {

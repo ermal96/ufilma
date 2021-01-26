@@ -43,10 +43,12 @@ export const register = async (req, res) => {
         id: user._id,
       };
 
-      res.status(201).send({ token, user: userData });
+      return res.status(201).send({ token, user: userData });
     }
   } catch (error) {
-    res.status(400).send({ message: "Sorry something went wrong" });
+    return res
+      .status(400)
+      .send({ message: "Sorry something went wrong try it latter" });
   }
 };
 
@@ -57,7 +59,7 @@ export const login = async (req, res) => {
     if (user === null) {
       return res
         .status(400)
-        .send({ message: "sorry this email does not exist" });
+        .send({ message: "Sorry this email does not exist" });
     }
 
     const result = await bcrypt.compare(req.body.password, user.password);
@@ -71,12 +73,16 @@ export const login = async (req, res) => {
         id: user._id,
       };
 
+      console.log(userData);
+
       return res.status(200).send({ token, user: userData });
     } else {
       return res.status(400).send({ message: "Sorry password is wrong" });
     }
   } catch (error) {
-    return res.status(400).send({ message: "Sorry something went wrong" });
+    return res
+      .status(400)
+      .send({ message: "Sorry something went wrong try it latter" });
   }
 };
 
@@ -96,6 +102,8 @@ export const autoLogin = async (req, res) => {
 
     return res.status(200).send({ token, user: userData });
   } catch (error) {
-    res.status(400).send({ message: "Sorry something went wrong" });
+    res
+      .status(400)
+      .send({ message: "Sorry something went wrong try it latter" });
   }
 };
