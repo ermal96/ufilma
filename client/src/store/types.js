@@ -28,5 +28,6 @@ export const types = {
 
   search: {
     GET_SEARCH_MOVIES: "GET_SEARCH_MOVIES",
+    RESET_SEARCH: "RESET_SEARCH",
   },
 };

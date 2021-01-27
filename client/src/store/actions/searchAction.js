@@ -13,3 +13,13 @@ export const searchMovies = (name) => async (dispatch) => {
     console.log("something went wrong");
   }
 };
+
+export const resetSearch = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: types.search.RESET_SEARCH,
+    });
+  } catch (error) {
+    console.log("something went wrong");
+  }
+};

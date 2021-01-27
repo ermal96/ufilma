@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { RiSearch2Line, RiCloseFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../store/actions/headerActions";
-import { searchMovies } from "../../store/actions/searchAction";
+import { resetSearch, searchMovies } from "../../store/actions/searchAction";
 import { routes } from "../../routes";
 import { Link } from "react-router-dom";
 
@@ -47,7 +47,8 @@ const USearchIon = styled.div`
 const USearchResult = styled.section`
   display: ${({ hasResult }) => (hasResult ? "block" : "none")};
   position: absolute;
-  width: 33.5rem;
+  border-bottom-left-radius: 5px;
+  width: 26.2rem;
   right: 0;
   background-color: ${({ theme }) => theme.colors.accent};
   top: ${({ theme }) => theme.constants.headerHeight + "rem"};
@@ -84,6 +85,7 @@ const USearchResultColumn = styled.div`
     height: 5rem;
     object-fit: cover;
     object-position: center;
+    border-radius: 50%;
   }
   h2 {
     font-size: 1.5rem;
@@ -101,10 +103,15 @@ const Search = ({ searchOpen }) => {
 
   const handleSearchIcon = () => {
     dispatch(setSearch(!open));
+    dispatch(resetSearch());
   };
 
   const handleSearchChange = (e) => {
     dispatch(searchMovies(e.target.value));
+
+    if (e.target.value.length === 0) {
+      dispatch(resetSearch());
+    }
   };
 
   return (
@@ -136,9 +143,7 @@ const Search = ({ searchOpen }) => {
                   >
                     <USearchResultColumn>
                       <img
-                        src={
-                          process.env.REACT_APP_SERVER + "/" + result.thumbnail
-                        }
+                        src={process.env.REACT_APP_SERVER + result.thumbnail}
                         alt={result.name}
                       />
                       <div>

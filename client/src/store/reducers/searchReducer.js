@@ -12,6 +12,12 @@ export const searchReducer = (state = defaultState, action) => {
         result: action.payload,
       };
 
+    case types.search.RESET_SEARCH:
+      return {
+        ...state,
+        result: {},
+      };
+
     default:
       return state;
   }
