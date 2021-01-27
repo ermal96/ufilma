@@ -42,6 +42,25 @@ export const getById = async (req, res) => {
   }
 };
 
+export const getMovesByCategory = async (req, res) => {
+  try {
+    // get movie from db
+    const movies = await Movie.find({ categories: { _id: req.params.id } })
+      .select("-__v")
+      .populate("categories", "name");
+    console.log(movies);
+    // send movie
+    return res.status(200).send({
+      movies,
+    });
+  } catch (error) {
+    // send error
+    res.send({
+      message: "Something went wrong",
+    });
+  }
+};
+
 export const add = async (req, res) => {
   const movie = new Movie(req.body);
 

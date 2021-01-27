@@ -3,6 +3,7 @@ import { types } from "../types";
 const defaultState = {
   movies: {},
   movie: {},
+  moviesInCategory: {},
   loaded: false,
 };
 
@@ -20,10 +21,24 @@ export const moviesReducer = (state = defaultState, action) => {
         movie: action.payload,
       };
 
+    case types.movies.GET_MOVIES_IN_CATEGORY:
+      return {
+        ...state,
+        moviesInCategory: action.payload,
+      };
+
     case types.movies.MOVIES_LOADING:
       return {
         ...state,
         loaded: action.payload,
+      };
+
+    case types.movies.RESET_MOVIES:
+      return {
+        ...state,
+        movies: {},
+        movie: {},
+        moviesInCategory: {},
       };
 
     default:

@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get("/", movies.getAll);
 router.get("/:id", movies.getById);
+router.get("/category/:id", movies.getMovesByCategory);
 router.post("/", verifyToken, isAdmin, movies.add);
 router.put("/:id", verifyToken, isAdmin, movies.updateById);
 router.delete("/:id", verifyToken, isAdmin, movies.removeById);
