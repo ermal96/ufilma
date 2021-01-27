@@ -14,7 +14,7 @@ const UPlayer = styled.div`
   background: ${({ theme }) => theme.colors.black};
 
   @media (max-width: 767px) {
-    height: 45vh;
+    height: 30rem;
   }
 `;
 
