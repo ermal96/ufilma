@@ -17,7 +17,7 @@ const Movie = ({ match }) => {
 
   return (
     <Layout>
-      {movie ? (
+      {movie.name ? (
         <UMovieWrapper>
           <Player
             title={movie.name}

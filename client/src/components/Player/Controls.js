@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   RiFullscreenFill,
   RiPlayLine,
@@ -8,12 +8,12 @@ import {
 import Volume from "./Volume";
 import Timeline from "./Timeline";
 import Tooltip from "../Base/Tooltip";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Title from "./Title";
 
 const UPlayerControls = styled.div`
   width: 100%;
-  height: 70%;
+  height: 100%;
   background-image: linear-gradient(
     to top,
     #161b229e,
@@ -23,6 +23,7 @@ const UPlayerControls = styled.div`
     #ffffff00
   );
   bottom: 0;
+  overflow: hidden;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -35,11 +36,59 @@ const UPlayerControls = styled.div`
     opacity: 1;
   }
 `;
+const pulse = keyframes`
+  0% {
+   
+    box-shadow: 0 0 0 0 rgba(22, 27, 34, 0.6);
+  }
+  70% {
+    
+      box-shadow: 0 0 0 2rem rgba(22, 27, 34, 0.6);
+  }
+  100% {
+    
+      box-shadow: 0 0 0 0 rgba(22, 27, 34, 0.6);
+  }
+
+`;
+
+const UPlayerControlsArea = styled.div`
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+
+  svg {
+    transition: all 0.3s ease;
+    opacity: 0;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    padding: 2rem;
+    background: rgba(22, 27, 34, 0.6);
+    box-shadow: 0 0 0 rgba(22, 27, 34, 0.6);
+    animation: ${pulse} 1.5s infinite;
+  }
+
+  &.control-area-active {
+    svg {
+      opacity: 1;
+    }
+  }
+`;
 
 const UPlayerControlsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
+  position: relative;
+  padding-top: 2rem;
 `;
 
 const UPlayerControlsLeft = styled.div`
@@ -87,8 +136,25 @@ const UPlaybackSpeed = styled.p`
 `;
 
 const Controls = (props) => {
+  const [controlAreaClasses, setControlAreaClasses] = useState();
+
+  const handleControlArea = () => {
+    props.setPlaying(!props.playing);
+    setControlAreaClasses("control-area-active");
+
+    setTimeout(() => {
+      setControlAreaClasses("");
+    }, 500);
+  };
+
   return (
     <UPlayerControls playing={props.playing}>
+      <UPlayerControlsArea
+        className={controlAreaClasses}
+        onClick={handleControlArea}
+      >
+        {props.playing ? <RiPlayLine /> : <RiPauseLine />}
+      </UPlayerControlsArea>
       {/* Timeline */}
       <Timeline
         visible={props.timelineVisible}
