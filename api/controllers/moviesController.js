@@ -50,11 +50,10 @@ export const add = async (req, res) => {
   const src = req.files.thumbnail.path;
 
   // store thumbnail dest
-  const thumbnailDest = `${req.headers.host}/images/${req.files.thumbnail.name}`;
-
-  console.log(thumbnailDest);
-
-  return res.send({ message: "vk" });
+  const thumbnailDest = `images/${req.files.thumbnail.name.replace(
+    /\s+/g,
+    "-"
+  )}`;
 
   // move thumbnail to dest
   fs.move(src, thumbnailDest, {

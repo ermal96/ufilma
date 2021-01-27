@@ -32,7 +32,7 @@ const CategoryGrid = () => {
           categories.map((category) => (
             <Card
               ratio="1/1"
-              backgroundImage={`url(${process.env.REACT_APP_SERVER}${category.imageUrl})`}
+              backgroundImage={`url(${process.env.REACT_APP_SERVER}${category.thumbnail})`}
               link={routes.categories + "/" + category._id}
               key={category._id}
               title={category.name}

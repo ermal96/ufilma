@@ -20,7 +20,7 @@ export const updMovie = (payload) => ({
 export const getMovies = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));
-    const result = await axios.get("/movies");
+    const result = await axios.get("movies");
     dispatch(setMovies(result.data.movies));
     dispatch(setLoad(false));
   } catch (error) {
@@ -31,7 +31,7 @@ export const getMovies = () => async (dispatch) => {
 export const getMovie = (id) => async (dispatch) => {
   try {
     dispatch(setLoad(true));
-    const result = await axios.get(`/movies/${id}`);
+    const result = await axios.get(`movies/${id}`);
     dispatch(setMovie(result.data.movie[0]));
     dispatch(setLoad(false));
   } catch (error) {
@@ -41,7 +41,7 @@ export const getMovie = (id) => async (dispatch) => {
 
 export const deleteMovie = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/movies/${id}`);
+    await axios.delete(`movies/${id}`);
     dispatch(removeMovie(id));
   } catch (error) {
     dispatch(setLoad(false));
@@ -75,7 +75,7 @@ export const addMovie = (data) => async (dispatch) => {
   try {
     dispatch(createMovie());
 
-    await axios.post("/movies", formData, config);
+    await axios.post("movies", formData, config);
     SuccessMsg("Created successfully");
   } catch (error) {
     ErrorMsg(error.response.data.message);
@@ -110,7 +110,7 @@ export const updateMovie = (data) => async (dispatch) => {
   try {
     dispatch(updMovie());
 
-    await axios.put(`/movies/${data.id}`, formData, config);
+    await axios.put(`movies/${data.id}`, formData, config);
     SuccessMsg("Updated successfully");
   } catch (error) {
     ErrorMsg(error.response.data.message);

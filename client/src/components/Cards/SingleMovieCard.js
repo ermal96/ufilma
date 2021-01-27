@@ -35,6 +35,7 @@ const USingleMovieCardQuality = styled.p`
   top: 1rem;
   right: 0;
   font-size: 1.5rem;
+  text-transform: uppercase;
 `;
 
 const USingleMovieCardYear = styled.span`

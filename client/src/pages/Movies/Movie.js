@@ -21,7 +21,7 @@ const Movie = ({ match }) => {
         <UMovieWrapper>
           <Player
             title={movie.name}
-            thumbnail={process.env.REACT_APP_SERVER + movie.imageUrl}
+            thumbnail={process.env.REACT_APP_SERVER + movie.thumbnail}
             controls
             src={movie.videoUrl}
           />

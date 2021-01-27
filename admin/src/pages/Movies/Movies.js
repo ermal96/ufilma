@@ -36,10 +36,10 @@ const Movies = ({ match }) => {
           />
           <Column
             title="Thumbnail"
-            key="imageUrl"
-            dataIndex="imageUrl"
+            key="thumbnail"
+            dataIndex="thumbnail"
             render={(thumbnail) => (
-              <Avatar src={process.env.REACT_APP_SERVER + "/" + thumbnail} />
+              <Avatar src={process.env.REACT_APP_SERVER + thumbnail} />
             )}
           />
           <Column

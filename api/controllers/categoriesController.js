@@ -42,7 +42,10 @@ export const add = async (req, res) => {
   const src = req.files.thumbnail.path;
 
   // store thumbnail dest
-  const thumbnailDest = `${__dirname}/images/${req.files.thumbnail.name}`;
+  const thumbnailDest = `images/${req.files.thumbnail.name.replace(
+    /\s+/g,
+    "-"
+  )}`;
 
   // move thumbnail to dest
   fs.move(src, thumbnailDest, {

@@ -9,7 +9,7 @@ export const setImages = (payload) => ({
 
 export const getImages = () => async (dispatch) => {
   try {
-    const result = await axios.get("/images");
+    const result = await axios.get("images");
     dispatch(setImages(result.data.images));
   } catch (error) {
     ErrorMsg("Something went wrong please try aggain latter");

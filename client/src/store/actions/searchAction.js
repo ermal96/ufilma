@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const searchMovies = (name) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/search/${name}`);
+    const { data } = await axios.get(`search/${name}`);
 
     dispatch({
       type: types.search.GET_SEARCH_MOVIES,

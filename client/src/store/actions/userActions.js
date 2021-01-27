@@ -8,7 +8,7 @@ export const setError = (payload) => ({ type: types.user.SET_ERROR, payload });
 
 export const fetchUser = (userInfo) => async (dispatch) => {
   try {
-    const result = await axios.post("/auth/login", userInfo);
+    const result = await axios.post("auth/login", userInfo);
     localStorage.setItem("token", result.data.token);
 
     dispatch(setUser(result.data.user));
@@ -21,7 +21,7 @@ export const fetchUser = (userInfo) => async (dispatch) => {
 
 export const signUserUp = (userInfo) => async (dispatch) => {
   try {
-    const result = await axios.post("/auth/register", userInfo);
+    const result = await axios.post("auth/register", userInfo);
     localStorage.setItem("token", result.data.token);
 
     dispatch(setUser(result.data.user));
@@ -33,7 +33,7 @@ export const signUserUp = (userInfo) => async (dispatch) => {
 
 export const autoLogin = () => async (dispatch) => {
   try {
-    const result = await axios.get("/auth/auto_login");
+    const result = await axios.get("auth/auto_login");
     localStorage.setItem("token", result.data.token);
 
     dispatch(setUser(result.data.user));

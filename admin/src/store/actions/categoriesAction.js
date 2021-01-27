@@ -30,7 +30,7 @@ export const updateCat = (payload) => ({
 export const getCategories = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));
-    const result = await axios.get("/categories");
+    const result = await axios.get("categories");
     dispatch(setCategories(result.data.categories));
     dispatch(setLoad(false));
   } catch (error) {
@@ -42,7 +42,7 @@ export const getCategories = () => async (dispatch) => {
 export const getCategory = (id) => async (dispatch) => {
   try {
     dispatch(setLoad(true));
-    const result = await axios.get(`/categories/${id}`);
+    const result = await axios.get(`categories/${id}`);
     dispatch(setCategory(result.data.category[0]));
     dispatch(setLoad(false));
   } catch (error) {
@@ -53,7 +53,7 @@ export const getCategory = (id) => async (dispatch) => {
 
 export const deleteCategory = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/categories/${id}`);
+    await axios.delete(`categories/${id}`);
     dispatch(removeCategory(id));
     SuccessMsg("Deleted successfully");
   } catch (error) {
@@ -75,7 +75,7 @@ export const addCategory = (data) => async (dispatch) => {
 
   try {
     dispatch(createCategory());
-    await axios.post("/categories", formData, config);
+    await axios.post("categories", formData, config);
     SuccessMsg("Created successfully");
   } catch (error) {
     ErrorMsg("Something went wrong please try aggain latter");
@@ -96,7 +96,7 @@ export const updateCategory = (data) => async (dispatch) => {
 
   try {
     dispatch(updateCat());
-    await axios.put(`/categories/${data.id}`, formData, config);
+    await axios.put(`categories/${data.id}`, formData, config);
     SuccessMsg("Updated successfully");
   } catch (error) {
     ErrorMsg("Something went wrong please try aggain latter");

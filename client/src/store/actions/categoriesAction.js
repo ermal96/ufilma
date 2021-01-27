@@ -17,7 +17,7 @@ export const setLoad = (payload) => ({
 export const getCategories = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));
-    const result = await axios.get("/categories");
+    const result = await axios.get("categories");
     dispatch(setCategories(result.data.categories));
     dispatch(setLoad(false));
   } catch (error) {
@@ -28,7 +28,7 @@ export const getCategories = () => async (dispatch) => {
 export const getCategory = (id) => async (dispatch) => {
   try {
     dispatch(setLoad(true));
-    const result = await axios.get(`/categories/${id}`);
+    const result = await axios.get(`categories/${id}`);
     dispatch(setCategory(result.data.category[0]));
     dispatch(setLoad(false));
   } catch (error) {

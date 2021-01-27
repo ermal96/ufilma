@@ -38,10 +38,10 @@ const Categories = ({ match }) => {
           />
           <Column
             title="Thumbnail"
-            key="imageUrl"
-            dataIndex="imageUrl"
-            render={(imageUrl) => (
-              <Avatar src={process.env.REACT_APP_SERVER + imageUrl} />
+            key="thumbnail"
+            dataIndex="thumbnail"
+            render={(thumbnail) => (
+              <Avatar src={process.env.REACT_APP_SERVER + thumbnail} />
             )}
           />
 
