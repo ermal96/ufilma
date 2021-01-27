@@ -73,11 +73,14 @@ const UPlayerControlsRight = styled.div`
 const UPlaybackWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  height: 3rem;
+  width: 13rem;
 `;
 
 const UPlaybackSpeed = styled.p`
   font-weight: bold;
-  padding: 1rem;
+
   cursor: pointer;
   color: ${(props) =>
     props.active ? props.theme.colors.secondary : "inherit"};

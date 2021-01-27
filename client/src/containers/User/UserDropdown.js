@@ -43,6 +43,7 @@ const UDropdownBody = styled.ul`
 
   @media (max-width: 767px) {
     width: 100%;
+    border-radius: 0;
   }
   li {
     list-style: none;

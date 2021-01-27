@@ -60,6 +60,7 @@ const USearchResult = styled.section`
     right: unset;
     left: 50%;
     transform: translateX(-50%);
+    border-radius: 0;
   }
 `;
 

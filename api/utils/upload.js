@@ -1,15 +1,15 @@
-import multer from "multer";
+import fs from "fs-extra";
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./images/");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      new Date().toISOString() + "-" + file.originalname.replace(/\s/g, "-")
-    );
-  },
-});
+export const upload = async (source, destination, res) => {
+  try {
+    await fs.move(source, `images/${destination.replace(/\s+/g, "-")}`, {
+      overwrite: true,
+    });
+  } catch (err) {
+    return res.send({ message: "Upload failed " });
+  }
+};
 
-export const upload = multer({ storage: storage }).single("image");
+export const generateImagePath = (name) => {
+  return `images/${name.replace(/\s+/g, "-")}`;
+};

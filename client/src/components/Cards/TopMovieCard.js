@@ -62,7 +62,7 @@ const TopMovie = ({ movie }) => {
       <AspectRatio
         ratio="16/7"
         style={{
-          backgroundImage: `url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`,
+          backgroundImage: `url(${process.env.REACT_APP_SERVER}${movie.cover})`,
           backgroundSize: "cover",
         }}
       />

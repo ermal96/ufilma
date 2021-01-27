@@ -10,15 +10,14 @@ const UTooltipWrapper = styled.div`
 const UTooltipTop = styled.div`
   position: absolute;
   border-radius: 0.3rem;
-  right: 0;
-  padding: 1rem;
+  right: 80%;
   color: white;
   background: ${({ theme }) => theme.colors.light};
   color: ${({ theme }) => theme.colors.accent};
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   line-height: 1;
   z-index: 100;
-  bottom: 100%;
+  bottom: 28%;
 `;
 
 const Tooltip = ({ delay, children, content }) => {

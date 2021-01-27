@@ -8,7 +8,8 @@ const URange = styled.input`
   appearance: none;
   -moz-appearance: auto;
   -webkit-appearance: none;
-  height: 0.3rem;
+  height: 0.4rem;
+  cursor: pointer;
   background: linear-gradient(
     to right,
     /* red ////////////////////////////////////////////*/
@@ -26,19 +27,17 @@ const URange = styled.input`
 
   /* chrome */
   &::-webkit-slider-runnable-track {
-    cursor: pointer;
-    height: 0.4rem;
+    height: 0.7rem;
     border: none;
     border-radius: 50px;
   }
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    cursor: pointer;
     appearance: none;
     border: none;
-    height: 1rem;
-    width: 1rem;
+    height: 1.3rem;
+    width: 1.3rem;
     background: ${({ theme }) => theme.colors.secondary};
     margin-top: -0.3rem;
     border-radius: 50%;
@@ -58,8 +57,8 @@ const URange = styled.input`
     cursor: pointer;
     border-radius: 0;
     border: none;
-    height: 1rem;
-    width: 1rem;
+    height: 1.3rem;
+    width: 1.3rem;
     background: ${({ theme }) => theme.colors.secondary};
     margin-top: -0.2rem;
     border-radius: 50%;

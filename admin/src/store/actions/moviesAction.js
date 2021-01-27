@@ -60,7 +60,8 @@ export const addMovie = (data) => async (dispatch) => {
   formData.append("description", data.description);
   formData.append("year", data.year);
   formData.append("ratio", data.ratio);
-  formData.append("thumbnail", data.image);
+  formData.append("thumbnail", data.thumbnail);
+  formData.append("cover", data.cover);
   formData.append("trailerUrl", data.trailerUrl);
   formData.append("time", data.time);
   formData.append("quality", data.quality);

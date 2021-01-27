@@ -6,8 +6,11 @@ import { routes } from "../../routes";
 
 const ULogo = styled.img`
   width: 13rem;
-
   transition: all 0.3s ease;
+
+  a {
+    line-height: 0;
+  }
   @media (max-width: 767px) {
     &.hide {
       display: none;

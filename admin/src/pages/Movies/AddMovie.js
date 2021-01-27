@@ -30,15 +30,20 @@ const AddMovie = ({ match }) => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  const [image, setImage] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+  const [cover, setCover] = useState("");
 
   const [form] = Form.useForm();
 
-  const handleUpload = (e) => {
-    setImage(e.file.originFileObj);
+  const handleThumnailUpload = (e) => {
+    setThumbnail(e.file.originFileObj);
   };
+  const handleCoverUpload = (e) => {
+    setCover(e.file.originFileObj);
+  };
+
   const onFinish = (values) => {
-    dispatch(addMovie({ ...values, image }));
+    dispatch(addMovie({ ...values, thumbnail, cover }));
   };
 
   const { Option } = Select;
@@ -86,9 +91,23 @@ const AddMovie = ({ match }) => {
           </div>
 
           <div>
-            <Upload onChange={handleUpload} maxCount={1} listType="picture">
+            <Upload
+              onChange={handleThumnailUpload}
+              maxCount={1}
+              listType="picture"
+            >
               <Button block icon={<UploadOutlined />}>
-                Upload
+                Upload thumbnail
+              </Button>
+            </Upload>
+            <br />
+            <Upload
+              onChange={handleCoverUpload}
+              maxCount={1}
+              listType="picture"
+            >
+              <Button block icon={<UploadOutlined />}>
+                Upload cover
               </Button>
             </Upload>
             <br />

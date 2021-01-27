@@ -6,7 +6,8 @@ const UTimeline = styled.div`
   width: 99.6%;
   margin-left: 0.7rem;
   transition: all 0.3s ease;
-  opacity: ${(props) => (props.visible ? 1 : 0)};
+  margin-bottom: -1rem;
+  /* opacity: ${(props) => (props.visible ? 1 : 0)}; */
 `;
 
 const Timeline = ({

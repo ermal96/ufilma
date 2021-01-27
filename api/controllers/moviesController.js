@@ -1,7 +1,6 @@
 import { Movie } from "../models/movieModel.js";
 import { Category } from "../models/categoryModel.js";
-import fs from "fs-extra";
-import { __dirname } from "../index.js";
+import { generateImagePath, upload } from "../utils/upload.js";
 
 export const getAll = async (_, res) => {
   try {
@@ -46,32 +45,24 @@ export const getById = async (req, res) => {
 export const add = async (req, res) => {
   const movie = new Movie(req.body);
 
-  // get path from req.files
-  const src = req.files.thumbnail.path;
+  // get images path from req
+  const thumbnailSrc = req.files.thumbnail.path;
+  const coverSrc = req.files.cover.path;
 
-  // store thumbnail dest
-  const thumbnailDest = `images/${req.files.thumbnail.name.replace(
-    /\s+/g,
-    "-"
-  )}`;
+  // store images dest
+  const thumbnailDest = req.files.thumbnail.name;
+  const coverDest = req.files.cover.name;
 
-  // move thumbnail to dest
-  fs.move(src, thumbnailDest, {
-    overwrite: true,
-  })
-    .then(() => {})
-    .catch((err) => {
-      // response
-      return res.status(400).send({
-        message: "Thumbail upload failed",
-      });
-    });
+  // upload images
+  upload(thumbnailSrc, thumbnailDest, res);
+  upload(coverSrc, coverDest, res);
 
   // store categories ids from req.body
   const catIds = req.body.categories;
 
   // asign thumbnail
-  movie.thumbnail = thumbnailDest;
+  movie.thumbnail = generateImagePath(thumbnailDest);
+  movie.cover = generateImagePath(coverDest);
 
   try {
     // save movie to db
