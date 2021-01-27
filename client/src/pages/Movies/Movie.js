@@ -11,6 +11,8 @@ const UMovieWrapper = styled.section``;
 const Movie = ({ match }) => {
   const dispatch = useDispatch();
   const movie = useSelector(({ movies }) => movies.movie);
+  const isLoading = useSelector(({ movies }) => movies.loaded);
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -19,7 +21,9 @@ const Movie = ({ match }) => {
 
   return (
     <Layout>
-      {movie.name ? (
+      {isLoading ? (
+        <Spinner />
+      ) : (
         <UMovieWrapper>
           <Player
             title={movie.name}
@@ -30,8 +34,6 @@ const Movie = ({ match }) => {
 
           <SingleMovieCard data={movie} />
         </UMovieWrapper>
-      ) : (
-        <Spinner />
       )}
     </Layout>
   );

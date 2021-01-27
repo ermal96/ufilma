@@ -87,6 +87,7 @@ const USearchResultColumn = styled.div`
     object-fit: cover;
     object-position: center;
     border-radius: 50%;
+    border: 1px solid ${({ theme }) => theme.colors.gray};
   }
   h2 {
     font-size: 1.5rem;

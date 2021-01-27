@@ -20,7 +20,7 @@ export const moviesReducer = (state = defaultState, action) => {
         movie: action.payload,
       };
 
-    case types.movies.MOVIES_LOADED:
+    case types.movies.MOVIES_LOADING:
       return {
         ...state,
         loaded: action.payload,
