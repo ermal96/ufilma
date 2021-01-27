@@ -32,7 +32,8 @@ const UDropdownBody = styled.ul`
   margin: 0;
   padding: 0;
   position: absolute;
-  min-width: 25rem;
+  border-bottom-left-radius: 5px;
+  min-width: 26.2rem;
   background: ${({ theme }) => theme.colors.accent};
   color: ${({ theme }) => theme.colors.light};
 
