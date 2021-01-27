@@ -3,7 +3,7 @@ import Logo from "../../components/Base/Logo";
 import styled from "styled-components";
 import Navbar from "./Navbar";
 import Search from "../Search/Search";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RiLockLine } from "react-icons/ri";
 import { routes } from "../../routes";
 import { Link } from "react-router-dom";
