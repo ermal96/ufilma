@@ -10,8 +10,12 @@ import Controls from "./Controls";
 const UPlayer = styled.div`
   position: relative;
   outline: none;
-  height: 60rem;
+  height: 85vh;
   background: ${({ theme }) => theme.colors.black};
+
+  @media (max-width: 767px) {
+    height: 45vh;
+  }
 
   &::focus {
     outline: none;

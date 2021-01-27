@@ -64,6 +64,7 @@ const TopMovie = ({ movie }) => {
         style={{
           backgroundImage: `url(${process.env.REACT_APP_SERVER}${movie.cover})`,
           backgroundSize: "cover",
+          bacgroundPosition: "center",
         }}
       />
 
@@ -71,7 +72,7 @@ const TopMovie = ({ movie }) => {
         <UTopMovieBodyYear>{movie.year}</UTopMovieBodyYear>
         <UTopMovieBodyTitle>{movie.name}</UTopMovieBodyTitle>
         <UTopMovieBodyDesc>
-          {movie.description.slice(0, 150)}...
+          {movie.description.slice(0, 130)}...
         </UTopMovieBodyDesc>
         <Button href={`${routes.movies}/${movie._id}`} variant="light">
           Shikoje Tani

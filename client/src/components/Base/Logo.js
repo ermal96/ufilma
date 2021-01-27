@@ -8,9 +8,6 @@ const ULogo = styled.img`
   width: 13rem;
   transition: all 0.3s ease;
 
-  a {
-    line-height: 0;
-  }
   @media (max-width: 767px) {
     &.hide {
       display: none;
@@ -20,7 +17,7 @@ const ULogo = styled.img`
 
 const Logo = ({ className }) => {
   return (
-    <Link to={routes.home}>
+    <Link style={{ lineHeight: 0 }} to={routes.home}>
       <ULogo className={className} src={LogoSrc} alt="Logo" />
     </Link>
   );

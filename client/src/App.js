@@ -7,7 +7,9 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(autoLogin());
+    if (localStorage.getItem("token")) {
+      dispatch(autoLogin());
+    }
   });
 
   return <Routes />;

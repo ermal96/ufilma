@@ -43,7 +43,7 @@ const pulse = keyframes`
   }
   70% {
     
-      box-shadow: 0 0 0 2rem rgba(22, 27, 34, 0.6);
+      box-shadow: 0 0 0 1.5rem rgba(22, 27, 34, 0.6);
   }
   100% {
     
@@ -62,14 +62,13 @@ const UPlayerControlsArea = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 5rem;
-
   svg {
     transition: all 0.3s ease;
     opacity: 0;
-    width: 10rem;
-    height: 10rem;
+    width: 7rem;
+    height: 7rem;
     border-radius: 50%;
-    padding: 2rem;
+    padding: 1.5rem;
     background: rgba(22, 27, 34, 0.6);
     box-shadow: 0 0 0 rgba(22, 27, 34, 0.6);
     animation: ${pulse} 1.5s infinite;
@@ -77,6 +76,7 @@ const UPlayerControlsArea = styled.div`
 
   &.control-area-active {
     svg {
+      transition: all 0.3s ease;
       opacity: 1;
     }
   }

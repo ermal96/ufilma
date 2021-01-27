@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Player } from "../../components";
+import { Player, Spinner } from "../../components";
 import { getMovie } from "../../store/actions/moviesAction";
 import styled from "styled-components";
 import SingleMovieCard from "../../components/Cards/SingleMovieCard";
@@ -12,6 +12,8 @@ const Movie = ({ match }) => {
   const dispatch = useDispatch();
   const movie = useSelector(({ movies }) => movies.movie);
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     dispatch(getMovie(match.params.id));
   }, [dispatch, match.params.id]);
 
@@ -28,7 +30,9 @@ const Movie = ({ match }) => {
 
           <SingleMovieCard data={movie} />
         </UMovieWrapper>
-      ) : null}
+      ) : (
+        <Spinner />
+      )}
     </Layout>
   );
 };
