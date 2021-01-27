@@ -50,7 +50,8 @@ const UPageHeaderBodyDesc = styled.p`
 const UPageHeaderBreadcrumb = styled.div`
   display: flex;
   align-items: center;
-  a {
+  a,
+  span {
     position: relative;
     margin-right: 1rem;
     text-decoration: none;
@@ -60,7 +61,7 @@ const UPageHeaderBreadcrumb = styled.div`
     margin-left: 1rem;
     font-size: 1.2rem;
   }
-  a:last-child {
+  span:last-child {
     &:after {
       content: "";
     }
@@ -68,7 +69,7 @@ const UPageHeaderBreadcrumb = styled.div`
   }
 `;
 
-const PageHeader = ({ title, description, imageUrl, link }) => {
+const PageHeader = ({ title, description, imageUrl }) => {
   return (
     <UPageHeader>
       <AspectRatio
@@ -83,7 +84,7 @@ const PageHeader = ({ title, description, imageUrl, link }) => {
         <UPageHeaderBodyTitle>{title}</UPageHeaderBodyTitle>
         <UPageHeaderBodyDesc>{description}</UPageHeaderBodyDesc>
         <UPageHeaderBreadcrumb>
-          <Link to="/">Kreu</Link> <Link to={link}>{title}</Link>
+          <Link to="/">Kreu</Link> <span>{title}</span>
         </UPageHeaderBreadcrumb>
       </UPageHeaderBody>
     </UPageHeader>

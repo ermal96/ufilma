@@ -1,22 +1,32 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Layout, Card, Grid, Container } from "../../components";
+import { Layout, Card, Grid, Container, PageHeader } from "../../components";
 import {
   getMoviesInCategory,
   resetMovies,
 } from "../../store/actions/moviesAction";
+import { getCategory } from "../../store/actions/categoriesAction";
+
 import { routes } from "../../routes";
 
 const Category = ({ match }) => {
   const dispatch = useDispatch();
   const movies = useSelector(({ movies }) => movies.moviesInCategory);
+  const category = useSelector(({ categories }) => categories.category);
+
   useEffect(() => {
     dispatch(resetMovies());
+    dispatch(getCategory(match.params.id));
     dispatch(getMoviesInCategory(match.params.id));
   }, [dispatch, match.params.id]);
 
   return (
     <Layout>
+      <PageHeader
+        title={category.name}
+        imageUrl="https://s.studiobinder.com/wp-content/uploads/2020/05/Best-Action-Movies-of-All-Time-Featured-.jpg"
+        description={`Ketu do te gjeni te gjith filmat e kategorise ${category.name} shikim të këndshëm!`}
+      />
       <Container>
         <Grid>
           {movies.length
