@@ -12,9 +12,9 @@ const Volume = ({ onClick, muted }) => {
   return (
     <UVolumeWrapper>
       {muted ? (
-        <RiVolumeMuteLine onClick={onClick} />
+        <RiVolumeMuteLine title="Unmute" onClick={onClick} />
       ) : (
-        <RiVolumeUpLine onClick={onClick} />
+        <RiVolumeUpLine title="Mute" onClick={onClick} />
       )}
     </UVolumeWrapper>
   );

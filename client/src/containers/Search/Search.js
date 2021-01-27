@@ -48,7 +48,7 @@ const USearchResult = styled.section`
   display: ${({ hasResult }) => (hasResult ? "block" : "none")};
   position: absolute;
   border-bottom-left-radius: 5px;
-  width: 26.2rem;
+  width: 27.5rem;
   right: 0;
   background-color: ${({ theme }) => theme.colors.accent};
   top: ${({ theme }) => theme.constants.headerHeight + "rem"};
@@ -109,7 +109,9 @@ const Search = ({ searchOpen }) => {
   };
 
   const handleSearchChange = (e) => {
-    dispatch(searchMovies(e.target.value));
+    if (e.target.value) {
+      dispatch(searchMovies(e.target.value));
+    }
 
     if (e.target.value.length === 0) {
       dispatch(resetSearch());

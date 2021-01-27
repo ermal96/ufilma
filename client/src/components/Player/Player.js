@@ -16,20 +16,9 @@ const UPlayer = styled.div`
   @media (max-width: 767px) {
     height: 45vh;
   }
-
-  &::focus {
-    outline: none;
-  }
-  .react-player video::cue {
-    background-color: transparent;
-    color: ${({ theme }) => theme.colors.light};
-
-    font-size: 2rem;
-    font-family: inherit;
-  }
 `;
 
-const UThumbnail = styled.img`
+const UCover = styled.img`
   height: 100%;
   width: 100%;
   position: absolute;
@@ -40,7 +29,7 @@ const UThumbnail = styled.img`
   display: ${(props) => (props.started ? "none" : "block")};
 `;
 
-const Player = ({ src, thumbnail, controls = false, title }) => {
+const Player = ({ src, cover, controls = false, title }) => {
   const playerRef = useRef(null);
   const playerRefContainer = useRef(null);
 
@@ -69,19 +58,11 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.keyCode === 32) {
-      setPlaying(!playing);
-    }
-  };
-
   return (
     <UPlayer
       ref={playerRefContainer}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
-      onKeyDown={handleKeyPress}
-      tabIndex="0"
     >
       <ReactPlayer
         ref={playerRef}
@@ -104,7 +85,7 @@ const Player = ({ src, thumbnail, controls = false, title }) => {
         url={src}
       />
 
-      <UThumbnail started={played} src={thumbnail} />
+      {cover ? <UCover started={played} src={cover} /> : null}
 
       {controls && (
         <Controls

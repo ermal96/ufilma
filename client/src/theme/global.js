@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight:700;
   }
 
-  a:visited {
+  a:any-link {
     color: inherit;
   }
 `;

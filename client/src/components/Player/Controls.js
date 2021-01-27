@@ -63,21 +63,20 @@ const UPlayerControlsArea = styled.div`
   justify-content: center;
   font-size: 5rem;
   svg {
-    transition: all 0.3s ease;
+    transition: all 1s ease;
     opacity: 0;
-    width: 7rem;
-    height: 7rem;
+    width: 9rem;
+    height: 9rem;
     border-radius: 50%;
     padding: 1.5rem;
     background: rgba(22, 27, 34, 0.6);
-    box-shadow: 0 0 0 rgba(22, 27, 34, 0.6);
-    animation: ${pulse} 1.5s infinite;
+    box-shadow: 0 0 0 0 rgba(22, 27, 34, 0.6);
+    animation: ${pulse} 2s infinite;
   }
 
   &.control-area-active {
     svg {
-      transition: all 0.3s ease;
-      opacity: 1;
+      opacity: 0.6;
     }
   }
 `;
@@ -144,7 +143,7 @@ const Controls = (props) => {
 
     setTimeout(() => {
       setControlAreaClasses("");
-    }, 500);
+    }, 300);
   };
 
   return (
@@ -175,9 +174,12 @@ const Controls = (props) => {
         <UPlayerControlsLeft className="uplayer-controls">
           {/* Play Pause */}
           {props.playing ? (
-            <RiPauseLine onClick={() => props.setPlaying(false)} />
+            <RiPauseLine
+              title="Pause"
+              onClick={() => props.setPlaying(false)}
+            />
           ) : (
-            <RiPlayLine onClick={() => props.setPlaying(true)} />
+            <RiPlayLine title="Play" onClick={() => props.setPlaying(true)} />
           )}
 
           {/* Player volume */}
@@ -228,6 +230,7 @@ const Controls = (props) => {
 
           {/* Fullscreen mode */}
           <RiFullscreenFill
+            title="Fullscreen"
             className="full-screen"
             onClick={props.handleClickFullscreen}
           />
