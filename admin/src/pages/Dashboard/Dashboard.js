@@ -13,39 +13,23 @@ import {
   Tag,
   Avatar,
 } from "antd";
-import {
-  UserOutlined,
-  VideoCameraOutlined,
-  AppstoreOutlined,
-} from "@ant-design/icons";
-import { getUsers } from "../../store/actions/userActions";
+import { VideoCameraOutlined, AppstoreOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 const { Column } = Table;
 
 const Dashboard = ({ match }) => {
   const dispatch = useDispatch();
-  const user = useSelector(({ user }) => user.user);
   const categories = useSelector(({ categories }) => categories.categories);
   const movies = useSelector(({ movies }) => movies.movies);
 
   useEffect(() => {
     dispatch(getMovies());
     dispatch(getCategories());
-    dispatch(getUsers());
   }, [dispatch]);
 
   return (
     <ULayout activeRoute={match.path} activePage="Dashboard">
-      <Card>
-        <Card.Meta
-          avatar={
-            <UserOutlined style={{ fontSize: "30px", color: "#096dd9" }} />
-          }
-          title={user.name}
-          description={user.email}
-        />
-      </Card>
       <Row gutter={16} style={{ marginTop: "25px" }}>
         <Col span={12}>
           <Card>
