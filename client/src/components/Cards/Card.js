@@ -20,6 +20,23 @@ const UMovieCardMeta = styled.div`
     text-transform: uppercase;
     color: ${({ theme }) => theme.colors.secondary};
   }
+
+  span {
+    position: absolute;
+  }
+`;
+
+const UMovieLength = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  background: ${({ theme }) => theme.colors.secondary};
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 4px;
 `;
 
 const UMovieCard = styled.div`
@@ -42,7 +59,7 @@ const UMovieCard = styled.div`
   }
 `;
 
-const Card = ({ backgroundImage, ratio, link, title, quality }) => {
+const Card = ({ backgroundImage, ratio, link, title, quality, length }) => {
   return (
     <UMovieCard>
       <Link to={link}>
@@ -54,9 +71,12 @@ const Card = ({ backgroundImage, ratio, link, title, quality }) => {
           }}
         ></AspectRatio>
         <UMovieCardMeta>
-          <p>{quality}</p>
-          <h3>{title}</h3>
+          {quality ? <p>{quality}</p> : null}
+
+          {title ? <h3>{title}</h3> : null}
         </UMovieCardMeta>
+
+        {length ? <UMovieLength>{length}</UMovieLength> : null}
       </Link>
     </UMovieCard>
   );

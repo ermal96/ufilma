@@ -36,6 +36,7 @@ const CategoryGrid = () => {
                 link={routes.categories + "/" + category._id}
                 key={category._id}
                 title={category.name}
+                length={category.movies.length}
               />
             ))
           : null}
