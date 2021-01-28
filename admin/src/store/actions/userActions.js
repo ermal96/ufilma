@@ -13,6 +13,7 @@ export const fetchUser = (userInfo) => async (dispatch) => {
     dispatch(setUser(result.data.user));
   } catch (error) {
     dispatch(setError(error.response));
+    localStorage.clear();
   }
 };
 
@@ -36,6 +37,7 @@ export const autoLogin = () => async (dispatch) => {
     dispatch(setLoad(true));
   } catch (error) {
     dispatch(setLoad(true));
+    localStorage.clear();
   }
 };
 

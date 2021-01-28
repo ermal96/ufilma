@@ -16,6 +16,7 @@ export const fetchUser = (userInfo) => async (dispatch) => {
     message.success(`Welcome ${result.data.user.name}`);
   } catch (error) {
     message.error(error.response.data.message);
+    localStorage.clear();
   }
 };
 
@@ -40,6 +41,7 @@ export const autoLogin = () => async (dispatch) => {
     dispatch(setLoad(true));
   } catch (error) {
     dispatch(setLoad(true));
+    localStorage.clear();
   }
 };
 
