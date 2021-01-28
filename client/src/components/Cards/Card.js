@@ -7,7 +7,6 @@ import FavoriteButton from "../Base/FavoriteButton";
 const UMovieCardMeta = styled.div`
   padding: 1rem;
   position: absolute;
-  z-index: 5 !important;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -20,6 +19,14 @@ const UMovieCardMeta = styled.div`
   z-index: 10;
   display: flex;
   justify-content: space-between;
+
+  &.position-relative {
+    opacity: 1;
+    background: transparent;
+    color: ${({ theme }) => theme.colors.light};
+    text-shadow: 0px 0px 1px ${({ theme }) => theme.colors.primary};
+  }
+
   .user-favorite-movie {
     font-size: 1.6rem;
   }
@@ -46,7 +53,7 @@ const UMovieCard = styled.div`
   }
   &:hover {
     .react-aspect-ratio-placeholder {
-      transform: scale(1.3);
+      transform: scale(1.4);
     }
     ${UMovieCardMeta} {
       opacity: 1;
@@ -54,7 +61,15 @@ const UMovieCard = styled.div`
   }
 `;
 
-const Card = ({ backgroundImage, ratio, link, title, quality, id }) => {
+const Card = ({
+  backgroundImage,
+  ratio,
+  link,
+  title,
+  quality,
+  id,
+  relative,
+}) => {
   return (
     <UMovieCard>
       <Link to={link}>
@@ -66,7 +81,7 @@ const Card = ({ backgroundImage, ratio, link, title, quality, id }) => {
           }}
         />
       </Link>
-      <UMovieCardMeta>
+      <UMovieCardMeta className={relative ? "position-relative" : null}>
         <div>
           {quality ? <p>{quality}</p> : null}
           {title ? <h3>{title}</h3> : null}

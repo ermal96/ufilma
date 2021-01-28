@@ -37,6 +37,7 @@ const CategoryGrid = () => {
                 key={category._id}
                 title={category.name}
                 length={category.movies.length}
+                relative
               />
             ))
           : null}
