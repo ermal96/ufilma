@@ -43,7 +43,7 @@ const FavoriteButton = ({ movieId }) => {
         favoriteMovies.includes(movieId) ? (
           <UMovieFavorite
             className="user-favorite-movie"
-            title="remove from favorites"
+            title="Hiq nga filmat e preferuar"
             onClick={removeFavoriteMovie}
           >
             <RiHeart3Fill />
@@ -51,7 +51,7 @@ const FavoriteButton = ({ movieId }) => {
         ) : (
           <UMovieFavorite
             className="user-favorite-movie"
-            title="add to favorites"
+            title="Shto tek filmat e preferuar"
             onClick={addFavoriteMovie}
           >
             <RiHeart3Line />
