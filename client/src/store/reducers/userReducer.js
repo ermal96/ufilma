@@ -5,6 +5,7 @@ const defaultState = {
   loaded: false,
   user: {},
   error: null,
+  favoriteMovies: [],
 };
 
 export const userReducer = (state = defaultState, action) => {
@@ -30,6 +31,12 @@ export const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loaded: action.payload,
+      };
+
+    case types.user.SET_FAVORITE_MOVIE:
+      return {
+        ...state,
+        favoriteMovies: action.payload,
       };
 
     case types.user.LOG_OUT:

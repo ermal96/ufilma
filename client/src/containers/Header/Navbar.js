@@ -50,8 +50,7 @@ const UNavbar = styled.nav`
         font-weight: bold;
 
         @media (max-width: 767px) {
-          border-left: 2px solid red;
-          padding-left: 0.5rem;
+          border-bottom: 2px solid red;
         }
       }
     }
@@ -77,6 +76,7 @@ const UNavbarMenuIcon = styled.div`
 
 const Navbar = () => {
   const menuMobile = useSelector(({ header }) => header.menuMobile);
+  const isLoggedIn = useSelector(({ user }) => user.loggedIn);
   const dispatch = useDispatch();
   let location = useLocation();
 
@@ -104,6 +104,11 @@ const Navbar = () => {
         <li>
           <NavLink to={routes.categories}>Kategorite</NavLink>
         </li>
+        {isLoggedIn ? (
+          <li>
+            <NavLink to={routes.favorites}>Filmat e preferuar</NavLink>
+          </li>
+        ) : null}
       </ul>
     </UNavbar>
   );

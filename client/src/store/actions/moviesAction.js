@@ -24,6 +24,11 @@ export const setLoad = (payload) => ({
   payload,
 });
 
+export const setUserFavoriteMovies = (payload) => ({
+  type: types.movies.GET_USER_FAVORITE_MOVIES,
+  payload,
+});
+
 export const getMovies = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));
@@ -51,6 +56,18 @@ export const getMovie = (id) => async (dispatch) => {
     dispatch(setLoad(true));
     const result = await axios.get(`movies/${id}`);
     dispatch(setMovie(result.data.movie[0]));
+    dispatch(setLoad(false));
+  } catch (error) {
+    dispatch(setLoad(false));
+  }
+};
+
+export const getUserFavoriteMovies = (movies) => async (dispatch) => {
+  try {
+    dispatch(setLoad(true));
+    const result = await axios.put("movies/favorites", movies);
+    console.log(result);
+    dispatch(setUserFavoriteMovies(result.data.movies));
     dispatch(setLoad(false));
   } catch (error) {
     dispatch(setLoad(false));

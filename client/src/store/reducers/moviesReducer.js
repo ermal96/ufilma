@@ -4,6 +4,7 @@ const defaultState = {
   movies: {},
   movie: {},
   moviesInCategory: {},
+  userFavoriteMovies: [],
   loaded: false,
 };
 
@@ -25,6 +26,12 @@ export const moviesReducer = (state = defaultState, action) => {
       return {
         ...state,
         moviesInCategory: action.payload,
+      };
+
+    case types.movies.GET_USER_FAVORITE_MOVIES:
+      return {
+        ...state,
+        userFavoriteMovies: action.payload,
       };
 
     case types.movies.MOVIES_LOADING:

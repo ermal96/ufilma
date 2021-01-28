@@ -10,15 +10,33 @@ export const getAll = async (_, res) => {
       .populate("categories", "name")
       .sort({ _id: -1 })
       .limit(30);
-
     // send movies
     return res.status(200).send({
       movies,
     });
   } catch (error) {
     // send error
-    res.status(400).send({
+    return res.status(400).send({
       message: "Sorry something went wrong",
+    });
+  }
+};
+
+export const getFavorites = async (req, res) => {
+  try {
+    // get movie from db
+    const movies = await Movie.find({ _id: req.body })
+      .select("-__v")
+      .populate("categories", "name");
+
+    // send movie
+    return res.status(200).send({
+      movies,
+    });
+  } catch (error) {
+    // send error
+    res.send({
+      message: "Something went wrong",
     });
   }
 };
@@ -36,7 +54,7 @@ export const getById = async (req, res) => {
     });
   } catch (error) {
     // send error
-    res.send({
+    return res.send({
       message: "Something went wrong",
     });
   }
@@ -54,7 +72,7 @@ export const getMovesByCategory = async (req, res) => {
     });
   } catch (error) {
     // send error
-    res.send({
+    return res.send({
       message: "Something went wrong",
     });
   }
@@ -112,7 +130,7 @@ export const removeById = async (req, res) => {
     });
   } catch (error) {
     // send error
-    res.status(400).send({
+    return res.status(400).send({
       message: "Something went wrong",
     });
   }
@@ -183,7 +201,7 @@ export const updateById = async (req, res) => {
     });
   } catch (error) {
     // send error
-    res.status(400).send({
+    return res.status(400).send({
       message: JSON.stringify(error),
     });
   }

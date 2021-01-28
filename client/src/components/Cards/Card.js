@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import AspectRatio from "react-aspect-ratio";
 import { Link } from "react-router-dom";
+import FavoriteButton from "../Base/FavoriteButton";
 
 const UMovieCardMeta = styled.div`
   padding: 1rem;
   position: absolute;
+  z-index: 5 !important;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -15,42 +17,35 @@ const UMovieCardMeta = styled.div`
   opacity: 0;
   transition: all 0.3s ease;
   color: ${({ theme }) => theme.colors.primary};
-
-  p {
-    text-transform: uppercase;
-    color: ${({ theme }) => theme.colors.secondary};
-  }
-
-  span {
-    position: absolute;
-  }
-`;
-
-const UMovieLength = styled.span`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 2rem;
-  height: 2rem;
+  z-index: 10;
   display: flex;
-  background: ${({ theme }) => theme.colors.secondary};
-  align-items: center;
-  justify-content: center;
-  border-bottom-left-radius: 4px;
+  justify-content: space-between;
+  .user-favorite-movie {
+    font-size: 1.6rem;
+  }
+  div {
+    p {
+      text-transform: uppercase;
+      color: ${({ theme }) => theme.colors.secondary};
+    }
+
+    span {
+      position: absolute;
+    }
+  }
 `;
 
 const UMovieCard = styled.div`
   border: 2px solid ${({ theme }) => theme.colors.light};
-  cursor: pointer;
   border-radius: ${({ theme }) => theme.constants.radiusSm + "rem"};
   transition: transform 0.3s ease;
   position: relative;
   overflow: hidden;
-  div:first-child {
+  .react-aspect-ratio-placeholder {
     transition: transform 0.3s ease;
   }
   &:hover {
-    div:first-child {
+    .react-aspect-ratio-placeholder {
       transform: scale(1.3);
     }
     ${UMovieCardMeta} {
@@ -59,7 +54,7 @@ const UMovieCard = styled.div`
   }
 `;
 
-const Card = ({ backgroundImage, ratio, link, title, quality, length }) => {
+const Card = ({ backgroundImage, ratio, link, title, quality, id }) => {
   return (
     <UMovieCard>
       <Link to={link}>
@@ -69,15 +64,15 @@ const Card = ({ backgroundImage, ratio, link, title, quality, length }) => {
             backgroundImage: backgroundImage,
             backgroundSize: "cover",
           }}
-        ></AspectRatio>
-        <UMovieCardMeta>
-          {quality ? <p>{quality}</p> : null}
-
-          {title ? <h3>{title}</h3> : null}
-        </UMovieCardMeta>
-
-        {length ? <UMovieLength>{length}</UMovieLength> : null}
+        />
       </Link>
+      <UMovieCardMeta>
+        <div>
+          {quality ? <p>{quality}</p> : null}
+          {title ? <h3>{title}</h3> : null}
+        </div>
+        <FavoriteButton movieId={id} />
+      </UMovieCardMeta>
     </UMovieCard>
   );
 };

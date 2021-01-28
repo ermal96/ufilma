@@ -33,6 +33,7 @@ const Movies = () => {
                   quality={movie.quality}
                   title={movie.name}
                   categories={movie.categories}
+                  id={movie._id}
                 />
               ))
             : null}

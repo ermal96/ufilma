@@ -7,10 +7,11 @@ import {
   Categories,
   Movies,
   Category,
+  Favorites,
 } from "../pages";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
-// import PrivateRoute from "./PrivateRoute";
 import AuthRoute from "./AuthRoute";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = {
   home: "/",
@@ -18,6 +19,7 @@ export const routes = {
   register: "/register",
   movies: "/movies",
   categories: "/categories",
+  favorites: "/favorites",
 };
 
 export const Routes = () => {
@@ -28,6 +30,9 @@ export const Routes = () => {
       <AuthRoute path={routes.register} component={Register} />
 
       {/* Private Routes */}
+      <PrivateRoute exact path={routes.favorites} component={Favorites} />
+
+      {/* Routes */}
       <Route exact path={routes.home} component={Home} />
       <Route exact path={routes.movies} component={Movies} />
       <Route exact path={routes.categories} component={Categories} />

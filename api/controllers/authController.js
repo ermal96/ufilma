@@ -38,8 +38,8 @@ export const register = async (req, res) => {
 
       const userData = {
         name: user.name,
-        role: user.role,
         email: user.email,
+        favorites: user.favorites,
         id: user._id,
       };
 
@@ -70,6 +70,7 @@ export const login = async (req, res) => {
       const userData = {
         name: user.name,
         email: user.email,
+        favorites: user.favorites,
         id: user._id,
       };
 
@@ -95,6 +96,7 @@ export const autoLogin = async (req, res) => {
     const userData = {
       name: user.name,
       email: user.email,
+      favorites: user.favorites,
       id: userId,
     };
 
