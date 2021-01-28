@@ -6,6 +6,7 @@ export const setMovies = (payload) => ({ type: types.GET_MOVIES, payload });
 export const setMovie = (payload) => ({ type: types.GET_MOVIE, payload });
 export const removeMovie = (payload) => ({ type: types.DETELE_MOVIE, payload });
 export const setLoad = (payload) => ({ type: types.MOVIES_LOADED, payload });
+export const setError = (payload) => ({ type: types.MOVIE_ERROR, payload });
 
 export const createMovie = (payload) => ({
   type: types.ADD_MOVIE,
@@ -74,13 +75,14 @@ export const addMovie = (data) => async (dispatch) => {
   }
 
   try {
+    dispatch(setError(true));
     dispatch(createMovie());
 
     await axios.post("movies", formData, config);
     SuccessMsg("Created successfully");
+    dispatch(setError(false));
   } catch (error) {
     ErrorMsg(error.response.data.message);
-    console.log(error);
   }
 };
 
@@ -96,7 +98,8 @@ export const updateMovie = (data) => async (dispatch) => {
   formData.append("description", data.description);
   formData.append("year", data.year);
   formData.append("ratio", data.ratio);
-  formData.append("thumbnail", data.image);
+  formData.append("thumbnail", data.thumbnail);
+  formData.append("cover", data.cover);
   formData.append("trailerUrl", data.trailerUrl);
   formData.append("time", data.time);
   formData.append("quality", data.quality);
@@ -109,10 +112,12 @@ export const updateMovie = (data) => async (dispatch) => {
   }
 
   try {
+    dispatch(setError(true));
     dispatch(updMovie());
 
     await axios.put(`movies/${data.id}`, formData, config);
     SuccessMsg("Updated successfully");
+    dispatch(setError(false));
   } catch (error) {
     ErrorMsg(error.response.data.message);
   }

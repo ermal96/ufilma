@@ -4,7 +4,9 @@ import ULayout from "../../containers/Layout";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
 import { addCategory } from "../../store/actions/categoriesAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { routes } from "../../routes";
 
 const UCategoryGrid = styled.div`
   display: grid;
@@ -16,29 +18,32 @@ const UCategoryGrid = styled.div`
 `;
 
 const AddCategory = ({ match }) => {
-  const [image, setImage] = useState("");
+  const [thumbnailImage, setThumbnailImage] = useState("");
+  const error = useSelector(({ categories }) => categories.error);
 
   const dispatch = useDispatch();
-  const [form] = Form.useForm();
+  const history = useHistory();
 
   const handleUpload = (e) => {
-    setImage(e.file.originFileObj);
+    setThumbnailImage(e.file.originFileObj);
   };
   const onFinish = (values) => {
     dispatch(
       addCategory({
         name: values.name,
         description: values.description,
-        image: image,
+        thumbnail: thumbnailImage,
       })
     );
 
-    form.resetFields();
+    if (!error) {
+      history.push(routes.categories);
+    }
   };
 
   return (
     <ULayout activeRoute={match.path} activePage="Add Category">
-      <Form form={form} onFinish={onFinish}>
+      <Form onFinish={onFinish}>
         <UCategoryGrid>
           <div>
             <Form.Item name="name">
@@ -61,7 +66,7 @@ const AddCategory = ({ match }) => {
           <div>
             <Upload onChange={handleUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
-                Upload
+                Upload thumbnail
               </Button>
             </Upload>
           </div>

@@ -6,6 +6,7 @@ import ULayout from "../../containers/Layout";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
 import { updateCategory } from "../../store/actions/categoriesAction";
+import { useHistory } from "react-router-dom";
 import { routes } from "../../routes";
 
 const UCategoryGrid = styled.div`
@@ -18,70 +19,82 @@ const UCategoryGrid = styled.div`
 `;
 
 const Category = ({ match }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const { name, description, imageUrl, _id } = useSelector(
+
+  const { name, description, thumbnail, _id } = useSelector(
     ({ categories }) => categories.category
   );
-  const [image, setImage] = useState("");
+
+  const error = useSelector(({ categories }) => categories.error);
+
+  const [thumbnailImage, setThumbnailImage] = useState("");
 
   const [form] = Form.useForm();
 
   const handleUpload = (e) => {
-    setImage(e.file.originFileObj);
+    setThumbnailImage(e.file.originFileObj);
   };
+
   const onFinish = (values) => {
     dispatch(
       updateCategory({
         name: values.name,
         description: values.description,
-        image: image,
+        thumbnail: thumbnailImage,
         id: _id,
       })
     );
+
+    if (!error) {
+      history.push(routes.categories);
+    }
   };
   useEffect(() => {
     dispatch(getCategory(match.params.id));
     form.setFieldsValue({ name, description });
-  }, [dispatch, match.params.id, form, name, description, imageUrl]);
+  }, [dispatch, match.params.id, form, name, description, thumbnail]);
 
   return (
     <ULayout activeRoute={routes.categories} activePage="Edit Category">
       <Form form={form} onFinish={onFinish}>
-        <UCategoryGrid>
-          <div>
-            <Form.Item name="name">
-              <Input placeholder="Category Name" />
-            </Form.Item>
-            <Form.Item name="description">
-              <Input.TextArea rows={6} placeholder="Category Description" />
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Update Category
-              </Button>
-            </Form.Item>
-          </div>
+        {name ? (
+          <UCategoryGrid>
+            <div>
+              <Form.Item name="name">
+                <Input placeholder="Category Name" />
+              </Form.Item>
+              <Form.Item name="description">
+                <Input.TextArea rows={6} placeholder="Category Description" />
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  Update Category
+                </Button>
+              </Form.Item>
+            </div>
 
-          <div>
-            <Upload
-              onChange={handleUpload}
-              maxCount={1}
-              listType="picture"
-              defaultFileList={[
-                {
-                  name: "Category Thumbnail",
-                  thumbUrl: imageUrl
-                    ? process.env.REACT_APP_SERVER + imageUrl
-                    : "",
-                },
-              ]}
-            >
-              <Button block icon={<UploadOutlined />}>
-                Upload
-              </Button>
-            </Upload>
-          </div>
-        </UCategoryGrid>
+            <div>
+              <Upload
+                onChange={handleUpload}
+                maxCount={1}
+                listType="picture"
+                defaultFileList={[
+                  {
+                    name: "Category Thumbnail",
+                    thumbUrl: thumbnail
+                      ? process.env.REACT_APP_SERVER + thumbnail
+                      : "",
+                  },
+                ]}
+              >
+                <Button block icon={<UploadOutlined />}>
+                  Update thumbnail
+                </Button>
+              </Upload>
+            </div>
+          </UCategoryGrid>
+        ) : null}
       </Form>
     </ULayout>
   );

@@ -4,6 +4,7 @@ const defaultState = {
   categories: {},
   category: {},
   loaded: false,
+  error: false,
 };
 
 export const categoriesReducer = (state = defaultState, action) => {
@@ -18,6 +19,11 @@ export const categoriesReducer = (state = defaultState, action) => {
       return {
         ...state,
         category: action.payload,
+      };
+    case types.CATEGORY_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
 
     case types.CATEGORIES_LOADED:

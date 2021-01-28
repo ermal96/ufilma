@@ -48,7 +48,6 @@ export const getMovesByCategory = async (req, res) => {
     const movies = await Movie.find({ categories: { _id: req.params.id } })
       .select("-__v")
       .populate("categories", "name");
-    console.log(movies);
     // send movie
     return res.status(200).send({
       movies,
@@ -125,8 +124,47 @@ export const updateById = async (req, res) => {
 
   // copy req.body to updatedMovie const
   const updatedMovie = {
-    ...req.body,
+    name: req.body.name,
+    description: req.body.description,
+    quality: req.body.quality,
+    year: req.body.year,
+    ratio: req.body.ratio,
+    trailerUrl: req.body.trailerUrl,
+    time: req.body.time,
+    videoUrl: req.body.videoUrl,
   };
+
+  if (req.body.categories) {
+    updatedMovie.categories = req.body.categories;
+  }
+
+  if (req.files.thumbnail) {
+    // get images path from req
+    const thumbnailSrc = req.files.thumbnail.path;
+
+    // store images dest
+    const thumbnailDest = req.files.thumbnail.name;
+
+    // upload images
+    upload(thumbnailSrc, thumbnailDest, res);
+
+    // asign thumbnail
+    updatedMovie.thumbnail = generateImagePath(thumbnailDest);
+  }
+
+  if (req.files.cover) {
+    // get images path from req
+    const coverSrc = req.files.cover.path;
+
+    // store images dest
+    const coverDest = req.files.cover.name;
+
+    // upload images
+    upload(coverSrc, coverDest, res);
+
+    // asign cover
+    updatedMovie.cover = generateImagePath(coverDest);
+  }
 
   try {
     // find movie and update
@@ -145,7 +183,6 @@ export const updateById = async (req, res) => {
     });
   } catch (error) {
     // send error
-    console.log(error);
     res.status(400).send({
       message: JSON.stringify(error),
     });

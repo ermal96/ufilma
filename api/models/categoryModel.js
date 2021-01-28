@@ -6,7 +6,10 @@ const categorySchema = new mongoose.Schema({
     required: true,
   },
   description: String,
-  thumbnail: String,
+  thumbnail: {
+    type: String,
+    required: true,
+  },
   movies: [
     {
       type: mongoose.Schema.Types.ObjectId,

@@ -73,8 +73,6 @@ export const login = async (req, res) => {
         id: user._id,
       };
 
-      console.log(userData);
-
       return res.status(200).send({ token, user: userData });
     } else {
       return res.status(400).send({ message: "Sorry password is wrong" });

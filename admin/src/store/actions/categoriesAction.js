@@ -27,6 +27,11 @@ export const updateCat = (payload) => ({
   payload,
 });
 
+export const setError = (payload) => ({
+  type: types.CATEGORY_ERROR,
+  payload,
+});
+
 export const getCategories = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));
@@ -71,12 +76,14 @@ export const addCategory = (data) => async (dispatch) => {
   let formData = new FormData();
   formData.append("name", data.name);
   formData.append("description", data.description);
-  formData.append("thumbnail", data.image);
+  formData.append("thumbnail", data.thumbnail);
 
   try {
+    dispatch(setError(true));
     dispatch(createCategory());
     await axios.post("categories", formData, config);
     SuccessMsg("Created successfully");
+    dispatch(setError(false));
   } catch (error) {
     ErrorMsg("Something went wrong please try aggain latter");
   }
@@ -92,12 +99,14 @@ export const updateCategory = (data) => async (dispatch) => {
   let formData = new FormData();
   formData.append("name", data.name);
   formData.append("description", data.description);
-  formData.append("thumbnail", data.image);
+  formData.append("thumbnail", data.thumbnail);
 
   try {
+    dispatch(setError(true));
     dispatch(updateCat());
     await axios.put(`categories/${data.id}`, formData, config);
     SuccessMsg("Updated successfully");
+    dispatch(setError(false));
   } catch (error) {
     ErrorMsg("Something went wrong please try aggain latter");
   }

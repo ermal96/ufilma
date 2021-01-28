@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
 import { getCategories } from "../../store/actions/categoriesAction";
 import { addMovie } from "../../store/actions/moviesAction";
+import { useHistory } from "react-router-dom";
+import { routes } from "../../routes";
 
 const UMoviesGrid = styled.div`
   display: grid;
@@ -24,6 +26,9 @@ const UMovieColum = styled.div`
 
 const AddMovie = ({ match }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const error = useSelector(({ movies }) => movies.error);
   const categories = useSelector(({ categories }) => categories.categories);
 
   useEffect(() => {
@@ -44,6 +49,10 @@ const AddMovie = ({ match }) => {
 
   const onFinish = (values) => {
     dispatch(addMovie({ ...values, thumbnail, cover }));
+
+    if (!error) {
+      history.push(routes.movies);
+    }
   };
 
   const { Option } = Select;
