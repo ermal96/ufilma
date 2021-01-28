@@ -18,7 +18,7 @@ const Movies = () => {
       <PageHeader
         title="Filmat"
         imageUrl="https://images.unsplash.com/photo-1599967104345-548003f5a626?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1952&q=80"
-        description="Ketu do te gjeni te gjith filmat ne nje tjter kualitet mundesuar nga ufima.com "
+        description="Këtu do te gjeni te gjithë filmat ne nje tjter kualitet mundesuar nga ufilma.com "
       />
 
       <Container>

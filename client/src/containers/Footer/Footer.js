@@ -11,7 +11,7 @@ const UFooter = styled.footer`
 `;
 
 const Footer = () => {
-  return <UFooter>Copyright 2021 ufilma.com</UFooter>;
+  return <UFooter>&copy; Copyright 2021</UFooter>;
 };
 
 export default Footer;

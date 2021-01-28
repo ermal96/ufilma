@@ -25,7 +25,7 @@ const Category = ({ match }) => {
       <PageHeader
         title={category.name}
         imageUrl="https://s.studiobinder.com/wp-content/uploads/2020/05/Best-Action-Movies-of-All-Time-Featured-.jpg"
-        description={`Ketu do te gjeni te gjith filmat e kategorise ${category.name} shikim të këndshëm!`}
+        description={`Këtu do te gjeni te gjithë filmat e kategorisë ${category.name} shikim të këndshëm!`}
       />
       <Container>
         <Grid>
