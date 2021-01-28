@@ -66,7 +66,6 @@ export const getUserFavoriteMovies = (movies) => async (dispatch) => {
   try {
     dispatch(setLoad(true));
     const result = await axios.put("movies/favorites", movies);
-    console.log(result);
     dispatch(setUserFavoriteMovies(result.data.movies));
     dispatch(setLoad(false));
   } catch (error) {
