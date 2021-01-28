@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import {
-  RiFullscreenFill,
-  RiPlayLine,
-  RiPauseLine,
-  RiTimer2Line,
-} from "react-icons/ri";
+import { RiFullscreenFill, RiPlayLine, RiPauseLine } from "react-icons/ri";
 import Volume from "./Volume";
 import Timeline from "./Timeline";
-import Tooltip from "../Base/Tooltip";
 import styled, { keyframes } from "styled-components";
 import Title from "./Title";
 
@@ -30,11 +24,8 @@ const UPlayerControls = styled.div`
   justify-content: flex-end;
   font-size: 3rem;
   padding: 0 2rem;
-  opacity: ${(props) => (props.playing ? 0 : 1)};
+  opacity: ${(props) => (props.controlsActive ? 1 : 0)};
   transition: all 0.3s ease;
-  &:hover {
-    opacity: 1;
-  }
 `;
 const pulse = keyframes`
   0% {
@@ -88,6 +79,7 @@ const UPlayerControlsWrapper = styled.div`
   z-index: 2;
   position: relative;
   padding-top: 2rem;
+  height: 9rem;
 `;
 
 const UPlayerControlsLeft = styled.div`
@@ -107,6 +99,7 @@ const UPlayerControlsLeft = styled.div`
 const UPlayerControlsRight = styled.div`
   display: flex;
   align-items: center;
+
   svg {
     transition: all 0.3s ease;
     cursor: pointer;
@@ -118,24 +111,9 @@ const UPlayerControlsRight = styled.div`
   }
 `;
 
-const UPlaybackWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 3rem;
-  width: 13rem;
-`;
-
-const UPlaybackSpeed = styled.p`
-  font-weight: bold;
-
-  cursor: pointer;
-  color: ${(props) =>
-    props.active ? props.theme.colors.secondary : "inherit"};
-`;
-
 const Controls = (props) => {
   const [controlAreaClasses, setControlAreaClasses] = useState();
+  const [controlsActive, setControlActive] = useState(true);
 
   const handleControlArea = () => {
     props.setPlaying(!props.playing);
@@ -146,8 +124,21 @@ const Controls = (props) => {
     }, 300);
   };
 
+  const handleControlsVisibility = () => {
+    setControlActive(true);
+    if (props.playing && props.played) {
+      setTimeout(() => {
+        setControlActive(false);
+      }, 5000);
+    }
+  };
+
   return (
-    <UPlayerControls playing={props.playing}>
+    <UPlayerControls
+      onMouseEnter={handleControlsVisibility}
+      onMouseMove={handleControlsVisibility}
+      controlsActive={controlsActive}
+    >
       <UPlayerControlsArea
         className={controlAreaClasses}
         onClick={handleControlArea}
@@ -194,40 +185,6 @@ const Controls = (props) => {
 
         {/* Right controls */}
         <UPlayerControlsRight>
-          {/* Playbak speed */}
-          <Tooltip
-            content={
-              <UPlaybackWrapper
-                onMouseEnter={() => props.setTimelineVisible(false)}
-                onMouseLeave={() => props.setTimelineVisible(true)}
-              >
-                <UPlaybackSpeed
-                  active={props.playbackRate === 0.5 ? true : false}
-                  onClick={() => props.setPlaybackRate(0.5)}
-                >
-                  0.5x
-                </UPlaybackSpeed>
-                <UPlaybackSpeed
-                  active={props.playbackRate === 1 ? true : false}
-                  onClick={() => props.setPlaybackRate(1)}
-                >
-                  1.0x
-                </UPlaybackSpeed>
-                <UPlaybackSpeed
-                  active={props.playbackRate === 1.5 ? true : false}
-                  onClick={() => props.setPlaybackRate(1.5)}
-                >
-                  1.5x
-                </UPlaybackSpeed>
-              </UPlaybackWrapper>
-            }
-          >
-            <RiTimer2Line
-              onMouseEnter={() => props.setTimelineVisible(false)}
-              onMouseLeave={() => props.setTimelineVisible(true)}
-            />
-          </Tooltip>
-
           {/* Fullscreen mode */}
           <RiFullscreenFill
             title="Fullscreen"
