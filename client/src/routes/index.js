@@ -17,9 +17,9 @@ export const routes = {
   home: "/",
   login: "/login",
   register: "/register",
-  movies: "/movies",
-  categories: "/categories",
-  favorites: "/favorites",
+  movies: "/filmat",
+  categories: "/kategorite",
+  favorites: "/filmat-e-preferuar",
 };
 
 export const Routes = () => {

@@ -5,6 +5,14 @@ import { routes } from "../../routes";
 import { Layout } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFavoriteMovies } from "../../store/actions/moviesAction";
+import styled from "styled-components";
+
+const UFavoriteNotFound = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+`;
 
 const Favorites = () => {
   const favoriteMoviesId = useSelector(({ user }) => user.favoriteMovies);
@@ -39,15 +47,14 @@ const Favorites = () => {
             ))}
           </Grid>
         ) : (
-          <>
-            <br />
+          <UFavoriteNotFound>
             <h1>Ju nuk kemi asnje film te preferuar</h1>
-            <br />
+
             <p>
               Ju mund te shtoni filma te pereferuar duke kilikuar ikonen me
               zemer
             </p>
-          </>
+          </UFavoriteNotFound>
         )}
       </Container>
     </Layout>
