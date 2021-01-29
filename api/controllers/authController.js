@@ -37,10 +37,10 @@ export const register = async (req, res) => {
       const token = genToken({ id: user._id });
 
       const userData = {
+        id: user._id,
         name: user.name,
         email: user.email,
         favorites: user.favorites,
-        id: user._id,
       };
 
       return res.status(201).send({ token, user: userData });
@@ -68,10 +68,10 @@ export const login = async (req, res) => {
       const token = await genToken({ id: user._id });
 
       const userData = {
+        id: user._id,
         name: user.name,
         email: user.email,
         favorites: user.favorites,
-        id: user._id,
       };
 
       return res.status(200).send({ token, user: userData });
@@ -94,10 +94,10 @@ export const autoLogin = async (req, res) => {
     const token = await genToken({ id: userId });
 
     const userData = {
+      id: userId,
       name: user.name,
       email: user.email,
       favorites: user.favorites,
-      id: userId,
     };
 
     return res.status(200).send({ token, user: userData });

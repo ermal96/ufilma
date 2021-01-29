@@ -39,7 +39,7 @@ const FavoriteButton = ({ movieId }) => {
 
   return (
     <>
-      {user.id && isLoaded && movieId ? (
+      {isLoaded && movieId && user.id ? (
         favoriteMovies.includes(movieId) ? (
           <UMovieFavorite
             className="user-favorite-movie"

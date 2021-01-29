@@ -15,6 +15,8 @@ export const fetchUser = (userInfo) => async (dispatch) => {
     const result = await axios.post("auth/login", userInfo);
     localStorage.setItem("token", result.data.token);
 
+    dispatch(setFavoritesMovie(result.data.user.favorites));
+
     dispatch(
       setUser({
         name: result.data.user.name,
@@ -22,8 +24,9 @@ export const fetchUser = (userInfo) => async (dispatch) => {
         id: result.data.user.id,
       })
     );
+
     dispatch(setLoad(true));
-    message.success(`Welcome ${result.data.user.name}`);
+    message.success(`Miresevjen ${result.data.user.name}`);
   } catch (error) {
     message.error(error.response.data.message);
     localStorage.clear();
@@ -35,6 +38,8 @@ export const signUserUp = (userInfo) => async (dispatch) => {
     const result = await axios.post("auth/register", userInfo);
     localStorage.setItem("token", result.data.token);
 
+    dispatch(setFavoritesMovie(result.data.user.favorites));
+
     dispatch(
       setUser({
         name: result.data.user.name,
@@ -42,7 +47,7 @@ export const signUserUp = (userInfo) => async (dispatch) => {
         id: result.data.user.id,
       })
     );
-    dispatch(setFavoritesMovie(result.data.user.favorites));
+
     dispatch(setLoad(true));
   } catch (error) {
     message.error(error.response.data.message);
@@ -54,6 +59,8 @@ export const autoLogin = () => async (dispatch) => {
     const result = await axios.get("auth/auto_login");
     localStorage.setItem("token", result.data.token);
 
+    dispatch(setFavoritesMovie(result.data.user.favorites));
+
     dispatch(
       setUser({
         name: result.data.user.name,
@@ -61,7 +68,7 @@ export const autoLogin = () => async (dispatch) => {
         id: result.data.user.id,
       })
     );
-    dispatch(setFavoritesMovie(result.data.user.favorites));
+
     dispatch(setLoad(true));
   } catch (error) {
     dispatch(setLoad(true));
@@ -91,6 +98,4 @@ export const logout = () => async (dispatch) => {
   });
 
   dispatch(setLoad(true));
-
-  message.success(`You have sucessully loggout`);
 };
