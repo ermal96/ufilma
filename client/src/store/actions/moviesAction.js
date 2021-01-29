@@ -1,6 +1,7 @@
 import { types } from "../types";
 import axios from "axios";
 
+// action creators
 export const setMovies = (payload) => ({
   type: types.movies.GET_MOVIES,
   payload,
@@ -28,6 +29,8 @@ export const setUserFavoriteMovies = (payload) => ({
   type: types.movies.GET_USER_FAVORITE_MOVIES,
   payload,
 });
+
+// actions
 
 export const getMovies = () => async (dispatch) => {
   try {

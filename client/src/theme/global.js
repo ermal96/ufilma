@@ -22,8 +22,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    color: #f3f3f3;
     font-size: 1.5rem;
+
+   color: ${({ theme }) => theme.colors.main}
   }
   h1{
     font-weight:500;

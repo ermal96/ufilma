@@ -8,7 +8,7 @@ const ULogo = styled.img`
   width: 13rem;
   transition: all 0.3s ease;
 
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     &.hide {
       display: none;
     }

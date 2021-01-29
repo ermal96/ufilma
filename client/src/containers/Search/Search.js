@@ -15,7 +15,7 @@ const USearch = styled.div`
   form {
     margin-left: 2rem;
     position: relative;
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
       margin-left: ${({ searchOpen }) => (searchOpen ? 0 : "2rem")};
       margin-right: -1rem;
       width: ${({ searchOpen }) => (searchOpen ? "100%" : "auto")};
@@ -41,7 +41,7 @@ const USearchIon = styled.div`
   top: 50%;
   transform: translateY(-50%);
   color: ${(props) =>
-    props.open ? props.theme.colors.secondary : props.theme.colors.light};
+    props.open ? props.theme.colors.accent : props.theme.colors.main};
 `;
 
 const USearchResult = styled.section`
@@ -50,12 +50,12 @@ const USearchResult = styled.section`
   border-bottom-left-radius: 5px;
   width: 27.5rem;
   right: 0;
-  background-color: ${({ theme }) => theme.colors.accent};
+  background-color: ${({ theme }) => theme.colors.secondary};
   top: ${({ theme }) => theme.constants.headerHeight + "rem"};
   z-index: 50;
   color: ${({ theme }) => theme.colors.primary};
 
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     width: 100%;
     right: unset;
     left: 50%;
@@ -74,11 +74,11 @@ const USearchResultColumn = styled.div`
     opacity: 0.7;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     padding-left: 2.5rem;
   }
 
-  color: ${({ theme }) => theme.colors.light};
+  color: ${({ theme }) => theme.colors.main};
 
   img {
     margin-right: 1rem;
@@ -125,7 +125,7 @@ const Search = ({ searchOpen }) => {
           <Input
             onChange={(e) => handleSearchChange(e)}
             variant="light"
-            placeholder="Search for any movie"
+            placeholder="Kerko per filma"
           />
         ) : null}
 

@@ -4,7 +4,9 @@ const setColor = (variant, colors) => {
   } else if (variant === "secondary") {
     return colors.secondary;
   } else if (variant === "light") {
-    return colors.light;
+    return colors.main;
+  } else {
+    return colors.main;
   }
 };
 

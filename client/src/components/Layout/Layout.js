@@ -9,7 +9,7 @@ const ULayout = styled.main`
 `;
 
 const UWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.accent};
+  background: ${({ theme }) => theme.colors.secondary};
   padding-bottom: 5rem;
   min-height: calc(
     100vh - ${({ theme }) => theme.constants.headerHeight + "rem"}

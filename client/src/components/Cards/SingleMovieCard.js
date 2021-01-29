@@ -14,8 +14,8 @@ const USingleMovieCardTitle = styled.h1`
 `;
 
 const USingleMovieCardCategories = styled.span`
-  border: 1px solid ${({ theme }) => theme.colors.light};
-  color: ${({ theme }) => theme.colors.light};
+  border: 1px solid ${({ theme }) => theme.colors.main};
+  color: ${({ theme }) => theme.colors.main};
   padding: 0.2rem 0.7rem;
   font-weight: bold;
   margin-bottom: 2rem;
@@ -42,14 +42,14 @@ const USingleMovieCardYear = styled.span`
   margin-bottom: 1rem;
   display: inline-block;
   margin-right: 2rem;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.secondary};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.accent};
 `;
 
 const USingleMovieCardTime = styled.span`
   margin-bottom: 1rem;
   margin-right: 2rem;
   display: inline-block;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.accent};
 `;
 
 const USingleMovieCardRated = styled.p`
@@ -63,7 +63,7 @@ const SingleMovieCard = ({ data }) => {
       <USingleMovieCardTime>{data.time} min</USingleMovieCardTime>
 
       <USingleMovieCardTitle>
-        {data.name}{" "}
+        {data.name}
         <USingleMovieCardQuality>{data.quality}</USingleMovieCardQuality>
       </USingleMovieCardTitle>
       {data.categories

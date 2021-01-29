@@ -2,6 +2,7 @@ import { types } from "../types";
 import axios from "axios";
 import message from "../../utils/message";
 
+// actions creators
 export const setUser = (payload) => ({ type: types.user.SET_USER, payload });
 export const setLoad = (payload) => ({ type: types.user.USER_LOADED, payload });
 export const setError = (payload) => ({ type: types.user.SET_ERROR, payload });
@@ -10,6 +11,7 @@ export const setFavoritesMovie = (payload) => ({
   payload,
 });
 
+// actions
 export const fetchUser = (userInfo) => async (dispatch) => {
   try {
     const result = await axios.post("auth/login", userInfo);

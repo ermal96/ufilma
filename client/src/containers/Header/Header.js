@@ -27,7 +27,7 @@ const UHeaderNav = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     justify-content: space-between;
     width: ${({ searchOpen }) => (searchOpen ? "auto" : "100%")};
   }
@@ -36,7 +36,7 @@ const UHeaderNav = styled.div`
 const UHeaderMini = styled.div`
   display: flex;
   align-items: center;
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     justify-content: space-between;
     width: ${({ searchOpen }) => (searchOpen ? "100%" : "auto")};
   }
@@ -46,7 +46,7 @@ const UAuth = styled.div`
   font-size: 2.5rem;
   margin-left: 2rem;
   display: flex;
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     margin-left: 3rem;
   }
   a {

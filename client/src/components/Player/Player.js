@@ -11,9 +11,9 @@ const UPlayer = styled.div`
   position: relative;
   outline: none;
   height: 85vh;
-  background: ${({ theme }) => theme.colors.black};
+  background: ${({ theme }) => theme.colors.tertiary};
 
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     height: 30rem;
   }
 `;

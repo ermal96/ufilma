@@ -1,13 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RiHeart3Line, RiHeart3Fill } from "react-icons/ri";
-import { addFavorite, removeFavorite } from "../../store/actions/userActions";
+import {
+  addFavorite,
+  removeFavorite,
+} from "../../../store/actions/userActions";
 import styled from "styled-components";
 
 const UMovieFavorite = styled.span`
   cursor: pointer;
   svg {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.accent};
     font-size: inherit;
   }
 `;

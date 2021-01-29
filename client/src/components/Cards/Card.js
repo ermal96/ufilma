@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import AspectRatio from "react-aspect-ratio";
 import { Link } from "react-router-dom";
-import FavoriteButton from "../Base/FavoriteButton";
+import { FavoriteButton } from "../index";
 
 const UMovieCardMeta = styled.div`
   padding: 1rem;
@@ -10,7 +10,7 @@ const UMovieCardMeta = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  background: ${({ theme }) => theme.colors.light};
+  background: ${({ theme }) => theme.colors.main};
   min-height: 4rem;
   display: block;
   opacity: 0;
@@ -23,7 +23,7 @@ const UMovieCardMeta = styled.div`
   &.position-relative {
     opacity: 1;
     background: transparent;
-    color: ${({ theme }) => theme.colors.light};
+    color: ${({ theme }) => theme.colors.main};
     text-shadow: 0px 0px 1px ${({ theme }) => theme.colors.primary};
   }
 
@@ -33,7 +33,7 @@ const UMovieCardMeta = styled.div`
   div {
     p {
       text-transform: uppercase;
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.accent};
     }
 
     span {
@@ -43,7 +43,7 @@ const UMovieCardMeta = styled.div`
 `;
 
 const UMovieCard = styled.div`
-  border: 2px solid ${({ theme }) => theme.colors.light};
+  border: 2px solid ${({ theme }) => theme.colors.main};
   border-radius: ${({ theme }) => theme.constants.radiusSm + "rem"};
   transition: transform 0.3s ease;
   position: relative;

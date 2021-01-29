@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const UPageHeader = styled.div`
   .react-aspect-ratio-placeholder {
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
       height: 30rem;
     }
   }

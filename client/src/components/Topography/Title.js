@@ -4,10 +4,10 @@ import styled from "styled-components";
 const UTitle = styled.h1`
   font-size: 2.7rem;
   position: relative;
-  color: ${({ theme }) => theme.colors.light};
+  color: ${({ theme }) => theme.colors.main};
   margin-top: 2.5rem;
   display: inline-block;
-  border-bottom: 0.2rem solid ${({ theme }) => theme.colors.secondary};
+  border-bottom: 0.2rem solid ${({ theme }) => theme.colors.accent};
 `;
 
 const Title = ({ children }) => {

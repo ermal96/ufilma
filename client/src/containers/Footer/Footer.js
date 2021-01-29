@@ -7,7 +7,7 @@ const UFooter = styled.footer`
   display: flex;
   align-items: center;
   background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.light};
+  color: ${({ theme }) => theme.colors.main};
 `;
 
 const Footer = () => {

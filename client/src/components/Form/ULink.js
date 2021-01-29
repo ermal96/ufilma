@@ -6,7 +6,7 @@ import { BsArrowRight } from "react-icons/bs";
 const UILink = styled.p`
   margin: 0 0 2rem 0;
   a {
-    color: ${({ theme }) => theme.colors.white} !important;
+    color: ${({ theme }) => theme.colors.main} !important;
     text-decoration: none;
     display: flex;
     align-items: center;

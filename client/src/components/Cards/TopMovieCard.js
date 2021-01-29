@@ -6,7 +6,7 @@ import { routes } from "../../routes";
 
 const UTopmovie = styled.div`
   .react-aspect-ratio-placeholder {
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
       min-height: 40rem;
     }
     min-height: 50rem;
@@ -41,9 +41,9 @@ const UTopMovieBody = styled.div`
 
 const UTopMovieBodyYear = styled.p`
   margin-bottom: 0.5rem;
-  color: ${({ theme }) => theme.colors.light};
+  color: ${({ theme }) => theme.colors.main};
   display: inline-block;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.secondary};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.accent};
 `;
 
 const UTopMovieBodyTitle = styled.h1`

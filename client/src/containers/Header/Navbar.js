@@ -9,7 +9,7 @@ import { useLocation } from "react-router";
 
 const UNavbar = styled.nav`
   margin-left: 2rem;
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     margin-left: 0;
   }
   ul {
@@ -18,7 +18,7 @@ const UNavbar = styled.nav`
     padding: 0;
     display: flex;
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
       z-index: 100;
       flex-direction: column;
       position: absolute;
@@ -35,7 +35,7 @@ const UNavbar = styled.nav`
       list-style: none;
       margin: 0 1rem;
       font-size: 1.7rem;
-      @media (max-width: 767px) {
+      @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
         margin: 1rem 0;
 
         font-size: 2rem;
@@ -49,7 +49,7 @@ const UNavbar = styled.nav`
       .active {
         font-weight: bold;
 
-        @media (max-width: 767px) {
+        @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
           border-bottom: 2px solid red;
         }
       }
@@ -66,8 +66,8 @@ const UNavbarMenuIcon = styled.div`
   font-size: 2.5rem;
 
   color: ${(props) =>
-    props.open ? props.theme.colors.secondary : props.theme.colors.light};
-  @media (max-width: 767px) {
+    props.open ? props.theme.colors.accent : props.theme.colors.main};
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     display: block;
     margin-right: 2.5rem;
     line-height: 0;
@@ -102,7 +102,7 @@ const Navbar = () => {
           <NavLink to={routes.movies}>Filma</NavLink>
         </li>
         <li>
-          <NavLink to={routes.categories}>Kategorite</NavLink>
+          <NavLink to={routes.categories}>Kategoritë</NavLink>
         </li>
         {isLoggedIn ? (
           <li>

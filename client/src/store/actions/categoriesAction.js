@@ -1,6 +1,7 @@
 import { types } from "../types";
 import axios from "axios";
 
+// action creators
 export const setCategories = (payload) => ({
   type: types.categories.GET_CATEGORIES,
   payload,
@@ -14,6 +15,7 @@ export const setLoad = (payload) => ({
   payload,
 });
 
+// actions
 export const getCategories = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));

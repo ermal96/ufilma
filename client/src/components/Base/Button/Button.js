@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { setColor, setSize } from "../Helpers";
+import { setColor, setSize } from "../../Helpers";
 
 const UButon = styled.button`
   border: 0.2rem solid ${(props) => setColor(props.variant, props.theme.colors)};
@@ -19,10 +19,10 @@ const UButon = styled.button`
     text-decoration: none;
   }
   &:active {
-    border: 0.2rem solid ${({ theme }) => theme.colors.secondary};
+    border: 0.2rem solid ${({ theme }) => theme.colors.accent};
   }
   &:hover {
-    border: 0.2rem solid ${({ theme }) => theme.colors.secondary};
+    border: 0.2rem solid ${({ theme }) => theme.colors.accent};
   }
 `;
 

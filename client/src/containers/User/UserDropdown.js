@@ -18,12 +18,12 @@ const UDropdownHead = styled.div`
   svg {
     font-size: 2.5rem;
     border-radius: 50px;
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
       font-size: 3rem;
     }
 
     color: ${(props) =>
-      props.state ? props.theme.colors.secondary : props.theme.colors.light};
+      props.state ? props.theme.colors.accent : props.theme.colors.main};
   }
 `;
 
@@ -34,14 +34,14 @@ const UDropdownBody = styled.ul`
   position: absolute;
   border-bottom-left-radius: 5px;
   min-width: 27.5rem;
-  background: ${({ theme }) => theme.colors.accent};
-  color: ${({ theme }) => theme.colors.light};
+  background: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.main};
 
   text-align: left;
   right: 0;
   top: ${({ theme }) => theme.constants.headerHeight + "rem"};
 
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     width: 100%;
     border-radius: 0;
   }

@@ -16,7 +16,7 @@ const UInput = styled.input`
   transition: border 0.1s ease;
 
   &:focus {
-    border: 0.2rem solid ${({ theme }) => theme.colors.secondary};
+    border: 0.2rem solid ${({ theme }) => theme.colors.accent};
   }
 `;
 

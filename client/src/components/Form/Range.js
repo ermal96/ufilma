@@ -13,12 +13,11 @@ const URange = styled.input`
   background: linear-gradient(
     to right,
     /* red ////////////////////////////////////////////*/
-      ${({ theme }) => theme.colors.secondary} 0%,
-    ${({ theme }) => theme.colors.secondary}
+      ${({ theme }) => theme.colors.accent} 0%,
+    ${({ theme }) => theme.colors.accent} ${(props) => props.value * 100 + "%"},
+    /* light */ ${({ theme }) => theme.colors.main}
       ${(props) => props.value * 100 + "%"},
-    /* light */ ${({ theme }) => theme.colors.light}
-      ${(props) => props.value * 100 + "%"},
-    ${({ theme }) => theme.colors.light} 100%
+    ${({ theme }) => theme.colors.main} 100%
   );
 
   &:focus {
@@ -38,7 +37,7 @@ const URange = styled.input`
     border: none;
     height: 1.3rem;
     width: 1.3rem;
-    background: ${({ theme }) => theme.colors.secondary};
+    background: ${({ theme }) => theme.colors.accent};
     margin-top: -0.3rem;
     border-radius: 50%;
     transition: all 0.3s ease;
@@ -59,7 +58,7 @@ const URange = styled.input`
     border: none;
     height: 1.3rem;
     width: 1.3rem;
-    background: ${({ theme }) => theme.colors.secondary};
+    background: ${({ theme }) => theme.colors.accent};
     margin-top: -0.2rem;
     border-radius: 50%;
 

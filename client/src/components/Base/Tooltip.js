@@ -12,7 +12,7 @@ const UTooltipTop = styled.div`
   border-radius: 0.3rem;
   right: 80%;
   color: white;
-  background: ${({ theme }) => theme.colors.light};
+  background: ${({ theme }) => theme.colors.main};
   color: ${({ theme }) => theme.colors.accent};
   font-size: 1.2rem;
   line-height: 1;
