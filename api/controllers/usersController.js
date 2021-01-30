@@ -100,3 +100,17 @@ export const addWatching = async (req, res) => {
     });
   }
 };
+
+export const getWatching = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.body.userId });
+
+    res.status(200).send({
+      watching: user.watching,
+    });
+  } catch (error) {
+    res.send({
+      message: "Something went wrong",
+    });
+  }
+};

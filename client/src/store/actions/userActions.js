@@ -87,7 +87,13 @@ export const autoLogin = () => async (dispatch) => {
 
 export const addWatching = (data) => async (dispatch) => {
   try {
-    const result = await axios.post("users/add-watching", data);
+    await axios.post("users/add-watching", data);
+  } catch (error) {}
+};
+
+export const getWatching = (data) => async (dispatch) => {
+  try {
+    const result = await axios.post("users/get-watching", data);
     dispatch(setWatching(result.data.watching));
   } catch (error) {}
 };

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import screenfull from "screenfull";
 import Controls from "./Controls";
 import Loader from "./Loader";
-import { addWatching } from "../../store/actions/userActions";
+import { addWatching, getWatching } from "../../store/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const UPlayer = styled.div`
@@ -34,6 +34,7 @@ const UCover = styled.img`
 const Player = ({ src, cover, controls = false, title }) => {
   const dispatch = useDispatch();
   const movieId = useSelector(({ movies }) => movies.movie._id);
+  const isLoggedIn = useSelector(({ user }) => user.loggedIn);
   const userId = useSelector(({ user }) => user.user.id);
   const watching = useSelector(({ user }) => user.watching);
 
@@ -70,28 +71,37 @@ const Player = ({ src, cover, controls = false, title }) => {
   };
 
   useEffect(() => {
-    if (filterTime.length) {
-      setUpdatedTime(Number(filterTime[0].played));
+    if (isLoggedIn) {
+      dispatch(
+        getWatching({
+          userId,
+        })
+      );
 
-      if (updatedTime) {
-        setPlayed(updatedTime);
-        playerRef.current.seekTo(updatedTime);
+      if (filterTime.length) {
+        setUpdatedTime(Number(filterTime[0].played));
+
+        if (updatedTime) {
+          setPlayed(updatedTime);
+          playerRef.current.seekTo(updatedTime);
+        }
       }
+
+      return () => {
+        if (savedTime.current !== undefined) {
+          dispatch(
+            addWatching({
+              userId,
+              _id: movieId,
+              played: savedTime.current.toString(),
+            })
+          );
+        }
+      };
     }
 
-    return () => {
-      if (savedTime.current !== undefined) {
-        dispatch(
-          addWatching({
-            userId,
-            _id: movieId,
-            played: savedTime.current.toString(),
-          })
-        );
-      }
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, movieId, userId, updatedTime]);
+  }, [dispatch, movieId, userId, updatedTime, isLoggedIn]);
 
   return (
     <>
