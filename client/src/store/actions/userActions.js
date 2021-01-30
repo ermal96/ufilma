@@ -11,6 +11,11 @@ export const setFavoritesMovie = (payload) => ({
   payload,
 });
 
+export const setWatching = (payload) => ({
+  type: types.user.SET_WATCHING,
+  payload,
+});
+
 // actions
 export const fetchUser = (userInfo) => async (dispatch) => {
   try {
@@ -18,6 +23,7 @@ export const fetchUser = (userInfo) => async (dispatch) => {
     localStorage.setItem("token", result.data.token);
 
     dispatch(setFavoritesMovie(result.data.user.favorites));
+    dispatch(setWatching(result.data.user.watching));
 
     dispatch(
       setUser({
@@ -62,6 +68,7 @@ export const autoLogin = () => async (dispatch) => {
     localStorage.setItem("token", result.data.token);
 
     dispatch(setFavoritesMovie(result.data.user.favorites));
+    dispatch(setWatching(result.data.user.watching));
 
     dispatch(
       setUser({
@@ -76,6 +83,13 @@ export const autoLogin = () => async (dispatch) => {
     dispatch(setLoad(true));
     localStorage.clear();
   }
+};
+
+export const addWatching = (data) => async (dispatch) => {
+  try {
+    const result = await axios.post("users/add-watching", data);
+    dispatch(setWatching(result.data.watching));
+  } catch (error) {}
 };
 
 export const addFavorite = (data) => async (dispatch) => {

@@ -72,6 +72,7 @@ export const login = async (req, res) => {
         name: user.name,
         email: user.email,
         favorites: user.favorites,
+        watching: user.watching,
       };
 
       return res.status(200).send({ token, user: userData });
@@ -98,6 +99,7 @@ export const autoLogin = async (req, res) => {
       name: user.name,
       email: user.email,
       favorites: user.favorites,
+      watching: user.watching,
     };
 
     return res.status(200).send({ token, user: userData });

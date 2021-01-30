@@ -67,3 +67,36 @@ export const removeFavorite = async (req, res) => {
     });
   }
 };
+
+export const addWatching = async (req, res) => {
+  try {
+    const exists = await User.findOne({ _id: req.body.userId }, { watching: { $elemMatch: { _id: req.body._id } } });
+
+    if (exists.watching.length) {
+      exists.watching[0].played = req.body.played;
+
+      console.log(exists.watching[0]);
+
+      exists.save();
+    } else {
+      await User.findOneAndUpdate(
+        { _id: req.body.userId },
+        { $addToSet: { watching: req.body } },
+        {
+          useFindAndModify: false,
+          returnOriginal: false,
+        }
+      );
+    }
+
+    const user = await User.findOne({ _id: req.body.userId });
+
+    return res.status(200).send({
+      watching: user.watching,
+    });
+  } catch (error) {
+    return res.send({
+      message: "Something went wrong",
+    });
+  }
+};

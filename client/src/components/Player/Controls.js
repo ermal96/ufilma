@@ -126,11 +126,19 @@ const Controls = (props) => {
 
   const handleControlsVisibility = () => {
     setControlActive(true);
-    if (props.playing && props.played) {
-      setTimeout(() => {
-        setControlActive(false);
-      }, 5000);
-    }
+    // if (props.playing && props.played) {
+    //   setTimeout(() => {
+    //     setControlActive(false);
+    //   }, 5000);
+    // }
+  };
+
+  const handlePlay = () => {
+    props.setPlaying(true);
+  };
+
+  const handlePause = () => {
+    props.setPlaying(false);
   };
 
   return (
@@ -146,6 +154,7 @@ const Controls = (props) => {
         {props.playing ? <RiPlayLine /> : <RiPauseLine />}
       </UPlayerControlsArea>
       {/* Timeline */}
+
       <Timeline
         visible={props.timelineVisible}
         duration={props.duration}
@@ -165,12 +174,9 @@ const Controls = (props) => {
         <UPlayerControlsLeft className="uplayer-controls">
           {/* Play Pause */}
           {props.playing ? (
-            <RiPauseLine
-              title="Pause"
-              onClick={() => props.setPlaying(false)}
-            />
+            <RiPauseLine title="Pause" onClick={handlePause} />
           ) : (
-            <RiPlayLine title="Play" onClick={() => props.setPlaying(true)} />
+            <RiPlayLine title="Play" onClick={handlePlay} />
           )}
 
           {/* Player volume */}

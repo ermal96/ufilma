@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { findDOMNode } from "react-dom";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
 import screenfull from "screenfull";
-
 import Controls from "./Controls";
+import Loader from "./Loader";
+import { addWatching } from "../../store/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const UPlayer = styled.div`
   position: relative;
@@ -30,9 +32,14 @@ const UCover = styled.img`
 `;
 
 const Player = ({ src, cover, controls = false, title }) => {
+  const dispatch = useDispatch();
+  const movieId = useSelector(({ movies }) => movies.movie._id);
+  const userId = useSelector(({ user }) => user.user.id);
+  const watching = useSelector(({ user }) => user.watching);
+
   const playerRef = useRef(null);
   const playerRefContainer = useRef(null);
-
+  const [buffering, setBuffering] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [played, setPlayed] = useState(0);
@@ -41,6 +48,10 @@ const Player = ({ src, cover, controls = false, title }) => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [, setSeeking] = useState(false);
   const [timelineVisible, setTimelineVisible] = useState(true);
+  const [updatedTime, setUpdatedTime] = useState(0);
+  const savedTime = useRef();
+
+  const filterTime = watching.filter((item) => item._id === movieId);
 
   const handleClickFullscreen = () => {
     screenfull.toggle(findDOMNode(playerRefContainer.current));
@@ -58,56 +69,85 @@ const Player = ({ src, cover, controls = false, title }) => {
     }
   };
 
+  useEffect(() => {
+    if (filterTime.length) {
+      setUpdatedTime(Number(filterTime[0].played));
+
+      if (updatedTime) {
+        setPlayed(updatedTime);
+        playerRef.current.seekTo(updatedTime);
+      }
+    }
+
+    return () => {
+      if (savedTime.current !== undefined) {
+        dispatch(
+          addWatching({
+            userId,
+            _id: movieId,
+            played: savedTime.current.toString(),
+          })
+        );
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, movieId, userId, updatedTime]);
+
   return (
-    <UPlayer
-      ref={playerRefContainer}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={handleMouseEnter}
-    >
-      <ReactPlayer
-        ref={playerRef}
-        pip={true}
-        playing={playing}
-        playbackRate={playbackRate}
-        volume={1}
-        muted={muted}
-        onEnded={() => setPlaying(false)}
-        onDuration={(duration) => setDuration(duration)}
-        onProgress={(state) => {
-          if (!state.seeking) {
-            setLoaded(state.loaded);
-            setPlayed(state.played);
-          }
-        }}
-        className="react-player"
-        width="100%"
-        height="100%"
-        url={src}
-      />
-
-      {cover ? <UCover started={played} src={cover} /> : null}
-
-      {controls && (
-        <Controls
-          muted={muted}
-          played={played}
-          timelineVisible={timelineVisible}
-          duration={duration}
-          loaded={loaded}
-          playerRef={playerRef}
-          setSeeking={setSeeking}
-          setPlayed={setPlayed}
+    <>
+      <UPlayer ref={playerRefContainer} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
+        <ReactPlayer
+          url={src}
+          onBuffer={() => setBuffering(true)}
+          onBufferEnd={() => setBuffering(false)}
+          ref={playerRef}
           playing={playing}
-          setPlaying={setPlaying}
-          setMuted={setMuted}
-          setTimelineVisible={setTimelineVisible}
-          setPlaybackRate={setPlaybackRate}
           playbackRate={playbackRate}
-          handleClickFullscreen={handleClickFullscreen}
-          title={title}
+          volume={1}
+          muted={muted}
+          onEnded={() => setPlaying(false)}
+          onDuration={(duration) => setDuration(duration)}
+          onProgress={(state) => {
+            if (!state.seeking) {
+              setLoaded(state.loaded);
+              savedTime.current = state.played;
+              if (state.played === 0) {
+                setPlayed(updatedTime);
+              } else {
+                setPlayed(state.played);
+              }
+            }
+          }}
+          className="react-player"
+          width="100%"
+          height="100%"
         />
-      )}
-    </UPlayer>
+
+        {cover ? <UCover started={playing} src={cover} /> : null}
+        <Loader buffering={buffering} />
+
+        {controls && (
+          <Controls
+            muted={muted}
+            played={played}
+            timelineVisible={timelineVisible}
+            duration={duration}
+            loaded={loaded}
+            playerRef={playerRef}
+            setSeeking={setSeeking}
+            setPlayed={setPlayed}
+            playing={playing}
+            setPlaying={setPlaying}
+            setMuted={setMuted}
+            setTimelineVisible={setTimelineVisible}
+            setPlaybackRate={setPlaybackRate}
+            playbackRate={playbackRate}
+            handleClickFullscreen={handleClickFullscreen}
+            title={title}
+          />
+        )}
+      </UPlayer>
+    </>
   );
 };
 

@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
       ref: "movie",
     },
   ],
+  watching: [
+    {
+      _id: String,
+      played: String,
+    },
+  ],
 });
 
 export const User = mongoose.model("user", userSchema);

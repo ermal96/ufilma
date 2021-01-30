@@ -6,6 +6,7 @@ const defaultState = {
   user: {},
   error: null,
   favoriteMovies: [],
+  watching: [],
 };
 
 export const userReducer = (state = defaultState, action) => {
@@ -37,6 +38,12 @@ export const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         favoriteMovies: action.payload,
+      };
+
+    case types.user.SET_WATCHING:
+      return {
+        ...state,
+        watching: action.payload,
       };
 
     case types.user.LOG_OUT:
