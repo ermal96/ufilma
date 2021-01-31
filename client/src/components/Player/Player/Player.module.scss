@@ -5,12 +5,12 @@
   display: flex;
   background: var(--tertiary-color);
 
-  @media (max-width: 540px) {
-    height: 35rem;
-  }
-
   @media (max-width: 767px) {
     height: 60rem;
+  }
+
+  @media (max-width: 540px) {
+    height: 35rem;
   }
 }
 
