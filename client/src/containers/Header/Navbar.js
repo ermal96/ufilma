@@ -24,7 +24,7 @@ const UNavbar = styled.nav`
       position: absolute;
       display: none;
       right: 0;
-      background: ${({ theme }) => theme.colors.accent};
+      background: ${({ theme }) => theme.colors.secondary};
       top: 6rem;
       height: 100%;
       padding: 2.5rem;
