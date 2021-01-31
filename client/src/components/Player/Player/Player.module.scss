@@ -1,12 +1,21 @@
 .player {
   position: relative;
   outline: none;
-  height: 85vh;
+  height: 94vh;
+  display: flex;
   background: var(--tertiary-color);
 
-  @media (max-width: 540) {
-    height: 30rem;
+  @media (max-width: 540px) {
+    height: 35rem;
   }
+
+  @media (max-width: 767px) {
+    height: 60rem;
+  }
+}
+
+.playerVideo {
+  width: 100%;
 }
 
 .playerCover {

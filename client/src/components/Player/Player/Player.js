@@ -130,6 +130,7 @@ const Player = ({ src, cover, title }) => {
       <div className={styles.player} ref={playerRefContainer}>
         {console.log(time)}
         <video
+          className={styles.playerVideo}
           ref={playerRef}
           onCanPlay={() => setReady(true)}
           onTimeUpdate={handleTimeUpdate}
