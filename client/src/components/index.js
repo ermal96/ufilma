@@ -5,10 +5,10 @@ export { default as ULink } from "./Form/ULink";
 export { default as Range } from "./Form/Range";
 
 // export base
-export { default as Button } from "./Base/Button/Button";
-export { default as FavoriteButton } from "./Base/Button/FavoriteButton";
-export { default as Logo } from "./Base/Logo";
-export { default as Spinner } from "./Base/Spinner";
+export { default as Button } from "./Base/Buttons/Button/Button";
+export { default as FavoriteButton } from "./Base/Buttons/FavoriteButton/FavoriteButton";
+export { default as Logo } from "./Base/Logo/Logo";
+export { default as Spinner } from "./Base/Spinner/Spinner";
 
 // export layout
 export { default as Layout } from "./Layout/Layout";

@@ -1,0 +1,21 @@
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.2);
+  }
+}
+
+.spinner {
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    animation: zoom 1s linear infinite;
+  }
+}

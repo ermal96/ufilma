@@ -1,0 +1,19 @@
+.favoriteButton {
+  height: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--accent-color);
+
+  // sizes
+  &.sm {
+    font-size: 1.6rem;
+  }
+  &.md {
+    font-size: 2.2rem;
+  }
+  &.lg {
+    font-size: 3rem;
+  }
+}

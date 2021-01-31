@@ -6,8 +6,8 @@ import { store } from "./store";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 import { BrowserRouter as Router } from "react-router-dom";
+import "./styles/index.scss";
 import "react-aspect-ratio/aspect-ratio.css";
-import GlobalStyle from "./theme/global";
 import { config } from "./config";
 
 config();
@@ -16,7 +16,6 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
         <App />
       </ThemeProvider>
     </Router>

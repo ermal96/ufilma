@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../components/Base/Logo";
+import Logo from "../../components/Base/Logo/Logo";
 import styled from "styled-components";
 import Navbar from "./Navbar";
 import Search from "../Search/Search";
@@ -66,7 +66,7 @@ const Header = () => {
     <UHeader>
       <UHeaderWrapper className="wrapper">
         <UHeaderNav searchOpen={searchOpen} className="nav">
-          <Logo className={searchOpen ? "hide" : null} />
+          <Logo hideMobile={searchOpen ? "hide" : null} />
           <Navbar />
         </UHeaderNav>
         <UHeaderMini searchOpen={searchOpen} className="mini">
