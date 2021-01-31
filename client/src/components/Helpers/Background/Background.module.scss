@@ -1,0 +1,13 @@
+.background {
+  background: var(--primary-color);
+
+  //   variants
+
+  &.secondary {
+    background: var(--secondary-color);
+  }
+
+  &.light {
+    background: var(--main-color);
+  }
+}

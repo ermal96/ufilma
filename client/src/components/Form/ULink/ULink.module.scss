@@ -1,0 +1,17 @@
+.uLink {
+  margin: 0.5rem 0 1.5rem 0;
+  a {
+    color: var(--main-color) !important;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-top: 0.3rem;
+      margin-left: 0.5rem;
+      path {
+        stroke: inherit;
+      }
+    }
+  }
+}

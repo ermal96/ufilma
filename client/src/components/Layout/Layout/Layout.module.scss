@@ -1,0 +1,9 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  .layoutWrapper {
+    background: var(--secondary-color);
+    padding-bottom: 5rem;
+    min-height: calc(100vh - var(--header-height));
+  }
+}
