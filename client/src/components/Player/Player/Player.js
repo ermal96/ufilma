@@ -128,7 +128,6 @@ const Player = ({ src, cover, title }) => {
   return (
     <>
       <div className={styles.player} ref={playerRefContainer}>
-        {console.log(time)}
         <video
           className={styles.playerVideo}
           ref={playerRef}

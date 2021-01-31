@@ -16,7 +16,6 @@ const Range = ({ onChange, value, onMouseUp, onMouseDown, max }) => {
         value={value}
         onChange={onChange}
       />
-      {console.log("value", value)}
     </>
   );
 };
