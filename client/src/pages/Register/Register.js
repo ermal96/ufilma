@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUserUp, setError } from "../../store/actions/userActions";
-import {
-  Input,
-  Form,
-  Button,
-  Center,
-  Logo,
-  Background,
-  ULink,
-} from "../../components";
+import { Input, Form, Button, Center, Logo, Background, ULink } from "../../components";
 import { routes } from "../../routes";
 
 const Register = () => {
@@ -40,24 +32,10 @@ const Register = () => {
       <Center>
         <Logo />
         <ULink title="Login in here" to={routes.login} />
-        <Form center onSubmit={onSubmit}>
-          <Input
-            display="block"
-            variant="light"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            type="text"
-            placeholder="Enter Name"
-          />
+        <Form position="center" onSubmit={onSubmit}>
+          <Input display="block" variant="light" onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Enter Name" />
 
-          <Input
-            display="block"
-            variant="light"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            type="email"
-            placeholder="Enter Email"
-          />
+          <Input display="block" variant="light" onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="Enter Email" />
 
           <Input
             variant="light"

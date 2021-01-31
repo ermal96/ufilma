@@ -1,0 +1,11 @@
+.form {
+  position: relative;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: unset;
+
+  &.center {
+    align-items: center;
+  }
+}

@@ -25,7 +25,7 @@ const Login = () => {
       <Center>
         <Logo />
         <ULink title="Create an account" to={routes.register} />
-        <Form center onSubmit={onSubmit}>
+        <Form position="center" onSubmit={onSubmit}>
           <Input variant="light" display="block" onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="Enter Email" />
 
           <Input
