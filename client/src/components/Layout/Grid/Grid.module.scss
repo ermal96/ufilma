@@ -4,14 +4,14 @@
   grid-gap: 2.5rem;
   margin-top: 3rem;
 
-  @media (max-width: var(--media-desktop)) {
+  @media (max-width: 991px) {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  @media (max-width: var(--media-tablet)) {
+  @media (max-width: 767px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media (max-width: var(--media-mobile)) {
+  @media (max-width: 540px) {
     grid-template-columns: repeat(2, 1fr);
   }
 }

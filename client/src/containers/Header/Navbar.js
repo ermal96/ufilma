@@ -9,7 +9,7 @@ import { useLocation } from "react-router";
 
 const UNavbar = styled.nav`
   margin-left: 2rem;
-  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
+  @media (max-width: ${({ theme }) => theme.mediaQuery.tablet}) {
     margin-left: 0;
   }
   ul {
@@ -31,10 +31,14 @@ const UNavbar = styled.nav`
       width: 100%;
     }
 
+    &:first-child {
+      margin-left: 0;
+    }
     li {
       list-style: none;
       margin: 0 1rem;
       font-size: 1.7rem;
+
       @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
         margin: 1rem 0;
 
@@ -65,8 +69,7 @@ const UNavbarMenuIcon = styled.div`
   display: none;
   font-size: 2.5rem;
 
-  color: ${(props) =>
-    props.open ? props.theme.colors.accent : props.theme.colors.main};
+  color: ${(props) => (props.open ? props.theme.colors.accent : props.theme.colors.main)};
   @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
     display: block;
     margin-right: 2.5rem;
@@ -86,10 +89,7 @@ const Navbar = () => {
 
   return (
     <UNavbar>
-      <UNavbarMenuIcon
-        open={menuMobile}
-        onClick={() => dispatch(setMenuMobile(!menuMobile))}
-      >
+      <UNavbarMenuIcon open={menuMobile} onClick={() => dispatch(setMenuMobile(!menuMobile))}>
         {menuMobile ? <RiCloseFill /> : <RiMenuFill />}
       </UNavbarMenuIcon>
       <ul className={menuMobile ? "menu-mobile-open" : null}>
@@ -106,7 +106,7 @@ const Navbar = () => {
         </li>
         {isLoggedIn ? (
           <li>
-            <NavLink to={routes.favorites}>Filmat e preferuar</NavLink>
+            <NavLink to={routes.favorites}>Te preferuar</NavLink>
           </li>
         ) : null}
       </ul>
