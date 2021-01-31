@@ -1,11 +1,12 @@
 .inputRange {
+  background: transparent !important;
   transition: all 0.3s ease;
   width: 100%;
   transition: all 0.3s ease;
   appearance: none;
   -moz-appearance: auto;
   -webkit-appearance: none;
-  height: 0.4rem;
+  height: 3rem;
   cursor: pointer;
 
   &:focus {
@@ -41,6 +42,7 @@
     cursor: pointer;
   }
   &::-moz-range-thumb {
+    z-index: 2;
     cursor: pointer;
     border-radius: 0;
     border: none;
@@ -55,5 +57,32 @@
     &:hover {
       transform: scale(1.6);
     }
+  }
+}
+
+.progresBar {
+  position: absolute;
+  width: 100%;
+  bottom: 2.6rem;
+  z-index: -1;
+
+  @media (max-width: 786px) {
+    bottom: 2.4rem;
+  }
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 0.5rem;
+  box-shadow: none;
+  background: #808080;
+  border: none;
+
+  &[value]::-webkit-progress-value {
+    background: var(--accent-color);
+  }
+
+  &[value]::-moz-progress-bar {
+    background: var(--accent-color);
   }
 }

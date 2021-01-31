@@ -1,0 +1,154 @@
+.player {
+  position: relative;
+  outline: none;
+  height: 85vh;
+  background: var(--tertiary-color);
+
+  @media (max-width: 540) {
+    height: 30rem;
+  }
+}
+
+.playerCover {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+
+  &.hide {
+    display: none;
+  }
+}
+
+// conttrols
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(22, 27, 34, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 1.5rem rgba(22, 27, 34, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 27, 34, 0.6);
+  }
+}
+
+// controls
+.controls {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to top, #161b229e, #494c5233, #8283881f, #bfbfc200, #ffffff00);
+  bottom: 0;
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-size: 3rem;
+  padding: 0 2rem;
+  opacity: 1;
+  transition: all 0.3s ease;
+
+  .hide {
+    opacity: 0;
+  }
+}
+
+.controlsArea {
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  svg {
+    transition: all 1s ease;
+    opacity: 0;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    padding: 1.5rem;
+    background: rgba(22, 27, 34, 0.6);
+    box-shadow: 0 0 0 0 rgba(22, 27, 34, 0.6);
+    animation: pulse 2s infinite;
+  }
+
+  &.active {
+    svg {
+      opacity: 0.6;
+    }
+  }
+}
+
+.controlWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+  padding-top: 2rem;
+  height: 9rem;
+}
+
+.controlsLeft {
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2) !important;
+    }
+  }
+}
+
+.controlsRight {
+  display: flex;
+  align-items: center;
+
+  svg {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-left: 2rem;
+
+    &:hover {
+      transform: scale(1.2) !important;
+    }
+  }
+}
+
+.title {
+  font-size: 1.9rem;
+  font-weight: bold;
+
+  @media (max-width: 540px) {
+    display: none;
+  }
+}
+
+// timeline
+
+.timeline {
+  width: 99.6%;
+  margin-left: 0.7rem;
+  transition: all 0.3s ease;
+  margin-bottom: -4rem;
+  position: relative;
+  z-index: 3;
+}
+
+// volume
+.volume {
+  position: relative;
+  display: flex;
+}

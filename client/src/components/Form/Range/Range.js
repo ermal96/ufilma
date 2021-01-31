@@ -1,24 +1,23 @@
 import React from "react";
 import styles from "./Range.module.scss";
 
-const Range = ({ onChange, value, onMouseUp, onMouseDown }) => {
+const Range = ({ onChange, value, onMouseUp, onMouseDown, max }) => {
   return (
-    <input
-      className={styles.inputRange}
-      onMouseUp={onMouseUp}
-      onMouseDown={onMouseDown}
-      step="any"
-      type="range"
-      min={0}
-      max={1}
-      value={value}
-      onChange={onChange}
-      style={{
-        background: `-webkit-gradient(linear, left top, right top, from(#de1212), color-stop(${Math.round(
-          value * 100
-        )}%, #de1212), color-stop(${Math.round(value * 100)}%, #f3f3f3))`,
-      }}
-    />
+    <>
+      <progress className={styles.progresBar} value={value} min={0} max={max}></progress>
+      <input
+        className={styles.inputRange}
+        onMouseUp={onMouseUp}
+        onMouseDown={onMouseDown}
+        step="any"
+        type="range"
+        min={0}
+        max={max}
+        value={value}
+        onChange={onChange}
+      />
+      {console.log("value", value)}
+    </>
   );
 };
 
