@@ -4,15 +4,10 @@ const dom = document.createElement("div");
 
 function Message() {
   dom.classList.add("ufilma-message");
-  window.onload = () => document.body.appendChild(dom);
+  window.onload = () => document.getElementById("root").appendChild(dom);
 }
 
-Message.prototype.show = function (
-  content,
-  duration = 3000,
-  type = "info",
-  onClose = Function.prototype
-) {
+Message.prototype.show = function (content, duration = 3000, type = "info", onClose = Function.prototype) {
   const contentBox = document.createElement("div");
   const contentDom = document.createElement("span");
   const icon = document.createElement("i");
