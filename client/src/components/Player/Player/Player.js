@@ -54,7 +54,7 @@ const Player = ({ src, cover, title }) => {
 
     setTimeout(() => {
       setControlAreaClasses("");
-    }, 400);
+    }, 200);
   };
 
   const handlePlay = () => {
@@ -140,7 +140,7 @@ const Player = ({ src, cover, title }) => {
 
         {/* controls */}
         {ready ? (
-          <div className={styles.controls}>
+          <div className={styles.controls} active={playing ? "false" : "true"}>
             <div className={cx(styles.controlsArea, styles[controlAreaClasses])} onClick={handleControlArea}>
               {playing ? <RiPlayLine /> : <RiPauseLine />}
             </div>
