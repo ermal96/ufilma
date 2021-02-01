@@ -1,0 +1,56 @@
+.singleCard {
+  padding: 2.5rem;
+}
+
+.singleCardYear {
+  margin-bottom: 1rem;
+  display: inline-block;
+  margin-right: 2rem;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.singleCardTime {
+  margin-right: 2rem;
+  display: inline-block;
+  color: var(--acdent-color);
+}
+.singleCardRated {
+  margin-bottom: 1rem;
+}
+.singleCardBody {
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+  max-width: 100rem;
+}
+
+.singleCardCategories {
+  margin-top: 1rem;
+  border: 1px solid var(--main-color);
+  color: solid var(--main-color);
+  padding: 0.2rem 0.7rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.singleCardFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.singleCardTitle {
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: 3.8rem;
+  position: relative;
+  padding-right: 2rem;
+}
+
+.singleCardQuality {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Player, Spinner } from "../../components";
 import { getMovie } from "../../store/actions/moviesAction";
 import styled from "styled-components";
-import SingleMovieCard from "../../components/Cards/SingleMovieCard";
+import SingleMovieCard from "../../components/Cards/SingleMovieCard/SingleMovieCard";
 import { Layout } from "../../components";
 
 const UMovieWrapper = styled.section``;
@@ -25,14 +25,7 @@ const Movie = ({ match }) => {
         <Spinner />
       ) : (
         <UMovieWrapper>
-          <Player
-            title={movie.name}
-            cover={
-              movie.cover ? process.env.REACT_APP_SERVER + movie.cover : null
-            }
-            controls
-            src={movie.videoUrl}
-          />
+          <Player title={movie.name} cover={movie.cover ? process.env.REACT_APP_SERVER + movie.cover : null} controls src={movie.videoUrl} />
 
           <SingleMovieCard data={movie} />
         </UMovieWrapper>

@@ -18,8 +18,8 @@ export { default as PageHeader } from "./Layout/PageHeader/PageHeader";
 export { default as Grid } from "./Layout/Grid/Grid";
 
 // export cards
-export { default as Card } from "./Cards/Card";
-export { default as TopMovieCard } from "./Cards/TopMovieCard";
+export { default as Card } from "./Cards/Card/Card";
+export { default as TopMovieCard } from "./Cards/TopMovieCard/TopMovieCard";
 
 // export Topography
 export { default as Title } from "./Topography/Title/Title";

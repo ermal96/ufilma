@@ -40,6 +40,10 @@
   margin-top: 5rem;
 
   @media (max-width: 768px) {
-    max-width: 15rem;
+    max-width: 25rem;
+  }
+
+  @media (max-width: 540px) {
+    max-width: 17rem;
   }
 }

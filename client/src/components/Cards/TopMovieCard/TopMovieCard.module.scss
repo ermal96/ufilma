@@ -1,0 +1,53 @@
+.topCard {
+  height: 60rem;
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--main-gradient);
+    z-index: 1;
+  }
+
+  .topCardBg {
+    transition: transform 0.3s ease;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.topCardBody {
+  max-width: 40rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 2.5rem;
+  z-index: 2;
+}
+
+.topCardBodyYear {
+  margin-bottom: 0.5rem;
+  color: var(--main-color);
+  display: inline-block;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.topCardBodyTitle {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.topCardBodyDesc {
+  margin-bottom: 2.5rem;
+  font-weight: 1.5rem;
+}
