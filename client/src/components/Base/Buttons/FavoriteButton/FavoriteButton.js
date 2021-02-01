@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RiHeart3Line, RiHeart3Fill } from "react-icons/ri";
 import { addFavorite, removeFavorite } from "../../../../store/actions/userActions";
@@ -9,7 +9,7 @@ const FavoriteButton = ({ movieId, size }) => {
   const user = useSelector(({ user }) => user.user);
   const isLoggedIn = useSelector(({ user }) => user.loggedIn);
   const favoriteMovies = useSelector(({ user }) => user.favoriteMovies);
-
+  const [token, setToken] = useState(null);
   const dispatch = useDispatch();
 
   const addFavoriteMovie = () => {
@@ -17,6 +17,7 @@ const FavoriteButton = ({ movieId, size }) => {
       addFavorite({
         userId: user.id,
         movieId: movieId,
+        token,
       })
     );
   };
@@ -26,9 +27,16 @@ const FavoriteButton = ({ movieId, size }) => {
       removeFavorite({
         userId: user.id,
         movieId: movieId,
+        token,
       })
     );
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setToken(localStorage.getItem("token"));
+    }
+  }, [isLoggedIn]);
 
   return (
     <>

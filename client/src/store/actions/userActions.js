@@ -99,16 +99,42 @@ export const getWatching = (data) => async (dispatch) => {
 };
 
 export const addFavorite = (data) => async (dispatch) => {
+  const config = {
+    headers: {
+      authorization: data.token,
+    },
+  };
+
   try {
-    const result = await axios.put("users/add-favorite", data);
+    const result = await axios.put(
+      "users/add-favorite",
+      {
+        userId: data.userId,
+        movieId: data.movieId,
+      },
+      config
+    );
 
     dispatch(setFavoritesMovie(result.data.user.favorites));
   } catch (error) {}
 };
 
 export const removeFavorite = (data) => async (dispatch) => {
+  const config = {
+    headers: {
+      authorization: data.token,
+    },
+  };
+
   try {
-    const result = await axios.put("users/remove-favorite", data);
+    const result = await axios.put(
+      "users/remove-favorite",
+      {
+        userId: data.userId,
+        movieId: data.movieId,
+      },
+      config
+    );
 
     dispatch(setFavoritesMovie(result.data.user.favorites));
   } catch (error) {}
