@@ -28,6 +28,8 @@ const Player = ({ src, cover, title }) => {
   const [ready, setReady] = useState(false);
   const [buffering, setBuffering] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
+  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
 
   const savedTime = useRef();
 
@@ -86,6 +88,12 @@ const Player = ({ src, cover, title }) => {
   const handleTimeUpdate = () => {
     setPlayedTime(playerRef.current.currentTime);
     savedTime.current = playedTime;
+
+    const min = Math.floor(playerRef.current.currentTime / 60);
+    const sec = parseInt(playerRef.current.currentTime - min * 60);
+
+    setSeconds(sec);
+    setMinutes(min);
   };
 
   const handleSeeking = () => {
@@ -162,8 +170,18 @@ const Player = ({ src, cover, title }) => {
                   <div className={styles.volume}>
                     {muted ? <RiVolumeMuteLine title="Unmute" onClick={handleUnmute} /> : <RiVolumeUpLine title="Mute" onClick={handleMute} />}
                   </div>
+
                   {/* PLayer title */}
                   <h1 className={styles.title}>{title}</h1>
+
+                  {/* time */}
+                  <div className={styles.controlsTime}>
+                    <span>
+                      {minutes}:{seconds}
+                    </span>
+                    <span className={styles.separator}>/</span>
+                    <span>{Math.floor(duration / 60)}</span>
+                  </div>
                 </div>
 
                 {/* Right controls */}
