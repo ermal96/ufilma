@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useCallback, useRef, useEffect } from "react";
-import { RiFullscreenFill, RiPlayLine, RiPauseLine, RiVolumeMuteLine, RiVolumeUpLine } from "react-icons/ri";
+import React, { useState, useRef, useEffect } from "react";
+import { RiFullscreenFill, RiPlayLine, RiPauseLine, RiVolumeMuteLine, RiVolumeUpLine, RiFullscreenExitLine } from "react-icons/ri";
 import { Range } from "../..";
 import screenfull from "screenfull";
 import Loader from "../Loader/Loader";
@@ -26,7 +26,8 @@ const Player = ({ src, cover, title }) => {
   const [playedTime, setPlayedTime] = useState(0);
   const [duration, setDuration] = useState();
   const [ready, setReady] = useState(false);
-  const [time, setTime] = useState();
+  const [buffering, setBuffering] = useState(false);
+  const [fullScreen, setFullScreen] = useState(false);
   const savedTime = useRef();
 
   let filterTime = null;
@@ -37,16 +38,8 @@ const Player = ({ src, cover, title }) => {
 
   const handleClickFullscreen = () => {
     screenfull.toggle(playerRefContainer.current);
+    setFullScreen(!fullScreen);
   };
-
-  function formatTime(timeInSeconds) {
-    const result = new Date(timeInSeconds * 1000).toISOString().substr(11, 8);
-
-    return {
-      minutes: result.substr(3, 2),
-      seconds: result.substr(6, 2),
-    };
-  }
 
   const handleControlArea = () => {
     setControlAreaClasses("active");
@@ -94,12 +87,16 @@ const Player = ({ src, cover, title }) => {
     savedTime.current = playedTime;
   };
 
+  const handleSeeking = () => {
+    setBuffering(true);
+  };
+
+  const handleSeeked = () => {
+    setBuffering(false);
+  };
+
   useEffect(() => {
     setActivePlayer(true);
-
-    if (duration) {
-      setTime(formatTime(duration));
-    }
 
     if (isLoggedIn) {
       dispatch(
@@ -133,10 +130,13 @@ const Player = ({ src, cover, title }) => {
           ref={playerRef}
           onCanPlay={() => setReady(true)}
           onTimeUpdate={handleTimeUpdate}
+          onSeeked={handleSeeked}
+          onSeeking={handleSeeking}
           onDurationChange={() => setDuration(playerRef.current.duration)}>
           <source src={src} type="video/mp4"></source>
         </video>
-        {/* <Loader buffering={buffering} /> */}
+
+        <Loader buffering={buffering} />
 
         {/* controls */}
         {ready ? (
@@ -167,7 +167,11 @@ const Player = ({ src, cover, title }) => {
               {/* Right controls */}
               <div className={styles.controlsRight}>
                 {/* Fullscreen mode */}
-                <RiFullscreenFill title="Fullscreen" className="full-screen" onClick={handleClickFullscreen} />
+                {fullScreen ? (
+                  <RiFullscreenExitLine title="Exit Fullscreen" onClick={handleClickFullscreen} />
+                ) : (
+                  <RiFullscreenFill title="Fullscreen" onClick={handleClickFullscreen} />
+                )}
               </div>
             </div>
           </div>
