@@ -86,6 +86,10 @@
   &:hover {
     opacity: 1 !important;
   }
+
+  @media (max-width: 767px) {
+    height: 10rem;
+  }
 }
 
 .controlsArea {
