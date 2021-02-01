@@ -2,11 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Player, Spinner } from "../../components";
 import { getMovie } from "../../store/actions/moviesAction";
-import styled from "styled-components";
 import SingleMovieCard from "../../components/Cards/SingleMovieCard/SingleMovieCard";
 import { Layout } from "../../components";
-
-const UMovieWrapper = styled.section``;
 
 const Movie = ({ match }) => {
   const dispatch = useDispatch();
@@ -24,11 +21,10 @@ const Movie = ({ match }) => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <UMovieWrapper>
+        <>
           <Player title={movie.name} cover={movie.cover ? process.env.REACT_APP_SERVER + movie.cover : null} controls src={movie.videoUrl} />
-
           <SingleMovieCard data={movie} />
-        </UMovieWrapper>
+        </>
       )}
     </Layout>
   );
