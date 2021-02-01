@@ -1,98 +1,12 @@
 import React from "react";
 import { Form, Input } from "../../components";
-import styled from "styled-components";
 import { RiSearch2Line, RiCloseFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../store/actions/headerActions";
 import { resetSearch, searchMovies } from "../../store/actions/searchAction";
 import { routes } from "../../routes";
 import { Link } from "react-router-dom";
-
-const USearch = styled.div`
-  display: flex;
-  align-items: center;
-  width: ${({ searchOpen }) => (searchOpen ? "100%" : "auto")};
-  form {
-    margin-left: 2rem;
-    position: relative;
-    @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
-      margin-left: ${({ searchOpen }) => (searchOpen ? 0 : "2rem")};
-      margin-right: -1rem;
-      width: ${({ searchOpen }) => (searchOpen ? "100%" : "auto")};
-    }
-    input {
-      margin-right: -0.8rem;
-      margin-bottom: 0;
-      transition: all 0.3s ease;
-      padding-right: 3rem;
-      background: ${({ theme }) => theme.colors.primary};
-    }
-  }
-`;
-
-const USearchIon = styled.div`
-  margin-left: 1rem;
-  font-size: 2.5rem;
-  cursor: pointer;
-  line-height: 0;
-  z-index: 10;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  color: ${(props) =>
-    props.open ? props.theme.colors.accent : props.theme.colors.main};
-`;
-
-const USearchResult = styled.section`
-  display: ${({ hasResult }) => (hasResult ? "block" : "none")};
-  position: absolute;
-  border-bottom-left-radius: 5px;
-  width: 27.5rem;
-  right: 0;
-  background-color: ${({ theme }) => theme.colors.secondary};
-  top: ${({ theme }) => theme.constants.headerHeight + "rem"};
-  z-index: 50;
-  color: ${({ theme }) => theme.colors.primary};
-
-  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
-    width: 100%;
-    right: unset;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 0;
-  }
-`;
-
-const USearchResultColumn = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.primary};
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  transition: all 0.3s ease;
-  &:hover {
-    opacity: 0.7;
-  }
-
-  @media (max-width: ${({ theme }) => theme.mediaQuery.mobile}) {
-    padding-left: 2.5rem;
-  }
-
-  color: ${({ theme }) => theme.colors.main};
-
-  img {
-    margin-right: 1rem;
-    width: 5rem;
-    height: 5rem;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-    border: 1px solid ${({ theme }) => theme.colors.gray};
-  }
-  h2 {
-    font-size: 1.5rem;
-  }
-`;
+import styles from "./Search.module.scss";
 
 const Search = ({ searchOpen }) => {
   const open = useSelector(({ header }) => header.search);
@@ -119,49 +33,36 @@ const Search = ({ searchOpen }) => {
   };
 
   return (
-    <USearch title="Search" searchOpen={searchOpen}>
+    <div className={styles.search} title="Search" variant={searchOpen ? "open" : null}>
       <Form onSubmit={onSubmit}>
-        {open ? (
-          <Input
-            onChange={(e) => handleSearchChange(e)}
-            variant="light"
-            placeholder="Kerko per filma"
-          />
-        ) : null}
+        {open ? <Input onChange={(e) => handleSearchChange(e)} variant="light" placeholder="Kerko per filma" /> : null}
 
-        <USearchIon open={open} onClick={handleSearchIcon}>
+        <div className={styles.searchIcon} onClick={handleSearchIcon}>
           {open ? <RiCloseFill /> : <RiSearch2Line />}
-        </USearchIon>
+        </div>
       </Form>
 
       {open ? (
-        <USearchResult hasResult={searchResult.length ? true : false}>
+        <div className={styles.searchResult}>
           {searchResult.length ? (
             <>
               {searchResult.map((result) => {
                 return (
-                  <Link
-                    key={result._id}
-                    style={{ textDecoration: "none" }}
-                    to={routes.movies + "/" + result._id}
-                  >
-                    <USearchResultColumn>
-                      <img
-                        src={process.env.REACT_APP_SERVER + result.thumbnail}
-                        alt={result.name}
-                      />
+                  <Link key={result._id} style={{ textDecoration: "none" }} to={routes.movies + "/" + result._id}>
+                    <div className={styles.searchResultItem}>
+                      <img src={process.env.REACT_APP_SERVER + result.thumbnail} alt={result.name} />
                       <div>
                         <h2>{result.name}</h2>
                       </div>
-                    </USearchResultColumn>
+                    </div>
                   </Link>
                 );
               })}
             </>
           ) : null}
-        </USearchResult>
+        </div>
       ) : null}
-    </USearch>
+    </div>
   );
 };
 

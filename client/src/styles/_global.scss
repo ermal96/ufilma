@@ -38,3 +38,11 @@ h6 {
 a:any-link {
   color: inherit;
 }
+
+.active {
+  font-weight: bold;
+
+  @media (max-width: 540px) {
+    border-bottom: 2px solid var(--accent-color);
+  }
+}

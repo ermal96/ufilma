@@ -15,7 +15,6 @@ const RecentMovies = ({ movies }) => {
         {movies.map((movie) => (
           <SwiperSlide key={movie._id}>
             <Card
-              ratio="2/3"
               backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}
               link={routes.movies + "/" + movie._id}
               quality={movie.quality}
