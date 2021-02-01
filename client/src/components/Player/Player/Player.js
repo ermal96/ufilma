@@ -28,6 +28,7 @@ const Player = ({ src, cover, title }) => {
   const [ready, setReady] = useState(false);
   const [buffering, setBuffering] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
+
   const savedTime = useRef();
 
   let filterTime = null;
@@ -145,33 +146,35 @@ const Player = ({ src, cover, title }) => {
               {playing ? <RiPlayLine /> : <RiPauseLine />}
             </div>
 
-            {/* Timeline */}
-            <div className={styles.timeline}>
-              <Range max={duration} value={playedTime} onChange={(e) => handlePlayedTime(e)} />
-            </div>
-
-            {/* Player constrols wrapper */}
-            <div className={styles.controlWrapper}>
-              {/* Left controls */}
-              <div className={styles.controlsLeft}>
-                {/* Play Pause */}
-                {playing ? <RiPauseLine title="Pause" onClick={handlePause} /> : <RiPlayLine title="Play" onClick={handlePlay} />}
-                {/* Player volume */}
-                <div className={styles.volume}>
-                  {muted ? <RiVolumeMuteLine title="Unmute" onClick={handleUnmute} /> : <RiVolumeUpLine title="Mute" onClick={handleMute} />}
-                </div>
-                {/* PLayer title */}
-                <h1 className={styles.title}>{title}</h1>
+            <div className={styles.controlsWrap}>
+              {/* Timeline */}
+              <div className={styles.timeline}>
+                <Range max={duration} value={playedTime} onChange={(e) => handlePlayedTime(e)} />
               </div>
 
-              {/* Right controls */}
-              <div className={styles.controlsRight}>
-                {/* Fullscreen mode */}
-                {fullScreen ? (
-                  <RiFullscreenExitLine title="Exit Fullscreen" onClick={handleClickFullscreen} />
-                ) : (
-                  <RiFullscreenFill title="Fullscreen" onClick={handleClickFullscreen} />
-                )}
+              {/* Player constrols wrapper */}
+              <div className={styles.controlWrapper}>
+                {/* Left controls */}
+                <div className={styles.controlsLeft}>
+                  {/* Play Pause */}
+                  {playing ? <RiPauseLine title="Pause" onClick={handlePause} /> : <RiPlayLine title="Play" onClick={handlePlay} />}
+                  {/* Player volume */}
+                  <div className={styles.volume}>
+                    {muted ? <RiVolumeMuteLine title="Unmute" onClick={handleUnmute} /> : <RiVolumeUpLine title="Mute" onClick={handleMute} />}
+                  </div>
+                  {/* PLayer title */}
+                  <h1 className={styles.title}>{title}</h1>
+                </div>
+
+                {/* Right controls */}
+                <div className={styles.controlsRight}>
+                  {/* Fullscreen mode */}
+                  {fullScreen ? (
+                    <RiFullscreenExitLine title="Exit Fullscreen" onClick={handleClickFullscreen} />
+                  ) : (
+                    <RiFullscreenFill title="Fullscreen" onClick={handleClickFullscreen} />
+                  )}
+                </div>
               </div>
             </div>
           </div>
