@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./theme";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./styles/index.scss";
 import "react-aspect-ratio/aspect-ratio.css";
@@ -15,9 +13,7 @@ config();
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <App />
     </Router>
   </Provider>,
   document.getElementById("root")
