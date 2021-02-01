@@ -29,7 +29,7 @@ export const getById = async (req, res) => {
 
 export const addFavorite = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(
+    const user = await User.findOneAndUpdate(
       { _id: req.body.userId },
       { $addToSet: { favorites: req.body.movieId } },
       {
@@ -50,7 +50,7 @@ export const addFavorite = async (req, res) => {
 
 export const removeFavorite = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(
+    const user = await User.findOneAndUpdate(
       { _id: req.body.userId },
       { $pull: { favorites: req.body.movieId } },
       {

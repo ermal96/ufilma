@@ -7,8 +7,8 @@ import styles from "./FavoriteButton.module.scss";
 
 const FavoriteButton = ({ movieId, size }) => {
   const user = useSelector(({ user }) => user.user);
+  const isLoggedIn = useSelector(({ user }) => user.loggedIn);
   const favoriteMovies = useSelector(({ user }) => user.favoriteMovies);
-  const isLoaded = useSelector(({ user }) => user.loaded);
 
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ const FavoriteButton = ({ movieId, size }) => {
 
   return (
     <>
-      {isLoaded && movieId && user.id ? (
+      {movieId && isLoggedIn ? (
         favoriteMovies.includes(movieId) ? (
           <button className={cx(styles.favoriteButton, styles[size])} title="Hiq nga filmat e preferuar" onClick={removeFavoriteMovie}>
             <RiHeart3Fill />
