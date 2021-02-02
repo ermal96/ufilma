@@ -162,7 +162,7 @@ const Player = ({ src, cover, title }) => {
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, movieId, userId, activePlayer, duration, isLoggedIn, playing]);
+  }, [dispatch, movieId, userId, activePlayer, duration, isLoggedIn]);
 
   return (
     <>
