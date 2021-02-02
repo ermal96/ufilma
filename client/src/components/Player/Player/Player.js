@@ -30,7 +30,6 @@ const Player = ({ src, cover, title }) => {
   const [fullScreen, setFullScreen] = useState(false);
   const [loaded, setLoaded] = useState(0);
   const [updatedDuration, setUpdatedDuration] = useState(0);
-  const [timeInterval, setTimerval] = useState(null);
 
   const savedTime = useRef();
 
