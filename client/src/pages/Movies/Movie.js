@@ -16,16 +16,18 @@ const Movie = ({ match }) => {
     dispatch(getMovie(match.params.id));
   }, [dispatch, match.params.id]);
 
-  if (isLoading) {
-    return <Spinner />;
-  } else {
-    return (
-      <Layout>
-        <Player title={movie.name} cover={movie.cover ? process.env.REACT_APP_SERVER + movie.cover : null} controls src={movie.videoUrl} />
-        <SingleMovieCard data={movie} />
-      </Layout>
-    );
-  }
+  return (
+    <Layout>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <Player title={movie.name} cover={movie.cover ? process.env.REACT_APP_SERVER + movie.cover : null} controls src={movie.videoUrl} />
+          <SingleMovieCard data={movie} />{" "}
+        </>
+      )}
+    </Layout>
+  );
 };
 
 export default Movie;

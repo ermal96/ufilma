@@ -14,19 +14,21 @@ const Home = () => {
 
   const isLoading = useSelector(({ app }) => app.loading);
 
-  if (isLoading) {
-    return <Spinner />;
-  } else {
-    return (
-      <Layout>
-        <TopMovie movies={movies} />
-        <RecentMovies movies={movies} />
-        <SliderSection category="Action" movies={movies} />
-        <SliderSection category="Thriller" movies={movies} />
-        <SliderSection category="Horror" movies={movies} />
-      </Layout>
-    );
-  }
+  return (
+    <Layout>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <TopMovie movies={movies} />
+          <RecentMovies movies={movies} />
+          <SliderSection category="Action" movies={movies} />
+          <SliderSection category="Thriller" movies={movies} />
+          <SliderSection category="Horror" movies={movies} />
+        </>
+      )}
+    </Layout>
+  );
 };
 
 export default Home;

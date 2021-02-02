@@ -17,36 +17,38 @@ const Category = ({ match }) => {
     dispatch(getMoviesInCategory(match.params.id));
   }, [dispatch, match.params.id]);
 
-  if (isLoading) {
-    return <Spinner />;
-  } else {
-    return (
-      <Layout>
-        <PageHeader
-          title={category.name}
-          imageUrl="https://s.studiobinder.com/wp-content/uploads/2020/05/Best-Action-Movies-of-All-Time-Featured-.jpg"
-          description={`Këtu do te gjeni te gjithë filmat e kategorisë ${category.name} shikim të këndshëm!`}
-        />
-        <Container>
-          <Grid>
-            {movies.length
-              ? movies.map((movie) => (
-                  <Card
-                    ratio="2/3"
-                    backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}
-                    link={routes.movies + "/" + movie._id}
-                    key={movie._id}
-                    quality={movie.quality}
-                    title={movie.name}
-                    categories={movie.categories}
-                  />
-                ))
-              : null}
-          </Grid>
-        </Container>
-      </Layout>
-    );
-  }
+  return (
+    <Layout>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <PageHeader
+            title={category.name}
+            imageUrl="https://s.studiobinder.com/wp-content/uploads/2020/05/Best-Action-Movies-of-All-Time-Featured-.jpg"
+            description={`Këtu do te gjeni te gjithë filmat e kategorisë ${category.name} shikim të këndshëm!`}
+          />
+          <Container>
+            <Grid>
+              {movies.length
+                ? movies.map((movie) => (
+                    <Card
+                      ratio="2/3"
+                      backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}
+                      link={routes.movies + "/" + movie._id}
+                      key={movie._id}
+                      quality={movie.quality}
+                      title={movie.name}
+                      categories={movie.categories}
+                    />
+                  ))
+                : null}
+            </Grid>
+          </Container>
+        </>
+      )}
+    </Layout>
+  );
 };
 
 export default Category;
