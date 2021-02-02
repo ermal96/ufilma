@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={styles.navbar} searchOpen={searchOpen ? "true" : ""}>
+    <nav className={styles.navbar} searchopen={searchOpen ? "true" : ""}>
       <div className={styles.navbarMenuIcon} onClick={handleMenuMobile}>
         {menuMobile ? <RiCloseFill /> : <RiMenuFill />}
       </div>
