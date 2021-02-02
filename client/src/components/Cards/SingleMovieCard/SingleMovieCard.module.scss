@@ -50,7 +50,22 @@
 }
 
 .singleCardQuality {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.favorites {
+  display: flex;
+  align-items: center;
+  min-width: 7rem;
+  justify-content: space-between;
+
+  button {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+  }
 }

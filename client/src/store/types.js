@@ -1,4 +1,7 @@
 export const types = {
+  app: {
+    LOAD_APP: "LOAD_APP",
+  },
   user: {
     SET_ERROR: "SET_ERROR",
     SET_TOKEN: "SET_TOKEN",

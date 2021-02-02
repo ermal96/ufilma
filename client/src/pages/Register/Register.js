@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { signUserUp, setError } from "../../store/actions/userActions";
+import { signUserUp } from "../../store/actions/userActions";
 import { Input, Form, Button, Center, Logo, Background, ULink } from "../../components";
 import { routes } from "../../routes";
-
+import message from "../../utils/message/";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ const Register = () => {
         })
       );
     } else {
-      dispatch(setError("Sorry password not match"));
+      message("Fjalkalimi nuk perputhet");
     }
   };
 

@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Home,
-  Login,
-  Register,
-  Movie,
-  Categories,
-  Movies,
-  Category,
-  Favorites,
-} from "../pages";
+import { Home, Login, Register, Movie, Categories, Movies, Category, Favorites } from "../pages";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -19,7 +10,7 @@ export const routes = {
   register: "/register",
   movies: "/filmat",
   categories: "/kategorite",
-  favorites: "/filmat-e-preferuar",
+  favorites: "/te-preferuar",
 };
 
 export const Routes = () => {

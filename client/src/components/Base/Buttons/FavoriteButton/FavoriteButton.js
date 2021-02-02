@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RiHeart3Line, RiHeart3Fill } from "react-icons/ri";
+import { RiHeart2Line, RiHeart2Fill } from "react-icons/ri";
 import { addFavorite, removeFavorite } from "../../../../store/actions/userActions";
 import cx from "classnames";
 import styles from "./FavoriteButton.module.scss";
@@ -43,11 +43,11 @@ const FavoriteButton = ({ movieId, size }) => {
       {movieId && isLoggedIn ? (
         favoriteMovies.includes(movieId) ? (
           <button className={cx(styles.favoriteButton, styles[size])} title="Hiq nga filmat e preferuar" onClick={removeFavoriteMovie}>
-            <RiHeart3Fill />
+            <RiHeart2Fill />
           </button>
         ) : (
           <button className={cx(styles.favoriteButton, styles[size])} title="Shto tek filmat e preferuar" onClick={addFavoriteMovie}>
-            <RiHeart3Line />
+            <RiHeart2Line />
           </button>
         )
       ) : null}

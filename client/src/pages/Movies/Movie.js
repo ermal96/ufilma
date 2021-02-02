@@ -8,7 +8,7 @@ import { Layout } from "../../components";
 const Movie = ({ match }) => {
   const dispatch = useDispatch();
   const movie = useSelector(({ movies }) => movies.movie);
-  const isLoading = useSelector(({ movies }) => movies.loaded);
+  const isLoading = useSelector(({ app }) => app.loading);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -16,18 +16,16 @@ const Movie = ({ match }) => {
     dispatch(getMovie(match.params.id));
   }, [dispatch, match.params.id]);
 
-  return (
-    <Layout>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <>
-          <Player title={movie.name} cover={movie.cover ? process.env.REACT_APP_SERVER + movie.cover : null} controls src={movie.videoUrl} />
-          <SingleMovieCard data={movie} />
-        </>
-      )}
-    </Layout>
-  );
+  if (isLoading) {
+    return <Spinner />;
+  } else {
+    return (
+      <Layout>
+        <Player title={movie.name} cover={movie.cover ? process.env.REACT_APP_SERVER + movie.cover : null} controls src={movie.videoUrl} />
+        <SingleMovieCard data={movie} />
+      </Layout>
+    );
+  }
 };
 
 export default Movie;

@@ -2,7 +2,6 @@ import { types } from "../types";
 
 const defaultState = {
   loggedIn: false,
-  loaded: false,
   user: {},
   error: null,
   favoriteMovies: [],
@@ -26,12 +25,6 @@ export const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         error: action.payload,
-      };
-
-    case types.user.USER_LOADED:
-      return {
-        ...state,
-        loaded: action.payload,
       };
 
     case types.user.SET_FAVORITE_MOVIE:

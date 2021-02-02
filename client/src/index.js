@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { BrowserRouter as Router } from "react-router-dom";
 import { config } from "./config";
-
+import "swiper/swiper.scss";
 import "./styles/index.scss";
 
 config();

@@ -5,7 +5,6 @@ import message from "../../utils/message";
 // actions creators
 export const setUser = (payload) => ({ type: types.user.SET_USER, payload });
 export const setLoad = (payload) => ({ type: types.user.USER_LOADED, payload });
-export const setError = (payload) => ({ type: types.user.SET_ERROR, payload });
 export const setFavoritesMovie = (payload) => ({
   type: types.user.SET_FAVORITE_MOVIE,
   payload,
@@ -33,7 +32,6 @@ export const fetchUser = (userInfo) => async (dispatch) => {
       })
     );
 
-    dispatch(setLoad(true));
     message.success(`Miresevjen ${result.data.user.name}`);
   } catch (error) {
     message.error(error.response.data.message);
@@ -55,8 +53,6 @@ export const signUserUp = (userInfo) => async (dispatch) => {
         id: result.data.user.id,
       })
     );
-
-    dispatch(setLoad(true));
   } catch (error) {
     message.error(error.response.data.message);
   }
@@ -77,10 +73,7 @@ export const autoLogin = () => async (dispatch) => {
         id: result.data.user.id,
       })
     );
-
-    dispatch(setLoad(true));
   } catch (error) {
-    dispatch(setLoad(true));
     localStorage.clear();
   }
 };
@@ -144,6 +137,4 @@ export const logout = () => async (dispatch) => {
   dispatch({
     type: types.user.LOG_OUT,
   });
-
-  dispatch(setLoad(true));
 };

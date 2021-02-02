@@ -211,11 +211,9 @@ const Player = ({ src, cover, title }) => {
 
                   {/* time */}
                   <div className={styles.controlsTime}>
-                    <span>
-                      {secondsToTime(duration).h !== 0 ? <span>{secondsToTime(updatedDuration).h}:</span> : null}
-                      <span>{secondsToTime(updatedDuration).m}:</span>
-                      <span>{secondsToTime(updatedDuration).s}</span>
-                    </span>
+                    {secondsToTime(duration).h !== 0 ? <span>{secondsToTime(updatedDuration).h}:</span> : null}
+                    <span>{secondsToTime(updatedDuration).m}:</span>
+                    <span>{secondsToTime(updatedDuration).s}</span>
                   </div>
                 </div>
 
