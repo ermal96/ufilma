@@ -17,6 +17,13 @@
 
 .playerVideo {
   width: 100%;
+
+  &::cue {
+    font-size: 3rem;
+    line-height: 0.4rem;
+    background-color: transparent;
+    text-shadow: 0px 0px 10px rgb(29, 28, 28);
+  }
 }
 
 .playerCover {

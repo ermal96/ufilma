@@ -18,6 +18,7 @@ const Player = ({ src, cover, title }) => {
   const watching = useSelector(({ user }) => user.watching);
 
   const playerRef = useRef(0);
+  const trackRef = useRef(0);
   const playerRefContainer = useRef();
   const [activePlayer, setActivePlayer] = useState(false);
   const [controlAreaClasses, setControlAreaClasses] = useState();
@@ -178,6 +179,7 @@ const Player = ({ src, cover, title }) => {
           onProgress={(e) => handleProgress(e)}
           onDurationChange={handleDurationChange}>
           <source src={src} type="video/mp4"></source>
+          <track ref={trackRef} label="English" kind="subtitles" srclang="en" src="/holidate.vtt" default></track>
         </video>
 
         <Loader buffering={buffering} />
