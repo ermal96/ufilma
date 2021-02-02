@@ -1,16 +1,11 @@
 {
     "short_name": "UFILMA",
     "name": "Shiko filmat e fundit ne nje kualitet tjetër",
-    "start_url": ".",
     "display": "standalone",
     "theme_color": "#0d1117",
     "background_color": " #161b22",
+    "start_url": ".",
     "icons": [
-      {
-        "src": "iconx/favicon.ico",
-        "sizes": "64x64 32x32 24x24 16x16",
-        "type": "image/x-icon"
-      },
       {
         "src": "iconx/pwa-192x192.png",
         "type": "image/png",
