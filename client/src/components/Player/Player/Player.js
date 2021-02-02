@@ -169,6 +169,7 @@ const Player = ({ src, cover, title }) => {
     <>
       <div className={styles.player} ref={playerRefContainer}>
         <video
+          poster={cover}
           className={styles.playerVideo}
           ref={playerRef}
           onCanPlay={() => setReady(true)}
