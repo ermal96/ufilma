@@ -80,12 +80,8 @@
   color: var(--main-color);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-width: 8rem;
 
-  .separator {
-    font-size: 1.2rem;
-  }
+  min-width: 8rem;
 }
 
 .controlsWrap {

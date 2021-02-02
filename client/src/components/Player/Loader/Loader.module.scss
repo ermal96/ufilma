@@ -1,22 +1,45 @@
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.loader {
+.loaderWrapper {
   position: absolute;
-  top: 41%;
+  top: 46%;
   left: 50%;
   transform: translate(-50%);
   font-size: 7rem;
   z-index: 10;
+  line-height: 0;
 
-  svg {
-    animation: rotate 1s infinite;
+  .loader {
+    display: inline-block;
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+  }
+  .loader div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    margin: 0.4rem;
+    border: 0.4rem solid var(--main-color);
+    border-radius: 50%;
+    animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: var(--main-color) transparent transparent transparent;
+  }
+  .loader div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .loader div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .loader div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

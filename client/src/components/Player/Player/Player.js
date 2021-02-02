@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
 import { RiFullscreenFill, RiPlayLine, RiPauseLine, RiVolumeMuteLine, RiVolumeUpLine, RiFullscreenExitLine } from "react-icons/ri";
-import { Range } from "../..";
+import Timeline from "../Timeline/Timeline";
 import screenfull from "screenfull";
 import Loader from "../Loader/Loader";
 import { addWatching, getWatching } from "../../../store/actions/userActions";
@@ -28,8 +28,9 @@ const Player = ({ src, cover, title }) => {
   const [ready, setReady] = useState(false);
   const [buffering, setBuffering] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
-  const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(0);
+  const [loaded, setLoaded] = useState(0);
+  const [updatedDuration, setUpdatedDuration] = useState(0);
+  const [timeInterval, setTimerval] = useState(null);
 
   const savedTime = useRef();
 
@@ -88,12 +89,6 @@ const Player = ({ src, cover, title }) => {
   const handleTimeUpdate = () => {
     setPlayedTime(playerRef.current.currentTime);
     savedTime.current = playedTime;
-
-    const min = Math.floor(playerRef.current.currentTime / 60);
-    const sec = parseInt(playerRef.current.currentTime - min * 60);
-
-    setSeconds(sec);
-    setMinutes(min);
   };
 
   const handleSeeking = () => {
@@ -102,10 +97,49 @@ const Player = ({ src, cover, title }) => {
 
   const handleSeeked = () => {
     setBuffering(false);
+    setPlayedTime(playerRef.current.currentTime);
+    savedTime.current = playedTime;
+  };
+
+  const secondsToTime = (secs) => {
+    secs = Math.round(secs);
+    let hours = Math.floor(secs / (60 * 60));
+
+    let divisor_for_minutes = secs % (60 * 60);
+    let minutes = Math.floor(divisor_for_minutes / 60);
+
+    let divisor_for_seconds = divisor_for_minutes % 60;
+    let seconds = Math.ceil(divisor_for_seconds);
+
+    var obj = {
+      h: hours,
+      m: minutes,
+      s: seconds,
+    };
+    return obj;
+  };
+
+  const handleDurationChange = () => {
+    setDuration(playerRef.current.duration);
+    setUpdatedDuration(playerRef.current.duration);
+  };
+
+  const handleProgress = (e) => {
+    var duration = playerRef.current.duration;
+    if (duration > 0) {
+      for (var i = 0; i < playerRef.current.buffered.length; i++) {
+        if (playerRef.current.buffered.start(playerRef.current.buffered.length - 1 - i) < playerRef.current.currentTime) {
+          setLoaded((playerRef.current.buffered.end(playerRef.current.buffered.length - 1 - i) / duration) * 100);
+          break;
+        }
+      }
+    }
   };
 
   useEffect(() => {
     setActivePlayer(true);
+
+    setUpdatedDuration(duration - playedTime);
 
     if (isLoggedIn) {
       dispatch(
@@ -129,7 +163,7 @@ const Player = ({ src, cover, title }) => {
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, movieId, userId, activePlayer, duration, isLoggedIn]);
+  }, [dispatch, movieId, userId, activePlayer, duration, isLoggedIn, playing, playedTime]);
 
   return (
     <>
@@ -138,10 +172,12 @@ const Player = ({ src, cover, title }) => {
           className={styles.playerVideo}
           ref={playerRef}
           onCanPlay={() => setReady(true)}
+          onEnded={() => setPlaying(false)}
           onTimeUpdate={handleTimeUpdate}
           onSeeked={handleSeeked}
           onSeeking={handleSeeking}
-          onDurationChange={() => setDuration(playerRef.current.duration)}>
+          onProgress={(e) => handleProgress(e)}
+          onDurationChange={handleDurationChange}>
           <source src={src} type="video/mp4"></source>
         </video>
 
@@ -157,7 +193,7 @@ const Player = ({ src, cover, title }) => {
             <div className={styles.controlsWrap}>
               {/* Timeline */}
               <div className={styles.timeline}>
-                <Range max={duration} value={playedTime} onChange={(e) => handlePlayedTime(e)} />
+                <Timeline max={duration} value={playedTime} loaded={loaded} onChange={(e) => handlePlayedTime(e)} />
               </div>
 
               {/* Player constrols wrapper */}
@@ -177,10 +213,10 @@ const Player = ({ src, cover, title }) => {
                   {/* time */}
                   <div className={styles.controlsTime}>
                     <span>
-                      {minutes}:{seconds}
+                      {secondsToTime(duration).h !== 0 ? <span>{secondsToTime(updatedDuration).h}:</span> : null}
+                      <span>{secondsToTime(updatedDuration).m}:</span>
+                      <span>{secondsToTime(updatedDuration).s}</span>
                     </span>
-                    <span className={styles.separator}>/</span>
-                    <span>{Math.floor(duration / 60)}</span>
                   </div>
                 </div>
 

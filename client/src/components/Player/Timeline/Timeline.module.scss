@@ -1,4 +1,4 @@
-.inputRange {
+.inputTimeline {
   background: transparent !important;
   transition: all 0.3s ease;
   width: 100%;
@@ -65,18 +65,22 @@
   width: 100%;
   bottom: 2.6rem;
   z-index: -1;
+  transition: 0.3s ease;
 
   @media (max-width: 786px) {
     bottom: 2.4rem;
   }
-
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
-  height: 0.5rem;
+  height: 0.4rem;
   box-shadow: none;
-  background: #808080;
+  background: transparent;
   border: none;
+
+  &::-webkit-progress-bar {
+    background: transparent;
+  }
 
   &[value]::-webkit-progress-value {
     background: var(--accent-color);
@@ -84,5 +88,38 @@
 
   &[value]::-moz-progress-bar {
     background: var(--accent-color);
+  }
+}
+
+.progresBarLoaded {
+  width: 100%;
+  position: absolute;
+  bottom: 2.6rem;
+  z-index: -1;
+  transition: 0.3s ease;
+
+  @media (max-width: 786px) {
+    bottom: 2.4rem;
+  }
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  appearance: none;
+  height: 0.4rem;
+  box-shadow: none;
+  border: none;
+  background: #696969;
+
+  &::-webkit-progress-bar {
+    background: #696969;
+  }
+
+  &[value]::-webkit-progress-value {
+    background: #a0a0a0;
+  }
+
+  &[value]::-moz-progress-bar {
+    background: #a0a0a0;
   }
 }

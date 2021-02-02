@@ -2,7 +2,6 @@
 export { default as Form } from "./Form/Form/Form";
 export { default as Input } from "./Form/Input/Input";
 export { default as ULink } from "./Form/ULink/ULink";
-export { default as Range } from "./Form/Range/Range";
 
 // export base
 export { default as Button } from "./Base/Buttons/Button/Button";
