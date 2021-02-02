@@ -88,6 +88,8 @@ const Player = ({ src, cover, title }) => {
   const handleTimeUpdate = () => {
     setPlayedTime(playerRef.current.currentTime);
     savedTime.current = playedTime;
+
+    setUpdatedDuration(duration - playedTime);
   };
 
   const handleSeeking = () => {
@@ -138,8 +140,6 @@ const Player = ({ src, cover, title }) => {
   useEffect(() => {
     setActivePlayer(true);
 
-    setUpdatedDuration(duration - playedTime);
-
     if (isLoggedIn) {
       dispatch(
         getWatching({
@@ -162,7 +162,7 @@ const Player = ({ src, cover, title }) => {
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, movieId, userId, activePlayer, duration, isLoggedIn, playing, playedTime]);
+  }, [dispatch, movieId, userId, activePlayer, duration, isLoggedIn, playing]);
 
   return (
     <>
