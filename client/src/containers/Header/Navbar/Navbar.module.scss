@@ -1,11 +1,8 @@
 .navbar {
   margin-left: 2rem;
-  @media (max-width: 767px) {
-    margin-left: 0;
-  }
 
-  .menu-mobile-open {
-    display: flex;
+  &[searchOpen="true"] {
+    margin-left: 0;
   }
 }
 
@@ -42,6 +39,10 @@
 
     &.show {
       display: block;
+    }
+
+    &[visible="hide"] {
+      display: none;
     }
   }
 

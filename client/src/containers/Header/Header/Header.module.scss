@@ -14,24 +14,18 @@
 .headerNav {
   display: flex;
   align-items: center;
-  width: 100%;
+
   @media (max-width: 540px) {
     justify-content: space-between;
-
-    .searchOpen {
-      width: 100%;
-    }
   }
 }
 
 .headerMini {
   display: flex;
   align-items: center;
+  width: 100%;
   @media (max-width: 540px) {
-    justify-content: space-between;
-    .searchOpen {
-      width: 100%;
-    }
+    justify-content: flex-end;
   }
 }
 

@@ -10,11 +10,13 @@ import cx from "classnames";
 
 const Navbar = () => {
   const menuMobile = useSelector(({ header }) => header.menuMobile);
+  const searchOpen = useSelector(({ header }) => header.search);
   const isLoggedIn = useSelector(({ user }) => user.loggedIn);
   const dispatch = useDispatch();
   let location = useLocation();
 
   const [show, setShow] = useState(false);
+
   useEffect(() => {
     dispatch(setMenuMobile(false));
   }, [location, dispatch]);
@@ -30,11 +32,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={styles.navbar} searchOpen={searchOpen ? "true" : ""}>
       <div className={styles.navbarMenuIcon} onClick={handleMenuMobile}>
         {menuMobile ? <RiCloseFill /> : <RiMenuFill />}
       </div>
-      <ul className={cx(styles.navbarList, styles[show])}>
+      <ul className={cx(styles.navbarList, styles[show])} visible={searchOpen ? "hide" : ""}>
         <li>
           <NavLink exact to={routes.home}>
             Kreu
