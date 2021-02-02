@@ -23,9 +23,9 @@
 .headerMini {
   display: flex;
   align-items: center;
-  width: 100%;
   @media (max-width: 540px) {
     justify-content: flex-end;
+    width: 100%;
   }
 }
 
