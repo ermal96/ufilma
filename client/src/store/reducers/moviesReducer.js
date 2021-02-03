@@ -1,9 +1,9 @@
 import { types } from "../types";
 
 const defaultState = {
-  movies: {},
+  movies: [],
   movie: {},
-  moviesInCategory: {},
+  moviesInCategory: [],
   userFavoriteMovies: [],
   loaded: false,
 };
@@ -32,12 +32,6 @@ export const moviesReducer = (state = defaultState, action) => {
       return {
         ...state,
         userFavoriteMovies: action.payload,
-      };
-
-    case types.movies.MOVIES_LOADING:
-      return {
-        ...state,
-        loaded: action.payload,
       };
 
     case types.movies.RESET_MOVIES:

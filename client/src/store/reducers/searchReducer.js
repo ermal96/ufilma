@@ -1,7 +1,7 @@
 import { types } from "../types";
 
 const defaultState = {
-  result: {},
+  result: [],
 };
 
 export const searchReducer = (state = defaultState, action) => {

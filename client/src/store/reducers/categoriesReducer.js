@@ -1,7 +1,7 @@
 import { types } from "../types";
 
 const defaultState = {
-  categories: {},
+  categories: [],
   category: {},
   loaded: false,
 };

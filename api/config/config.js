@@ -3,6 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import busboy from "connect-busboy";
 import formData from "express-form-data";
 
 export const config = (app) => {
@@ -14,6 +15,7 @@ export const config = (app) => {
   app.use(bodyParser.json());
   app.use(formData.parse());
   app.use(cors());
+  app.use(busboy());
   app.use(morgan("dev"));
 
   mongoose

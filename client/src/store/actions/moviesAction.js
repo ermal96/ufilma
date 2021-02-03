@@ -21,10 +21,6 @@ export const setMovie = (payload) => ({
   type: types.movies.GET_MOVIE,
   payload,
 });
-export const setLoad = (payload) => ({
-  type: types.movies.MOVIES_LOADING,
-  payload,
-});
 
 export const setUserFavoriteMovies = (payload) => ({
   type: types.movies.GET_USER_FAVORITE_MOVIES,
@@ -37,16 +33,12 @@ export const getMovies = () => async (dispatch) => {
     dispatch(setAppLoading(true));
     const result = await axios.get("movies");
     dispatch(setMovies(result.data.movies));
-    dispatch(setLoad(false));
     dispatch(setAppLoading(false));
-
     dispatch({
       type: types.app.LOAD_APP,
       payload: false,
     });
-  } catch (error) {
-    dispatch(setLoad(false));
-  }
+  } catch (error) {}
 };
 
 export const getMoviesInCategory = (catId) => async (dispatch) => {
@@ -54,11 +46,8 @@ export const getMoviesInCategory = (catId) => async (dispatch) => {
     dispatch(setAppLoading(true));
     const result = await axios.get(`movies/category/${catId}`);
     dispatch(setMoviesInCategory(result.data.movies));
-    dispatch(setLoad(false));
     dispatch(setAppLoading(false));
-  } catch (error) {
-    dispatch(setLoad(false));
-  }
+  } catch (error) {}
 };
 
 export const getMovie = (id) => async (dispatch) => {
@@ -66,11 +55,8 @@ export const getMovie = (id) => async (dispatch) => {
     dispatch(setAppLoading(true));
     const result = await axios.get(`movies/${id}`);
     dispatch(setMovie(result.data.movie[0]));
-    dispatch(setLoad(false));
     dispatch(setAppLoading(false));
-  } catch (error) {
-    dispatch(setLoad(false));
-  }
+  } catch (error) {}
 };
 
 export const getUserFavoriteMovies = (movies) => async (dispatch) => {
@@ -78,9 +64,6 @@ export const getUserFavoriteMovies = (movies) => async (dispatch) => {
     dispatch(setAppLoading(true));
     const result = await axios.put("movies/favorites", movies);
     dispatch(setUserFavoriteMovies(result.data.movies));
-    dispatch(setLoad(false));
     dispatch(setAppLoading(false));
-  } catch (error) {
-    dispatch(setLoad(false));
-  }
+  } catch (error) {}
 };

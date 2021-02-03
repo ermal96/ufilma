@@ -16,6 +16,7 @@ const Home = () => {
 
   return (
     <Layout>
+      {console.log(movies)}
       {isLoading ? (
         <Spinner />
       ) : (
