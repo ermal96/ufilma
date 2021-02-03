@@ -10,12 +10,11 @@ export const config = (app) => {
   dotenv.config();
 
   const port = 5000;
-
+  app.use(cors());
+  app.use(busboy());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(formData.parse());
-  app.use(cors());
-  app.use(busboy());
   app.use(morgan("dev"));
 
   mongoose
