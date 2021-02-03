@@ -82,15 +82,14 @@ const AddMovie = ({ match }) => {
             <Form.Item name="time">
               <Input required placeholder="Movie Time" />
             </Form.Item>
+            <Form.Item name="subtitle">
+              <Input required placeholder="Subtitle" />
+            </Form.Item>
             <Form.Item name="videoUrl">
               <Input required placeholder="Movie Url" />
             </Form.Item>
             <Form.Item name="description">
-              <Input.TextArea
-                required
-                rows={6}
-                placeholder="Movie Description"
-              />
+              <Input.TextArea required rows={6} placeholder="Movie Description" />
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
@@ -100,21 +99,13 @@ const AddMovie = ({ match }) => {
           </div>
 
           <div>
-            <Upload
-              onChange={handleThumnailUpload}
-              maxCount={1}
-              listType="picture"
-            >
+            <Upload onChange={handleThumnailUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
                 Upload thumbnail
               </Button>
             </Upload>
             <br />
-            <Upload
-              onChange={handleCoverUpload}
-              maxCount={1}
-              listType="picture"
-            >
+            <Upload onChange={handleCoverUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
                 Upload cover
               </Button>
@@ -122,12 +113,7 @@ const AddMovie = ({ match }) => {
             <br />
             {categories.length ? (
               <Form.Item name="categories">
-                <Select
-                  name="categories"
-                  mode="multiple"
-                  style={{ width: "100%" }}
-                  placeholder="SelectCategory"
-                >
+                <Select name="categories" mode="multiple" style={{ width: "100%" }} placeholder="SelectCategory">
                   {categories.map((category) => (
                     <Option key={category._id} value={category._id}>
                       {category.name}

@@ -25,9 +25,7 @@ export const getAll = async (_, res) => {
 export const getFavorites = async (req, res) => {
   try {
     // get movie from db
-    const movies = await Movie.find({ _id: req.body })
-      .select("-__v")
-      .populate("categories", "name");
+    const movies = await Movie.find({ _id: req.body }).select("-__v").populate("categories", "name");
 
     // send movie
     return res.status(200).send({
@@ -44,9 +42,7 @@ export const getFavorites = async (req, res) => {
 export const getById = async (req, res) => {
   try {
     // get movie from db
-    const movie = await Movie.find({ _id: req.params.id })
-      .select("-__v")
-      .populate("categories", "name");
+    const movie = await Movie.find({ _id: req.params.id }).select("-__v").populate("categories", "name");
 
     // send movie
     return res.status(200).send({
@@ -149,6 +145,7 @@ export const updateById = async (req, res) => {
     ratio: req.body.ratio,
     trailerUrl: req.body.trailerUrl,
     time: req.body.time,
+    subtitle: req.body.subtitle,
     videoUrl: req.body.videoUrl,
   };
 

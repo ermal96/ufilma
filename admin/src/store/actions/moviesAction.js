@@ -65,6 +65,7 @@ export const addMovie = (data) => async (dispatch) => {
   formData.append("cover", data.cover);
   formData.append("trailerUrl", data.trailerUrl);
   formData.append("time", data.time);
+  formData.append("subtitle", data.subtitle);
   formData.append("quality", data.quality);
   formData.append("videoUrl", data.videoUrl);
 
@@ -102,6 +103,7 @@ export const updateMovie = (data) => async (dispatch) => {
   formData.append("cover", data.cover);
   formData.append("trailerUrl", data.trailerUrl);
   formData.append("time", data.time);
+  formData.append("subtitle", data.subtitle);
   formData.append("quality", data.quality);
   formData.append("videoUrl", data.videoUrl);
 

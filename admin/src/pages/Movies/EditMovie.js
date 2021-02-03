@@ -30,20 +30,9 @@ const EditMovie = ({ match }) => {
 
   const error = useSelector(({ movies }) => movies.error);
 
-  const {
-    name,
-    description,
-    quality,
-    categories,
-    time,
-    year,
-    ratio,
-    videoUrl,
-    trailerUrl,
-    thumbnail,
-    cover,
-    _id,
-  } = useSelector(({ movies }) => movies.movie);
+  const { name, description, quality, categories, time, year, ratio, videoUrl, trailerUrl, thumbnail, cover, _id } = useSelector(
+    ({ movies }) => movies.movie
+  );
 
   const allCategories = useSelector(({ categories }) => categories.categories);
 
@@ -65,19 +54,7 @@ const EditMovie = ({ match }) => {
       videoUrl,
       trailerUrl,
     });
-  }, [
-    dispatch,
-    match.params.id,
-    name,
-    description,
-    quality,
-    time,
-    year,
-    ratio,
-    videoUrl,
-    trailerUrl,
-    form,
-  ]);
+  }, [dispatch, match.params.id, name, description, quality, time, year, ratio, videoUrl, trailerUrl, form]);
 
   const handleThumbnailUpload = (e) => {
     setThumbnailImage(e.file.originFileObj);
@@ -130,15 +107,14 @@ const EditMovie = ({ match }) => {
               <Form.Item name="time">
                 <Input required placeholder="Movie Time" />
               </Form.Item>
+              <Form.Item name="subtitle">
+                <Input required placeholder="Subtitle" />
+              </Form.Item>
               <Form.Item name="videoUrl">
                 <Input required placeholder="Movie Url" />
               </Form.Item>
               <Form.Item name="description">
-                <Input.TextArea
-                  required
-                  rows={6}
-                  placeholder="Movie Description"
-                />
+                <Input.TextArea required rows={6} placeholder="Movie Description" />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -152,15 +128,12 @@ const EditMovie = ({ match }) => {
                 defaultFileList={[
                   {
                     name: "Movie Thumbnail",
-                    thumbUrl: thumbnail
-                      ? process.env.REACT_APP_SERVER + thumbnail
-                      : "",
+                    thumbUrl: thumbnail ? process.env.REACT_APP_SERVER + thumbnail : "",
                   },
                 ]}
                 onChange={handleThumbnailUpload}
                 maxCount={1}
-                listType="picture"
-              >
+                listType="picture">
                 <Button block icon={<UploadOutlined />}>
                   Update thumbail
                 </Button>
@@ -175,8 +148,7 @@ const EditMovie = ({ match }) => {
                 ]}
                 onChange={handleUploadCover}
                 maxCount={1}
-                listType="picture"
-              >
+                listType="picture">
                 <Button block icon={<UploadOutlined />}>
                   Update cover
                 </Button>
@@ -184,12 +156,7 @@ const EditMovie = ({ match }) => {
               <br />
               {categories ? (
                 <Form.Item name="categories">
-                  <Select
-                    name="categories"
-                    mode="multiple"
-                    style={{ width: "100%" }}
-                    placeholder="SelectCategory"
-                  >
+                  <Select name="categories" mode="multiple" style={{ width: "100%" }} placeholder="SelectCategory">
                     {allCategories.length
                       ? allCategories.map((category) => (
                           <Option key={category._id} value={category._id}>
