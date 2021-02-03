@@ -1,8 +1,9 @@
 import React from "react";
 import { Home, Login, Register, Movie, Categories, Movies, Category, Favorites } from "../pages";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const routes = {
   home: "/",
@@ -15,20 +16,23 @@ export const routes = {
 
 export const Routes = () => {
   return (
-    <Switch>
-      {/* Auth Routes */}
-      <AuthRoute path={routes.login} component={Login} />
-      <AuthRoute path={routes.register} component={Register} />
+    <Router>
+      <Switch>
+        {/* Auth Routes */}
+        <AuthRoute exact path={routes.login} component={Login} />
+        <AuthRoute exact path={routes.register} component={Register} />
 
-      {/* Private Routes */}
-      <PrivateRoute exact path={routes.favorites} component={Favorites} />
+        {/* Private Routes */}
+        <PrivateRoute exact path={routes.favorites} component={Favorites} />
 
-      {/* Routes */}
-      <Route exact path={routes.home} component={Home} />
-      <Route exact path={routes.movies} component={Movies} />
-      <Route exact path={routes.categories} component={Categories} />
-      <Route path={`${routes.movies}/:id`} component={Movie} />
-      <Route path={`${routes.categories}/:id`} component={Category} />
-    </Switch>
+        {/* Routes */}
+        <Route exact path={routes.home} component={Home} />
+        <Route exact path={routes.movies} component={Movies} />
+        <Route exact path={routes.categories} component={Categories} />
+        <Route exact path={`${routes.movies}/:id`} component={Movie} />
+        <Route exact path={`${routes.categories}/:id`} component={Category} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   );
 };
