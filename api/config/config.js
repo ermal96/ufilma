@@ -7,7 +7,7 @@ import busboy from "connect-busboy";
 import formData from "express-form-data";
 
 export const config = (app) => {
-  const whitelist = ["http://localhost:3000", "http://localhost:3001", "https://ufilma.com"];
+  const whitelist = ["http://localhost:3000", "http://localhost:3001", "http://localhost:5000"];
   const corsOptions = {
     origin: function (origin, callback) {
       if (whitelist.indexOf(origin) !== -1) {
