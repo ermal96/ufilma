@@ -22,7 +22,13 @@ const Movie = ({ match }) => {
         <Spinner />
       ) : (
         <>
-          <Player title={movie.name} cover={movie.cover ? process.env.REACT_APP_SERVER + movie.cover : null} controls src={movie.videoUrl} />
+          <Player
+            subtitle={movie.subtitle}
+            title={movie.name}
+            cover={movie.cover ? process.env.REACT_APP_SERVER + movie.cover : null}
+            controls
+            src={movie.videoUrl}
+          />
           <SingleMovieCard data={movie} />{" "}
         </>
       )}

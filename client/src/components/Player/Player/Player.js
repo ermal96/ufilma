@@ -10,7 +10,7 @@ import cx from "classnames";
 
 import styles from "./Player.module.scss";
 
-const Player = ({ src, cover, title }) => {
+const Player = ({ src, cover, title, subtitle }) => {
   const dispatch = useDispatch();
   const movieId = useSelector(({ movies }) => movies.movie._id);
   const isLoggedIn = useSelector(({ user }) => user.loggedIn);
@@ -179,8 +179,8 @@ const Player = ({ src, cover, title }) => {
           onSeeking={handleSeeking}
           onProgress={(e) => handleProgress(e)}
           onDurationChange={handleDurationChange}>
-          <source src={src} type="video/mp4"></source>
-          <track ref={trackRef} label="English" kind="subtitles" srcLang="en" src="/holidate.vtt" default></track>
+          <source src={src} type="video/mp4" />
+          <track ref={trackRef} label="Shqip" kind="subtitles" srcLang="en" src={subtitle} default />
         </video>
 
         <Loader buffering={buffering} />

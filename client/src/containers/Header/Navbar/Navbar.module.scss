@@ -1,8 +1,10 @@
 .navbar {
   margin-left: 2rem;
 
-  &[searchopen="true"] {
-    margin-left: 0;
+  @media (max-width: 540px) {
+    &[searchopen="true"] {
+      margin-left: 0;
+    }
   }
 }
 
