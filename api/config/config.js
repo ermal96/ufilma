@@ -7,18 +7,8 @@ import busboy from "connect-busboy";
 import formData from "express-form-data";
 
 export const config = (app) => {
-  const whitelist = ["http://localhost:3000", "http://localhost:3001", "http://localhost:5000"];
-  const corsOptions = {
-    origin: function (origin, callback) {
-      if (whitelist.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback("Go home Billy here is nothing for you");
-      }
-    },
-  };
+  app.use(cors());
 
-  app.use(cors(corsOptions));
   dotenv.config();
   const port = 5000;
   app.use(busboy());
