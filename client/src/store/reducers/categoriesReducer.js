@@ -20,12 +20,6 @@ export const categoriesReducer = (state = defaultState, action) => {
         category: action.payload,
       };
 
-    case types.categories.CATEGORIES_LOADED:
-      return {
-        ...state,
-        loaded: action.payload,
-      };
-
     default:
       return state;
   }

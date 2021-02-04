@@ -11,10 +11,6 @@ export const setCategory = (payload) => ({
   type: types.categories.GET_CATEGORY,
   payload,
 });
-export const setLoad = (payload) => ({
-  type: types.categories.CATEGORIES_LOADING,
-  payload,
-});
 
 // actions
 export const getCategories = () => async (dispatch) => {
@@ -22,11 +18,8 @@ export const getCategories = () => async (dispatch) => {
     dispatch(setAppLoading(true));
     const result = await axios.get("categories");
     dispatch(setCategories(result.data.categories));
-    dispatch(setLoad(false));
     dispatch(setAppLoading(false));
-  } catch (error) {
-    dispatch(setLoad(false));
-  }
+  } catch (error) {}
 };
 
 export const getCategory = (id) => async (dispatch) => {
@@ -34,9 +27,6 @@ export const getCategory = (id) => async (dispatch) => {
     dispatch(setAppLoading(true));
     const result = await axios.get(`categories/${id}`);
     dispatch(setCategory(result.data.category[0]));
-    dispatch(setLoad(false));
     dispatch(setAppLoading(false));
-  } catch (error) {
-    dispatch(setLoad(false));
-  }
+  } catch (error) {}
 };

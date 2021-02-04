@@ -4,7 +4,6 @@ import message from "../../utils/message";
 
 // actions creators
 export const setUser = (payload) => ({ type: types.user.SET_USER, payload });
-export const setLoad = (payload) => ({ type: types.user.USER_LOADED, payload });
 export const setFavoritesMovie = (payload) => ({
   type: types.user.SET_FAVORITE_MOVIE,
   payload,
