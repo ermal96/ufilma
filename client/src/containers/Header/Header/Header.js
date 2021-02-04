@@ -35,7 +35,7 @@ const Header = () => {
             {loggedIn ? (
               <UserDropdown />
             ) : (
-              <Link title="Login" to={routes.login}>
+              <Link title="Hyr" to={routes.login}>
                 <RiLockLine />
               </Link>
             )}

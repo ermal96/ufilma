@@ -33,9 +33,9 @@ const Search = ({ searchOpen }) => {
   };
 
   return (
-    <div className={styles.search} title="Search" variant={searchOpen ? "open" : null}>
+    <div className={styles.search} title="Kërko" variant={searchOpen ? "open" : null}>
       <Form onSubmit={onSubmit}>
-        {open ? <Input onChange={(e) => handleSearchChange(e)} variant="light" placeholder="Kerko per filma" /> : null}
+        {open ? <Input onChange={(e) => handleSearchChange(e)} variant="light" placeholder="Kërko per filma" /> : null}
 
         <div className={styles.searchIcon} onClick={handleSearchIcon}>
           {open ? <RiCloseFill /> : <RiSearch2Line />}
