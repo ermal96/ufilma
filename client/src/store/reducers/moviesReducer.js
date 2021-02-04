@@ -37,9 +37,9 @@ export const moviesReducer = (state = defaultState, action) => {
     case types.movies.RESET_MOVIES:
       return {
         ...state,
-        movies: {},
+        movies: [],
         movie: {},
-        moviesInCategory: {},
+        moviesInCategory: [],
       };
 
     default:
