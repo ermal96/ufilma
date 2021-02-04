@@ -77,6 +77,7 @@ export const addCategory = (data) => async (dispatch) => {
   formData.append("name", data.name);
   formData.append("description", data.description);
   formData.append("thumbnail", data.thumbnail);
+  formData.append("cover", data.cover);
 
   try {
     dispatch(setError(true));
@@ -100,6 +101,7 @@ export const updateCategory = (data) => async (dispatch) => {
   formData.append("name", data.name);
   formData.append("description", data.description);
   formData.append("thumbnail", data.thumbnail);
+  formData.append("cover", data.cover);
 
   try {
     dispatch(setError(true));

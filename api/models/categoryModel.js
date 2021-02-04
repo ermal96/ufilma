@@ -10,6 +10,10 @@ const categorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  cover: {
+    type: String,
+    required: true,
+  },
   movies: [
     {
       type: mongoose.Schema.Types.ObjectId,
