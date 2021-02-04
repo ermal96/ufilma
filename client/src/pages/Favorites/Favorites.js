@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Card, Grid, Container, Spinner } from "../../components";
 import { PageHeader } from "../../components";
 import { routes } from "../../routes";
-import { Layout } from "../../components";
+import { Layout, Seo } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFavoriteMovies } from "../../store/actions/moviesAction";
 import styles from "./Favorites.module.scss";
@@ -20,6 +20,7 @@ const Favorites = () => {
 
   return (
     <Layout>
+      <Seo title="Filmat e preferuar" description="Këtu do te gjeni te gjithë Filmat tuaj te preferuar" />
       {isLoading ? (
         <Spinner />
       ) : (

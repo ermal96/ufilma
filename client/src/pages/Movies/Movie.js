@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Player, Spinner } from "../../components";
+import { Player, Seo, Spinner } from "../../components";
 import { getMovie } from "../../store/actions/moviesAction";
 import SingleMovieCard from "../../components/Cards/SingleMovieCard/SingleMovieCard";
 import { Layout } from "../../components";
@@ -22,6 +22,7 @@ const Movie = ({ match }) => {
         <Spinner />
       ) : (
         <>
+          <Seo title={movie.name} description={movie.description} />
           <Player
             subtitle={movie.subtitle}
             title={movie.name}

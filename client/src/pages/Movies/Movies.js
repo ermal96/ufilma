@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
-import { Card, Grid, Container, Spinner } from "../../components";
+import { Card, Grid, Container, Spinner, Seo } from "../../components";
 import { PageHeader } from "../../components";
 import { routes } from "../../routes";
 import { Layout } from "../../components";
@@ -17,6 +17,7 @@ const Movies = () => {
 
   return (
     <Layout>
+      <Seo title="Filma" description="Shiko filmat e fundit ne nje kualitet tjetër" />
       {isLoading ? (
         <Spinner />
       ) : (

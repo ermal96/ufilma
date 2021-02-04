@@ -29,3 +29,6 @@ export { default as Center } from "./Helpers/Center/Center";
 
 // export payer
 export { default as Player } from "./Player/Player/Player";
+
+// export seo
+export { default as Seo } from "./Seo/Seo";

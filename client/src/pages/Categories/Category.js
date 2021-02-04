@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Layout, Card, Grid, Container, PageHeader, Spinner } from "../../components";
+import { Layout, Card, Grid, Container, PageHeader, Spinner, Seo } from "../../components";
 import { getMoviesInCategory, resetMovies } from "../../store/actions/moviesAction";
 import { getCategory } from "../../store/actions/categoriesAction";
 import { routes } from "../../routes";
@@ -23,6 +23,7 @@ const Category = ({ match }) => {
         <Spinner />
       ) : (
         <>
+          <Seo title={category.name} description={category.description} />
           <PageHeader
             title={category.name}
             imageUrl="https://s.studiobinder.com/wp-content/uploads/2020/05/Best-Action-Movies-of-All-Time-Featured-.jpg"
