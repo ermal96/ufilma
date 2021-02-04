@@ -58,8 +58,6 @@
 .favorites {
   display: flex;
   align-items: center;
-  min-width: 7rem;
-  justify-content: space-between;
 
   button {
     height: 2.5rem;
@@ -67,5 +65,6 @@
     align-items: center;
     justify-content: center;
     width: 2.5rem;
+    margin-left: 2rem;
   }
 }
