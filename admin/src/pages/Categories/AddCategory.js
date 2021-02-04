@@ -71,7 +71,7 @@ const AddCategory = ({ match }) => {
                 Upload thumbnail
               </Button>
             </Upload>
-
+            <br />
             <Upload onChange={handleCoverUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
                 Cover thumbnail

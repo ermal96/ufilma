@@ -93,6 +93,7 @@ const Category = ({ match }) => {
                   Update thumbnail
                 </Button>
               </Upload>
+              <br />
               <Upload
                 onChange={handleCoverUpload}
                 maxCount={1}
