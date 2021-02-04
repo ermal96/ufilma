@@ -25,7 +25,7 @@ const Home = () => {
           <RecentMovies movies={movies} />
           <SliderSection category="Aksion" movies={movies} />
           <SliderSection category="Komedi" movies={movies} />
-          <SliderSection category="Romance" movies={movies} />
+          <SliderSection category="Romancë" movies={movies} />
           <SliderSection category="Thriller" movies={movies} />
           <SliderSection category="Fantazi" movies={movies} />
           <SliderSection category="Fantashkencë" movies={movies} />
