@@ -26,7 +26,7 @@ const Category = ({ match }) => {
           <Seo title={category.name} description={category.description} />
           <PageHeader
             title={category.name}
-            imageUrl="https://s.studiobinder.com/wp-content/uploads/2020/05/Best-Action-Movies-of-All-Time-Featured-.jpg"
+            imageUrl={process.env.REACT_APP_SERVER + category.cover}
             description={`Këtu do te gjeni te gjithë filmat e kategorisë ${category.name} shikim të këndshëm!`}
           />
           <Container>
