@@ -7,9 +7,9 @@ import NotFound from "../pages/NotFound/NotFound";
 
 export const routes = {
   home: "/",
-  login: "/login",
-  register: "/register",
-  movies: "/filmat",
+  login: "/hyr",
+  register: "/regjistrohu",
+  movies: "/filma",
   categories: "/kategorite",
   favorites: "/te-preferuar",
 };

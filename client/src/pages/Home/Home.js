@@ -22,9 +22,9 @@ const Home = () => {
         <>
           <TopMovie movies={movies} />
           <RecentMovies movies={movies} />
-          <SliderSection category="Action" movies={movies} />
-          <SliderSection category="Thriller" movies={movies} />
-          <SliderSection category="Horror" movies={movies} />
+          <SliderSection category="Aksion" movies={movies} />
+          <SliderSection category="Komedi" movies={movies} />
+          <SliderSection category="Romance" movies={movies} />
         </>
       )}
     </Layout>

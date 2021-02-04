@@ -34,7 +34,7 @@ const UserDropdown = () => {
           <li>
             <p onClick={() => dispatch(logout())}>
               <RiLogoutCircleRLine />
-              Logout
+              Dil
             </p>
           </li>
         </div>

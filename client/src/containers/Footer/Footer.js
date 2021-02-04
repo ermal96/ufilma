@@ -2,7 +2,12 @@ import React from "react";
 import styles from "./Footer.module.scss";
 
 const Footer = () => {
-  return <footer className={styles.footer}>&copy; Copyright 2021</footer>;
+  return (
+    <footer className={styles.footer}>
+      <div>&copy; Copyright: 2021 | UFILMA.COM | Filma dhe seriale </div>
+      <div>Privacy Policy</div>
+    </footer>
+  );
 };
 
 export default Footer;
