@@ -180,7 +180,7 @@ const Player = ({ src, cover, title, subtitle }) => {
           onProgress={(e) => handleProgress(e)}
           onDurationChange={handleDurationChange}>
           <source src={src} type="video/mp4" />
-          <track ref={trackRef} label="Shqip" kind="subtitles" srcLang="en" src="/holidate.vtt" default />
+          {/* <track ref={trackRef} label="Shqip" kind="subtitles" srcLang="en" src="/holidate.vtt" default /> */}
         </video>
 
         <Loader buffering={buffering} />
