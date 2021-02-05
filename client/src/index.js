@@ -11,7 +11,7 @@ import "./styles/index.scss";
 
 config();
 
-ReactGA.initialize("G-KM3RZC1YLK");
+ReactGA.initialize("UA-59YYQCQ42C");
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(
