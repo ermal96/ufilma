@@ -1,6 +1,11 @@
 .topCard {
-  height: 60rem;
+  height: 75vh;
   position: relative;
+
+  @media (max-width: 540px) {
+    height: 50rem;
+  }
+
   &:before {
     content: "";
     position: absolute;
