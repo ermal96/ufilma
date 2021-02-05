@@ -5,7 +5,6 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div>&copy; Copyright: 2021 | UFILMA.COM | Filma dhe seriale </div>
-      <div>Privacy Policy</div>
     </footer>
   );
 };
