@@ -13,11 +13,9 @@
     outline: none;
   }
 
-  /* chrome */
-  &::-webkit-slider-runnable-track {
-    height: 0.7rem;
-    border: none;
-    border-radius: 50px;
+  &::-webkit-slider-runnable-track,
+  &::-moz-range-track {
+    cursor: pointer;
   }
 
   &::-webkit-slider-thumb {
@@ -26,37 +24,13 @@
     border: none;
     height: 1.3rem;
     width: 1.3rem;
-    background: var(--accent-color);
-    margin-top: -0.3rem;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: scale(1.6);
-    }
   }
 
-  /* firefox */
-
-  &::-moz-range-track {
-    cursor: pointer;
-  }
   &::-moz-range-thumb {
-    z-index: 2;
-    cursor: pointer;
     border-radius: 0;
     border: none;
-    height: 1.3rem;
-    width: 1.3rem;
-    background: var(--accent-color);
-    margin-top: -0.2rem;
-    border-radius: 50%;
-
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: scale(1.6);
-    }
+    height: 0;
+    width: 0;
   }
 }
 
