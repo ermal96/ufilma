@@ -39,9 +39,13 @@
   left: 0;
   object-fit: cover;
   object-position: center;
-  display: block;
+  transform: all 0.3s ease;
 
-  &.hide {
+  &[active="true"] {
+    display: block;
+  }
+
+  &[active="false"] {
     display: none;
   }
 }
