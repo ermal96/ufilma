@@ -169,7 +169,6 @@ const Player = ({ src, cover, title, subtitle }) => {
     <>
       <div className={styles.player} ref={playerRefContainer}>
         <video
-          poster={cover}
           className={styles.playerVideo}
           ref={playerRef}
           onCanPlay={() => setReady(true)}
@@ -182,6 +181,8 @@ const Player = ({ src, cover, title, subtitle }) => {
           <source src={src} type="video/mp4" />
           {/* <track ref={trackRef} label="Shqip" kind="subtitles" srcLang="en" src="/holidate.vtt" default /> */}
         </video>
+
+        <img className={styles.playerCover} active={playing ? "false" : "true"} src={cover} alt="Video Cover" />
 
         <Loader buffering={buffering} />
 
