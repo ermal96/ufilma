@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUserUp } from "../../store/actions/userActions";
-import { Input, Form, Button, Center, Logo, Background, ULink } from "../../components";
+import {
+  Input,
+  Form,
+  Button,
+  Center,
+  Logo,
+  Background,
+  ULink,
+} from "../../components";
 import { routes } from "../../routes";
 import message from "../../utils/message/";
 const Register = () => {
@@ -31,11 +39,25 @@ const Register = () => {
     <Background>
       <Center>
         <Logo />
-        <ULink title="Login in here" to={routes.login} />
+        <ULink title="Hyr Ketu" to={routes.login} />
         <Form position="center" onSubmit={onSubmit}>
-          <Input display="block" variant="light" onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Enter Name" />
+          <Input
+            display="block"
+            variant="light"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            type="text"
+            placeholder="Emer"
+          />
 
-          <Input display="block" variant="light" onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="Enter Email" />
+          <Input
+            display="block"
+            variant="light"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            type="email"
+            placeholder="Email"
+          />
 
           <Input
             variant="light"
@@ -43,7 +65,7 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             type="password"
-            placeholder="Enter Password"
+            placeholder="Fjalekalimi"
           />
 
           <Input
@@ -52,11 +74,11 @@ const Register = () => {
             onChange={(e) => setRepeatPassword(e.target.value)}
             value={repeatPassword}
             type="password"
-            placeholder="Repeat Password"
+            placeholder="Perserit Fjalekalimin"
           />
 
           <Button width={100} variant="light" type="submit">
-            Register
+            Regjistrohu
           </Button>
         </Form>
       </Center>

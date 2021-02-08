@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../store/actions/userActions";
-import { Input, Form, Button, Center, Logo, Background, ULink } from "../../components";
+import {
+  Input,
+  Form,
+  Button,
+  Center,
+  Logo,
+  Background,
+  ULink,
+} from "../../components";
 import { routes } from "../../routes";
 
 const Login = () => {
@@ -24,9 +32,16 @@ const Login = () => {
     <Background>
       <Center>
         <Logo />
-        <ULink title="Create an account" to={routes.register} />
+        <ULink title="Krijo Llogari" to={routes.register} />
         <Form position="center" onSubmit={onSubmit}>
-          <Input variant="light" display="block" onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="Enter Email" />
+          <Input
+            variant="light"
+            display="block"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            type="email"
+            placeholder="Email"
+          />
 
           <Input
             variant="light"
@@ -34,11 +49,11 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             type="password"
-            placeholder="Enter Password"
+            placeholder="Fjalekalimi"
           />
 
           <Button width={100} type="submit">
-            Login
+            Hyr
           </Button>
         </Form>
       </Center>
