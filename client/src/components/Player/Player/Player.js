@@ -1,6 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
-import { RiFullscreenFill, RiPlayLine, RiPauseLine, RiVolumeMuteLine, RiVolumeUpLine, RiFullscreenExitLine } from "react-icons/ri";
+import {
+  RiFullscreenFill,
+  RiPlayLine,
+  RiPauseLine,
+  RiVolumeMuteLine,
+  RiVolumeUpLine,
+  RiFullscreenExitLine,
+} from "react-icons/ri";
 import Timeline from "../Timeline/Timeline";
 import screenfull from "screenfull";
 import Loader from "../Loader/Loader";
@@ -123,15 +130,26 @@ const Player = ({ src, cover, title, subtitle }) => {
 
   const handleDurationChange = () => {
     setDuration(playerRef.current.duration);
-    setUpdatedDuration(playerRef.current.duration);
+
+    setUpdatedDuration(duration - playedTime);
   };
 
   const handleProgress = (e) => {
     var duration = playerRef.current.duration;
     if (duration > 0) {
       for (var i = 0; i < playerRef.current.buffered.length; i++) {
-        if (playerRef.current.buffered.start(playerRef.current.buffered.length - 1 - i) < playerRef.current.currentTime) {
-          setLoaded((playerRef.current.buffered.end(playerRef.current.buffered.length - 1 - i) / duration) * 100);
+        if (
+          playerRef.current.buffered.start(
+            playerRef.current.buffered.length - 1 - i
+          ) < playerRef.current.currentTime
+        ) {
+          setLoaded(
+            (playerRef.current.buffered.end(
+              playerRef.current.buffered.length - 1 - i
+            ) /
+              duration) *
+              100
+          );
           break;
         }
       }
@@ -149,6 +167,7 @@ const Player = ({ src, cover, title, subtitle }) => {
       );
       if (filterTime.length) {
         playerRef.current.currentTime = parseInt(filterTime[0].played);
+        setPlayedTime(parseInt(filterTime[0].played));
       }
       return () => {
         if (savedTime.current !== undefined && savedTime.current !== 0) {
@@ -177,26 +196,40 @@ const Player = ({ src, cover, title, subtitle }) => {
           onSeeked={handleSeeked}
           onSeeking={handleSeeking}
           onProgress={(e) => handleProgress(e)}
-          onDurationChange={handleDurationChange}>
+          onDurationChange={handleDurationChange}
+        >
           <source src={src} type="video/mp4" />
           {/* <track ref={trackRef} label="Shqip" kind="subtitles" srcLang="en" src="/holidate.vtt" default /> */}
         </video>
 
-        <img className={styles.playerCover} active={playing ? "false" : "true"} src={cover} alt="Video Cover" />
+        <img
+          className={styles.playerCover}
+          active={playing ? "false" : "true"}
+          src={cover}
+          alt="Video Cover"
+        />
 
         <Loader buffering={buffering} />
 
         {/* controls */}
         {ready ? (
           <div className={styles.controls} active={playing ? "false" : "true"}>
-            <div className={cx(styles.controlsArea, styles[controlAreaClasses])} onClick={handleControlArea}>
+            <div
+              className={cx(styles.controlsArea, styles[controlAreaClasses])}
+              onClick={handleControlArea}
+            >
               {playing ? <RiPlayLine /> : <RiPauseLine />}
             </div>
 
             <div className={styles.controlsWrap}>
               {/* Timeline */}
               <div className={styles.timeline}>
-                <Timeline max={duration} value={playedTime} loaded={loaded} onChange={(e) => handlePlayedTime(e)} />
+                <Timeline
+                  max={duration}
+                  value={playedTime}
+                  loaded={loaded}
+                  onChange={(e) => handlePlayedTime(e)}
+                />
               </div>
 
               {/* Player constrols wrapper */}
@@ -204,10 +237,18 @@ const Player = ({ src, cover, title, subtitle }) => {
                 {/* Left controls */}
                 <div className={styles.controlsLeft}>
                   {/* Play Pause */}
-                  {playing ? <RiPauseLine title="Pause" onClick={handlePause} /> : <RiPlayLine title="Play" onClick={handlePlay} />}
+                  {playing ? (
+                    <RiPauseLine title="Pause" onClick={handlePause} />
+                  ) : (
+                    <RiPlayLine title="Play" onClick={handlePlay} />
+                  )}
                   {/* Player volume */}
                   <div className={styles.volume}>
-                    {muted ? <RiVolumeMuteLine title="Unmute" onClick={handleUnmute} /> : <RiVolumeUpLine title="Mute" onClick={handleMute} />}
+                    {muted ? (
+                      <RiVolumeMuteLine title="Unmute" onClick={handleUnmute} />
+                    ) : (
+                      <RiVolumeUpLine title="Mute" onClick={handleMute} />
+                    )}
                   </div>
 
                   {/* PLayer title */}
@@ -215,7 +256,9 @@ const Player = ({ src, cover, title, subtitle }) => {
 
                   {/* time */}
                   <div className={styles.controlsTime}>
-                    {secondsToTime(duration).h !== 0 ? <span>{secondsToTime(updatedDuration).h}:</span> : null}
+                    {secondsToTime(duration).h !== 0 ? (
+                      <span>{secondsToTime(updatedDuration).h}:</span>
+                    ) : null}
                     <span>{secondsToTime(updatedDuration).m}:</span>
                     <span>{secondsToTime(updatedDuration).s}</span>
                   </div>
@@ -225,9 +268,15 @@ const Player = ({ src, cover, title, subtitle }) => {
                 <div className={styles.controlsRight}>
                   {/* Fullscreen mode */}
                   {fullScreen ? (
-                    <RiFullscreenExitLine title="Exit Fullscreen" onClick={handleClickFullscreen} />
+                    <RiFullscreenExitLine
+                      title="Exit Fullscreen"
+                      onClick={handleClickFullscreen}
+                    />
                   ) : (
-                    <RiFullscreenFill title="Fullscreen" onClick={handleClickFullscreen} />
+                    <RiFullscreenFill
+                      title="Fullscreen"
+                      onClick={handleClickFullscreen}
+                    />
                   )}
                 </div>
               </div>
