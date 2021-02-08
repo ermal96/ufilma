@@ -34,10 +34,6 @@ export const getMovies = () => async (dispatch) => {
     const result = await axios.get("movies");
     dispatch(setMovies(result.data.movies));
     dispatch(setAppLoading(false));
-    dispatch({
-      type: types.app.LOAD_APP,
-      payload: false,
-    });
   } catch (error) {}
 };
 
