@@ -6,3 +6,4 @@ export { default as Movies } from "./Movies/Movies";
 export { default as Categories } from "./Categories/Categories";
 export { default as Category } from "./Categories/Category";
 export { default as Favorites } from "./Favorites/Favorites";
+export { default as Account } from "./User/Account";
