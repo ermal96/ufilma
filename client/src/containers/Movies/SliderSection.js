@@ -10,13 +10,15 @@ const SliderSection = ({ movies, category }) => {
   SwiperCore.use([Navigation]);
 
   useEffect(() => {
-    setSliderSection(movies.filter((movie) => movie.categories[0].name === category));
+    setSliderSection(
+      movies.filter((movie) => movie.categories[0].name === category)
+    );
   }, [movies, category]);
 
   return (
-    <Container>
+    <>
       {sliderSection.length ? (
-        <>
+        <Container>
           <Title>{category}</Title>
 
           <Swiper navigation spaceBetween={10} slidesPerView="auto">
@@ -33,9 +35,11 @@ const SliderSection = ({ movies, category }) => {
               </SwiperSlide>
             ))}
           </Swiper>
-        </>
-      ) : null}
-    </Container>
+        </Container>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
