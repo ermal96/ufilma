@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Layout, Input, Form, Button, Seo, Title, FavoriteButton } from "../../components";
 import styles from "./Account.module.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUser } from "../../store/actions/userActions";
+import { setError, updateUser } from "../../store/actions/userActions";
 import { getUserFavoriteMovies } from "../../store/actions/moviesAction";
 import AccountImg from "../../assets/account.svg";
 import message from "../../utils/message";
@@ -10,6 +10,7 @@ const Account = () => {
   const dispatch = useDispatch();
 
   const favoriteMoviesId = useSelector(({ user }) => user.favoriteMovies);
+  const hasError = useSelector(({ user }) => user.error);
   const favoriteMovies = useSelector(({ movies }) => movies.userFavoriteMovies);
 
   const [name, setName] = useState("");
@@ -29,19 +30,22 @@ const Account = () => {
     }
 
     dispatch(getUserFavoriteMovies(favoriteMoviesId));
-  }, [loggedIn, user.name, user.email, dispatch, favoriteMoviesId]);
+  }, [loggedIn, user.name, user.email, dispatch, favoriteMoviesId, hasError]);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (password === repeatPassword) {
+      dispatch(setError(false));
       dispatch(updateUser({ id: user.id, name, email, password, currentPassword }));
-
-      setPassword("");
-      setCurrentPassword("");
-      setRepeatPassword("");
     } else {
       message.error("Fjalkalimi nuk perputhet");
+
+      dispatch(setError(true));
+    }
+
+    if (hasError) {
+      setDisabled(true);
     }
   };
 
