@@ -135,25 +135,27 @@ const Account = () => {
               autoComplete="repeat-password"
               placeholder="Perserit Fajlkaleimin"
             />
-            {favoriteMovies.length
-              ? favoriteMovies.map((movie) => (
-                  <div className={styles.accountFavoriteMovies} key={movie._id}>
-                    <img src={process.env.REACT_APP_SERVER + movie.thumbnail} alt="Imazhi filmit" />
-                    <div className={styles.accountFavoriteMoviesFlex}>
-                      <p>{movie.name}</p>
+            <div className={styles.favoriteMovies}>
+              {favoriteMovies.length
+                ? favoriteMovies.map((movie) => (
+                    <div className={styles.accountFavoriteMovies} key={movie._id}>
+                      <img src={process.env.REACT_APP_SERVER + movie.thumbnail} alt="Imazhi filmit" />
+                      <div className={styles.accountFavoriteMoviesFlex}>
+                        <p>{movie.name}</p>
 
-                      <FavoriteButton movieName={movie.name} movieId={movie._id} />
+                        <FavoriteButton movieName={movie.name} movieId={movie._id} />
+                      </div>
                     </div>
-                  </div>
-                ))
-              : null}
+                  ))
+                : null}
+            </div>
 
             <Button disabled={disabled} width={100} variant="filled" type="submit">
               Modifiko Profilin
             </Button>
           </Form>
 
-          <div>
+          <div className={styles.accountImg}>
             <img src={AccountImg} alt="Imazhi Llogarise" />
           </div>
         </div>
