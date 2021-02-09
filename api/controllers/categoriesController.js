@@ -5,12 +5,12 @@ export const getAll = async (_, res) => {
   try {
     const categories = await Category.find().select("-__v ").sort({ _id: -1 }).populate("movies", "name");
 
-    res.status(200).send({
+    return res.status(200).send({
       categories,
     });
   } catch (error) {
-    res.status(400).send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -19,12 +19,12 @@ export const getById = async (req, res) => {
   try {
     const category = await Category.find({ _id: req.params.id }).select("-__v").populate("movies", "name");
 
-    res.status(200).send({
+    return res.status(200).send({
       category,
     });
   } catch (error) {
-    res.send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -58,12 +58,12 @@ export const add = async (req, res) => {
 
   try {
     await category.save();
-    res.status(201).send({
-      message: "Category was successfully added",
+    return res.status(201).send({
+      message: "Kategoria u krijua me sukses",
     });
   } catch (error) {
-    res.status(400).send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -72,12 +72,12 @@ export const removeById = async (req, res) => {
   try {
     await Category.deleteOne({ _id: req.params.id });
 
-    res.send({
-      message: "Category was successfully deleted",
+    return res.status(200).send({
+      message: "Kategoria u fshi me sukses",
     });
   } catch (error) {
-    res.status(400).send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -122,12 +122,12 @@ export const updateById = async (req, res) => {
       returnOriginal: false,
     });
 
-    res.status(202).send({
-      message: "Category was successfully updated",
+    return res.status(202).send({
+      message: "Kategoria u modifikua me sukses",
     });
   } catch (error) {
-    res.status(400).send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };

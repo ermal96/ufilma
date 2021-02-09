@@ -102,7 +102,7 @@ export const autoLogin = () => async (dispatch) => {
       })
     );
   } catch (error) {
-    localStorage.clear();
+    message.error(error.response.data.message);
   }
 };
 
@@ -137,7 +137,9 @@ export const addFavorite = (data) => async (dispatch) => {
     );
 
     dispatch(setFavoritesMovie(result.data.user.favorites));
-  } catch (error) {}
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
 };
 
 export const removeFavorite = (data) => async (dispatch) => {
@@ -158,7 +160,9 @@ export const removeFavorite = (data) => async (dispatch) => {
     );
 
     dispatch(setFavoritesMovie(result.data.user.favorites));
-  } catch (error) {}
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
 };
 
 export const logout = () => async (dispatch) => {

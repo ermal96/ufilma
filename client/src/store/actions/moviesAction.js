@@ -1,6 +1,7 @@
 import { types } from "../types";
 import axios from "axios";
 import { setAppLoading } from "./appActions";
+import message from "../../utils/message";
 
 // action creators
 export const setMovies = (payload) => ({
@@ -34,7 +35,9 @@ export const getMovies = () => async (dispatch) => {
     const result = await axios.get("movies");
     dispatch(setMovies(result.data.movies));
     dispatch(setAppLoading(false));
-  } catch (error) {}
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
 };
 
 export const getMoviesInCategory = (catId) => async (dispatch) => {
@@ -43,7 +46,9 @@ export const getMoviesInCategory = (catId) => async (dispatch) => {
     const result = await axios.get(`movies/category/${catId}`);
     dispatch(setMoviesInCategory(result.data.movies));
     dispatch(setAppLoading(false));
-  } catch (error) {}
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
 };
 
 export const getMovie = (id) => async (dispatch) => {
@@ -52,7 +57,9 @@ export const getMovie = (id) => async (dispatch) => {
     const result = await axios.get(`movies/${id}`);
     dispatch(setMovie(result.data.movie[0]));
     dispatch(setAppLoading(false));
-  } catch (error) {}
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
 };
 
 export const getUserFavoriteMovies = (movies) => async (dispatch) => {
@@ -61,5 +68,7 @@ export const getUserFavoriteMovies = (movies) => async (dispatch) => {
     const result = await axios.put("movies/favorites", movies);
     dispatch(setUserFavoriteMovies(result.data.movies));
     dispatch(setAppLoading(false));
-  } catch (error) {}
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
 };

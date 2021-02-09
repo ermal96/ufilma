@@ -1,5 +1,6 @@
 import { types } from "../types";
 import axios from "axios";
+import message from "../../utils/message";
 
 export const searchMovies = (name) => async (dispatch) => {
   try {
@@ -10,7 +11,7 @@ export const searchMovies = (name) => async (dispatch) => {
       payload: data.movies,
     });
   } catch (error) {
-    console.log("something went wrong");
+    message.error(error.response.data.message);
   }
 };
 
@@ -19,7 +20,5 @@ export const resetSearch = () => async (dispatch) => {
     dispatch({
       type: types.search.RESET_SEARCH,
     });
-  } catch (error) {
-    console.log("something went wrong");
-  }
+  } catch (error) {}
 };

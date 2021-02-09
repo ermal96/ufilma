@@ -22,7 +22,7 @@ export const register = async (req, res) => {
     const userExist = await User.findOne({ email: req.body.email });
 
     if (userExist) {
-      res.status(409).send({ message: "Email has been taken" });
+      res.status(409).send({ message: "Email ësht i zënë nga dikush tjeter" });
     } else {
       const hasUsers = await User.find();
 
@@ -46,9 +46,7 @@ export const register = async (req, res) => {
       return res.status(201).send({ token, user: userData });
     }
   } catch (error) {
-    return res
-      .status(400)
-      .send({ message: "Sorry something went wrong try it latter" });
+    return res.status(400).send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
   }
 };
 
@@ -57,9 +55,7 @@ export const login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
 
     if (user === null) {
-      return res
-        .status(400)
-        .send({ message: "Sorry this email does not exist" });
+      return res.status(400).send({ message: "Email nuk egziston" });
     }
 
     const result = await bcrypt.compare(req.body.password, user.password);
@@ -77,12 +73,10 @@ export const login = async (req, res) => {
 
       return res.status(200).send({ token, user: userData });
     } else {
-      return res.status(400).send({ message: "Sorry password is wrong" });
+      return res.status(400).send({ message: "Fjalëkalimi është i gabuar" });
     }
   } catch (error) {
-    return res
-      .status(400)
-      .send({ message: "Sorry something went wrong try it latter" });
+    return res.status(400).send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
   }
 };
 
@@ -104,8 +98,6 @@ export const autoLogin = async (req, res) => {
 
     return res.status(200).send({ token, user: userData });
   } catch (error) {
-    res
-      .status(400)
-      .send({ message: "Sorry something went wrong try it latter" });
+    return res.status(400).send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
   }
 };

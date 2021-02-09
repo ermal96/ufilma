@@ -1,6 +1,7 @@
 import { types } from "../types";
 import { setAppLoading } from "./appActions";
 import axios from "axios";
+import message from "../../utils/message";
 
 // action creators
 export const setCategories = (payload) => ({
@@ -19,7 +20,9 @@ export const getCategories = () => async (dispatch) => {
     const result = await axios.get("categories");
     dispatch(setCategories(result.data.categories));
     dispatch(setAppLoading(false));
-  } catch (error) {}
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
 };
 
 export const getCategory = (id) => async (dispatch) => {
@@ -28,5 +31,7 @@ export const getCategory = (id) => async (dispatch) => {
     const result = await axios.get(`categories/${id}`);
     dispatch(setCategory(result.data.category[0]));
     dispatch(setAppLoading(false));
-  } catch (error) {}
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
 };

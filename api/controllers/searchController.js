@@ -7,8 +7,8 @@ export const get = async (req, res) => {
         movies: results,
       });
     } else {
-      res.status(500).send({
-        message: "something went wrong",
+      return res.status(400).send({
+        message: "Dicka shkoi keq ju lutem provoni me vonë",
       });
     }
   });

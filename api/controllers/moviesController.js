@@ -17,7 +17,7 @@ export const getAll = async (_, res) => {
   } catch (error) {
     // send error
     return res.status(400).send({
-      message: "Sorry something went wrong",
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -33,8 +33,8 @@ export const getFavorites = async (req, res) => {
     });
   } catch (error) {
     // send error
-    res.send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -51,7 +51,7 @@ export const getById = async (req, res) => {
   } catch (error) {
     // send error
     return res.send({
-      message: "Something went wrong",
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -69,7 +69,7 @@ export const getMovesByCategory = async (req, res) => {
   } catch (error) {
     // send error
     return res.send({
-      message: "Something went wrong",
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -105,12 +105,12 @@ export const add = async (req, res) => {
 
     // response
     return res.status(201).send({
-      message: "Movie was successfully added",
+      message: "Filmi u shtua me suksess",
     });
   } catch (error) {
     // send error
     return res.status(400).send({
-      message: "something went wrong",
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -122,12 +122,12 @@ export const removeById = async (req, res) => {
 
     // response
     res.status(202).send({
-      message: "Movie was successfully deleted",
+      message: "Kategoria u fshi me sukses",
     });
   } catch (error) {
     // send error
     return res.status(400).send({
-      message: "Something went wrong",
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -194,12 +194,12 @@ export const updateById = async (req, res) => {
 
     // response
     return res.status(202).send({
-      message: "Movie was successfully updated",
+      message: "Filmi u modifikua me sukses",
     });
   } catch (error) {
     // send error
     return res.status(400).send({
-      message: JSON.stringify(error),
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };

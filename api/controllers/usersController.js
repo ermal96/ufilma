@@ -8,7 +8,7 @@ export const getAll = async (_, res) => {
       users,
     });
   } catch (error) {
-    res.status(400).send({
+    return res.status(400).send({
       message: "Sorry something went wrong",
     });
   }
@@ -22,8 +22,8 @@ export const getById = async (req, res) => {
       user,
     });
   } catch (error) {
-    return res.send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -32,10 +32,7 @@ export const editAccount = async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.body.id });
 
-    const isCurrentPass = await bcrypt.compare(
-      req.body.currentPassword,
-      user.password
-    );
+    const isCurrentPass = await bcrypt.compare(req.body.currentPassword, user.password);
 
     if (isCurrentPass) {
       if (req.body.password) {
@@ -43,9 +40,7 @@ export const editAccount = async (req, res) => {
         user.password = hashedPassword;
       }
     } else {
-      return res
-        .status(403)
-        .send({ message: "Fjalekalimi aktual eshte jo korrekt!" });
+      return res.status(403).send({ message: "Fjalekalimi aktual eshte jo korrekt!" });
     }
 
     if (req.body.name) {
@@ -63,7 +58,7 @@ export const editAccount = async (req, res) => {
       id: user._id,
     });
   } catch (error) {
-    return res.status(400).send({ message: "Something went wrong" });
+    return res.status(400).send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
   }
 };
 
@@ -82,8 +77,8 @@ export const addFavorite = async (req, res) => {
       user,
     });
   } catch (error) {
-    return res.send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -102,18 +97,15 @@ export const removeFavorite = async (req, res) => {
       user,
     });
   } catch (error) {
-    return res.send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
 
 export const addWatching = async (req, res) => {
   try {
-    const exists = await User.findOne(
-      { _id: req.body.userId },
-      { watching: { $elemMatch: { _id: req.body._id } } }
-    );
+    const exists = await User.findOne({ _id: req.body.userId }, { watching: { $elemMatch: { _id: req.body._id } } });
 
     if (exists.watching.length) {
       exists.watching[0].played = req.body.played;
@@ -138,8 +130,8 @@ export const addWatching = async (req, res) => {
       watching: user.watching,
     });
   } catch (error) {
-    return res.send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
@@ -152,8 +144,8 @@ export const getWatching = async (req, res) => {
       watching: user.watching,
     });
   } catch (error) {
-    res.send({
-      message: "Something went wrong",
+    return res.status(400).send({
+      message: "Dicka shkoi keq ju lutem provoni me vonë",
     });
   }
 };
