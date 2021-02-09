@@ -14,7 +14,7 @@ const SingleMovieCard = ({ data }) => {
         </div>
         <div className={styles.favorites}>
           <p className={styles.singleCardQuality}>{data.quality}</p>
-          <FavoriteButton movieId={data._id} size="md" />
+          <FavoriteButton movieId={data._id} movieName={data.name} size="md" />
         </div>
       </div>
 
@@ -23,11 +23,7 @@ const SingleMovieCard = ({ data }) => {
       {data.categories
         ? data.categories.map((category) => {
             return (
-              <Link
-                to={routes.categories + "/" + category._id}
-                className={styles.singleCardCategories}
-                key={category._id}
-              >
+              <Link to={routes.categories + "/" + category._id} className={styles.singleCardCategories} key={category._id}>
                 {category.name}
               </Link>
             );

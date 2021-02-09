@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../store/actions/userActions";
-import {
-  Input,
-  Form,
-  Button,
-  Center,
-  Logo,
-  Background,
-  ULink,
-} from "../../components";
+import { Input, Form, Button, Center, Logo, Background, ULink } from "../../components";
 import { routes } from "../../routes";
 
 const Login = () => {
@@ -54,7 +46,7 @@ const Login = () => {
             autoComplete="new-password"
           />
 
-          <Button width={100} type="submit">
+          <Button variant="filled" width={100} type="submit">
             Hyr
           </Button>
         </Form>

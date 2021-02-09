@@ -4,8 +4,9 @@ import { RiHeart2Line, RiHeart2Fill } from "react-icons/ri";
 import { addFavorite, removeFavorite } from "../../../../store/actions/userActions";
 import cx from "classnames";
 import styles from "./FavoriteButton.module.scss";
+import message from "../../../../utils/message";
 
-const FavoriteButton = ({ movieId, size }) => {
+const FavoriteButton = ({ movieId, movieName, size }) => {
   const user = useSelector(({ user }) => user.user);
   const isLoggedIn = useSelector(({ user }) => user.loggedIn);
   const favoriteMovies = useSelector(({ user }) => user.favoriteMovies);
@@ -20,6 +21,8 @@ const FavoriteButton = ({ movieId, size }) => {
         token,
       })
     );
+
+    message.success(`${movieName} u shtua me suksess`);
   };
 
   const removeFavoriteMovie = () => {
@@ -30,6 +33,7 @@ const FavoriteButton = ({ movieId, size }) => {
         token,
       })
     );
+    message.success(`${movieName} u hoq me suksess`);
   };
 
   useEffect(() => {

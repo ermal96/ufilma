@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Container, Layout, Input, Form, Button } from "../../components";
+import { Container, Layout, Input, Form, Button, Seo, Title, FavoriteButton } from "../../components";
 import styles from "./Account.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "../../store/actions/userActions";
+import { getUserFavoriteMovies } from "../../store/actions/moviesAction";
+import AccountImg from "../../assets/account.svg";
 
 const Account = () => {
   const dispatch = useDispatch();
+
+  const favoriteMoviesId = useSelector(({ user }) => user.favoriteMovies);
+  const favoriteMovies = useSelector(({ movies }) => movies.userFavoriteMovies);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,7 +24,9 @@ const Account = () => {
       setName(user.name);
       setEmail(user.email);
     }
-  }, [loggedIn, user.name, user.email]);
+
+    dispatch(getUserFavoriteMovies(favoriteMoviesId));
+  }, [loggedIn, user.name, user.email, dispatch, favoriteMoviesId]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +36,9 @@ const Account = () => {
 
   return (
     <Layout>
+      <Seo title="Llogaria" description="Llogaria" />
       <Container>
+        <Title>Llogaria</Title>
         <div className={styles.accountContainer}>
           <Form onSubmit={onSubmit}>
             <Input
@@ -61,11 +70,27 @@ const Account = () => {
               autoComplete="current-password"
               placeholder="Fjalekalimi"
             />
+            {favoriteMovies.length
+              ? favoriteMovies.map((movie) => (
+                  <div className={styles.accountFavoriteMovies} key={movie._id}>
+                    <img src={process.env.REACT_APP_SERVER + movie.thumbnail} alt="Imazhi filmit" />
+                    <div className={styles.accountFavoriteMoviesFlex}>
+                      <p>{movie.name}</p>
 
-            <Button width={100} variant="light" type="submit">
-              Update User
+                      <FavoriteButton movieName={movie.name} movieId={movie._id} />
+                    </div>
+                  </div>
+                ))
+              : null}
+
+            <Button width={100} variant="filled" type="submit">
+              Modifiko Profilin
             </Button>
           </Form>
+
+          <div>
+            <img src={AccountImg} alt="Imazhi Llogarise" />
+          </div>
         </div>
       </Container>
     </Layout>

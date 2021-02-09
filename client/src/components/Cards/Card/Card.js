@@ -19,7 +19,7 @@ const Card = ({ backgroundImage, link, title, quality, id, variant }) => {
           {quality ? <p className={styles.cardMetaQuality}>{quality}</p> : null}
           {title ? <h3 className={styles.cardMetaTitle}>{title}</h3> : null}
         </div>
-        <FavoriteButton movieId={id} />
+        <FavoriteButton movieId={id} movieName={title} />
       </div>
     </div>
   );
