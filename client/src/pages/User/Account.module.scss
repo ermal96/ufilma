@@ -1,0 +1,8 @@
+.accountContainer {
+  margin-top: 5rem;
+  max-width: 50%;
+
+  @media (max-width: 540px) {
+    max-width: 100%;
+  }
+}

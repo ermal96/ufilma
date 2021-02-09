@@ -41,6 +41,7 @@ const Login = () => {
             value={email}
             type="email"
             placeholder="Email"
+            autoComplete="email"
           />
 
           <Input
@@ -50,6 +51,7 @@ const Login = () => {
             value={password}
             type="password"
             placeholder="Fjalekalimi"
+            autoComplete="new-password"
           />
 
           <Button width={100} type="submit">

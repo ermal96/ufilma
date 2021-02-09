@@ -26,6 +26,11 @@ export const userReducer = (state = defaultState, action) => {
         ...state,
         error: action.payload,
       };
+    case types.user.UPDATE_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
 
     case types.user.SET_FAVORITE_MOVIE:
       return {

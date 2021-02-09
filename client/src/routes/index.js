@@ -1,5 +1,15 @@
 import React from "react";
-import { Home, Login, Register, Movie, Categories, Movies, Category, Favorites } from "../pages";
+import {
+  Home,
+  Login,
+  Register,
+  Movie,
+  Categories,
+  Movies,
+  Category,
+  Favorites,
+  Account,
+} from "../pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -12,6 +22,7 @@ export const routes = {
   movies: "/filma",
   categories: "/kategorite",
   favorites: "/te-preferuar",
+  account: "/llogaria",
 };
 
 export const Routes = () => {
@@ -24,6 +35,7 @@ export const Routes = () => {
 
         {/* Private Routes */}
         <PrivateRoute exact path={routes.favorites} component={Favorites} />
+        <PrivateRoute exact path={routes.account} component={Account} />
 
         {/* Routes */}
         <Route exact path={routes.home} component={Home} />

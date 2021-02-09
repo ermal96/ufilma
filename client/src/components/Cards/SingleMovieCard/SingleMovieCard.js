@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./SingleMovieCard.module.scss";
 import { FavoriteButton } from "../../index";
+import { Link } from "react-router-dom";
+import { routes } from "../../../routes";
 
 const SingleMovieCard = ({ data }) => {
   return (
@@ -21,9 +23,13 @@ const SingleMovieCard = ({ data }) => {
       {data.categories
         ? data.categories.map((category) => {
             return (
-              <span className={styles.singleCardCategories} key={category._id}>
+              <Link
+                to={routes.categories + "/" + category._id}
+                className={styles.singleCardCategories}
+                key={category._id}
+              >
                 {category.name}
-              </span>
+              </Link>
             );
           })
         : null}
