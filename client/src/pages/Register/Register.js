@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUserUp } from "../../store/actions/userActions";
-import { Input, Form, Button, Center, Logo, Background, ULink } from "../../components";
+import {
+  Input,
+  Form,
+  Button,
+  Center,
+  Logo,
+  Background,
+  ULink,
+} from "../../components";
 import { routes } from "../../routes";
 import message from "../../utils/message/";
 const Register = () => {

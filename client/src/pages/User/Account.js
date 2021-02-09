@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Container, Layout, Input, Form, Button, Seo, Title, FavoriteButton } from "../../components";
+import {
+  Container,
+  Layout,
+  Input,
+  Form,
+  Button,
+  Seo,
+  Title,
+  FavoriteButton,
+} from "../../components";
 import styles from "./Account.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "../../store/actions/userActions";
 import { getUserFavoriteMovies } from "../../store/actions/moviesAction";
 import AccountImg from "../../assets/account.svg";
-
+import message from "../../utils/message";
 const Account = () => {
   const dispatch = useDispatch();
 
@@ -14,9 +23,12 @@ const Account = () => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
   const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
 
   const user = useSelector(({ user }) => user.user);
+  const notError = useSelector(({ user }) => user.error);
   const loggedIn = useSelector(({ user }) => user.loggedIn);
 
   useEffect(() => {
@@ -31,7 +43,19 @@ const Account = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(updateUser({ id: user.id, name, email, password }));
+    if (password === repeatPassword) {
+      dispatch(
+        updateUser({ id: user.id, name, email, password, currentPassword })
+      );
+
+      if (!notError) {
+        setPassword("");
+        setCurrentPassword("");
+        setRepeatPassword("");
+      }
+    } else {
+      message.error("Fjalkalimi nuk perputhet");
+    }
   };
 
   return (
@@ -64,20 +88,46 @@ const Account = () => {
             <Input
               variant="light"
               display="block"
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              value={currentPassword}
+              type="password"
+              autoComplete="current-password"
+              placeholder="Fjalkalimi Aktual"
+            />
+
+            <Input
+              variant="light"
+              display="block"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               type="password"
-              autoComplete="current-password"
-              placeholder="Fjalekalimi"
+              autoComplete="new-password"
+              placeholder="Fjalekalimi Ri"
+            />
+
+            <Input
+              variant="light"
+              display="block"
+              onChange={(e) => setRepeatPassword(e.target.value)}
+              value={repeatPassword}
+              type="password"
+              autoComplete="repeat-password"
+              placeholder="Perserit Fajlkaleimin"
             />
             {favoriteMovies.length
               ? favoriteMovies.map((movie) => (
                   <div className={styles.accountFavoriteMovies} key={movie._id}>
-                    <img src={process.env.REACT_APP_SERVER + movie.thumbnail} alt="Imazhi filmit" />
+                    <img
+                      src={process.env.REACT_APP_SERVER + movie.thumbnail}
+                      alt="Imazhi filmit"
+                    />
                     <div className={styles.accountFavoriteMoviesFlex}>
                       <p>{movie.name}</p>
 
-                      <FavoriteButton movieName={movie.name} movieId={movie._id} />
+                      <FavoriteButton
+                        movieName={movie.name}
+                        movieId={movie._id}
+                      />
                     </div>
                   </div>
                 ))

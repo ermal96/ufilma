@@ -32,17 +32,27 @@ export const editAccount = async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.body.id });
 
+    const isCurrentPass = await bcrypt.compare(
+      req.body.currentPassword,
+      user.password
+    );
+
+    if (isCurrentPass) {
+      if (req.body.password) {
+        const hashedPassword = bcrypt.hashSync(req.body.password, 8);
+        user.password = hashedPassword;
+      }
+    } else {
+      return res
+        .status(403)
+        .send({ message: "Fjalekalimi aktual eshte jo korrekt!" });
+    }
+
     if (req.body.name) {
       user.name = req.body.name;
     }
     if (req.body.email) {
       user.email = req.body.email;
-    }
-
-    if (req.body.password) {
-      const hashedPassword = bcrypt.hashSync(req.body.password, 8);
-
-      user.password = hashedPassword;
     }
 
     user.save();

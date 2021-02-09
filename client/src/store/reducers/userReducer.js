@@ -3,7 +3,7 @@ import { types } from "../types";
 const defaultState = {
   loggedIn: false,
   user: {},
-  error: null,
+  error: false,
   favoriteMovies: [],
   watching: [],
 };

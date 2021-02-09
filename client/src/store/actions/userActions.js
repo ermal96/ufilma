@@ -19,6 +19,11 @@ export const updUser = (payload) => ({
   payload,
 });
 
+export const setError = (payload) => ({
+  type: types.user.SET_ERROR,
+  payload,
+});
+
 // actions
 export const updateUser = (user) => async (dispatch) => {
   const config = {
@@ -32,7 +37,9 @@ export const updateUser = (user) => async (dispatch) => {
     dispatch(updUser(result.data));
 
     message.success("Profili u ndryshua me sukses");
+    dispatch(setError(false));
   } catch (error) {
+    dispatch(setError(true));
     message.error(error.response.data.message);
   }
 };
