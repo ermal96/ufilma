@@ -14,7 +14,29 @@ export const setWatching = (payload) => ({
   payload,
 });
 
+export const updUser = (payload) => ({
+  type: types.user.UPDATE_USER,
+  payload,
+});
+
 // actions
+export const updateUser = (user) => async (dispatch) => {
+  const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
+  try {
+    const result = await axios.post("users/edit-account", user, config);
+    dispatch(updUser(result.data));
+
+    message.success("Profili u ndryshua me sukses");
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
+};
+
 export const fetchUser = (userInfo) => async (dispatch) => {
   try {
     const result = await axios.post("auth/login", userInfo);

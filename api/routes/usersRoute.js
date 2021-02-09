@@ -10,5 +10,6 @@ router.put("/add-favorite", verifyToken, users.addFavorite);
 router.put("/remove-favorite", verifyToken, users.removeFavorite);
 router.post("/add-watching", verifyToken, users.addWatching);
 router.post("/get-watching", verifyToken, users.getWatching);
+router.post("/edit-account", verifyToken, users.editAccount);
 
 export const usersRoute = router;

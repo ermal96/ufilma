@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Container, Layout, Input, Form, Button } from "../../components";
 import styles from "./Account.module.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateUser } from "../../store/actions/userActions";
 
 const Account = () => {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
 
   const user = useSelector(({ user }) => user.user);
   const loggedIn = useSelector(({ user }) => user.loggedIn);
@@ -21,12 +23,13 @@ const Account = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    dispatch(updateUser({ id: user.id, name, email, password }));
   };
 
   return (
     <Layout>
       <Container>
-        {console.log(user)}
         <div className={styles.accountContainer}>
           <Form onSubmit={onSubmit}>
             <Input
@@ -36,6 +39,7 @@ const Account = () => {
               value={name}
               type="text"
               placeholder="Emer"
+              autoComplete="name"
             />
 
             <Input
@@ -45,6 +49,7 @@ const Account = () => {
               value={email}
               type="email"
               placeholder="Email"
+              autoComplete="email"
             />
 
             <Input
@@ -53,16 +58,8 @@ const Account = () => {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               type="password"
+              autoComplete="current-password"
               placeholder="Fjalekalimi"
-            />
-
-            <Input
-              variant="light"
-              display="block"
-              onChange={(e) => setRepeatPassword(e.target.value)}
-              value={repeatPassword}
-              type="password"
-              placeholder="Perserit Fjalekalimin"
             />
 
             <Button width={100} variant="light" type="submit">

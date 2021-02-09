@@ -1,4 +1,5 @@
 import { User } from "../models/userModel.js";
+import bcrypt from "bcryptjs";
 
 export const getAll = async (_, res) => {
   try {
@@ -17,13 +18,42 @@ export const getById = async (req, res) => {
   try {
     const user = await User.find({ _id: req.params.id });
 
-    res.status(200).send({
+    return res.status(200).send({
       user,
     });
   } catch (error) {
-    res.send({
+    return res.send({
       message: "Something went wrong",
     });
+  }
+};
+
+export const editAccount = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.body.id });
+
+    if (req.body.name) {
+      user.name = req.body.name;
+    }
+    if (req.body.email) {
+      user.email = req.body.email;
+    }
+
+    if (req.body.password) {
+      const hashedPassword = bcrypt.hashSync(req.body.password, 8);
+
+      user.password = hashedPassword;
+    }
+
+    user.save();
+
+    return res.status(201).send({
+      name: user.name,
+      email: user.email,
+      id: user._id,
+    });
+  } catch (error) {
+    return res.status(400).send({ message: "Something went wrong" });
   }
 };
 
@@ -70,7 +100,10 @@ export const removeFavorite = async (req, res) => {
 
 export const addWatching = async (req, res) => {
   try {
-    const exists = await User.findOne({ _id: req.body.userId }, { watching: { $elemMatch: { _id: req.body._id } } });
+    const exists = await User.findOne(
+      { _id: req.body.userId },
+      { watching: { $elemMatch: { _id: req.body._id } } }
+    );
 
     if (exists.watching.length) {
       exists.watching[0].played = req.body.played;

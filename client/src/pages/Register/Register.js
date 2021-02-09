@@ -31,7 +31,7 @@ const Register = () => {
         })
       );
     } else {
-      message("Fjalkalimi nuk perputhet");
+      message.error("Fjalkalimi nuk perputhet");
     }
   };
 
@@ -48,6 +48,7 @@ const Register = () => {
             value={name}
             type="text"
             placeholder="Emer"
+            autoComplete="name"
           />
 
           <Input
@@ -57,6 +58,7 @@ const Register = () => {
             value={email}
             type="email"
             placeholder="Email"
+            autoComplete="email"
           />
 
           <Input
@@ -66,6 +68,7 @@ const Register = () => {
             value={password}
             type="password"
             placeholder="Fjalekalimi"
+            autoComplete="new-password"
           />
 
           <Input
@@ -75,6 +78,7 @@ const Register = () => {
             value={repeatPassword}
             type="password"
             placeholder="Perserit Fjalekalimin"
+            autoComplete="repeat-password"
           />
 
           <Button width={100} variant="light" type="submit">
