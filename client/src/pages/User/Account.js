@@ -28,7 +28,6 @@ const Account = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
 
   const user = useSelector(({ user }) => user.user);
-  const notError = useSelector(({ user }) => user.error);
   const loggedIn = useSelector(({ user }) => user.loggedIn);
 
   useEffect(() => {
@@ -48,11 +47,9 @@ const Account = () => {
         updateUser({ id: user.id, name, email, password, currentPassword })
       );
 
-      if (!notError) {
-        setPassword("");
-        setCurrentPassword("");
-        setRepeatPassword("");
-      }
+      setPassword("");
+      setCurrentPassword("");
+      setRepeatPassword("");
     } else {
       message.error("Fjalkalimi nuk perputhet");
     }
@@ -91,7 +88,7 @@ const Account = () => {
               onChange={(e) => setCurrentPassword(e.target.value)}
               value={currentPassword}
               type="password"
-              autoComplete="current-password"
+              autoComplete="password"
               placeholder="Fjalkalimi Aktual"
             />
 
