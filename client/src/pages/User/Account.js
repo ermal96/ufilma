@@ -39,7 +39,7 @@ const Account = () => {
       dispatch(setError(false));
       dispatch(updateUser({ id: user.id, name, email, password, currentPassword }));
     } else {
-      message.error("Fjalkalimi nuk perputhet");
+      message.error("Fjalëkalimi nuk perputhet");
 
       dispatch(setError(true));
     }
@@ -50,116 +50,115 @@ const Account = () => {
   };
 
   return (
-    <Layout>
+    <Layout style={{ paddingBottom: 0 }}>
       <Seo title="Llogaria" description="Llogaria" />
-      <Container>
-        <Title>Llogaria</Title>
-        <div className={styles.accountContainer}>
-          <Form onSubmit={onSubmit}>
-            <Input
-              display="block"
-              variant="light"
-              onChange={(e) => {
-                setName(e.target.value);
-                setDisabled(false);
-              }}
-              onKeyPress={(e) => {
-                e.key === "Enter" && e.preventDefault();
-              }}
-              value={name}
-              type="text"
-              placeholder="Emer"
-              autoComplete="name"
-            />
 
-            <Input
-              display="block"
-              variant="light"
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setDisabled(false);
-              }}
-              onKeyPress={(e) => {
-                e.key === "Enter" && e.preventDefault();
-              }}
-              value={email}
-              type="text"
-              placeholder="Email"
-              autoComplete="email"
-            />
+      <div className={styles.accountContainer}>
+        <Form onSubmit={onSubmit}>
+          <Title>Llogaria</Title>
+          <Input
+            display="block"
+            variant="light"
+            onChange={(e) => {
+              setName(e.target.value);
+              setDisabled(false);
+            }}
+            onKeyPress={(e) => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+            value={name}
+            type="text"
+            placeholder="Emer"
+            autoComplete="name"
+          />
 
-            <Input
-              variant="light"
-              display="block"
-              onChange={(e) => {
-                setCurrentPassword(e.target.value);
-                setDisabled(false);
-              }}
-              onKeyPress={(e) => {
-                e.key === "Enter" && e.preventDefault();
-              }}
-              value={currentPassword}
-              type="password"
-              autoComplete="password"
-              placeholder="Fjalkalimi Aktual"
-            />
+          <Input
+            display="block"
+            variant="light"
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setDisabled(false);
+            }}
+            onKeyPress={(e) => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+            value={email}
+            type="text"
+            placeholder="Email"
+            autoComplete="email"
+          />
 
-            <Input
-              variant="light"
-              display="block"
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setDisabled(false);
-              }}
-              onKeyPress={(e) => {
-                e.key === "Enter" && e.preventDefault();
-              }}
-              value={password}
-              type="password"
-              autoComplete="new-password"
-              placeholder="Fjalekalimi Ri"
-            />
+          <Input
+            variant="light"
+            display="block"
+            onChange={(e) => {
+              setCurrentPassword(e.target.value);
+              setDisabled(false);
+            }}
+            onKeyPress={(e) => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+            value={currentPassword}
+            type="password"
+            autoComplete="password"
+            placeholder="Fjalëkalimi Aktual"
+          />
 
-            <Input
-              variant="light"
-              display="block"
-              onChange={(e) => {
-                setRepeatPassword(e.target.value);
-                setDisabled(false);
-              }}
-              onKeyPress={(e) => {
-                e.key === "Enter" && e.preventDefault();
-              }}
-              value={repeatPassword}
-              type="password"
-              autoComplete="repeat-password"
-              placeholder="Perserit Fajlkaleimin"
-            />
-            <div className={styles.favoriteMovies}>
-              {favoriteMovies.length
-                ? favoriteMovies.map((movie) => (
-                    <div className={styles.accountFavoriteMovies} key={movie._id}>
-                      <img src={process.env.REACT_APP_SERVER + movie.thumbnail} alt="Imazhi filmit" />
-                      <div className={styles.accountFavoriteMoviesFlex}>
-                        <p>{movie.name}</p>
+          <Input
+            variant="light"
+            display="block"
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setDisabled(false);
+            }}
+            onKeyPress={(e) => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+            value={password}
+            type="password"
+            autoComplete="new-password"
+            placeholder="Fjalëkalimi Ri"
+          />
 
-                        <FavoriteButton movieName={movie.name} movieId={movie._id} />
-                      </div>
+          <Input
+            variant="light"
+            display="block"
+            onChange={(e) => {
+              setRepeatPassword(e.target.value);
+              setDisabled(false);
+            }}
+            onKeyPress={(e) => {
+              e.key === "Enter" && e.preventDefault();
+            }}
+            value={repeatPassword}
+            type="password"
+            autoComplete="repeat-password"
+            placeholder="Përserit Fjalëkalimin"
+          />
+          <div className={styles.favoriteMovies}>
+            {favoriteMovies.length
+              ? favoriteMovies.map((movie) => (
+                  <div className={styles.accountFavoriteMovies} key={movie._id}>
+                    <img src={process.env.REACT_APP_SERVER + movie.thumbnail} alt="Imazhi filmit" />
+                    <div className={styles.accountFavoriteMoviesFlex}>
+                      <p>{movie.name}</p>
+
+                      <FavoriteButton movieName={movie.name} movieId={movie._id} />
                     </div>
-                  ))
-                : null}
-            </div>
-
-            <Button disabled={disabled} width={100} variant="filled" type="submit">
-              Modifiko Profilin
-            </Button>
-          </Form>
-
-          <div className={styles.accountImg}>
-            <img src={AccountImg} alt="Imazhi Llogarise" />
+                  </div>
+                ))
+              : null}
           </div>
+
+          <Button disabled={disabled} width={100} variant="filled" type="submit">
+            Modifiko Profilin
+          </Button>
+        </Form>
+
+        <div className={styles.accountImg}>
+          <img src={AccountImg} alt="Imazhi Llogarisë" />
         </div>
-      </Container>
+      </div>
     </Layout>
   );
 };

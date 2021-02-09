@@ -3,11 +3,13 @@ import Header from "../../../containers/Header/Header/Header";
 import Footer from "../../../containers/Footer/Footer";
 import styles from "./Layout.module.scss";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, ...rest }) => {
   return (
     <main className={styles.layout}>
       <Header />
-      <article className={styles.layoutWrapper}>{children}</article>
+      <article {...rest} className={styles.layoutWrapper}>
+        {children}
+      </article>
       <Footer />
     </main>
   );
