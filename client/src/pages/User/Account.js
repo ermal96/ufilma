@@ -79,7 +79,7 @@ const Account = () => {
                 e.key === "Enter" && e.preventDefault();
               }}
               value={email}
-              type="email"
+              type="text"
               placeholder="Email"
               autoComplete="email"
             />
