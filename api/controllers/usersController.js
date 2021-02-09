@@ -30,21 +30,33 @@ export const getById = async (req, res) => {
 
 export const editAccount = async (req, res) => {
   const passReg = new RegExp("^((?=.*[a-z])(?=.*[0-9])(?=.{6,}))");
-  const emailReg = new RegExp("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$");
+  const emailReg = new RegExp(
+    "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$"
+  );
 
   try {
     const user = await User.findOne({ _id: req.body.id });
     const userExist = await User.findOne({ email: req.body.email });
 
-    const isCurrentPass = await bcrypt.compare(req.body.currentPassword, user.password);
+    const isCurrentPass = await bcrypt.compare(
+      req.body.currentPassword,
+      user.password
+    );
 
     if (req.body.name) {
       user.name = req.body.name;
     }
 
     if (user.email !== req.body.email) {
+      if (!emailReg.test(req.body.email)) {
+        return res
+          .status(409)
+          .send({ message: "Email nuk eshte format i duhur" });
+      }
       if (userExist) {
-        return res.status(409).send({ message: "Email ësht i zënë nga dikush tjetër" });
+        return res
+          .status(409)
+          .send({ message: "Email ështe i zënë nga dikush tjetër" });
       } else {
         if (req.body.email) {
           user.email = req.body.email;
@@ -56,7 +68,8 @@ export const editAccount = async (req, res) => {
       if (req.body.password) {
         if (!passReg.test(req.body.password)) {
           return res.status(403).send({
-            message: "Fjalekalimi i ri duhet te permbaje 6 karaktere dhe 1 numer",
+            message:
+              "Fjalekalimi i ri duhet te permbaje 6 karaktere dhe 1 numer",
           });
         }
 
@@ -64,7 +77,9 @@ export const editAccount = async (req, res) => {
         user.password = hashedPassword;
       }
     } else {
-      return res.status(403).send({ message: "Fjalekalimi aktual eshte jo korrekt!" });
+      return res
+        .status(403)
+        .send({ message: "Fjalekalimi aktual eshte jo korrekt!" });
     }
 
     await user.save();
@@ -75,7 +90,9 @@ export const editAccount = async (req, res) => {
       id: user._id,
     });
   } catch (error) {
-    return res.status(400).send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
+    return res
+      .status(400)
+      .send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
   }
 };
 
@@ -122,7 +139,10 @@ export const removeFavorite = async (req, res) => {
 
 export const addWatching = async (req, res) => {
   try {
-    const exists = await User.findOne({ _id: req.body.userId }, { watching: { $elemMatch: { _id: req.body._id } } });
+    const exists = await User.findOne(
+      { _id: req.body.userId },
+      { watching: { $elemMatch: { _id: req.body._id } } }
+    );
 
     if (exists.watching.length) {
       exists.watching[0].played = req.body.played;

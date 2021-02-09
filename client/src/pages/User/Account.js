@@ -77,7 +77,7 @@ const Account = () => {
               variant="light"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              type="email"
+              type="text"
               placeholder="Email"
               autoComplete="email"
             />
