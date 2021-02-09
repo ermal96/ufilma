@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Layout,
-  Input,
-  Form,
-  Button,
-  Seo,
-  Title,
-  FavoriteButton,
-} from "../../components";
+import { Container, Layout, Input, Form, Button, Seo, Title, FavoriteButton } from "../../components";
 import styles from "./Account.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "../../store/actions/userActions";
@@ -26,6 +17,7 @@ const Account = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [disabled, setDisabled] = useState(true);
 
   const user = useSelector(({ user }) => user.user);
   const loggedIn = useSelector(({ user }) => user.loggedIn);
@@ -43,9 +35,7 @@ const Account = () => {
     e.preventDefault();
 
     if (password === repeatPassword) {
-      dispatch(
-        updateUser({ id: user.id, name, email, password, currentPassword })
-      );
+      dispatch(updateUser({ id: user.id, name, email, password, currentPassword }));
 
       setPassword("");
       setCurrentPassword("");
@@ -65,7 +55,13 @@ const Account = () => {
             <Input
               display="block"
               variant="light"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value);
+                setDisabled(false);
+              }}
+              onKeyPress={(e) => {
+                e.key === "Enter" && e.preventDefault();
+              }}
               value={name}
               type="text"
               placeholder="Emer"
@@ -75,7 +71,13 @@ const Account = () => {
             <Input
               display="block"
               variant="light"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setDisabled(false);
+              }}
+              onKeyPress={(e) => {
+                e.key === "Enter" && e.preventDefault();
+              }}
               value={email}
               type="email"
               placeholder="Email"
@@ -85,7 +87,13 @@ const Account = () => {
             <Input
               variant="light"
               display="block"
-              onChange={(e) => setCurrentPassword(e.target.value)}
+              onChange={(e) => {
+                setCurrentPassword(e.target.value);
+                setDisabled(false);
+              }}
+              onKeyPress={(e) => {
+                e.key === "Enter" && e.preventDefault();
+              }}
               value={currentPassword}
               type="password"
               autoComplete="password"
@@ -95,7 +103,13 @@ const Account = () => {
             <Input
               variant="light"
               display="block"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setDisabled(false);
+              }}
+              onKeyPress={(e) => {
+                e.key === "Enter" && e.preventDefault();
+              }}
               value={password}
               type="password"
               autoComplete="new-password"
@@ -105,7 +119,13 @@ const Account = () => {
             <Input
               variant="light"
               display="block"
-              onChange={(e) => setRepeatPassword(e.target.value)}
+              onChange={(e) => {
+                setRepeatPassword(e.target.value);
+                setDisabled(false);
+              }}
+              onKeyPress={(e) => {
+                e.key === "Enter" && e.preventDefault();
+              }}
               value={repeatPassword}
               type="password"
               autoComplete="repeat-password"
@@ -114,23 +134,17 @@ const Account = () => {
             {favoriteMovies.length
               ? favoriteMovies.map((movie) => (
                   <div className={styles.accountFavoriteMovies} key={movie._id}>
-                    <img
-                      src={process.env.REACT_APP_SERVER + movie.thumbnail}
-                      alt="Imazhi filmit"
-                    />
+                    <img src={process.env.REACT_APP_SERVER + movie.thumbnail} alt="Imazhi filmit" />
                     <div className={styles.accountFavoriteMoviesFlex}>
                       <p>{movie.name}</p>
 
-                      <FavoriteButton
-                        movieName={movie.name}
-                        movieId={movie._id}
-                      />
+                      <FavoriteButton movieName={movie.name} movieId={movie._id} />
                     </div>
                   </div>
                 ))
               : null}
 
-            <Button width={100} variant="filled" type="submit">
+            <Button disabled={disabled} width={100} variant="filled" type="submit">
               Modifiko Profilin
             </Button>
           </Form>

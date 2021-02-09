@@ -25,6 +25,11 @@
     border: 0.2rem solid var(--accent-color);
   }
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   //   variants
   &.primary {
     border: 0.2rem solid var(--primary-color);
