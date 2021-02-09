@@ -33,8 +33,8 @@ export const updateUser = (user) => async (dispatch) => {
   };
 
   try {
-    const result = await axios.post("users/edit-account", user, config);
-    dispatch(updUser(result.data));
+    const res = await axios.post("users/edit-account", user, config);
+    dispatch(updUser(res.data));
 
     message.success("Profili u ndryshua me sukses");
     dispatch(setError(false));
@@ -46,21 +46,21 @@ export const updateUser = (user) => async (dispatch) => {
 
 export const fetchUser = (userInfo) => async (dispatch) => {
   try {
-    const result = await axios.post("auth/login", userInfo);
-    localStorage.setItem("token", result.data.token);
+    const res = await axios.post("auth/login", userInfo);
+    localStorage.setItem("token", res.data.token);
 
-    dispatch(setFavoritesMovie(result.data.user.favorites));
-    dispatch(setWatching(result.data.user.watching));
+    dispatch(setFavoritesMovie(res.data.user.favorites));
+    dispatch(setWatching(res.data.user.watching));
 
     dispatch(
       setUser({
-        name: result.data.user.name,
-        email: result.data.user.email,
-        id: result.data.user.id,
+        name: res.data.user.name,
+        email: res.data.user.email,
+        id: res.data.user.id,
       })
     );
 
-    message.success(`Miresevjen ${result.data.user.name}`);
+    message.success(`Miresevjen ${res.data.user.name}`);
   } catch (error) {
     message.error(error.response.data.message);
     localStorage.clear();
@@ -69,16 +69,18 @@ export const fetchUser = (userInfo) => async (dispatch) => {
 
 export const signUserUp = (userInfo) => async (dispatch) => {
   try {
-    const result = await axios.post("auth/register", userInfo);
-    localStorage.setItem("token", result.data.token);
+    const res = await axios.post("auth/register", userInfo);
 
-    dispatch(setFavoritesMovie(result.data.user.favorites));
+    console.log(res.data);
+    localStorage.setItem("token", res.data.token);
+
+    dispatch(setFavoritesMovie(res.data.user.favorites));
 
     dispatch(
       setUser({
-        name: result.data.user.name,
-        email: result.data.user.email,
-        id: result.data.user.id,
+        name: res.data.user.name,
+        email: res.data.user.email,
+        id: res.data.user.id,
       })
     );
   } catch (error) {
@@ -88,20 +90,21 @@ export const signUserUp = (userInfo) => async (dispatch) => {
 
 export const autoLogin = () => async (dispatch) => {
   try {
-    const result = await axios.get("auth/auto_login");
-    localStorage.setItem("token", result.data.token);
+    const res = await axios.get("auth/auto_login");
+    localStorage.setItem("token", res.data.token);
 
-    dispatch(setFavoritesMovie(result.data.user.favorites));
-    dispatch(setWatching(result.data.user.watching));
+    dispatch(setFavoritesMovie(res.data.user.favorites));
+    dispatch(setWatching(res.data.user.watching));
 
     dispatch(
       setUser({
-        name: result.data.user.name,
-        email: result.data.user.email,
-        id: result.data.user.id,
+        name: res.data.user.name,
+        email: res.data.user.email,
+        id: res.data.user.id,
       })
     );
   } catch (error) {
+    localStorage.clear();
     message.error(error.response.data.message);
   }
 };
@@ -114,8 +117,8 @@ export const addWatching = (data) => async (dispatch) => {
 
 export const getWatching = (data) => async (dispatch) => {
   try {
-    const result = await axios.post("users/get-watching", data);
-    dispatch(setWatching(result.data.watching));
+    const res = await axios.post("users/get-watching", data);
+    dispatch(setWatching(res.data.watching));
   } catch (error) {}
 };
 
@@ -127,7 +130,7 @@ export const addFavorite = (data) => async (dispatch) => {
   };
 
   try {
-    const result = await axios.put(
+    const res = await axios.put(
       "users/add-favorite",
       {
         userId: data.userId,
@@ -136,7 +139,7 @@ export const addFavorite = (data) => async (dispatch) => {
       config
     );
 
-    dispatch(setFavoritesMovie(result.data.user.favorites));
+    dispatch(setFavoritesMovie(res.data.user.favorites));
   } catch (error) {
     message.error(error.response.data.message);
   }
@@ -150,7 +153,7 @@ export const removeFavorite = (data) => async (dispatch) => {
   };
 
   try {
-    const result = await axios.put(
+    const res = await axios.put(
       "users/remove-favorite",
       {
         userId: data.userId,
@@ -159,7 +162,7 @@ export const removeFavorite = (data) => async (dispatch) => {
       config
     );
 
-    dispatch(setFavoritesMovie(result.data.user.favorites));
+    dispatch(setFavoritesMovie(res.data.user.favorites));
   } catch (error) {
     message.error(error.response.data.message);
   }

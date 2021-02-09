@@ -32,8 +32,8 @@ export const setUserFavoriteMovies = (payload) => ({
 export const getMovies = () => async (dispatch) => {
   try {
     dispatch(setAppLoading(true));
-    const result = await axios.get("movies");
-    dispatch(setMovies(result.data.movies));
+    const res = await axios.get("movies");
+    dispatch(setMovies(res.data.movies));
     dispatch(setAppLoading(false));
   } catch (error) {
     message.error(error.response.data.message);
@@ -43,8 +43,8 @@ export const getMovies = () => async (dispatch) => {
 export const getMoviesInCategory = (catId) => async (dispatch) => {
   try {
     dispatch(setAppLoading(true));
-    const result = await axios.get(`movies/category/${catId}`);
-    dispatch(setMoviesInCategory(result.data.movies));
+    const res = await axios.get(`movies/category/${catId}`);
+    dispatch(setMoviesInCategory(res.data.movies));
     dispatch(setAppLoading(false));
   } catch (error) {
     message.error(error.response.data.message);
@@ -54,8 +54,8 @@ export const getMoviesInCategory = (catId) => async (dispatch) => {
 export const getMovie = (id) => async (dispatch) => {
   try {
     dispatch(setAppLoading(true));
-    const result = await axios.get(`movies/${id}`);
-    dispatch(setMovie(result.data.movie[0]));
+    const res = await axios.get(`movies/${id}`);
+    dispatch(setMovie(res.data.movie[0]));
     dispatch(setAppLoading(false));
   } catch (error) {
     message.error(error.response.data.message);
@@ -65,8 +65,8 @@ export const getMovie = (id) => async (dispatch) => {
 export const getUserFavoriteMovies = (movies) => async (dispatch) => {
   try {
     dispatch(setAppLoading(true));
-    const result = await axios.put("movies/favorites", movies);
-    dispatch(setUserFavoriteMovies(result.data.movies));
+    const res = await axios.put("movies/favorites", movies);
+    dispatch(setUserFavoriteMovies(res.data.movies));
     dispatch(setAppLoading(false));
   } catch (error) {
     message.error(error.response.data.message);

@@ -34,7 +34,7 @@ export const register = async (req, res) => {
 
       await user.save();
 
-      const token = genToken({ id: user._id });
+      const token = await genToken({ id: user._id });
 
       const userData = {
         id: user._id,
