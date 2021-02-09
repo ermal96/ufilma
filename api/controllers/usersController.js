@@ -40,7 +40,7 @@ export const editAccount = async (req, res) => {
     }
 
     if (userExist) {
-      return res.status(409).send({ message: "Email ësht i zënë nga dikush tjeter" });
+      return res.status(409).send({ message: "Email ësht i zënë nga dikush tjetër" });
     } else {
       if (req.body.email) {
         user.email = req.body.email;
