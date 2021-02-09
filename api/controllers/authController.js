@@ -1,29 +1,39 @@
 import bcrypt from "bcryptjs";
 import { User } from "../models/userModel.js";
 import { genToken } from "../auth/genToken.js";
-import { validateUser } from "../validation/userValidation.js";
 
 export const register = async (req, res) => {
   const user = new User(req.body);
+  const passReg = new RegExp("^((?=.*[a-z])(?=.*[0-9])(?=.{6,}))");
+  const emailReg = new RegExp(
+    "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$"
+  );
 
   const hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
   user.password = hashedPassword;
 
-  const hasError = await validateUser(req.body);
-
-  if (hasError.length && hasError) {
-    return res.status(400).send({
-      message: hasError.error.details[0].message,
-    });
-  }
-
   try {
     const userExist = await User.findOne({ email: req.body.email });
 
     if (userExist) {
-      res.status(409).send({ message: "Email ësht i zënë nga dikush tjeter" });
+      return res
+        .status(409)
+        .send({ message: "Email ësht i zënë nga dikush tjeter" });
     } else {
+      if (!emailReg.test(req.body.email)) {
+        return res.status(400).send({
+          message: "Email nuk eshte i sakte",
+        });
+      }
+
+      if (!passReg.test(req.body.password)) {
+        return res.status(400).send({
+          message:
+            "Fjalkalimi duhet te permbaj te pakten 6 karaktere dhe nje numer ",
+        });
+      }
+
       const hasUsers = await User.find();
 
       if (!hasUsers.length) {
@@ -46,7 +56,9 @@ export const register = async (req, res) => {
       return res.status(201).send({ token, user: userData });
     }
   } catch (error) {
-    return res.status(400).send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
+    return res
+      .status(400)
+      .send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
   }
 };
 
@@ -76,7 +88,9 @@ export const login = async (req, res) => {
       return res.status(400).send({ message: "Fjalëkalimi është i gabuar" });
     }
   } catch (error) {
-    return res.status(400).send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
+    return res
+      .status(400)
+      .send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
   }
 };
 
@@ -98,6 +112,8 @@ export const autoLogin = async (req, res) => {
 
     return res.status(200).send({ token, user: userData });
   } catch (error) {
-    return res.status(400).send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
+    return res
+      .status(400)
+      .send({ message: "Dicka shkoi keq ju lutem provoni me vonë" });
   }
 };
