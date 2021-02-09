@@ -31,8 +31,21 @@ export const getById = async (req, res) => {
 export const editAccount = async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.body.id });
+    const userExist = await User.findOne({ email: req.body.email });
 
     const isCurrentPass = await bcrypt.compare(req.body.currentPassword, user.password);
+
+    if (req.body.name) {
+      user.name = req.body.name;
+    }
+
+    if (userExist) {
+      return res.status(409).send({ message: "Email ësht i zënë nga dikush tjeter" });
+    } else {
+      if (req.body.email) {
+        user.email = req.body.email;
+      }
+    }
 
     if (isCurrentPass) {
       if (req.body.password) {
@@ -43,14 +56,7 @@ export const editAccount = async (req, res) => {
       return res.status(403).send({ message: "Fjalekalimi aktual eshte jo korrekt!" });
     }
 
-    if (req.body.name) {
-      user.name = req.body.name;
-    }
-    if (req.body.email) {
-      user.email = req.body.email;
-    }
-
-    user.save();
+    await user.save();
 
     return res.status(201).send({
       name: user.name,

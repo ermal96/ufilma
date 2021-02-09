@@ -71,7 +71,6 @@ export const signUserUp = (userInfo) => async (dispatch) => {
   try {
     const res = await axios.post("auth/register", userInfo);
 
-    console.log(res.data);
     localStorage.setItem("token", res.data.token);
 
     dispatch(setFavoritesMovie(res.data.user.favorites));
