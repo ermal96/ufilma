@@ -6,7 +6,6 @@ import ULayout from "../../containers/Layout";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
 import { updateCategory } from "../../store/actions/categoriesAction";
-import { useHistory } from "react-router-dom";
 import { routes } from "../../routes";
 
 const UCategoryGrid = styled.div`
@@ -19,12 +18,9 @@ const UCategoryGrid = styled.div`
 `;
 
 const Category = ({ match }) => {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const { name, description, thumbnail, cover, _id } = useSelector(({ categories }) => categories.category);
-
-  const error = useSelector(({ categories }) => categories.error);
 
   const [thumbnailImage, setThumbnailImage] = useState("");
   const [coverImage, setCoverImage] = useState("");
@@ -49,10 +45,6 @@ const Category = ({ match }) => {
         id: _id,
       })
     );
-
-    if (!error) {
-      history.push(routes.categories);
-    }
   };
   useEffect(() => {
     dispatch(getCategory(match.params.id));

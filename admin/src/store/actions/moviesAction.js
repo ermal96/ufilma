@@ -6,7 +6,6 @@ export const setMovies = (payload) => ({ type: types.GET_MOVIES, payload });
 export const setMovie = (payload) => ({ type: types.GET_MOVIE, payload });
 export const removeMovie = (payload) => ({ type: types.DETELE_MOVIE, payload });
 export const setLoad = (payload) => ({ type: types.MOVIES_LOADED, payload });
-export const setError = (payload) => ({ type: types.MOVIE_ERROR, payload });
 
 export const createMovie = (payload) => ({
   type: types.ADD_MOVIE,
@@ -18,14 +17,18 @@ export const updMovie = (payload) => ({
   payload,
 });
 
+export const setError = (payload) => ({
+  type: types.MOVIE_ERROR,
+  payload,
+});
+
 export const getMovies = () => async (dispatch) => {
   try {
     dispatch(setLoad(true));
     const result = await axios.get("movies");
     dispatch(setMovies(result.data.movies));
-    dispatch(setLoad(false));
   } catch (error) {
-    dispatch(setLoad(false));
+    ErrorMsg(error.response.data.message);
   }
 };
 
@@ -34,9 +37,8 @@ export const getMovie = (id) => async (dispatch) => {
     dispatch(setLoad(true));
     const result = await axios.get(`movies/${id}`);
     dispatch(setMovie(result.data.movie[0]));
-    dispatch(setLoad(false));
   } catch (error) {
-    dispatch(setLoad(false));
+    ErrorMsg(error.response.data.message);
   }
 };
 
@@ -50,7 +52,7 @@ export const deleteMovie = (id) => async (dispatch) => {
     await axios.delete(`movies/${id}`, config);
     dispatch(removeMovie(id));
   } catch (error) {
-    dispatch(setLoad(false));
+    ErrorMsg(error.response.data.message);
   }
 };
 
@@ -84,7 +86,6 @@ export const addMovie = (data) => async (dispatch) => {
   try {
     dispatch(setError(true));
     dispatch(createMovie());
-
     await axios.post("movies", formData, config);
     SuccessMsg("Created successfully");
     dispatch(setError(false));
@@ -123,7 +124,6 @@ export const updateMovie = (data) => async (dispatch) => {
   try {
     dispatch(setError(true));
     dispatch(updMovie());
-
     await axios.put(`movies/${data.id}`, formData, config);
     SuccessMsg("Updated successfully");
     dispatch(setError(false));

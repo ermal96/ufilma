@@ -4,7 +4,6 @@ const defaultState = {
   movies: [],
   movie: {},
   loaded: false,
-  error: false,
 };
 
 export const moviesReducer = (state = defaultState, action) => {
@@ -21,16 +20,16 @@ export const moviesReducer = (state = defaultState, action) => {
         movie: action.payload,
       };
 
-    case types.MOVIE_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-      };
-
     case types.MOVIES_LOADED:
       return {
         ...state,
         loaded: action.payload,
+      };
+
+    case types.MOVIE_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
 
     case types.DETELE_MOVIE:

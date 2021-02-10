@@ -3,8 +3,8 @@ import { types } from "../actions/types";
 const defaultState = {
   categories: [],
   category: {},
-  loaded: false,
   error: false,
+  loaded: false,
 };
 
 export const categoriesReducer = (state = defaultState, action) => {
@@ -20,16 +20,17 @@ export const categoriesReducer = (state = defaultState, action) => {
         ...state,
         category: action.payload,
       };
-    case types.CATEGORY_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-      };
 
     case types.CATEGORIES_LOADED:
       return {
         ...state,
         loaded: action.payload,
+      };
+
+    case types.CATEGORY_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
 
     case types.DELETE_CATEGORY:

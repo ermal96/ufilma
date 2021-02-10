@@ -6,7 +6,6 @@ import { getMovie, updateMovie } from "../../store/actions/moviesAction";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
 import { routes } from "../../routes";
-import { useHistory } from "react-router-dom";
 import { getCategories } from "../../store/actions/categoriesAction";
 
 const UMoviesGrid = styled.div`
@@ -26,9 +25,6 @@ const UMovieColum = styled.div`
 
 const EditMovie = ({ match }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const error = useSelector(({ movies }) => movies.error);
 
   const { name, description, quality, categories, time, year, ratio, videoUrl, trailerUrl, thumbnail, cover, _id } = useSelector(
     ({ movies }) => movies.movie
@@ -73,10 +69,6 @@ const EditMovie = ({ match }) => {
         id: _id,
       })
     );
-
-    if (!error) {
-      history.push(routes.movies);
-    }
   };
 
   const { Option } = Select;

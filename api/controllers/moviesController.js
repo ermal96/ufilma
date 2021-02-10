@@ -78,6 +78,13 @@ export const add = async (req, res) => {
   const movie = new Movie(req.body);
 
   // get images path from req
+  if (!req.files.thumbnail) {
+    return res.status(400).send({ message: "Ju lutem vendosni thumbnail " });
+  }
+  if (!req.files.cover) {
+    return res.status(400).send({ message: "Ju lutem vendosni cover " });
+  }
+
   const thumbnailSrc = req.files.thumbnail.path;
   const coverSrc = req.files.cover.path;
 

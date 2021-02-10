@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Upload } from "antd";
 import ULayout from "../../containers/Layout";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
 import { addCategory } from "../../store/actions/categoriesAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { routes } from "../../routes";
 
 const UCategoryGrid = styled.div`
   display: grid;
@@ -18,12 +16,12 @@ const UCategoryGrid = styled.div`
 `;
 
 const AddCategory = ({ match }) => {
+  const [form] = Form.useForm();
   const [thumbnailImage, setThumbnailImage] = useState("");
   const [coverImage, setCoverImage] = useState("");
-  const error = useSelector(({ categories }) => categories.error);
 
+  const error = useSelector(({ categories }) => categories.error);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const handleThumnailUpload = (e) => {
     setThumbnailImage(e.file.originFileObj);
@@ -41,15 +39,17 @@ const AddCategory = ({ match }) => {
         cover: coverImage,
       })
     );
-
-    if (!error) {
-      history.push(routes.categories);
-    }
   };
+
+  useEffect(() => {
+    if (!error) {
+      form.resetFields();
+    }
+  }, [error, form]);
 
   return (
     <ULayout activeRoute={match.path} activePage="Add Category">
-      <Form onFinish={onFinish}>
+      <Form form={form} onFinish={onFinish}>
         <UCategoryGrid>
           <div>
             <Form.Item name="name">
@@ -59,32 +59,20 @@ const AddCategory = ({ match }) => {
               <Input.TextArea rows={6} placeholder="Category Description" />
             </Form.Item>
             <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
+              <Button type="primary" htmlType="submit" className="login-form-button">
                 Add Category
               </Button>
             </Form.Item>
           </div>
 
           <div>
-            <Upload
-              onChange={handleThumnailUpload}
-              maxCount={1}
-              listType="picture"
-            >
+            <Upload onChange={handleThumnailUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
                 Upload thumbnail
               </Button>
             </Upload>
             <br />
-            <Upload
-              onChange={handleCoverUpload}
-              maxCount={1}
-              listType="picture"
-            >
+            <Upload onChange={handleCoverUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
                 Upload Cover
               </Button>

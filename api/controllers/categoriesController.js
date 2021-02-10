@@ -3,10 +3,7 @@ import { generateImagePath, upload } from "../utils/upload.js";
 
 export const getAll = async (_, res) => {
   try {
-    const categories = await Category.find()
-      .select("-__v ")
-      .sort({ _id: -1 })
-      .populate("movies", "name");
+    const categories = await Category.find().select("-__v ").sort({ _id: -1 }).populate("movies", "name");
 
     return res.status(200).send({
       categories,
@@ -20,9 +17,7 @@ export const getAll = async (_, res) => {
 
 export const getById = async (req, res) => {
   try {
-    const category = await Category.find({ _id: req.params.id })
-      .select("-__v")
-      .populate("movies", "name");
+    const category = await Category.find({ _id: req.params.id }).select("-__v").populate("movies", "name");
 
     return res.status(200).send({
       category,
@@ -38,6 +33,12 @@ export const add = async (req, res) => {
   const category = new Category(req.body);
 
   // get images path from req
+  if (!req.files.thumbnail) {
+    return res.status(400).send({ message: "Ju lutem vendosni thumbnail " });
+  }
+  if (!req.files.cover) {
+    return res.status(400).send({ message: "Ju lutem vendosni cover " });
+  }
   const thumbnailSrc = req.files.thumbnail.path;
   const coverSrc = req.files.cover.path;
 
