@@ -40,7 +40,7 @@ export const getCategories = () => async (dispatch) => {
     dispatch(setLoad(false));
   } catch (error) {
     dispatch(setLoad(false));
-    ErrorMsg("Something went wrong please try aggain latter");
+    ErrorMsg(error.response.data.message);
   }
 };
 
@@ -52,17 +52,23 @@ export const getCategory = (id) => async (dispatch) => {
     dispatch(setLoad(false));
   } catch (error) {
     dispatch(setLoad(false));
-    ErrorMsg("Something went wrong please try aggain latter");
+    ErrorMsg(error.response.data.message);
   }
 };
 
 export const deleteCategory = (id) => async (dispatch) => {
+  const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
   try {
-    await axios.delete(`categories/${id}`);
+    await axios.delete(`categories/${id}`, config);
     dispatch(removeCategory(id));
     SuccessMsg("Deleted successfully");
   } catch (error) {
-    ErrorMsg("Something went wrong please try aggain latter");
+    ErrorMsg(error.response.data.message);
   }
 };
 
@@ -70,6 +76,7 @@ export const addCategory = (data) => async (dispatch) => {
   const config = {
     headers: {
       "content-type": "multipart/form-data",
+      authorization: localStorage.getItem("token"),
     },
   };
 
@@ -86,7 +93,7 @@ export const addCategory = (data) => async (dispatch) => {
     SuccessMsg("Created successfully");
     dispatch(setError(false));
   } catch (error) {
-    ErrorMsg("Something went wrong please try aggain latter");
+    ErrorMsg(error.response.data.message);
   }
 };
 
@@ -94,6 +101,7 @@ export const updateCategory = (data) => async (dispatch) => {
   const config = {
     headers: {
       "content-type": "multipart/form-data",
+      authorization: localStorage.getItem("token"),
     },
   };
 
@@ -110,6 +118,6 @@ export const updateCategory = (data) => async (dispatch) => {
     SuccessMsg("Updated successfully");
     dispatch(setError(false));
   } catch (error) {
-    ErrorMsg("Something went wrong please try aggain latter");
+    ErrorMsg(error.response.data.message);
   }
 };

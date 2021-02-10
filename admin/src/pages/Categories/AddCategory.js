@@ -59,22 +59,34 @@ const AddCategory = ({ match }) => {
               <Input.TextArea rows={6} placeholder="Category Description" />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button">
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+              >
                 Add Category
               </Button>
             </Form.Item>
           </div>
 
           <div>
-            <Upload onChange={handleThumnailUpload} maxCount={1} listType="picture">
+            <Upload
+              onChange={handleThumnailUpload}
+              maxCount={1}
+              listType="picture"
+            >
               <Button block icon={<UploadOutlined />}>
                 Upload thumbnail
               </Button>
             </Upload>
             <br />
-            <Upload onChange={handleCoverUpload} maxCount={1} listType="picture">
+            <Upload
+              onChange={handleCoverUpload}
+              maxCount={1}
+              listType="picture"
+            >
               <Button block icon={<UploadOutlined />}>
-                Cover thumbnail
+                Upload Cover
               </Button>
             </Upload>
           </div>
