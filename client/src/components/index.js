@@ -32,3 +32,5 @@ export { default as Player } from "./Player/Player/Player";
 
 // export seo
 export { default as Seo } from "./Seo/Seo";
+
+export { default as Fade } from "./Base/Fade/Fade";

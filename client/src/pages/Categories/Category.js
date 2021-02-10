@@ -1,18 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Layout,
-  Card,
-  Grid,
-  Container,
-  PageHeader,
-  Spinner,
-  Seo,
-} from "../../components";
-import {
-  getMoviesInCategory,
-  resetMovies,
-} from "../../store/actions/moviesAction";
+import { Layout, Card, Grid, Container, PageHeader, Spinner, Seo, Fade } from "../../components";
+import { getMoviesInCategory, resetMovies } from "../../store/actions/moviesAction";
 import { getCategory } from "../../store/actions/categoriesAction";
 import { routes } from "../../routes";
 
@@ -33,7 +22,7 @@ const Category = ({ match }) => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <>
+        <Fade>
           <Seo title={category.name} description={category.description} />
           <PageHeader
             title={category.name}
@@ -57,7 +46,7 @@ const Category = ({ match }) => {
                 : null}
             </Grid>
           </Container>
-        </>
+        </Fade>
       )}
     </Layout>
   );

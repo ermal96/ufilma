@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
 import { TopMovie, RecentMovies, SliderSection } from "../../containers";
-import { Layout, Seo, Spinner } from "../../components";
+import { Fade, Layout, Seo, Spinner } from "../../components";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Home = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <>
+        <Fade>
           <TopMovie movies={movies} />
           <RecentMovies movies={movies} />
           <SliderSection category="Aksion" movies={movies} />
@@ -31,7 +31,7 @@ const Home = () => {
           <SliderSection category="Fantashkencë" movies={movies} />
           <SliderSection category="Histori" movies={movies} />
           <SliderSection category="Luftë" movies={movies} />
-        </>
+        </Fade>
       )}
     </Layout>
   );

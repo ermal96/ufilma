@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Grid, Container, Spinner } from "../../components";
+import { Card, Grid, Container, Spinner, Fade } from "../../components";
 import { PageHeader } from "../../components";
 import { routes } from "../../routes";
 import { Layout, Seo } from "../../components";
@@ -24,7 +24,7 @@ const Favorites = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <>
+        <Fade>
           <PageHeader
             title="Filmat e preferuar"
             imageUrl="https://images.unsplash.com/photo-1611820972303-a852ce20c2f4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
@@ -54,7 +54,7 @@ const Favorites = () => {
               </div>
             )}
           </Container>
-        </>
+        </Fade>
       )}
     </Layout>
   );
