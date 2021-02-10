@@ -52,10 +52,10 @@ const AddCategory = ({ match }) => {
       <Form form={form} onFinish={onFinish}>
         <UCategoryGrid>
           <div>
-            <Form.Item name="name">
+            <Form.Item rules={[{ required: true }]} name="name">
               <Input placeholder="Category Name" />
             </Form.Item>
-            <Form.Item name="description">
+            <Form.Item rules={[{ required: true }]} name="description">
               <Input.TextArea rows={6} placeholder="Category Description" />
             </Form.Item>
             <Form.Item>

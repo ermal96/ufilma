@@ -60,34 +60,34 @@ const AddMovie = ({ match }) => {
       <Form form={form} onFinish={onFinish}>
         <UMoviesGrid>
           <div>
-            <Form.Item name="name">
-              <Input required placeholder="Movie Name" />
+            <Form.Item rules={[{ required: true }]} name="name">
+              <Input placeholder="Movie Name" />
             </Form.Item>
             <UMovieColum>
-              <Form.Item name="quality">
-                <Input required placeholder="Movie Quality" />
+              <Form.Item rules={[{ required: true }]} name="quality">
+                <Input placeholder="Movie Quality" />
               </Form.Item>
-              <Form.Item name="year">
-                <Input required placeholder="Movie Year" />
+              <Form.Item rules={[{ required: true }]} name="year">
+                <Input placeholder="Movie Year" />
               </Form.Item>
-              <Form.Item name="ratio">
+              <Form.Item rules={[{ required: true }]} name="ratio">
                 <Input placeholder="Movie Ratio" />
               </Form.Item>
-              <Form.Item name="trailerUrl">
+              <Form.Item rules={[{ required: true }]} name="trailerUrl">
                 <Input placeholder="Movie Trailer" />
               </Form.Item>
             </UMovieColum>
-            <Form.Item name="time">
-              <Input required placeholder="Movie Time" />
+            <Form.Item rules={[{ required: true }]} name="time">
+              <Input placeholder="Movie Time" />
             </Form.Item>
-            <Form.Item name="subtitle">
-              <Input required placeholder="Subtitle" />
+            <Form.Item rules={[{ required: true }]} name="subtitle">
+              <Input placeholder="Subtitle" />
             </Form.Item>
-            <Form.Item name="videoUrl">
-              <Input required placeholder="Movie Url" />
+            <Form.Item rules={[{ required: true }]} name="videoUrl">
+              <Input placeholder="Movie Url" />
             </Form.Item>
-            <Form.Item name="description">
-              <Input.TextArea required rows={6} placeholder="Movie Description" />
+            <Form.Item rules={[{ required: true }]} name="description">
+              <Input.TextArea rows={6} placeholder="Movie Description" />
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
