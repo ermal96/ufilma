@@ -184,7 +184,7 @@ const Account = () => {
                   <>
                     <h3>Ju nuk keni asnje film te preferuar</h3>
 
-                    <p>Ju mund te shtoni filmat tuaj te preferuar duke klikuar iken me zemer</p>
+                    <p>Ju mund te shtoni filmat tuaj te preferuar duke klikuar ikonen me zemer</p>
                   </>
                 )}
               </div>
