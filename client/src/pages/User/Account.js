@@ -66,7 +66,7 @@ const Account = () => {
             <ul>
               <li onClick={() => setActiveNav("info")} className={activeNav === "info" ? styles.active : null}>
                 <RiSettings2Line />
-                Mofifiko profilin
+                Modifiko profilin
               </li>
               <li onClick={() => setActiveNav("favorites")} className={activeNav === "favorites" ? styles.active : null}>
                 <RiHeartsLine />
