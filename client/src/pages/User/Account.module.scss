@@ -1,60 +1,85 @@
 .accountContainer {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 0.7fr 1fr 1fr;
   grid-gap: 5rem;
+  margin-top: 5rem;
+  min-height: 43vh;
 
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  min-height: calc(100vh - var(--header-height));
   @media (max-width: 767px) {
     grid-template-columns: 1fr;
   }
+}
 
+.accountContent {
   form {
-    justify-content: center;
-
-    h1 {
-      margin-bottom: 2rem;
+    input {
+      border-color: #f3f3f37a;
     }
   }
 }
 
+.accountNav {
+  ul {
+    list-style: none;
+    li {
+      cursor: pointer;
+      margin-bottom: 1rem;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+
+      &.active {
+        border-radius: var(--radius-sm);
+        background: var(--accent-color);
+      }
+    }
+  }
+}
+
+// favorite movies
 .favoriteMovies {
-  max-height: 16rem;
+  height: 26rem;
   overflow: hidden;
   overflow-y: scroll;
-}
 
-.accountFavoriteMovies {
-  display: flex;
-  align-items: center;
-  border: 2px solid var(--main-color);
-  margin-bottom: 2rem;
-  padding: 0 1rem 0 0;
-  border-radius: var(--radius-sm);
+  h3 {
+    color: var(--accent-color);
+  }
 
-  img {
-    width: 3rem;
-    height: 3rem;
-    object-fit: cover;
-    object-position: center;
+  .accountFavoriteMovies {
+    display: flex;
+    align-items: center;
+    border: 2px solid #f3f3f37a;
+    margin-bottom: 2rem;
+    padding: 0.3rem 1rem 0.3rem 0.3rem;
     border-radius: var(--radius-sm);
-    margin-right: 1rem;
-  }
-  p {
-    font-size: 1.4rem;
-  }
-}
 
-.accountFavoriteMoviesFlex {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
+    img {
+      width: 3.5rem;
+      height: 3rem;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--radius-sm);
+      margin-right: 1rem;
+    }
+    p {
+      font-size: 1.4rem;
+    }
+  }
+  .accountFavoriteMoviesFlex {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 
-  button {
-    line-height: 0;
-    height: unset;
+    button {
+      line-height: 0;
+      height: unset;
+    }
   }
 }
 
@@ -62,8 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   img {
-    max-width: 75rem;
+    width: 28rem;
   }
 }

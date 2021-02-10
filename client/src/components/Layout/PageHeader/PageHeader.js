@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./PageHeader.module.scss";
 
-const PageHeader = ({ title, description, imageUrl }) => {
+const PageHeader = ({ title, description, imageUrl, height }) => {
   return (
-    <div className={styles.pageHeader} style={{ backgroundImage: `url(${imageUrl})` }}>
+    <div height={height} className={styles.pageHeader} style={{ backgroundImage: `url(${imageUrl})`, height: height }}>
       <div className={styles.pageHeaderBody}>
         <h1 className={styles.pageHeaderBodyTitle}>{title}</h1>
         <p className={styles.pageHeaderBodyDesc}>{description}</p>
