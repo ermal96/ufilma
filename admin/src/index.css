@@ -1,0 +1,60 @@
+.ant-btn-primary,
+.ant-tag-blue,
+.ant-menu-item-selected {
+  background: #de1212 !important;
+  border: none !important;
+  color: white !important;
+}
+
+input,
+textarea,
+.ant-select-selector {
+  border: none !important;
+  box-shadow: none !important;
+}
+input:hover,
+textarea:hover,
+.ant-select-selector:hover {
+  border: none !important;
+  box-shadow: none !important;
+}
+input:focus,
+textarea:focus,
+.ant-select-selector:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ant-input-affix-wrapper {
+  border: 1px solid #ededed !important;
+  box-shadow: none !important;
+}
+
+.ant-input-affix-wrapper:hover {
+  border: 1px solid #ededed !important;
+  box-shadow: none !important;
+}
+
+.ant-input-affix-wrapper:focus {
+  border: 1px solid #ededed !important;
+  box-shadow: none !important;
+}
+
+.site-layout input,
+.site-layout textarea,
+.site-layout .ant-select-selector {
+  border: 1px solid #dbcccc !important;
+  box-shadow: none !important;
+}
+.site-layout input:hover,
+.site-layout textarea:hover,
+.site-layout .ant-select-selector:hover {
+  border: 1px solid #dbcccc !important;
+  box-shadow: none !important;
+}
+.site-layout input:focus,
+.site-layout textarea:focus,
+.site-layout .ant-select-selector:focus {
+  border: 1px solid #dbcccc !important;
+  box-shadow: none !important;
+}

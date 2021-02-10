@@ -6,6 +6,7 @@ import { store } from "./store";
 import { config } from "./config";
 import { BrowserRouter as Router } from "react-router-dom";
 import "antd/dist/antd.css";
+import "./index.css";
 
 // start project config
 config();
