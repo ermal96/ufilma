@@ -7,13 +7,14 @@
 
   @media (max-width: 767px) {
     grid-template-columns: 1fr;
+    grid-gap: 1rem;
   }
 }
 
 .accountContent {
   form {
     input {
-      border-color: #f3f3f37a;
+      border-color: var(--gray-color);
     }
   }
 }
@@ -24,7 +25,7 @@
     li {
       cursor: pointer;
       margin-bottom: 1rem;
-      padding: 0.5rem 1rem;
+      padding: 1rem 1rem;
       display: flex;
       align-items: center;
 
@@ -53,13 +54,13 @@
   .accountFavoriteMovies {
     display: flex;
     align-items: center;
-    border: 2px solid #f3f3f37a;
+    border: 2px solid var(--gray-color);
     margin-bottom: 2rem;
-    padding: 0.3rem 1rem 0.3rem 0.3rem;
+    padding: 0rem 1rem 0rem 0rem;
     border-radius: var(--radius-sm);
 
     img {
-      width: 3.5rem;
+      width: 3rem;
       height: 3rem;
       object-fit: cover;
       object-position: center;
@@ -87,6 +88,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 767px) {
+    margin-top: 5rem;
+  }
   img {
     width: 28rem;
   }

@@ -6,7 +6,7 @@ import { setError, updateUser } from "../../store/actions/userActions";
 import { getUserFavoriteMovies } from "../../store/actions/moviesAction";
 import AccountImg from "../../assets/account.svg";
 import message from "../../utils/message";
-import { RiSettings2Line, RiHeartsLine } from "react-icons/ri";
+import { RiSettings2Line, RiHeartsLine, RiUserLine, RiMailLine, RiLockPasswordLine } from "react-icons/ri";
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -79,7 +79,7 @@ const Account = () => {
             {activeNav === "info" ? (
               <Form onSubmit={onSubmit}>
                 <Input
-                  size="md"
+                  icon={<RiUserLine />}
                   display="block"
                   variant="light"
                   onChange={(e) => {
@@ -96,7 +96,7 @@ const Account = () => {
                 />
 
                 <Input
-                  size="md"
+                  icon={<RiMailLine />}
                   display="block"
                   variant="light"
                   onChange={(e) => {
@@ -113,7 +113,7 @@ const Account = () => {
                 />
 
                 <Input
-                  size="md"
+                  icon={<RiLockPasswordLine />}
                   variant="light"
                   display="block"
                   onChange={(e) => {
@@ -130,7 +130,7 @@ const Account = () => {
                 />
 
                 <Input
-                  size="md"
+                  icon={<RiLockPasswordLine />}
                   variant="light"
                   display="block"
                   onChange={(e) => {
@@ -147,7 +147,7 @@ const Account = () => {
                 />
 
                 <Input
-                  size="md"
+                  icon={<RiLockPasswordLine />}
                   variant="light"
                   display="block"
                   onChange={(e) => {
@@ -163,7 +163,7 @@ const Account = () => {
                   placeholder="Përserit Fjalëkalimin"
                 />
 
-                <Button disabled={disabled} size="md" width={100} variant="filled" type="submit">
+                <Button disabled={disabled} width={100} variant="filled" type="submit">
                   Modifiko Profilin
                 </Button>
               </Form>

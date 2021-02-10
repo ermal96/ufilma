@@ -25,12 +25,14 @@
       margin-right: -1rem;
       width: auto;
     }
-    input {
-      margin-right: -0.8rem;
+    div {
       margin-bottom: 0;
-      transition: all 0.3s ease;
-      padding-right: 3rem;
-      background: var(--primary-color);
+      input {
+        margin-right: -0.8rem;
+        transition: all 0.3s ease;
+        padding-right: 3rem;
+        background: var(--primary-color);
+      }
     }
   }
 }

@@ -1,15 +1,31 @@
+.inputWrapper {
+  position: relative;
+  margin-bottom: 2rem;
+
+  svg {
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+  }
+}
+
 .input {
+  width: 100%;
   border: 0.2rem solid var(--main-color);
   color: var(--main-color);
   padding: var(--padding-sm);
   border-radius: var(--radius-sm);
   outline: none;
-  margin-bottom: 2rem;
   display: inline;
   min-width: 20rem;
   background: transparent;
   filter: none;
   transition: border 0.1s ease;
+
+  &[withicon="true"] {
+    padding-left: 3rem;
+  }
 
   &:focus {
     border: 0.2rem solid var(--accent-color);
@@ -33,11 +49,20 @@
   //   sizes
   &.sm {
     padding: var(--padding-sm);
+    &[withicon="true"] {
+      padding-left: 3rem;
+    }
   }
   &.md {
     padding: var(--padding-md);
+    &[withicon="true"] {
+      padding-left: 3rem;
+    }
   }
   &.lg {
     padding: var(--padding-lg);
+    &[withicon="true"] {
+      padding-left: 3rem;
+    }
   }
 }
