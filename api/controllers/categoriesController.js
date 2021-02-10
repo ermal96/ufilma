@@ -3,7 +3,10 @@ import { generateImagePath, upload } from "../utils/upload.js";
 
 export const getAll = async (_, res) => {
   try {
-    const categories = await Category.find().select("-__v ").sort({ _id: -1 }).populate("movies", "name");
+    const categories = await Category.find()
+      .select("-__v ")
+      .sort({ _id: -1 })
+      .populate("movies", "name");
 
     return res.status(200).send({
       categories,
@@ -17,7 +20,9 @@ export const getAll = async (_, res) => {
 
 export const getById = async (req, res) => {
   try {
-    const category = await Category.find({ _id: req.params.id }).select("-__v").populate("movies", "name");
+    const category = await Category.find({ _id: req.params.id })
+      .select("-__v")
+      .populate("movies", "name");
 
     return res.status(200).send({
       category,
@@ -34,26 +39,18 @@ export const add = async (req, res) => {
 
   // get images path from req
   const thumbnailSrc = req.files.thumbnail.path;
-
-  // store images dest
-  const thumbnailDest = req.files.thumbnail.name;
-
-  // upload images
-  upload(thumbnailSrc, thumbnailDest, res);
-
-  // asign thumbnail
-  category.cover = generateImagePath(coverDest);
-
-  // get images path from req
   const coverSrc = req.files.cover.path;
 
   // store images dest
+  const thumbnailDest = req.files.thumbnail.name;
   const coverDest = req.files.cover.name;
 
   // upload images
+  upload(thumbnailSrc, thumbnailDest, res);
   upload(coverSrc, coverDest, res);
 
-  // asign cover
+  // asign thumbnail
+  category.thumbnail = generateImagePath(thumbnailDest);
   category.cover = generateImagePath(coverDest);
 
   try {

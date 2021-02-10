@@ -41,8 +41,13 @@ export const getMovie = (id) => async (dispatch) => {
 };
 
 export const deleteMovie = (id) => async (dispatch) => {
+  const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    await axios.delete(`movies/${id}`);
+    await axios.delete(`movies/${id}`, config);
     dispatch(removeMovie(id));
   } catch (error) {
     dispatch(setLoad(false));
@@ -53,6 +58,7 @@ export const addMovie = (data) => async (dispatch) => {
   const config = {
     headers: {
       "content-type": "multipart/form-data",
+      authorization: localStorage.getItem("token"),
     },
   };
 
@@ -91,6 +97,7 @@ export const updateMovie = (data) => async (dispatch) => {
   const config = {
     headers: {
       "content-type": "multipart/form-data",
+      authorization: localStorage.getItem("token"),
     },
   };
 
