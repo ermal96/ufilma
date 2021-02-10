@@ -85,6 +85,10 @@ export const add = async (req, res) => {
     return res.status(400).send({ message: "Ju lutem vendosni cover " });
   }
 
+  if (!req.body.categories) {
+    return res.status(400).send({ message: "Ju lutem zgjidhni nje kategori " });
+  }
+
   const thumbnailSrc = req.files.thumbnail.path;
   const coverSrc = req.files.cover.path;
 
