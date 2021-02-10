@@ -1,7 +1,7 @@
 import { types } from "../actions/types";
 
 const defaultState = {
-  movies: {},
+  movies: [],
   movie: {},
   loaded: false,
   error: false,

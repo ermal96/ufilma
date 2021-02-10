@@ -5,7 +5,7 @@ const defaultState = {
   loaded: false,
   user: {},
   error: null,
-  users: {},
+  users: [],
 };
 
 export const userReducer = (state = defaultState, action) => {

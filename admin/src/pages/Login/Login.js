@@ -1,9 +1,10 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Image } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../store/actions/userActions";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import styled from "styled-components";
+import LogoSrc from "../../assets/logo-dark.svg";
 
 const ULoginLayout = styled.div`
   width: 100vw;
@@ -28,21 +29,12 @@ const Login = () => {
   return (
     <ULoginLayout>
       <Form onFinish={onFinish}>
-        <Form.Item
-          name="email"
-          rules={[{ required: true, message: "Please input your Email!" }]}
-        >
+        <Image style={{ width: "150px", marginBottom: "20px" }} preview={false} src={LogoSrc} />
+        <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
           <Input type="email" prefix={<MailOutlined />} placeholder="Email" />
         </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: "Please input your Password!" }]}
-        >
-          <Input
-            prefix={<LockOutlined />}
-            type="password"
-            placeholder="Password"
-          />
+        <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
+          <Input prefix={<LockOutlined />} type="password" placeholder="Password" />
         </Form.Item>
 
         <Form.Item>

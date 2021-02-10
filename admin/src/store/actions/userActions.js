@@ -1,5 +1,6 @@
 import { types } from "./types";
 import axios from "axios";
+import { ErrorMsg } from "../../helpers";
 
 export const setUser = (payload) => ({ type: types.SET_USER, payload });
 export const setLoad = (payload) => ({ type: types.USER_LOADED, payload });
@@ -7,24 +8,13 @@ export const setError = (payload) => ({ type: types.SET_ERROR, payload });
 
 export const fetchUser = (userInfo) => async (dispatch) => {
   try {
-    const result = await axios.post("auth/login", userInfo);
+    const result = await axios.post("auth/login_admin", userInfo);
     localStorage.setItem("token", result.data.token);
 
     dispatch(setUser(result.data.user));
   } catch (error) {
-    dispatch(setError(error.response));
+    ErrorMsg(error.response.data.message);
     localStorage.clear();
-  }
-};
-
-export const signUserUp = (userInfo) => async (dispatch) => {
-  try {
-    const result = await axios.post("auth/register", userInfo);
-    localStorage.setItem("token", result.data.token);
-
-    dispatch(setUser(result.data.user));
-  } catch (error) {
-    dispatch(setError(error.response.data.message));
   }
 };
 

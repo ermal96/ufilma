@@ -1,7 +1,7 @@
 import { types } from "../actions/types";
 
 const defaultState = {
-  categories: {},
+  categories: [],
   category: {},
   loaded: false,
   error: false,
@@ -35,9 +35,7 @@ export const categoriesReducer = (state = defaultState, action) => {
     case types.DELETE_CATEGORY:
       return {
         ...state,
-        categories: state.categories.filter(
-          (item) => item._id !== action.payload
-        ),
+        categories: state.categories.filter((item) => item._id !== action.payload),
       };
 
     default:
