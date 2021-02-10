@@ -5,7 +5,7 @@ import {
   deleteCategory,
 } from "../../store/actions/categoriesAction";
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Space, Typography, Tag, Avatar } from "antd";
+import { Table, Space, Typography, Tag, Avatar, Popconfirm } from "antd";
 import { routes } from "../../routes";
 import { Link } from "react-router-dom";
 
@@ -20,6 +20,10 @@ const Categories = ({ match }) => {
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
+
+  const confirm = (_id) => {
+    dispatch(deleteCategory(_id));
+  };
 
   return (
     <ULayout activeRoute={match.path} activePage="Categories">
@@ -61,13 +65,16 @@ const Categories = ({ match }) => {
             render={(_id) => (
               <Space size="middle">
                 <Link to={routes.categories + "/" + _id}>Edit</Link>
-                <Text
-                  style={{ cursor: "pointer" }}
-                  type="danger"
-                  onClick={() => dispatch(deleteCategory(_id))}
+                <Popconfirm
+                  title="Are you sure to delete this category?"
+                  onConfirm={() => confirm(_id)}
+                  okText="Yes"
+                  cancelText="No"
                 >
-                  Delete
-                </Text>
+                  <Text style={{ cursor: "pointer" }} type="danger">
+                    Delete
+                  </Text>
+                </Popconfirm>
               </Space>
             )}
           />
