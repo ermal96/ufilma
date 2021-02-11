@@ -83,23 +83,3 @@ export const getUserFavoriteMovies = (movies) => async (dispatch) => {
     message.error(error.response.data.message);
   }
 };
-
-export const getWatchingMovies = (movies) => async (dispatch) => {
-  const config = {
-    headers: {
-      authorization: localStorage.getItem("token"),
-    },
-  };
-
-  try {
-    console.log(movies);
-    // dispatch(setAppLoading(true));
-    const res = await axios.put("movies/watching", movies, config);
-
-    console.log(res);
-    dispatch(setUserWatchingMovies(res.data.movies));
-    dispatch(setAppLoading(false));
-  } catch (error) {
-    message.error(error.response.data.message);
-  }
-};
