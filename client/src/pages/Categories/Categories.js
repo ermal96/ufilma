@@ -18,7 +18,7 @@ const Categories = () => {
 
   return (
     <Layout>
-      <Seo title="Kategoritë" description="Këtu do te gjeni te gjithë Kategoritë me të cilat mund te filtroni filmat qe dëshironi." />
+      <Seo title="Kategoritë" description="Në këtë faqe do te gjeni te gjithë Kategoritë me të cilat mund te filtroni filmat qe dëshironi." />
       {isLoading ? (
         <Spinner />
       ) : (

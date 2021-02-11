@@ -27,7 +27,7 @@ const Category = ({ match }) => {
           <PageHeader
             title={category.name}
             imageUrl={process.env.REACT_APP_SERVER + category.cover}
-            description={`Këtu do te gjeni te gjithë filmat e kategorisë ${category.name} shikim të këndshëm!`}
+            description={`Në këtë faqe do te gjeni te gjithë filmat e kategorisë ${category.name} shikim të këndshëm!`}
           />
           <Container>
             <Grid>

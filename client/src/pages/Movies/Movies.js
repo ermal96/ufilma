@@ -23,11 +23,7 @@ const Movies = () => {
         <Spinner />
       ) : (
         <Fade>
-          <PageHeader
-            title="Filmat"
-            svgUrl={MovieImg}
-            description="Këtu do te gjeni te gjithë filmat ne nje tjter kualitet mundesuar nga ufilma.com "
-          />
+          <PageHeader title="Filmat" svgUrl={MovieImg} description="Në këtë faqe do te gjeni te gjithë filmat ne nje tjter kualitet " />
           <Container>
             <Grid>
               {movies.length

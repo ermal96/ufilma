@@ -56,7 +56,7 @@ const Account = () => {
     <Layout>
       <Seo title="Llogaria" description="Llogaria" />
       <Fade>
-        <PageHeader svgUrl={MovieImg} title="LLogaria" />
+        <PageHeader svgUrl={MovieImg} description="Në këtë faqe mund te kryeni veprime si ndryshim emri, email password etj.." title="LLogaria" />
         <Container>
           <div className={styles.accountContainer}>
             <div className={styles.accountNav}>
