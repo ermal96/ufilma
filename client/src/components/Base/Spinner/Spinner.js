@@ -5,7 +5,12 @@ import styles from "./Spinner.module.scss";
 const Spinner = () => {
   return (
     <div className={styles.spinner}>
-      <Logo />
+      <div className={styles.loader}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   );
 };
