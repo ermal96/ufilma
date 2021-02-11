@@ -3,16 +3,19 @@ import { Card, Container, Title } from "../../components";
 import { routes } from "../../routes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
+import { useSelector } from "react-redux";
 
-const RecentMovies = ({ movies }) => {
+const RecentMovies = () => {
   SwiperCore.use([Navigation]);
+
+  const movies = useSelector(({ movies }) => movies.movies);
 
   return (
     <Container>
       <Title>Filmat e fundit</Title>
 
       <Swiper navigation spaceBetween={10} slidesPerView="auto">
-        {movies.map((movie) => (
+        {movies.slice(0, 10).map((movie) => (
           <SwiperSlide key={movie._id}>
             <Card
               backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}

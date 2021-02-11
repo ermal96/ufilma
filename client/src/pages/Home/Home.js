@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
 import { TopMovie, RecentMovies, SliderSection } from "../../containers";
 import { Fade, Layout, Seo, Spinner } from "../../components";
+import { getCategories } from "../../store/actions/categoriesAction";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const movies = useSelector(({ movies }) => movies.movies);
+  const categories = useSelector(({ categories }) => categories.categories);
 
   useEffect(() => {
+    dispatch(getCategories());
     dispatch(getMovies());
   }, [dispatch]);
 
@@ -21,16 +23,11 @@ const Home = () => {
         <Spinner />
       ) : (
         <Fade>
-          <TopMovie movies={movies} />
-          <RecentMovies movies={movies} />
-          <SliderSection category="Aksion" />
-          <SliderSection category="Komedi" />
-          <SliderSection category="Romancë" />
-          <SliderSection category="Thriller" />
-          <SliderSection category="Fantazi" />
-          <SliderSection category="Fantashkencë" />
-          <SliderSection category="Histori" />
-          <SliderSection category="Luftë" />
+          <TopMovie />
+          <RecentMovies />
+          {categories.slice(0, 10).map((category) => {
+            return <SliderSection key={category._id} category={category.name} />;
+          })}
         </Fade>
       )}
     </Layout>
