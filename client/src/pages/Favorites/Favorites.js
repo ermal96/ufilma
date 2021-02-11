@@ -6,7 +6,7 @@ import { Layout, Seo } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFavoriteMovies } from "../../store/actions/moviesAction";
 import styles from "./Favorites.module.scss";
-import MovieImg from "../../assets/movies.jpg";
+import MovieImg from "../../assets/movies.svg";
 
 const Favorites = () => {
   const favoriteMoviesId = useSelector(({ user }) => user.favoriteMovies);
@@ -26,7 +26,7 @@ const Favorites = () => {
         <Spinner />
       ) : (
         <Fade>
-          <PageHeader title="Filmat e preferuar" imageUrl={MovieImg} description="Këtu do te gjeni te gjithë Filmat tuaj te preferuar" />
+          <PageHeader title="Filmat e preferuar" svgrl={MovieImg} description="Këtu do te gjeni te gjithë Filmat tuaj te preferuar" />
           <Container>
             {favoriteMovies.length ? (
               <Grid>

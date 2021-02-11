@@ -5,7 +5,7 @@ import { Card, Grid, Container, Spinner, Seo, Fade } from "../../components";
 import { PageHeader } from "../../components";
 import { routes } from "../../routes";
 import { Layout } from "../../components";
-import MovieImg from "../../assets/movies.jpg";
+import MovieImg from "../../assets/movies.svg";
 
 const Movies = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Movies = () => {
         <Fade>
           <PageHeader
             title="Filmat"
-            imageUrl={MovieImg}
+            svgUrl={MovieImg}
             description="Këtu do te gjeni te gjithë filmat ne nje tjter kualitet mundesuar nga ufilma.com "
           />
           <Container>

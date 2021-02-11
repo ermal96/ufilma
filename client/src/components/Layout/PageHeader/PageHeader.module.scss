@@ -3,8 +3,32 @@
   position: relative;
   background-size: cover;
 
-  @media (max-width: 540px) {
+  @media (max-width: 991px) {
     height: 25rem;
+  }
+
+  .imgSvg {
+    position: absolute;
+    right: 0;
+    height: 70vh;
+
+    @media (max-width: 1200px) {
+      height: 50vh;
+    }
+    @media (max-width: 991px) {
+      height: 40vh;
+    }
+    @media (max-width: 767px) {
+      height: 30vh;
+    }
+
+    @media (max-width: 540px) {
+      height: 25vh;
+    }
+
+    @media (min-width: 1600px) {
+      height: 50vh;
+    }
   }
 
   &:before {

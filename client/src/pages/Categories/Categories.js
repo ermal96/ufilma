@@ -5,7 +5,7 @@ import { Fade, PageHeader, Spinner } from "../../components";
 import { Layout, Seo } from "../../components";
 import { Card, Container, Grid } from "../../components";
 import { routes } from "../../routes";
-import MovieImg from "../../assets/movies.jpg";
+import MovieImg from "../../assets/movies.svg";
 
 const Categories = () => {
   const categories = useSelector(({ categories }) => categories.categories);
@@ -25,7 +25,7 @@ const Categories = () => {
         <Fade>
           <PageHeader
             title="Kategoritë"
-            imageUrl={MovieImg}
+            svgUrl={MovieImg}
             description="Këtu do te gjeni te gjithë Kategoritë me të cilat mund te filtroni filmat qe dëshironi."
           />
           <Container>

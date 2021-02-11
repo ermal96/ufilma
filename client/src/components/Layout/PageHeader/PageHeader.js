@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./PageHeader.module.scss";
 
-const PageHeader = ({ title, description, imageUrl, height }) => {
+const PageHeader = ({ title, description, imageUrl, height, svgUrl }) => {
   return (
     <div height={height} className={styles.pageHeader} style={{ backgroundImage: `url(${imageUrl})`, height: height }}>
       <div className={styles.pageHeaderBody}>
@@ -12,6 +12,7 @@ const PageHeader = ({ title, description, imageUrl, height }) => {
           <Link to="/">Kreu</Link> <span>{title}</span>
         </div>
       </div>
+      {svgUrl ? <img className={styles.imgSvg} src={svgUrl} alt="Imazh" /> : null}
     </div>
   );
 };
