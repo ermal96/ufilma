@@ -9,7 +9,7 @@ const RecentMovies = ({ movies }) => {
 
   return (
     <Container>
-      <Title>Recent</Title>
+      <Title>Filmat e fundit</Title>
 
       <Swiper navigation spaceBetween={10} slidesPerView="auto">
         {movies.map((movie) => (

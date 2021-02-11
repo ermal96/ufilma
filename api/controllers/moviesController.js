@@ -17,7 +17,7 @@ export const getAll = async (_, res) => {
   } catch (error) {
     // send error
     return res.status(400).send({
-      message: "Dicka shkoi keq ju lutem provoni me vonë",
+      message: "Dicka shkoi keq me marrjen e filmave",
     });
   }
 };
@@ -34,7 +34,7 @@ export const getFavorites = async (req, res) => {
   } catch (error) {
     // send error
     return res.status(400).send({
-      message: "Dicka shkoi keq ju lutem provoni me vonë",
+      message: "Dicka shkoi keq me filmat e preferuar",
     });
   }
 };

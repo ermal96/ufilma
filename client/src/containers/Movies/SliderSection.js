@@ -3,16 +3,16 @@ import { Card, Container, Title } from "../../components";
 import { routes } from "../../routes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
+import { useSelector } from "react-redux";
 
-const SliderSection = ({ movies, category }) => {
+const SliderSection = ({ category }) => {
   const [sliderSection, setSliderSection] = useState("");
+  const movies = useSelector(({ movies }) => movies.movies);
 
   SwiperCore.use([Navigation]);
 
   useEffect(() => {
-    setSliderSection(
-      movies.filter((movie) => movie.categories[0].name === category)
-    );
+    setSliderSection(movies.filter((movie) => movie.categories[0].name === category));
   }, [movies, category]);
 
   return (

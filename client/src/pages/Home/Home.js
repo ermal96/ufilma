@@ -23,14 +23,14 @@ const Home = () => {
         <Fade>
           <TopMovie movies={movies} />
           <RecentMovies movies={movies} />
-          <SliderSection category="Aksion" movies={movies} />
-          <SliderSection category="Komedi" movies={movies} />
-          <SliderSection category="Romancë" movies={movies} />
-          <SliderSection category="Thriller" movies={movies} />
-          <SliderSection category="Fantazi" movies={movies} />
-          <SliderSection category="Fantashkencë" movies={movies} />
-          <SliderSection category="Histori" movies={movies} />
-          <SliderSection category="Luftë" movies={movies} />
+          <SliderSection category="Aksion" />
+          <SliderSection category="Komedi" />
+          <SliderSection category="Romancë" />
+          <SliderSection category="Thriller" />
+          <SliderSection category="Fantazi" />
+          <SliderSection category="Fantashkencë" />
+          <SliderSection category="Histori" />
+          <SliderSection category="Luftë" />
         </Fade>
       )}
     </Layout>
