@@ -6,6 +6,7 @@ import { setError, updateUser } from "../../store/actions/userActions";
 import { getUserFavoriteMovies } from "../../store/actions/moviesAction";
 import message from "../../utils/message";
 import { RiSettings2Line, RiHeartsLine, RiUserLine, RiMailLine, RiLockPasswordLine } from "react-icons/ri";
+import MovieImg from "../../assets/movies.jpg";
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -55,11 +56,7 @@ const Account = () => {
     <Layout>
       <Seo title="Llogaria" description="Llogaria" />
       <Fade>
-        <PageHeader
-          height="35rem"
-          imageUrl="https://images.unsplash.com/photo-1423479185712-25d4a4fe1006?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1655&q=80"
-          title="LLogaria"
-        />
+        <PageHeader imageUrl={MovieImg} title="LLogaria" />
         <Container>
           <div className={styles.accountContainer}>
             <div className={styles.accountNav}>
