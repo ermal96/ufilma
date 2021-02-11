@@ -23,7 +23,7 @@ const Search = ({ searchOpen }) => {
   };
 
   const handleSearchChange = (e) => {
-    if (e.target.value) {
+    if (e.target.value.length > 2) {
       dispatch(searchMovies(e.target.value));
     }
 
