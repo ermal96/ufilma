@@ -32,6 +32,10 @@
     left: 2.5rem;
     z-index: 2;
 
+    @media (max-width: 540px) {
+      max-width: 30rem;
+    }
+
     .pageHeaderBodyTitle {
       font-size: 4rem;
       font-weight: bold;
