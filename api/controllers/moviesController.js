@@ -22,6 +22,23 @@ export const getAll = async (_, res) => {
   }
 };
 
+export const getWatching = async (req, res) => {
+  try {
+    // get movie from db
+    const movies = await Movie.find({ _id: req.body._id }).select("-__v").populate("categories", "name");
+
+    // send movie
+    return res.status(200).send({
+      movies,
+    });
+  } catch (error) {
+    // send error
+    return res.status(400).send({
+      message: "Dicka shkoi keq me filmat e pare",
+    });
+  }
+};
+
 export const getFavorites = async (req, res) => {
   try {
     // get movie from db

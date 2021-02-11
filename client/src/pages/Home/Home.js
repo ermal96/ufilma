@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
-import { TopMovie, RecentMovies, SliderSection } from "../../containers";
+import { TopMovie, RecentMovies, SliderSection, WatchingMovies } from "../../containers";
 import { Fade, Layout, Seo, Spinner } from "../../components";
 import { getCategories } from "../../store/actions/categoriesAction";
 
@@ -25,6 +25,7 @@ const Home = () => {
         <Fade>
           <TopMovie />
           <RecentMovies />
+          <WatchingMovies />
           {categories.slice(0, 10).map((category) => {
             return <SliderSection key={category._id} category={category.name} />;
           })}

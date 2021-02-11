@@ -28,6 +28,11 @@ export const setUserFavoriteMovies = (payload) => ({
   payload,
 });
 
+export const setUserWatchingMovies = (payload) => ({
+  type: types.movies.GET_USER_WATCHING_MOVIES,
+  payload,
+});
+
 // actions
 export const getMovies = () => async (dispatch) => {
   try {
@@ -63,10 +68,36 @@ export const getMovie = (id) => async (dispatch) => {
 };
 
 export const getUserFavoriteMovies = (movies) => async (dispatch) => {
+  const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
   try {
     dispatch(setAppLoading(true));
-    const res = await axios.put("movies/favorites", movies);
+    const res = await axios.put("movies/favorites", movies, config);
     dispatch(setUserFavoriteMovies(res.data.movies));
+    dispatch(setAppLoading(false));
+  } catch (error) {
+    message.error(error.response.data.message);
+  }
+};
+
+export const getWatchingMovies = (movies) => async (dispatch) => {
+  const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
+  try {
+    console.log(movies);
+    // dispatch(setAppLoading(true));
+    const res = await axios.put("movies/watching", movies, config);
+
+    console.log(res);
+    dispatch(setUserWatchingMovies(res.data.movies));
     dispatch(setAppLoading(false));
   } catch (error) {
     message.error(error.response.data.message);
