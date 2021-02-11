@@ -26,7 +26,7 @@ const Favorites = () => {
         <Spinner />
       ) : (
         <Fade>
-          <PageHeader title="Filmat e preferuar" svgrl={MovieImg} description="Në këtë faqe do te gjeni te gjithë Filmat tuaj te preferuar" />
+          <PageHeader title="Filmat e preferuar" svgUrl={MovieImg} description="Në këtë faqe do te gjeni te gjithë Filmat tuaj te preferuar" />
           <Container>
             {favoriteMovies.length ? (
               <Grid>
