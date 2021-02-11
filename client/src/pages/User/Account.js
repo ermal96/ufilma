@@ -4,7 +4,6 @@ import styles from "./Account.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setError, updateUser } from "../../store/actions/userActions";
 import { getUserFavoriteMovies } from "../../store/actions/moviesAction";
-import AccountImg from "../../assets/account.svg";
 import message from "../../utils/message";
 import { RiSettings2Line, RiHeartsLine, RiUserLine, RiMailLine, RiLockPasswordLine } from "react-icons/ri";
 
@@ -80,6 +79,7 @@ const Account = () => {
               {activeNav === "info" ? (
                 <Form onSubmit={onSubmit}>
                   <Input
+                    size="lg"
                     icon={<RiUserLine />}
                     display="block"
                     variant="light"
@@ -97,6 +97,7 @@ const Account = () => {
                   />
 
                   <Input
+                    size="lg"
                     icon={<RiMailLine />}
                     display="block"
                     variant="light"
@@ -114,6 +115,7 @@ const Account = () => {
                   />
 
                   <Input
+                    size="lg"
                     icon={<RiLockPasswordLine />}
                     variant="light"
                     display="block"
@@ -131,6 +133,7 @@ const Account = () => {
                   />
 
                   <Input
+                    size="lg"
                     icon={<RiLockPasswordLine />}
                     variant="light"
                     display="block"
@@ -148,6 +151,7 @@ const Account = () => {
                   />
 
                   <Input
+                    size="lg"
                     icon={<RiLockPasswordLine />}
                     variant="light"
                     display="block"
@@ -164,7 +168,7 @@ const Account = () => {
                     placeholder="Përserit Fjalëkalimin"
                   />
 
-                  <Button disabled={disabled} width={100} variant="filled" type="submit">
+                  <Button disabled={disabled} size="lg" width={100} variant="filled" type="submit">
                     Modifiko Profilin
                   </Button>
                 </Form>
@@ -190,10 +194,6 @@ const Account = () => {
                   )}
                 </div>
               )}
-            </div>
-
-            <div className={styles.accountImg}>
-              <img src={AccountImg} alt="Imazhi Llogarisë" />
             </div>
           </div>
         </Container>

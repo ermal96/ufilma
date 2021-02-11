@@ -1,6 +1,6 @@
 .accountContainer {
   display: grid;
-  grid-template-columns: 0.7fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-gap: 5rem;
   margin-top: 5rem;
   min-height: 43vh;
@@ -14,7 +14,11 @@
 .accountContent {
   form {
     input {
-      border-color: var(--gray-color);
+      border: 0.1rem solid var(--dark-blue-color);
+
+      &:focus {
+        border: 0.1rem solid var(--accent-color);
+      }
     }
   }
 }
@@ -54,17 +58,17 @@
   .accountFavoriteMovies {
     display: flex;
     align-items: center;
-    border: 2px solid var(--gray-color);
+    border: 0.1rem solid var(--dark-blue-color);
     margin-bottom: 2rem;
-    padding: 0rem 1rem 0rem 0rem;
+    padding: var(--padding-sm);
     border-radius: var(--radius-sm);
 
     img {
-      width: 3rem;
+      width: 3.2rem;
       height: 3rem;
       object-fit: cover;
       object-position: center;
-      border-radius: var(--radius-sm);
+      border-radius: 50rem;
       margin-right: 1rem;
     }
     p {
