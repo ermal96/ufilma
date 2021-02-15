@@ -73,16 +73,11 @@ const AddMovie = ({ match }) => {
               <Form.Item rules={[{ required: true }]} name="ratio">
                 <Input placeholder="Movie Ratio" />
               </Form.Item>
-              <Form.Item rules={[{ required: true }]} name="trailerUrl">
-                <Input placeholder="Movie Trailer" />
+              <Form.Item rules={[{ required: true }]} name="time">
+                <Input placeholder="Movie Time" />
               </Form.Item>
             </UMovieColum>
-            <Form.Item rules={[{ required: true }]} name="time">
-              <Input placeholder="Movie Time" />
-            </Form.Item>
-            <Form.Item rules={[{ required: true }]} name="subtitle">
-              <Input placeholder="Subtitle" />
-            </Form.Item>
+
             <Form.Item rules={[{ required: true }]} name="videoUrl">
               <Input placeholder="Movie Url" />
             </Form.Item>

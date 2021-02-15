@@ -92,16 +92,10 @@ const EditMovie = ({ match }) => {
                 <Form.Item name="ratio">
                   <Input required placeholder="Movie Ratio" />
                 </Form.Item>
-                <Form.Item name="trailerUrl">
-                  <Input required placeholder="Movie Trailer" />
+                <Form.Item name="time">
+                  <Input required placeholder="Movie Time" />
                 </Form.Item>
               </UMovieColum>
-              <Form.Item name="time">
-                <Input required placeholder="Movie Time" />
-              </Form.Item>
-              <Form.Item name="subtitle">
-                <Input required placeholder="Subtitle" />
-              </Form.Item>
               <Form.Item name="videoUrl">
                 <Input required placeholder="Movie Url" />
               </Form.Item>
