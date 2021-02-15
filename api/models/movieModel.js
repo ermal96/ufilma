@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import searchable from "mongoose-regex-search";
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const movieSchema = mongoose.Schema({
   name: {
@@ -46,5 +47,6 @@ const movieSchema = mongoose.Schema({
 });
 
 movieSchema.plugin(searchable);
+movieSchema.plugin(mongoosePaginate);
 
 export const Movie = mongoose.model("movie", movieSchema);
