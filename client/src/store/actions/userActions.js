@@ -104,7 +104,6 @@ export const autoLogin = () => async (dispatch) => {
     );
   } catch (error) {
     localStorage.clear();
-    message.error(error.response.data.message);
   }
 };
 
