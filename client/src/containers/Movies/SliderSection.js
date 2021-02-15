@@ -4,6 +4,7 @@ import { routes } from "../../routes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import { useSelector } from "react-redux";
+import { isEmptyObject } from "../../utils";
 
 const SliderSection = ({ category }) => {
   const [sliderSection, setSliderSection] = useState("");
@@ -12,7 +13,9 @@ const SliderSection = ({ category }) => {
   SwiperCore.use([Navigation]);
 
   useEffect(() => {
-    setSliderSection(movies.filter((movie) => movie.categories[0].name === category));
+    if (!isEmptyObject(movies)) {
+      setSliderSection(movies.docs.filter((movie) => movie.categories[0].name === category));
+    }
   }, [movies, category]);
 
   return (

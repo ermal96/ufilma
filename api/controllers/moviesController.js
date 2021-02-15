@@ -5,7 +5,7 @@ import { generateImagePath, upload } from "../utils/upload.js";
 export const getAll = async (_, res) => {
   const options = {
     page: 1,
-    limit: 10,
+    limit: 12,
     populate: {
       path: "categories",
       select: "name",

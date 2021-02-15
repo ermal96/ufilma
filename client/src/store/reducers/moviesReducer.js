@@ -1,7 +1,7 @@
 import { types } from "../types";
 
 const defaultState = {
-  movies: [],
+  movies: {},
   movie: {},
   moviesInCategory: [],
   userFavoriteMovies: [],
@@ -44,7 +44,7 @@ export const moviesReducer = (state = defaultState, action) => {
     case types.movies.RESET_MOVIES:
       return {
         ...state,
-        movies: [],
+        movies: {},
         movie: {},
         moviesInCategory: [],
       };

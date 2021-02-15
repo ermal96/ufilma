@@ -5,6 +5,8 @@ import ULayout from "../../containers/Layout";
 import { Table, Tag, Space, Typography, Avatar, Popconfirm } from "antd";
 import { routes } from "../../routes";
 import { Link } from "react-router-dom";
+import { isEmptyObject } from "../../utils";
+
 const { Text } = Typography;
 
 const { Column } = Table;
@@ -22,8 +24,8 @@ const Movies = ({ match }) => {
 
   return (
     <ULayout activeRoute={match.path} activePage="Movies">
-      {movies.length ? (
-        <Table pagination={movies.length >= 10 ? true : false} rowKey="_id" dataSource={movies}>
+      {!isEmptyObject(movies) ? (
+        <Table pagination={movies.length >= 10 ? true : false} rowKey="_id" dataSource={movies.docs}>
           <Column title="Emri" dataIndex="name" key="name" />
           <Column title="Viti" dataIndex="year" key="year" />
           <Column title="Kualiteti" key="quality" dataIndex="quality" render={(quality) => <Text>{quality ? quality.toUpperCase() : ""}</Text>} />

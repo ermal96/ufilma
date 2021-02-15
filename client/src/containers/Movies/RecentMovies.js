@@ -4,6 +4,7 @@ import { routes } from "../../routes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import { useSelector } from "react-redux";
+import { isEmptyObject } from "../../utils";
 
 const RecentMovies = () => {
   SwiperCore.use([Navigation]);
@@ -15,18 +16,20 @@ const RecentMovies = () => {
       <Title>Filmat e fundit</Title>
       <div className="slider-with-navigation">
         <Swiper navigation spaceBetween={10} slidesPerView="auto">
-          {movies.slice(0, 10).map((movie) => (
-            <SwiperSlide key={movie._id}>
-              <Card
-                backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}
-                link={routes.movies + "/" + movie._id}
-                quality={movie.quality}
-                title={movie.name}
-                categories={movie.categories}
-                id={movie._id}
-              />
-            </SwiperSlide>
-          ))}
+          {!isEmptyObject(movies)
+            ? movies.docs.slice(0, 10).map((movie) => (
+                <SwiperSlide key={movie._id}>
+                  <Card
+                    backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}
+                    link={routes.movies + "/" + movie._id}
+                    quality={movie.quality}
+                    title={movie.name}
+                    categories={movie.categories}
+                    id={movie._id}
+                  />
+                </SwiperSlide>
+              ))
+            : null}
         </Swiper>
       </div>
     </Container>

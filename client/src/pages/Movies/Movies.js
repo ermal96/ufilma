@@ -6,6 +6,7 @@ import { PageHeader } from "../../components";
 import { routes } from "../../routes";
 import { Layout } from "../../components";
 import MovieImg from "../../assets/movies.svg";
+import { isEmptyObject } from "../../utils";
 
 const Movies = () => {
   const dispatch = useDispatch();
@@ -26,8 +27,8 @@ const Movies = () => {
           <PageHeader title="Filmat" svgUrl={MovieImg} description="Në këtë faqe do te gjeni te gjithë filmat ne nje tjter kualitet " />
           <Container>
             <Grid>
-              {movies.length
-                ? movies.map((movie) => (
+              {!isEmptyObject(movies)
+                ? movies.docs.map((movie) => (
                     <Card
                       ratio="2/3"
                       backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}
