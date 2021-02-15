@@ -74,7 +74,7 @@ const EditMovie = ({ match }) => {
   const { Option } = Select;
 
   return (
-    <ULayout activeRoute={routes.movies} activePage="Edit Movie">
+    <ULayout activeRoute={routes.movies} activePage="Modifiko Filmin">
       <Form form={form} onFinish={onFinish}>
         {name ? (
           <UMoviesGrid>

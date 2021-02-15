@@ -56,7 +56,7 @@ const AddMovie = ({ match }) => {
   }, [error, form]);
 
   return (
-    <ULayout activeRoute={match.path} activePage="Add Category">
+    <ULayout activeRoute={match.path} activePage="Shto Film">
       <Form form={form} onFinish={onFinish}>
         <UMoviesGrid>
           <div>

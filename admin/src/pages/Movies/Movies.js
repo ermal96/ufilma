@@ -23,7 +23,7 @@ const Movies = ({ match }) => {
   };
 
   return (
-    <ULayout activeRoute={match.path} activePage="Movies">
+    <ULayout activeRoute={match.path} activePage="Filmat">
       {!isEmptyObject(movies) ? (
         <Table pagination={movies.length >= 10 ? true : false} rowKey="_id" dataSource={movies.docs}>
           <Column title="Emri" dataIndex="name" key="name" />

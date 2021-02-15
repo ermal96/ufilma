@@ -48,7 +48,7 @@ const AddCategory = ({ match }) => {
   }, [error, form]);
 
   return (
-    <ULayout activeRoute={match.path} activePage="Add Category">
+    <ULayout activeRoute={match.path} activePage="Shto Kategori">
       <Form form={form} onFinish={onFinish}>
         <UCategoryGrid>
           <div>
