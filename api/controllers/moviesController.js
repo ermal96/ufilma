@@ -10,7 +10,7 @@ export const getAll = async (_, res) => {
       path: "categories",
       select: "name",
     },
-    sort: { date: -1 },
+    sort: { _id: -1 },
   };
 
   try {
