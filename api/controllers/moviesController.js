@@ -3,36 +3,28 @@ import { Category } from "../models/categoryModel.js";
 import { generateImagePath, upload } from "../utils/upload.js";
 
 export const getAll = async (_, res) => {
-
   const options = {
     page: 1,
-    limit: 1,
+    limit: 10,
     populate: {
       path: "categories",
-      select: 'name',
-    }
+      select: "name",
+    },
   };
 
-
-  Movie.paginate({}, options, function (err, result) {
-  return res.send({movies: result})
-  });
-
-  // try {
-  //   // get movies from db
-  //   const movies = await Movie.find()
-  //     .select("name year thumbnail cover slug description quality trailerUrl")
-  //     .populate("categories", "name")
-  //   // send movies
-  //   return res.status(200).send({
-  //     movies,
-  //   });
-  // } catch (error) {
-  //   // send error
-  //   return res.status(400).send({
-  //     message: "Dicka shkoi keq me marrjen e filmave",
-  //   });
-  // }
+  try {
+    // get movies from db
+    const movies = await Movie.paginate({}, options);
+    // send movies
+    return res.status(200).send({
+      movies,
+    });
+  } catch (error) {
+    // send error
+    return res.status(400).send({
+      message: "Dicka shkoi keq me marrjen e filmave",
+    });
+  }
 };
 
 export const getWatching = async (req, res) => {
