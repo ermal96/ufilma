@@ -25,7 +25,7 @@ const Home = () => {
         <Fade>
           <TopMovie />
           <RecentMovies />
-          {categories.slice(0, 10).map((category) => {
+          {categories.slice(0, 5).map((category) => {
             return <SliderSection key={category._id} category={category.name} />;
           })}
         </Fade>
