@@ -10,8 +10,8 @@ const TopMovie = ({ movies }) => {
   SwiperCore.use([Autoplay, EffectFade]);
 
   return (
-    <Swiper effect="fade" loop={true} autoplay={{ delay: 5000 }}>
-      {movies.slice(0, 3).map((movie) => (
+    <Swiper effect="fade" loop={true} autoplay={{ delay: 10000 }}>
+      {movies.slice(0, 5).map((movie) => (
         <SwiperSlide key={movie._id}>
           <div className={styles.topCard}>
             <div
