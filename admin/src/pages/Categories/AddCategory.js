@@ -52,15 +52,15 @@ const AddCategory = ({ match }) => {
       <Form form={form} onFinish={onFinish}>
         <UCategoryGrid>
           <div>
-            <Form.Item rules={[{ required: true }]} name="name">
-              <Input placeholder="Category Name" />
+            <Form.Item rules={[{ required: true, message: "Ju lutem vendosi emrin" }]} name="name">
+              <Input placeholder="Emri Kategorise" />
             </Form.Item>
-            <Form.Item rules={[{ required: true }]} name="description">
-              <Input.TextArea rows={6} placeholder="Category Description" />
+            <Form.Item rules={[{ required: true, message: "Ju lutem vendosi pershkrimin" }]} name="description">
+              <Input.TextArea rows={6} placeholder="Pershkrimi Kategorise" />
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" className="login-form-button">
-                Add Category
+                Shto Kategorine
               </Button>
             </Form.Item>
           </div>
@@ -68,13 +68,13 @@ const AddCategory = ({ match }) => {
           <div>
             <Upload onChange={handleThumnailUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
-                Upload thumbnail
+                Ngarko Imazhin
               </Button>
             </Upload>
             <br />
             <Upload onChange={handleCoverUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
-                Upload Cover
+                Ngarko Koverin
               </Button>
             </Upload>
           </div>

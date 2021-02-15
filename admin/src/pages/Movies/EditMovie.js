@@ -79,32 +79,32 @@ const EditMovie = ({ match }) => {
         {name ? (
           <UMoviesGrid>
             <div>
-              <Form.Item name="name">
-                <Input required placeholder="Movie Name" />
+              <Form.Item rules={[{ required: true, message: "Ju lutem vendosni emrin" }]} name="name">
+                <Input placeholder="Emri Filmnit" />
               </Form.Item>
               <UMovieColum>
-                <Form.Item name="quality">
-                  <Input required placeholder="Movie Quality" />
+                <Form.Item rules={[{ required: true, message: "Ju lutem vendosni kualitetin" }]} name="quality">
+                  <Input placeholder="Kualiteti Filmit" />
                 </Form.Item>
-                <Form.Item name="year">
-                  <Input required placeholder="Movie Year" />
+                <Form.Item rules={[{ required: true, message: "Ju lutem vendosni vitin" }]} name="year">
+                  <Input placeholder="Viti Filmit" />
                 </Form.Item>
-                <Form.Item name="ratio">
-                  <Input required placeholder="Movie Ratio" />
+                <Form.Item rules={[{ required: true, message: "Ju lutem vendosni vlersimin" }]} name="ratio">
+                  <Input placeholder="Vlersimi Filmit" />
                 </Form.Item>
-                <Form.Item name="time">
-                  <Input required placeholder="Movie Time" />
+                <Form.Item rules={[{ required: true, message: "Ju lutem vendosni kohen" }]} name="time">
+                  <Input placeholder="Koha Filmit" />
                 </Form.Item>
               </UMovieColum>
-              <Form.Item name="videoUrl">
-                <Input required placeholder="Movie Url" />
+              <Form.Item rules={[{ required: true, message: "Ju lutem vendosni url e videos" }]} name="videoUrl">
+                <Input placeholder="Url Videos" />
               </Form.Item>
-              <Form.Item name="description">
-                <Input.TextArea required rows={6} placeholder="Movie Description" />
+              <Form.Item rules={[{ required: true, message: "Ju lutem vendosni pershkrimin" }]} name="description">
+                <Input.TextArea rows={6} placeholder="Pershkrimi Filmit" />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
-                  Update Movie
+                  Modifiko Filmin
                 </Button>
               </Form.Item>
             </div>
@@ -113,7 +113,7 @@ const EditMovie = ({ match }) => {
               <Upload
                 defaultFileList={[
                   {
-                    name: "Movie Thumbnail",
+                    name: "Imazhi Filmit",
                     thumbUrl: thumbnail ? process.env.REACT_APP_SERVER + thumbnail : "",
                   },
                 ]}
@@ -121,14 +121,14 @@ const EditMovie = ({ match }) => {
                 maxCount={1}
                 listType="picture">
                 <Button block icon={<UploadOutlined />}>
-                  Update thumbail
+                  Modifikoje Imazhin
                 </Button>
               </Upload>
               <br />
               <Upload
                 defaultFileList={[
                   {
-                    name: "Movie Cover",
+                    name: "Koveri Filmit",
                     thumbUrl: cover ? process.env.REACT_APP_SERVER + cover : "",
                   },
                 ]}
@@ -136,13 +136,13 @@ const EditMovie = ({ match }) => {
                 maxCount={1}
                 listType="picture">
                 <Button block icon={<UploadOutlined />}>
-                  Update cover
+                  Modifikoje Koverin
                 </Button>
               </Upload>
               <br />
               {categories ? (
                 <Form.Item name="categories">
-                  <Select name="categories" mode="multiple" style={{ width: "100%" }} placeholder="SelectCategory">
+                  <Select name="categories" mode="multiple" style={{ width: "100%" }} placeholder="Perzgjidh Kategorite">
                     {allCategories.length
                       ? allCategories.map((category) => (
                           <Option key={category._id} value={category._id}>

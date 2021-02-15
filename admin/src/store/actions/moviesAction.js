@@ -51,6 +51,7 @@ export const deleteMovie = (id) => async (dispatch) => {
   try {
     await axios.delete(`movies/${id}`, config);
     dispatch(removeMovie(id));
+    SuccessMsg("Filmi u fshi me sukses ");
   } catch (error) {
     ErrorMsg(error.response.data.message);
   }
@@ -85,7 +86,7 @@ export const addMovie = (data) => async (dispatch) => {
     dispatch(setError(true));
     dispatch(createMovie());
     await axios.post("movies", formData, config);
-    SuccessMsg("Created successfully");
+    SuccessMsg("Filmi u krijua me sukses");
     dispatch(setError(false));
   } catch (error) {
     ErrorMsg(error.response.data.message);
@@ -121,7 +122,7 @@ export const updateMovie = (data) => async (dispatch) => {
     dispatch(setError(true));
     dispatch(updMovie());
     await axios.put(`movies/${data.id}`, formData, config);
-    SuccessMsg("Updated successfully");
+    SuccessMsg("Filmi u modifikua me sukses");
     dispatch(setError(false));
   } catch (error) {
     ErrorMsg(error.response.data.message);

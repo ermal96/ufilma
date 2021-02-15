@@ -30,16 +30,16 @@ const Login = () => {
     <ULoginLayout>
       <Form onFinish={onFinish}>
         <Image style={{ width: "150px", marginBottom: "20px" }} preview={false} src={LogoSrc} />
-        <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
+        <Form.Item name="email" rules={[{ required: true, message: "Ju lutem vendosi email!" }]}>
           <Input type="email" prefix={<MailOutlined />} placeholder="Email" />
         </Form.Item>
-        <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
-          <Input prefix={<LockOutlined />} type="password" placeholder="Password" />
+        <Form.Item name="password" rules={[{ required: true, message: "Ju lutem vendosi fjalekalimin!" }]}>
+          <Input prefix={<LockOutlined />} type="password" placeholder="Fjalekalimi" />
         </Form.Item>
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Log in
+            Hyr
           </Button>
         </Form.Item>
       </Form>

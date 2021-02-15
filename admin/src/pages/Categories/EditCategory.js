@@ -52,20 +52,20 @@ const Category = ({ match }) => {
   }, [dispatch, match.params.id, form, name, description, thumbnail, cover]);
 
   return (
-    <ULayout activeRoute={routes.categories} activePage="Edit Category">
+    <ULayout activeRoute={routes.categories} activePage="Modifiko Kategorine">
       <Form form={form} onFinish={onFinish}>
         {name ? (
           <UCategoryGrid>
             <div>
-              <Form.Item name="name">
-                <Input placeholder="Category Name" />
+              <Form.Item rules={[{ required: true, message: "Ju lutem vendosi emrin" }]} name="name">
+                <Input placeholder="Emri Kategorise" />
               </Form.Item>
-              <Form.Item name="description">
-                <Input.TextArea rows={6} placeholder="Category Description" />
+              <Form.Item rules={[{ required: true, message: "Ju lutem vendosi pershkrimin" }]} name="description">
+                <Input.TextArea rows={6} placeholder="Pershkrimi Kategorise" />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
-                  Update Category
+                  Modifikoje Kategorine
                 </Button>
               </Form.Item>
             </div>
@@ -77,12 +77,12 @@ const Category = ({ match }) => {
                 listType="picture"
                 defaultFileList={[
                   {
-                    name: "Category Thumbnail",
+                    name: "Imazhi Kategorrise",
                     thumbUrl: thumbnail ? process.env.REACT_APP_SERVER + thumbnail : "",
                   },
                 ]}>
                 <Button block icon={<UploadOutlined />}>
-                  Update thumbnail
+                  Modifikoje Imazhin
                 </Button>
               </Upload>
               <br />
@@ -92,12 +92,12 @@ const Category = ({ match }) => {
                 listType="picture"
                 defaultFileList={[
                   {
-                    name: "Category Cover",
+                    name: "Koveri kategorise",
                     thumbUrl: cover ? process.env.REACT_APP_SERVER + cover : "",
                   },
                 ]}>
                 <Button block icon={<UploadOutlined />}>
-                  Update cover
+                  Modifikoje Koverin
                 </Button>
               </Upload>
             </div>

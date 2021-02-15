@@ -40,9 +40,15 @@ export const logout = () => async (dispatch) => {
 };
 
 export const getUsers = () => async (dispatch) => {
+  const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
   try {
     dispatch(setLoad(true));
-    const result = await axios.get("users");
+    const result = await axios.get("users", config);
 
     dispatch({
       type: types.GET_USERS,

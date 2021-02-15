@@ -13,7 +13,7 @@ const Categories = ({ match }) => {
   }, [dispatch]);
 
   return (
-    <ULayout activeRoute={match.path} activePage="Images">
+    <ULayout activeRoute={match.path} activePage="Fotot">
       <Row gutter={25}>
         {images.length
           ? images.map((image) => {

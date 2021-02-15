@@ -60,33 +60,33 @@ const AddMovie = ({ match }) => {
       <Form form={form} onFinish={onFinish}>
         <UMoviesGrid>
           <div>
-            <Form.Item rules={[{ required: true }]} name="name">
-              <Input placeholder="Movie Name" />
+            <Form.Item rules={[{ required: true, message: "Ju lutem vendosni emrin" }]} name="name">
+              <Input placeholder="Emri Filmit" />
             </Form.Item>
             <UMovieColum>
-              <Form.Item rules={[{ required: true }]} name="quality">
-                <Input placeholder="Movie Quality" />
+              <Form.Item rules={[{ required: true, message: "Ju lutem vendosni Kualitetin" }]} name="quality">
+                <Input placeholder="Kualiteti Filmit" />
               </Form.Item>
-              <Form.Item rules={[{ required: true }]} name="year">
-                <Input placeholder="Movie Year" />
+              <Form.Item rules={[{ required: true, message: "Ju lutem vendosni vitin" }]} name="year">
+                <Input placeholder="Viti Filmit" />
               </Form.Item>
-              <Form.Item rules={[{ required: true }]} name="ratio">
+              <Form.Item rules={[{ required: true, message: "Ju lutem vendosni vlersimin" }]} name="ratio">
                 <Input placeholder="Movie Ratio" />
               </Form.Item>
-              <Form.Item rules={[{ required: true }]} name="time">
-                <Input placeholder="Movie Time" />
+              <Form.Item rules={[{ required: true, message: "Ju lutem vendosni kohen" }]} name="time">
+                <Input placeholder="Koha Filmit" />
               </Form.Item>
             </UMovieColum>
 
-            <Form.Item rules={[{ required: true }]} name="videoUrl">
-              <Input placeholder="Movie Url" />
+            <Form.Item rules={[{ required: true, message: "Ju lutem vendosni url e videos" }]} name="videoUrl">
+              <Input placeholder="Url Videos" />
             </Form.Item>
-            <Form.Item rules={[{ required: true }]} name="description">
-              <Input.TextArea rows={6} placeholder="Movie Description" />
+            <Form.Item rules={[{ required: true, message: "Ju lutem vendosni pershkrimin" }]} name="description">
+              <Input.TextArea rows={6} placeholder="Pershkrimi filmit" />
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
-                Add Movie
+                Shto Filmin
               </Button>
             </Form.Item>
           </div>
@@ -94,19 +94,19 @@ const AddMovie = ({ match }) => {
           <div>
             <Upload onChange={handleThumnailUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
-                Upload thumbnail
+                Ngarko Imazhin
               </Button>
             </Upload>
             <br />
             <Upload onChange={handleCoverUpload} maxCount={1} listType="picture">
               <Button block icon={<UploadOutlined />}>
-                Upload cover
+                Ngarko Koverin
               </Button>
             </Upload>
             <br />
             {categories.length ? (
               <Form.Item name="categories">
-                <Select name="categories" mode="multiple" style={{ width: "100%" }} placeholder="SelectCategory">
+                <Select name="categories" mode="multiple" style={{ width: "100%" }} placeholder="Perzgjidh Kategorite">
                   {categories.map((category) => (
                     <Option key={category._id} value={category._id}>
                       {category.name}

@@ -66,7 +66,7 @@ export const deleteCategory = (id) => async (dispatch) => {
   try {
     await axios.delete(`categories/${id}`, config);
     dispatch(removeCategory(id));
-    SuccessMsg("Deleted successfully");
+    SuccessMsg("Kategoria u fshi me sukses");
   } catch (error) {
     ErrorMsg(error.response.data.message);
   }
@@ -90,7 +90,7 @@ export const addCategory = (data) => async (dispatch) => {
     dispatch(setError(true));
     dispatch(createCategory());
     await axios.post("categories", formData, config);
-    SuccessMsg("Created successfully");
+    SuccessMsg("Kategoria u krijua me sukses");
     dispatch(setError(false));
   } catch (error) {
     ErrorMsg(error.response.data.message);
@@ -115,7 +115,7 @@ export const updateCategory = (data) => async (dispatch) => {
     dispatch(setError(true));
     dispatch(updateCat());
     await axios.put(`categories/${data.id}`, formData, config);
-    SuccessMsg("Updated successfully");
+    SuccessMsg("Kategoria u modifikua me sukses");
     dispatch(setError(false));
   } catch (error) {
     ErrorMsg(error.response.data.message);
