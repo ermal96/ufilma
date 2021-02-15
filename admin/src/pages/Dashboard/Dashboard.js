@@ -5,6 +5,7 @@ import ULayout from "../../containers/Layout";
 import { getCategories } from "../../store/actions/categoriesAction";
 import { Card, Row, Col, Statistic, Table, Typography, Tag, Avatar } from "antd";
 import { VideoCameraOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { isEmptyObject } from "../../utils";
 
 const { Text } = Typography;
 const { Column } = Table;
@@ -24,7 +25,9 @@ const Dashboard = ({ match }) => {
       <Row gutter={16} style={{ marginTop: "25px" }}>
         <Col span={12}>
           <Card>
-            <Statistic valueStyle={{ color: "#cf1322" }} title="Filmat" value={movies.length} prefix={<VideoCameraOutlined />} />
+            {!isEmptyObject(movies) ? (
+              <Statistic valueStyle={{ color: "#cf1322" }} title="Filmat" value={movies.docs.length} prefix={<VideoCameraOutlined />} />
+            ) : null}
           </Card>
         </Col>
         <Col span={12}>
