@@ -171,9 +171,7 @@ export const updateById = async (req, res) => {
     quality: req.body.quality,
     year: req.body.year,
     ratio: req.body.ratio,
-    trailerUrl: req.body.trailerUrl,
     time: req.body.time,
-    subtitle: req.body.subtitle,
     videoUrl: req.body.videoUrl,
   };
 
