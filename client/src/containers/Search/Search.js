@@ -46,11 +46,13 @@ const Search = ({ searchOpen }) => {
         <div className={styles.searchResult}>
           {searchResult.length ? (
             <>
-              {searchResult.map((result) => {
+              {searchResult.slice(0, 5).map((result) => {
                 return (
                   <Link key={result._id} style={{ textDecoration: "none" }} to={routes.movies + "/" + result._id}>
                     <div className={styles.searchResultItem}>
-                      <img src={process.env.REACT_APP_SERVER + result.thumbnail} alt={result.name} />
+                      <div>
+                        <img src={process.env.REACT_APP_SERVER + result.thumbnail} alt={result.name} />
+                      </div>
                       <div>
                         <h2>{result.name}</h2>
                       </div>
