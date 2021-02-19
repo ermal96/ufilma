@@ -11,7 +11,18 @@
   }
 }
 
+.col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2.5rem;
+}
+
 .accountContent {
+  margin-top: 6rem;
+
+  @media (max-width: 767px) {
+    margin-top: 0;
+  }
   form {
     input {
       border: 0.1rem solid var(--dark-blue-color);

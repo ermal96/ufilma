@@ -19,25 +19,26 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   const handleScroll = () => {
-    window.addEventListener("scroll", () => {
-      const currentYOffset = window.pageYOffset;
-      if (currentYOffset < 100) {
-        setSticky("");
-      } else if (currentYOffset > lastYOffset) {
-        setSticky("sticky");
-      } else {
-        setSticky("sticky");
-      }
-      setLastYOffset(currentYOffset);
-    });
+    const currentYOffset = window.pageYOffset;
+    if (currentYOffset < 100) {
+      setSticky("");
+    } else if (currentYOffset > lastYOffset) {
+      setSticky("sticky");
+    } else {
+      setSticky("sticky");
+    }
+    setLastYOffset(currentYOffset);
   };
 
   useEffect(() => {
-    window.removeEventListener("scroll", handleScroll);
     window.addEventListener("scroll", handleScroll);
     if (searchOpen) {
       setOpen("searchOpen");
     }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchOpen]);
 

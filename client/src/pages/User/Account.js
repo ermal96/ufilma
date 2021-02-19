@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Layout, Input, Form, Button, Seo, FavoriteButton, PageHeader, Fade } from "../../components";
+import { Container, Layout, Input, Form, Button, Seo, FavoriteButton, PageHeader, Fade, Logo } from "../../components";
 import styles from "./Account.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setError, updateUser } from "../../store/actions/userActions";
@@ -60,6 +60,8 @@ const Account = () => {
         <Container>
           <div className={styles.accountContainer}>
             <div className={styles.accountNav}>
+              <Logo />
+              <br />
               <ul>
                 <li onClick={() => setActiveNav("info")} className={activeNav === "info" ? styles.active : null}>
                   <RiSettings2Line />
@@ -74,101 +76,105 @@ const Account = () => {
 
             <div className={styles.accountContent}>
               {activeNav === "info" ? (
-                <Form onSubmit={onSubmit}>
-                  <Input
-                    size="lg"
-                    icon={<RiUserLine />}
-                    display="block"
-                    variant="light"
-                    onChange={(e) => {
-                      setName(e.target.value);
-                      setDisabled(false);
-                    }}
-                    onKeyPress={(e) => {
-                      e.key === "Enter" && e.preventDefault();
-                    }}
-                    value={name}
-                    type="text"
-                    placeholder="Emer"
-                    autoComplete="name"
-                  />
+                <>
+                  <Form onSubmit={onSubmit}>
+                    <div className={styles.col}>
+                      <Input
+                        size="lg"
+                        icon={<RiUserLine />}
+                        display="block"
+                        variant="light"
+                        onChange={(e) => {
+                          setName(e.target.value);
+                          setDisabled(false);
+                        }}
+                        onKeyPress={(e) => {
+                          e.key === "Enter" && e.preventDefault();
+                        }}
+                        value={name}
+                        type="text"
+                        placeholder="Emer"
+                        autoComplete="name"
+                      />
+                      <Input
+                        size="lg"
+                        icon={<RiMailLine />}
+                        display="block"
+                        variant="light"
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          setDisabled(false);
+                        }}
+                        onKeyPress={(e) => {
+                          e.key === "Enter" && e.preventDefault();
+                        }}
+                        value={email}
+                        type="text"
+                        placeholder="Email"
+                        autoComplete="email"
+                      />
+                    </div>
 
-                  <Input
-                    size="lg"
-                    icon={<RiMailLine />}
-                    display="block"
-                    variant="light"
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                      setDisabled(false);
-                    }}
-                    onKeyPress={(e) => {
-                      e.key === "Enter" && e.preventDefault();
-                    }}
-                    value={email}
-                    type="text"
-                    placeholder="Email"
-                    autoComplete="email"
-                  />
+                    <div className={styles.col}>
+                      <Input
+                        size="lg"
+                        icon={<RiLockPasswordLine />}
+                        variant="light"
+                        display="block"
+                        onChange={(e) => {
+                          setCurrentPassword(e.target.value);
+                          setDisabled(false);
+                        }}
+                        onKeyPress={(e) => {
+                          e.key === "Enter" && e.preventDefault();
+                        }}
+                        value={currentPassword}
+                        type="password"
+                        autoComplete="password"
+                        placeholder="Fjalëkalimi Aktual"
+                      />
+                      <Input
+                        size="lg"
+                        icon={<RiLockPasswordLine />}
+                        variant="light"
+                        display="block"
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                          setDisabled(false);
+                        }}
+                        onKeyPress={(e) => {
+                          e.key === "Enter" && e.preventDefault();
+                        }}
+                        value={password}
+                        type="password"
+                        autoComplete="new-password"
+                        placeholder="Fjalëkalimi Ri"
+                      />
+                    </div>
 
-                  <Input
-                    size="lg"
-                    icon={<RiLockPasswordLine />}
-                    variant="light"
-                    display="block"
-                    onChange={(e) => {
-                      setCurrentPassword(e.target.value);
-                      setDisabled(false);
-                    }}
-                    onKeyPress={(e) => {
-                      e.key === "Enter" && e.preventDefault();
-                    }}
-                    value={currentPassword}
-                    type="password"
-                    autoComplete="password"
-                    placeholder="Fjalëkalimi Aktual"
-                  />
+                    <Input
+                      size="lg"
+                      icon={<RiLockPasswordLine />}
+                      variant="light"
+                      display="block"
+                      onChange={(e) => {
+                        setRepeatPassword(e.target.value);
+                        setDisabled(false);
+                      }}
+                      onKeyPress={(e) => {
+                        e.key === "Enter" && e.preventDefault();
+                      }}
+                      value={repeatPassword}
+                      type="password"
+                      autoComplete="repeat-password"
+                      placeholder="Përserit Fjalëkalimin"
+                    />
 
-                  <Input
-                    size="lg"
-                    icon={<RiLockPasswordLine />}
-                    variant="light"
-                    display="block"
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                      setDisabled(false);
-                    }}
-                    onKeyPress={(e) => {
-                      e.key === "Enter" && e.preventDefault();
-                    }}
-                    value={password}
-                    type="password"
-                    autoComplete="new-password"
-                    placeholder="Fjalëkalimi Ri"
-                  />
-
-                  <Input
-                    size="lg"
-                    icon={<RiLockPasswordLine />}
-                    variant="light"
-                    display="block"
-                    onChange={(e) => {
-                      setRepeatPassword(e.target.value);
-                      setDisabled(false);
-                    }}
-                    onKeyPress={(e) => {
-                      e.key === "Enter" && e.preventDefault();
-                    }}
-                    value={repeatPassword}
-                    type="password"
-                    autoComplete="repeat-password"
-                    placeholder="Përserit Fjalëkalimin"
-                  />
-
-                  <Button disabled={disabled} size="lg" width={100} variant="filled" type="submit">
-                    Modifiko Profilin
-                  </Button>
-                </Form>
+                    <Button disabled={disabled} size="lg" width={100} variant="filled" type="submit">
+                      Modifiko Profilin
+                    </Button>
+                  </Form>
+                </>
               ) : (
                 <div className={styles.favoriteMovies}>
                   {favoriteMovies.length ? (
