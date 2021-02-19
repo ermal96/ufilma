@@ -21,6 +21,10 @@ body {
   font-weight: 400;
   font-size: 1.5rem;
   color: var(--main-color);
+
+  &.body-locked {
+    overflow: hidden;
+  }
 }
 h1 {
   font-weight: 500;

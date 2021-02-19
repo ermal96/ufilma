@@ -29,12 +29,13 @@
 }
 
 .dropdownBody {
+  border: 0.2rem solid var(--main-color);
   z-index: 10;
   margin: 0;
   padding: 0;
   position: absolute;
-  border-bottom-left-radius: 5px;
-  min-width: 27.5rem;
+  border-radius: var(--radius-md);
+  width: 23.7rem;
   background: var(--secondary-color);
   color: var(--main-color);
 

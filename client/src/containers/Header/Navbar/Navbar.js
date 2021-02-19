@@ -9,6 +9,7 @@ import styles from "./Navbar.module.scss";
 import cx from "classnames";
 
 const Navbar = () => {
+  const body = document.querySelector("body");
   const menuMobile = useSelector(({ header }) => header.menuMobile);
   const searchOpen = useSelector(({ header }) => header.search);
   const isLoggedIn = useSelector(({ user }) => user.loggedIn);
@@ -18,16 +19,19 @@ const Navbar = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
+    body.classList.remove("body-locked");
     dispatch(setMenuMobile(false));
-  }, [location, dispatch]);
+  }, [location, dispatch, body.classList]);
 
   const handleMenuMobile = () => {
     dispatch(setMenuMobile(!menuMobile));
 
     if (!menuMobile) {
       setShow("show");
+      body.classList.add("body-locked");
     } else {
       setShow("");
+      body.classList.remove("body-locked");
     }
   };
 

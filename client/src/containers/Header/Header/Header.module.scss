@@ -1,5 +1,14 @@
 .header {
-  background: var(--primary-color);
+  background: transparent;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  &.sticky {
+    background: var(--primary-color);
+  }
 }
 
 .headerWrapper {
@@ -21,9 +30,11 @@
 }
 
 .headerMini {
+  position: relative;
   display: flex;
   align-items: center;
   @media (max-width: 540px) {
+    position: static;
     justify-content: flex-end;
     width: 100%;
   }

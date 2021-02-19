@@ -43,26 +43,24 @@ const Search = ({ searchOpen }) => {
       </Form>
 
       {open ? (
-        <div className={styles.searchResult}>
-          {searchResult.length ? (
-            <>
-              {searchResult.slice(0, 5).map((result) => {
-                return (
-                  <Link key={result._id} style={{ textDecoration: "none" }} to={routes.movies + "/" + result._id}>
-                    <div className={styles.searchResultItem}>
-                      <div>
-                        <img src={process.env.REACT_APP_SERVER + result.thumbnail} alt={result.name} />
-                      </div>
-                      <div>
-                        <h2>{result.name}</h2>
-                      </div>
+        searchResult.length ? (
+          <div className={styles.searchResult}>
+            {searchResult.slice(0, 5).map((result) => {
+              return (
+                <Link key={result._id} style={{ textDecoration: "none" }} to={routes.movies + "/" + result._id}>
+                  <div className={styles.searchResultItem}>
+                    <div>
+                      <img src={process.env.REACT_APP_SERVER + result.thumbnail} alt={result.name} />
                     </div>
-                  </Link>
-                );
-              })}
-            </>
-          ) : null}
-        </div>
+                    <div>
+                      <h2>{result.name}</h2>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        ) : null
       ) : null}
     </div>
   );
