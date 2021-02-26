@@ -29,7 +29,7 @@ const SliderSection = ({ category }) => {
               {sliderSection.map((movie) => (
                 <SwiperSlide key={movie._id}>
                   <Card
-                    backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}
+                    backgroundImage={process.env.REACT_APP_SERVER + movie.thumbnail}
                     link={routes.movies + "/" + movie._id}
                     quality={movie.quality}
                     title={movie.name}

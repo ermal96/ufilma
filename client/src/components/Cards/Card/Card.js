@@ -4,17 +4,14 @@ import { FavoriteButton } from "../../index";
 import cx from "classnames";
 import styles from "./Card.module.scss";
 import Timeline from "../../Player/Timeline/Timeline";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Card = ({ backgroundImage, link, title, quality, id, variant, timeline }) => {
   return (
     <>
       <div className={cx(styles.card, styles[variant])}>
         <Link to={link}>
-          <div
-            className={styles.cardBg}
-            style={{
-              backgroundImage: backgroundImage,
-            }}></div>
+          <LazyLoadImage className={styles.cardBg} src={backgroundImage} />
         </Link>
         <div className={styles.cardMeta}>
           <div className={styles.cardMetaWrapper}>
