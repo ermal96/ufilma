@@ -30,7 +30,7 @@ const Movies = () => {
               {!isEmptyObject(movies)
                 ? movies.docs.map((movie) => (
                     <Card
-                      backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}
+                      backgroundImage={`${process.env.REACT_APP_SERVER}${movie.thumbnail}`}
                       link={routes.movies + "/" + movie._id}
                       key={movie._id}
                       quality={movie.quality}
