@@ -34,10 +34,17 @@ export const setUserWatchingMovies = (payload) => ({
 });
 
 // actions
-export const getMovies = () => async (dispatch) => {
+export const getMovies = (data) => async (dispatch) => {
+  const config = {
+    headers: {
+      limit: data && data.limit ? data.limit : 12,
+      page: data && data.page ? data.page : 1,
+    },
+  };
+
   try {
     dispatch(setAppLoading(true));
-    const res = await axios.get("movies");
+    const res = await axios.get("movies", config);
     dispatch(setMovies(res.data.movies));
     dispatch(setAppLoading(false));
   } catch (error) {

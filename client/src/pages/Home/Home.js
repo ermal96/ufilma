@@ -11,7 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getCategories());
-    dispatch(getMovies());
+    dispatch(getMovies({ limit: 36 }));
   }, [dispatch]);
 
   const isLoading = useSelector(({ app }) => app.loading);
