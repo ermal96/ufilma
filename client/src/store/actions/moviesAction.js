@@ -71,12 +71,13 @@ export const getUserFavoriteMovies = (movies) => async (dispatch) => {
   const config = {
     headers: {
       authorization: localStorage.getItem("token"),
+      movies,
     },
   };
 
   try {
     dispatch(setAppLoading(true));
-    const res = await axios.put("movies/favorites", movies, config);
+    const res = await axios.get("movies/favorites", config);
     dispatch(setUserFavoriteMovies(res.data.movies));
     dispatch(setAppLoading(false));
   } catch (error) {

@@ -2,10 +2,10 @@ import { Movie } from "../models/movieModel.js";
 import { Category } from "../models/categoryModel.js";
 import { generateImagePath, upload } from "../utils/upload.js";
 
-export const getAll = async (_, res) => {
+export const get = async (req, res) => {
   const options = {
-    page: 1,
-    limit: 36,
+    page: req.headers.page ? req.headers.page : 1,
+    limit: req.headers.limit ? req.headers.limit : 10,
     populate: {
       path: "categories",
       select: "name",
@@ -28,27 +28,12 @@ export const getAll = async (_, res) => {
   }
 };
 
-export const getWatching = async (req, res) => {
-  try {
-    // get movie from db
-    const movies = await Movie.find({ _id: req.body._id }).select("-__v").populate("categories", "name");
-
-    // send movie
-    return res.status(200).send({
-      movies,
-    });
-  } catch (error) {
-    // send error
-    return res.status(400).send({
-      message: "Dicka shkoi keq me filmat e pare",
-    });
-  }
-};
-
 export const getFavorites = async (req, res) => {
   try {
     // get movie from db
-    const movies = await Movie.find({ _id: req.body }).select("-__v").populate("categories", "name");
+    const movies = await Movie.find({ _id: req.headers.movies.split(",") })
+      .select("-__v")
+      .populate("categories", "name");
 
     // send movie
     return res.status(200).send({

@@ -34,7 +34,7 @@ const Categories = () => {
                 ? categories.map((category) => (
                     <Card
                       variant="square"
-                      backgroundImage={`url(${process.env.REACT_APP_SERVER}${category.thumbnail})`}
+                      backgroundImage={`${process.env.REACT_APP_SERVER}${category.thumbnail}`}
                       link={routes.categories + "/" + category._id}
                       key={category._id}
                       title={category.name}

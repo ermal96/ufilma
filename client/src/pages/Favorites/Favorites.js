@@ -33,7 +33,7 @@ const Favorites = () => {
                 {favoriteMovies.map((movie) => (
                   <Card
                     ratio="2/3"
-                    backgroundImage={`url(${process.env.REACT_APP_SERVER}${movie.thumbnail})`}
+                    backgroundImage={`${process.env.REACT_APP_SERVER}${movie.thumbnail}`}
                     link={routes.movies + "/" + movie._id}
                     key={movie._id}
                     quality={movie.quality}
