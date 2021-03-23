@@ -10,8 +10,8 @@ const Card = ({ backgroundImage, link, title, quality, id, variant, timeline }) 
   return (
     <>
       <div className={cx(styles.card, styles[variant])}>
-        <Link to={link}>
-          <LazyLoadImage className={styles.cardBg} src={backgroundImage} />
+        <Link aria-label={title} to={link}>
+          <LazyLoadImage alt={title} className={styles.cardBg} src={backgroundImage} />
         </Link>
         <div className={styles.cardMeta}>
           <div className={styles.cardMetaWrapper}>
@@ -21,7 +21,9 @@ const Card = ({ backgroundImage, link, title, quality, id, variant, timeline }) 
           <FavoriteButton movieId={id} movieName={title} />
         </div>
       </div>
-      {timeline ? <Timeline max={timeline.duration} value={timeline.playedTime} onChange={() => null} /> : null}
+      {timeline ? (
+        <Timeline max={timeline.duration} value={timeline.playedTime} onChange={() => null} />
+      ) : null}
     </>
   );
 };
