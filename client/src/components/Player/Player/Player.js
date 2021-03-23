@@ -1,6 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
-import { RiFullscreenFill, RiPlayLine, RiPauseLine, RiVolumeMuteLine, RiVolumeUpLine, RiFullscreenExitLine } from "react-icons/ri";
+import {
+  RiFullscreenFill,
+  RiPlayLine,
+  RiPauseLine,
+  RiVolumeMuteLine,
+  RiVolumeUpLine,
+  RiFullscreenExitLine,
+} from "react-icons/ri";
 import Timeline from "../Timeline/Timeline";
 import screenfull from "screenfull";
 import Loader from "../Loader/Loader";
@@ -130,8 +137,14 @@ const Player = ({ src, cover, title }) => {
     var duration = playerRef.current.duration;
     if (duration > 0) {
       for (var i = 0; i < playerRef.current.buffered.length; i++) {
-        if (playerRef.current.buffered.start(playerRef.current.buffered.length - 1 - i) < playerRef.current.currentTime) {
-          setLoaded((playerRef.current.buffered.end(playerRef.current.buffered.length - 1 - i) / duration) * 100);
+        if (
+          playerRef.current.buffered.start(playerRef.current.buffered.length - 1 - i) <
+          playerRef.current.currentTime
+        ) {
+          setLoaded(
+            (playerRef.current.buffered.end(playerRef.current.buffered.length - 1 - i) / duration) *
+              100
+          );
           break;
         }
       }
@@ -182,21 +195,32 @@ const Player = ({ src, cover, title }) => {
           <source src={src} type="video/mp4" />
         </video>
 
-        <img className={styles.playerCover} active={playing ? "false" : "true"} src={cover} alt="Video Cover" />
+        <div
+          className={styles.playerCover}
+          active={playing ? "false" : "true"}
+          style={{ backgroundImage: `url(${cover})` }}
+        />
 
         <Loader buffering={buffering} />
 
         {/* controls */}
         {ready ? (
           <div className={styles.controls} active={playing ? "false" : "true"}>
-            <div className={cx(styles.controlsArea, styles[controlAreaClasses])} onClick={handleControlArea}>
+            <div
+              className={cx(styles.controlsArea, styles[controlAreaClasses])}
+              onClick={handleControlArea}>
               {playing ? <RiPlayLine /> : <RiPauseLine />}
             </div>
 
             <div className={styles.controlsWrap}>
               {/* Timeline */}
               <div className={styles.timeline}>
-                <Timeline max={duration} value={playedTime} loaded={loaded} onChange={(e) => handlePlayedTime(e)} />
+                <Timeline
+                  max={duration}
+                  value={playedTime}
+                  loaded={loaded}
+                  onChange={(e) => handlePlayedTime(e)}
+                />
               </div>
 
               {/* Player constrols wrapper */}
@@ -204,10 +228,18 @@ const Player = ({ src, cover, title }) => {
                 {/* Left controls */}
                 <div className={styles.controlsLeft}>
                   {/* Play Pause */}
-                  {playing ? <RiPauseLine title="Pause" onClick={handlePause} /> : <RiPlayLine title="Play" onClick={handlePlay} />}
+                  {playing ? (
+                    <RiPauseLine title="Pause" onClick={handlePause} />
+                  ) : (
+                    <RiPlayLine title="Play" onClick={handlePlay} />
+                  )}
                   {/* Player volume */}
                   <div className={styles.volume}>
-                    {muted ? <RiVolumeMuteLine title="Unmute" onClick={handleUnmute} /> : <RiVolumeUpLine title="Mute" onClick={handleMute} />}
+                    {muted ? (
+                      <RiVolumeMuteLine title="Unmute" onClick={handleUnmute} />
+                    ) : (
+                      <RiVolumeUpLine title="Mute" onClick={handleMute} />
+                    )}
                   </div>
 
                   {/* PLayer title */}
@@ -215,7 +247,9 @@ const Player = ({ src, cover, title }) => {
 
                   {/* time */}
                   <div className={styles.controlsTime}>
-                    {secondsToTime(duration).h !== 0 ? <span>{secondsToTime(updatedDuration).h}:</span> : null}
+                    {secondsToTime(duration).h !== 0 ? (
+                      <span>{secondsToTime(updatedDuration).h}:</span>
+                    ) : null}
                     <span>{secondsToTime(updatedDuration).m}:</span>
                     <span>{secondsToTime(updatedDuration).s}</span>
                   </div>
