@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { getCategories } from "../../store/actions/categoriesAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Fade, PageHeader, Spinner } from "../../components";
 import { Layout, Seo } from "../../components";
-import { Card, Container, Grid } from "../../components";
+import { Container, Grid } from "../../components";
 import { routes } from "../../routes";
 import MovieImg from "../../assets/movies.svg";
+
+const Card = React.lazy(() => import("../../components/Cards/Card/Card"));
 
 const Categories = () => {
   const categories = useSelector(({ categories }) => categories.categories);
@@ -18,7 +20,10 @@ const Categories = () => {
 
   return (
     <Layout>
-      <Seo title="Kategoritë" description="Në këtë faqe do te gjeni te gjithë Kategoritë me të cilat mund te filtroni filmat qe dëshironi." />
+      <Seo
+        title="Kategoritë"
+        description="Në këtë faqe do te gjeni te gjithë Kategoritë me të cilat mund te filtroni filmat qe dëshironi."
+      />
       {isLoading ? (
         <Spinner />
       ) : (
@@ -32,14 +37,15 @@ const Categories = () => {
             <Grid>
               {categories.length
                 ? categories.map((category) => (
-                    <Card
-                      variant="square"
-                      backgroundImage={`${process.env.REACT_APP_SERVER}${category.thumbnail}`}
-                      link={routes.categories + "/" + category._id}
-                      key={category._id}
-                      title={category.name}
-                      length={category.movies.length}
-                    />
+                    <Suspense key={category._id} fallback="">
+                      <Card
+                        variant="square"
+                        backgroundImage={`${process.env.REACT_APP_SERVER}${category.thumbnail}`}
+                        link={routes.categories + "/" + category._id}
+                        title={category.name}
+                        length={category.movies.length}
+                      />
+                    </Suspense>
                   ))
                 : null}
             </Grid>

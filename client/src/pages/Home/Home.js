@@ -1,11 +1,12 @@
 import React, { useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions/moviesAction";
-import { TopMovie, RecentMovies } from "../../containers";
+import { TopMovie } from "../../containers";
 import { Fade, Layout, Seo, Spinner } from "../../components";
 import { getCategories } from "../../store/actions/categoriesAction";
 
 const SliderSection = React.lazy(() => import("../../containers/Movies/SliderSection"));
+const RecentMovies = React.lazy(() => import("../../containers/Movies/RecentMovies"));
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -26,12 +27,17 @@ const Home = () => {
       ) : (
         <Fade>
           <TopMovie />
-          <RecentMovies />
-          <Suspense fallback="loading..">
-            {categories.slice(0, 5).map((category) => {
-              return <SliderSection key={category._id} category={category.name} />;
-            })}
+          <Suspense fallback="">
+            <RecentMovies />
           </Suspense>
+
+          {categories.slice(0, 5).map((category) => {
+            return (
+              <Suspense key={category._id} fallback="">
+                <SliderSection category={category.name} />{" "}
+              </Suspense>
+            );
+          })}
         </Fade>
       )}
     </Layout>

@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Fade, Player, Seo, Spinner } from "../../components";
 import { getMovie } from "../../store/actions/moviesAction";
-import SingleMovieCard from "../../components/Cards/SingleMovieCard/SingleMovieCard";
 import { Layout } from "../../components";
+
+const SingleMovieCard = React.lazy(() =>
+  import("../../components/Cards/SingleMovieCard/SingleMovieCard")
+);
 
 const Movie = ({ match }) => {
   const dispatch = useDispatch();
@@ -30,7 +33,9 @@ const Movie = ({ match }) => {
             controls
             src={movie.videoUrl}
           />
-          <SingleMovieCard data={movie} />{" "}
+          <Suspense fallback="">
+            <SingleMovieCard data={movie} />
+          </Suspense>
         </Fade>
       )}
     </Layout>

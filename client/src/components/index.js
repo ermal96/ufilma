@@ -19,6 +19,7 @@ export { default as Grid } from "./Layout/Grid/Grid";
 // export cards
 export { default as Card } from "./Cards/Card/Card";
 export { default as TopMovieCard } from "./Cards/TopMovieCard/TopMovieCard";
+export { default as SingleMovieCard } from "./Cards/SingleMovieCard/SingleMovieCard";
 
 // export Topography
 export { default as Title } from "./Topography/Title/Title";
