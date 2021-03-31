@@ -16,7 +16,7 @@ const Movies = () => {
   const isLoading = useSelector(({ app }) => app.loading);
 
   useEffect(() => {
-    dispatch(getMovies());
+    dispatch(getMovies({ limit: 100 }));
   }, [dispatch]);
 
   return (
