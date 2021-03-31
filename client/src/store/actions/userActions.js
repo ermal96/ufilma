@@ -26,14 +26,8 @@ export const setError = (payload) => ({
 
 // actions
 export const updateUser = (user) => async (dispatch) => {
-  const config = {
-    headers: {
-      authorization: localStorage.getItem("token"),
-    },
-  };
-
   try {
-    const res = await axios.post("users/edit-account", user, config);
+    const res = await axios.post("users/edit-account", user);
     dispatch(updUser(res.data));
 
     message.success("Profili u ndryshua me sukses");
@@ -61,6 +55,8 @@ export const fetchUser = (userInfo) => async (dispatch) => {
     );
 
     message.success(`Miresevjen ${res.data.user.name}`);
+
+    return (axios.defaults.headers.common["authorization"] = res.data.token);
   } catch (error) {
     message.error(error.response.data.message);
     localStorage.clear();
@@ -82,6 +78,8 @@ export const signUserUp = (userInfo) => async (dispatch) => {
         id: res.data.user.id,
       })
     );
+
+    return (axios.defaults.headers.common["authorization"] = res.data.token);
   } catch (error) {
     message.error(error.response.data.message);
   }
@@ -102,6 +100,8 @@ export const autoLogin = () => async (dispatch) => {
         id: res.data.user.id,
       })
     );
+
+    return (axios.defaults.headers.common["authorization"] = res.data.token);
   } catch (error) {
     localStorage.clear();
   }
@@ -121,21 +121,11 @@ export const getWatching = (data) => async (dispatch) => {
 };
 
 export const addFavorite = (data) => async (dispatch) => {
-  const config = {
-    headers: {
-      authorization: data.token,
-    },
-  };
-
   try {
-    const res = await axios.put(
-      "users/add-favorite",
-      {
-        userId: data.userId,
-        movieId: data.movieId,
-      },
-      config
-    );
+    const res = await axios.put("users/add-favorite", {
+      userId: data.userId,
+      movieId: data.movieId,
+    });
 
     dispatch(setFavoritesMovie(res.data.user.favorites));
   } catch (error) {
@@ -144,21 +134,11 @@ export const addFavorite = (data) => async (dispatch) => {
 };
 
 export const removeFavorite = (data) => async (dispatch) => {
-  const config = {
-    headers: {
-      authorization: data.token,
-    },
-  };
-
   try {
-    const res = await axios.put(
-      "users/remove-favorite",
-      {
-        userId: data.userId,
-        movieId: data.movieId,
-      },
-      config
-    );
+    const res = await axios.put("users/remove-favorite", {
+      userId: data.userId,
+      movieId: data.movieId,
+    });
 
     dispatch(setFavoritesMovie(res.data.user.favorites));
   } catch (error) {

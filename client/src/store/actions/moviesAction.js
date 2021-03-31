@@ -75,16 +75,9 @@ export const getMovie = (id) => async (dispatch) => {
 };
 
 export const getUserFavoriteMovies = (movies) => async (dispatch) => {
-  const config = {
-    headers: {
-      authorization: localStorage.getItem("token"),
-      movies,
-    },
-  };
-
   try {
     dispatch(setAppLoading(true));
-    const res = await axios.get("movies/favorites", config);
+    const res = await axios.get("movies/favorites");
     dispatch(setUserFavoriteMovies(res.data.movies));
     dispatch(setAppLoading(false));
   } catch (error) {
